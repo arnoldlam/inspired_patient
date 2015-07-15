@@ -1,4 +1,4 @@
-"""inspired_health_site URL Configuration
+"""apps4kids URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.8/topics/http/urls/
@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
+    url('^accounts/', include('django.contrib.auth.urls')),
 ]

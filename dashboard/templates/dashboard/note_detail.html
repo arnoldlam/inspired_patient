@@ -1,0 +1,28 @@
+{% include "dashboard/header.html" %}
+
+<h3>Subject: {{ note.subject }}</h3>
+<p>Note type: <strong>{{ note.note_type }}</strong></p>
+<p><strong>Date created: </strong>{{ note.date_created }}</p>
+<p><strong>Last accessed:</strong> {{ note.date_accessed }}</p>
+<br>
+<p>Note: </p><input style="width:500px;height:100px;border-width:2px;border-style: solid;"value="{{ note.note_content }}"readonly>
+
+{% if attachments %}
+<p><strong>Attachment(s):</strong></p>
+<ul>
+{% for attachment in attachments %}
+<li><a target="_blank" href="{{ attachment.file_attachment.url }}">{{ attachment.file_attachment.name }}</a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No attachments added</p>
+{% endif %}
+
+<!-- Conditionals for additional text fields for different note types -->
+{% if note.instructions %}
+<p><strong>Instructions: </strong>{{ note.instructions }}</p>
+{% endif %}
+
+<p><strong>Follow-up:</strong> {{ note.follow_up }}</p>
+<br><br>
+<a href="{% url 'dashboard:share_note' note.id %}">Share Note</a> 

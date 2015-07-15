@@ -1,0 +1,24 @@
+{% include "dashboard/header.html" %}
+
+<h3>Your Stats</h3>
+
+<p>Notes owned: {{ notes.count }}</p>
+<p>Notebooks owned: {{ notebooks_read_write.count }}</p>
+
+<h3>Associates</h3>
+
+{% if associates %}
+<ul>
+{% for associate in associates %}
+<li><a href="#" <p>{{ associate.full_name }}</p></a></li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No associates</p>
+{% endif %}
+
+<h3>Add new associates</h3>
+
+Search by email: <input type="text" >
+<br /><br />
+<input type="submit" value="Search" />

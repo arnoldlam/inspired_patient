@@ -1,0 +1,7 @@
+<h2>Create a new notebook</h2>
+
+<form action="{% url 'dashboard:add_notebook' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_ul }} <br>
+<input type="submit" value="Create notebook" />
+</form>

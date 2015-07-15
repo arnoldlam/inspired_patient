@@ -1,0 +1,13 @@
+{% include "dashboard/header.html" %}
+
+<h3>Your Clinics</h3>
+
+{% if clinics %}
+{% for clinic in clinics %}
+	<ul>
+		<li>{{ clinic.name }}</li>
+	</ul>
+{% endfor %}
+{% else %}
+<p>No clinics added</p>
+{% endif %}

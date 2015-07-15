@@ -1,0 +1,10 @@
+{% include "dashboard/header.html" %}
+
+<h2>Edit Profile</h2>
+
+<form action="{% url 'dashboard:edit_profile' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_ul }}
+	<br>
+	<input type="submit" value="Save"/>
+</form>

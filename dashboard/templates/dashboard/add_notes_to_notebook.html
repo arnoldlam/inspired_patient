@@ -1,0 +1,29 @@
+{% include "dashboard/header.html" %}
+<br><br>
+
+{% if notes %}
+<form action="{% url 'dashboard:add_notes_to_notebook' notebook_id %}" method="post">
+	{% csrf_token %}
+	<table>
+		<tr style="font-weight:bold;">
+			<td>Notebook</td>
+			<td>Add to notebook</td>
+		</tr>
+		{% for note in notes %}
+		<tr>
+		<td><p>{{ note.subject }}</p></td>
+		<!-- Append checkbox name to for-loop counter -->
+		{% with y=forloop.counter|stringformat:"s" %}
+		{% with checkboxName="isChecked"|add:y %}
+		<td><input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" /></td>
+		{% endwith %}
+		{% endwith %}
+		</tr>
+		{% endfor %}
+	</table>
+	<br>
+	<input type="submit" value="Add notes">
+</form>
+{% else %}
+<p>All your notes are already in this notebook</p>
+{% endif %}

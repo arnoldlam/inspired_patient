@@ -6,7 +6,7 @@
 <!-- If img is hardcoded, start from this app's static directory. See below for example -->
 <!-- <img src="{% static "dashboard/media/profile_pictures/1844-8.jpg" %}" alt="Profile Picture" style="height:100px;width:100px;"/>-->
 
-<img src="{% static user_profile.profile_picture.url %}" alt="Profile Picture" style="height:100px;width:100px;"/>
+<img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" style="height:100px;width:100px;"/>
 
 <ul>
 	<li>First Name:{{user.first_name}} </li>

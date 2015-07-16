@@ -13,7 +13,7 @@ class UserProfile(models.Model):
 	medical_history = models.CharField(max_length=4000)
 	role = models.CharField(max_length=15) # ie. professional, patient
 	title = models.CharField(max_length=15)
-	profile_picture = models.ImageField(upload_to='dashboard/static/dashboard/media/profile_pictures')
+	profile_picture = models.ImageField(upload_to='profile_pictures')
 
 	def __str__(self):
 		return self.user.username
@@ -104,7 +104,7 @@ class Notebook(models.Model):
 		return self.name
 
 class Attachment(models.Model):
-	file_attachment = models.FileField(upload_to='dashboard/static/dashboard/attachments')
+	file_attachment = models.FileField(upload_to='attachments')
 	note = models.ForeignKey(Note, related_name='attachments')
 	name = file_attachment.name
 

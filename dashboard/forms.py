@@ -16,7 +16,14 @@ class EditProfileForm(forms.Form):
 	title = forms.CharField(label='Title', max_length=15)	
 	first_name = forms.CharField(label='First Name', max_length=20)
 	last_name = forms.CharField(label='Last Name', max_length=20)
-	address = forms.CharField(label='Address', max_length=100)
+
+	address_unit = forms.CharField(label='Unit', max_length=10)
+	address_street = forms.CharField(label='Street', max_length=50)
+	address_city = forms.CharField(label='City', max_length=30)
+	address_province = forms.CharField(label='Province', max_length=30)
+	address_country = forms.CharField(label='Country', max_length=30)
+	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
+
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 	role = forms.CharField(label='Role', max_length=15)

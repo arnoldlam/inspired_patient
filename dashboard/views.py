@@ -38,7 +38,14 @@ def EditProfile(request):
 		if form.is_valid():
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']
-			address = form.cleaned_data['address']
+
+			address_unit = form.cleaned_data['address_unit']
+			address_street = form.cleaned_data['address_street']
+			address_city = form.cleaned_data['address_city']
+			address_province = form.cleaned_data['address_province']
+			address_country = form.cleaned_data['address_country']
+			address_postal_code = form.cleaned_data['address_postal_code']
+
 			medical_history = form.cleaned_data['medical_history']
 			phone_number = form.cleaned_data['phone_number']
 			role = form.cleaned_data['role']
@@ -49,7 +56,14 @@ def EditProfile(request):
 
 			user.first_name = first_name
 			user.last_name = last_name
-			user_profile.address = address
+
+			user_profile.address_unit = address_unit
+			user_profile.address_street = address_street
+			user_profile.address_city = address_city
+			user_profile.address_province = address_province
+			user_profile.address_country = address_country
+			user_profile.address_postal_code = address_postal_code
+
 			user_profile.medical_history = medical_history
 			user_profile.phone_number = phone_number
 			user_profile.role = role

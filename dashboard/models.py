@@ -8,7 +8,8 @@ class UserProfile(models.Model):
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
-	address_street = models.CharField(max_length=100)
+	address_street = models.CharField(max_length=50)
+	address_unit = models.CharField(max_length=10)
 	phone_number = models.CharField(max_length=20)
 	medical_history = models.CharField(max_length=4000)
 	role = models.CharField(max_length=15) # ie. professional, patient

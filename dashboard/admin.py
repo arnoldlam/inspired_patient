@@ -13,7 +13,6 @@ class UserProfileInline(admin.StackedInline):
 	fieldsets = (
 		(None, {'fields': ('profile_picture', 'role', 'title', 'associates', 'phone_number', 
 			'medical_history',)}),
-		('Address', {'fields': ['address_unit', 'address_street']}),
 	)
 
 class UserAdmin(UserAdmin):

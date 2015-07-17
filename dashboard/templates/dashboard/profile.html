@@ -11,7 +11,14 @@
 <ul>
 	<li>First Name:{{user.first_name}} </li>
 	<li>Last Name: {{user.last_name}} </li>
-	<li>Address: {{user_profile.address_street}}</li>
+	<li>Address</li>
+	<ul>
+		<li>Unit: {{user_profile.address_unit}}</li>
+		<li>Street: {{user_profile.address_street}}</li>
+		<li>City: {{user_profile.address_city}}</li>
+		<li>Province: {{user_profile.address_province}}</li>
+		<li>Country: {{user_profile.address_country}}</li>
+	<ul>
 	<li>Medical History: {{user_profile.medical_history}}</li>
 	<li>Title: {{user_profile.title}}</li>
 </ul>

@@ -25,11 +25,15 @@ class UserAdmin(UserAdmin):
 		('User Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',),})
 	)
 
+@admin.register(Note)
+class NoteAdmin(admin.ModelAdmin):
+	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
+
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)
 admin.site.register(Clinic)
-admin.site.register(Note)
+# admin.site.register(Note)
 # admin.site.register(CommunicationNote)
 # admin.site.register(DischargeNote)
 admin.site.register(InstructionNote)

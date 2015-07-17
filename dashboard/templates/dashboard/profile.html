@@ -21,6 +21,8 @@
 		<li>Province: {{user_profile.address_province}}</li>
 		<li>Country: {{user_profile.address_country}}</li>
 	</ul>
+	<li>Phone number: {{ user_profile.phone_number }}</li>
+	<li><a href="mailto:{{ user.username }}">Email: {{ user_profile.email }}</a></li>
 </ul>
 
 <a href="{% url 'dashboard:edit_profile' %}">Edit Profile</a>

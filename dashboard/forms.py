@@ -13,13 +13,13 @@ class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 
 class EditProfileForm(forms.Form):
+	title = forms.CharField(label='Title', max_length=15)	
 	first_name = forms.CharField(label='First Name', max_length=20)
 	last_name = forms.CharField(label='Last Name', max_length=20)
 	address = forms.CharField(label='Address', max_length=100)
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 	role = forms.CharField(label='Role', max_length=15)
-	title = forms.CharField(label='Titie', max_length=15)
 	profile_picture = forms.ImageField()
 
 class AddNotebookForm(forms.Form):

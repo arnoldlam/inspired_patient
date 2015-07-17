@@ -3,4 +3,5 @@ Django==1.8.3
 django-storages==1.1.8
 MySQL-python==1.2.5
 Pillow==2.9.0
+South==1.0.2
 wheel==0.24.0

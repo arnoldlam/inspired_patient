@@ -5,6 +5,11 @@ from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
 
 class UserProfile(models.Model):
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
@@ -12,7 +17,7 @@ class UserProfile(models.Model):
 	address_unit = models.CharField('Unit', max_length=10)
 	address_city = models.CharField('City', max_length=30)
 	address_province = models.CharField('Province', max_length=30)
-	address_country = models.CharField('Country', max_length=30)
+	address_country = models.CharField('Country', max_length=30, choices = ADDRESS_CITY_CHOICES, default='CA')
 	address_postal_code = models.CharField('Postal Code', max_length=10)
 	phone_number = models.CharField(max_length=20)
 	medical_history = models.CharField(max_length=4000)

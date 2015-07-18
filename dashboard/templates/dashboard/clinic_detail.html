@@ -1,0 +1,9 @@
+{% include "dashboard/header.html" %}
+
+<h3>{{ clinic.name }}</h3>
+
+<ul>
+	<li>Address: {{ clinic.address }}</li>
+	<li>Email: <a href="mailto:{{ clinic.email }}">{{ clinic.email }}</a></li>
+	<li>Phone Number: {{ clinic.phone_number }}</li>
+</ul>

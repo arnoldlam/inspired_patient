@@ -404,4 +404,13 @@ def AddAssociate(request, user_id):
 		'message': message,
 	})
 
+def ClinicDetailView(request, clinic_id):
+	clinic = get_object_or_404(Clinic, pk=clinic_id)
+
+	return render(request, 'dashboard/clinic_detail.html', {
+		'clinic':clinic,
+	})
+
+
+
 

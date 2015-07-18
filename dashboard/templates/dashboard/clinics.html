@@ -5,7 +5,7 @@
 {% if clinics %}
 {% for clinic in clinics %}
 	<ul>
-		<li>{{ clinic.name }}</li>
+		<li><a href="{% url 'dashboard:clinic_detail' clinic.id %}">{{ clinic.name }}</a></li>
 	</ul>
 {% endfor %}
 {% else %}

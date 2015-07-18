@@ -381,8 +381,6 @@ def PublicProfileView(request, user_id):
 	if user.user_profile in associates:
 		is_associate = 1 
 
-	is_associate = request.user.user_profile.is_associate(user)
-
 	return render(request, 'dashboard/public_profile.html', {
 		'user':user,
 		'is_associate':is_associate,

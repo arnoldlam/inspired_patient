@@ -11,6 +11,7 @@ urlpatterns = [
 	url(r'^profile/edit$', views.EditProfile, name='edit_profile'),
 	url(r'^collaboration$', views.CollaborationView, name='collaboration'),
 	url(r'^collaboration/search$', views.SearchUserResultsView, name='search_results'),
+	url(r'^collaboration/profile/(?P<user_id>[0-9]+)$', views.PublicProfileView, name='public_profile'),
 	url(r'^clinics/$', views.ClinicView, name='clinics'),
 	url(r'^notes/$', views.NotesView, name='notes'),
 	url(r'^notes/(?P<note_id>[0-9]+)/$', views.NoteDetail, name='note_detail'),
@@ -22,6 +23,3 @@ urlpatterns = [
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/add_notes', views.AddNotesToNotebookView, name='add_notes_to_notebook'),
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/share', views.ShareNotebookView, name='share_notebook'),
 ]
-
-# urlpatterns += staticfiles_urlpatterns()
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

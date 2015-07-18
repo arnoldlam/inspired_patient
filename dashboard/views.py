@@ -372,4 +372,12 @@ def SearchUserResultsView(request):
 		'search_results':search_results,
 	})
 
+@login_required
+def PublicProfileView(request, user_id):
+	user = get_object_or_404(User, pk=user_id)
+
+	return render(request, 'dashboard/public_profile.html', {
+		'user':user,
+	})
+
 

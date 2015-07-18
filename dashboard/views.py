@@ -366,7 +366,7 @@ def ShareNotebookView(request, notebook_id):
 def SearchUserResultsView(request):
 	searched_username = request.GET['u']
 	search_results = []
-	search_results = User.objects.get(username__contains = searched_username)
+	search_results = User.objects.filter(username__icontains = searched_username)
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,

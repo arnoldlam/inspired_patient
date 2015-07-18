@@ -394,6 +394,7 @@ def AddAssociate(request, user_id):
 	# For now, simply add as associate
 	# To-Do - Send associate request and make message 'request sent'
 	user_profile.associates.add(associate_to_add.user_profile)
+	user_profile.save()
 	is_associate = 1
 	message = 'Associate added'
 

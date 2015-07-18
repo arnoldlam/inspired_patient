@@ -38,6 +38,12 @@ class UserProfile(models.Model):
 	def full_name(self):
 		return self.user.first_name + " " + self.user.last_name
 
+	def is_associate(self, other_user):
+		if other_user.user_profile in self.associates.all():
+			return 1
+		else:
+			return 0
+
 class Clinic(models.Model):
 	users = models.ManyToManyField(User, related_name='clinics')
 	name = models.CharField(max_length=100)

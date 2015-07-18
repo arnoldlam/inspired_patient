@@ -6,6 +6,11 @@
 
 <ul>
 <li>Title: {{ user.user_profile.title }}</li>
-<li>First Name:{{user.first_name}} </li>
-<li>Last Name: {{user.last_name}} </li>
+<li>Name:{{ user.user_profile.full_name }} </li>
 </ul>
+<br>
+<br>
+
+{% if not is_associate %}
+<p><a href="#">Add user as associate</a></p>
+{% endif %}

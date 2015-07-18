@@ -375,9 +375,17 @@ def SearchUserResultsView(request):
 @login_required
 def PublicProfileView(request, user_id):
 	user = get_object_or_404(User, pk=user_id)
+	associates = request.user.user_profile.associates.all()
+
+	# is_associate = 0
+	# if user in associates:
+	# 	is_associate = 1 
+
+	is_associate = request.user.user_profile.is_associate
 
 	return render(request, 'dashboard/public_profile.html', {
 		'user':user,
+		'is_associate':is_associate
 	})
 
 

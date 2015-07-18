@@ -378,15 +378,29 @@ def PublicProfileView(request, user_id):
 	associates = request.user.user_profile.associates.all()
 	logged_in_user = request.user
 
-	# is_associate = 0
-	# if user.user_profile in associates:
-	# 	is_associate = 1 
-
 	is_associate = logged_in_user.user_profile.is_associate(user)
 
 	return render(request, 'dashboard/public_profile.html', {
 		'user':user,
 		'is_associate':is_associate,
+	})
+
+@login_required
+def AddAssociate(request, user_id):
+	associate_to_add = get_object_or_404(User, pk=user_id)
+	user = request.user
+	user_profile = user.user_profile
+
+	# For now, simply add as associate
+	# To-Do - Send associate request and make message 'request sent'
+	user_profile.associates.add(associate_to_add.user_profile)
+	is_associate = 1
+	message = 'Associate added'
+
+	return render(request, 'dashboard/public_profile.html', {
+		'user':user,
+		'is_associate':is_associate,
+		'message', message,
 	})
 
 

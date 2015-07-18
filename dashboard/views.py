@@ -401,7 +401,7 @@ def AddAssociate(request, user_id):
 	return render(request, 'dashboard/public_profile.html', {
 		'user':user,
 		'is_associate':is_associate,
-		'message', message,
+		'message': message,
 	})
 
 

@@ -19,6 +19,8 @@
 
 <h3>Add new associates</h3>
 
-Search by email: <input type="text" >
+<form action="{% url 'dashboard:search_results' %}" method="GET">
+Search by email: <input type="text" name="username">
 <br /><br />
 <input type="submit" value="Search" />
+</form>

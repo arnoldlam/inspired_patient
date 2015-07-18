@@ -2,10 +2,10 @@ from django import forms
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)
-	follow_up = forms.CharField(label='Follow-Up', max_length=250)
 	note_content = forms.CharField(label='Note', max_length=250)
 	attachment = forms.FileField(required=False)
-	url = forms.CharField(label='URL', max_length=500)
+	url = forms.CharField(label='URL Links', max_length=500)
+	follow_up = forms.CharField(label='Follow-Up', max_length=250)
 
 class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)

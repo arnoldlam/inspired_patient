@@ -7,7 +7,7 @@
 <br>
 <p>Note: </p><input style="width:500px;height:100px;border-width:2px;border-style: solid;"value="{{ note.note_content }}"readonly>
 {% if note.url %}
-<p>Relavent URL: <a href="#">{{ note.url }}</a></p>
+<p>Relavent URL: <a href="{{ note.url }}">{{ note.url }}</a></p>
 {% endif %}
 
 {% if attachments %}

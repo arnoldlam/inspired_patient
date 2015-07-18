@@ -20,7 +20,7 @@ class UserProfile(models.Model):
 	title = models.CharField(max_length=15)
 	profile_picture = models.ImageField(upload_to='profile_pictures')
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.user.username
 
 	def full_name(self):
@@ -44,7 +44,7 @@ class Note(models.Model):
 	note_type = models.CharField(max_length=20)
 	url = models.CharField(max_length=500, blank=True)
 	
-	def __str__(self):
+	def __unicode__(self):
 		return self.subject
 
 	def noteAccessedNow(self):
@@ -106,7 +106,7 @@ class Notebook(models.Model):
 	editors = models.ManyToManyField(User, related_name="notebooks_read_write")
 	notes = models.ManyToManyField(Note, related_name='notes', blank=True)
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.name
 
 class Attachment(models.Model):
@@ -114,5 +114,5 @@ class Attachment(models.Model):
 	note = models.ForeignKey(Note, related_name='attachments')
 	name = file_attachment.name
 
-	def __str__(self):
+	def __unicode__(self):
 		return self.file_attachment.name

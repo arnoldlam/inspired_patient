@@ -7,7 +7,7 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('dashboard', '0002_remove_note_testing'),
+        ('dashboard', '0001_initial'),
     ]
 
     operations = [

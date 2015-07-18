@@ -376,10 +376,13 @@ def SearchUserResultsView(request):
 def PublicProfileView(request, user_id):
 	user = get_object_or_404(User, pk=user_id)
 	associates = request.user.user_profile.associates.all()
+	logged_in_user = request.user
 
-	is_associate = 0
-	if user.user_profile in associates:
-		is_associate = 1 
+	# is_associate = 0
+	# if user.user_profile in associates:
+	# 	is_associate = 1 
+
+	is_associate = logged_in_user.user_profile.is_associate(user)
 
 	return render(request, 'dashboard/public_profile.html', {
 		'user':user,

@@ -38,6 +38,8 @@ class UserProfile(models.Model):
 	def full_name(self):
 		return self.user.first_name + " " + self.user.last_name
 
+	# Takes in user object
+	# Returns whether user is an associate of the user object
 	def is_associate(self, other_user):
 		if other_user.user_profile in self.associates.all():
 			return 1

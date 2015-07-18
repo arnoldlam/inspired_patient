@@ -3,9 +3,6 @@
 
 <h3>User Profile for {{ user.first_name }} {{ user.last_name }}</h3>
 
-<!-- If img is hardcoded, start from this app's static directory. See below for example -->
-<!-- <img src="{% static "dashboard/media/profile_pictures/1844-8.jpg" %}" alt="Profile Picture" style="height:100px;width:100px;"/>-->
-
 <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" style="height:100px;width:100px;"/>
 
 <ul>

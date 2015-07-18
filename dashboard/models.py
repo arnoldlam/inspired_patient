@@ -10,18 +10,25 @@ class UserProfile(models.Model):
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
 	)
+	ROLE_CHOICES = (
+		('patient', 'Patient'),
+		('caregiver', 'Caregiver'),
+		('parent', 'Parent'),
+		('professional', 'Professional'),
+	)
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
 	address_street = models.CharField('Street', max_length=50)
 	address_unit = models.CharField('Unit', max_length=10)
 	address_city = models.CharField('City', max_length=30)
-	address_province = models.CharField('Province', max_length=30)
-	address_country = models.CharField('Country', max_length=30, choices = ADDRESS_CITY_CHOICES, default='CA')
+	address_province = models.CharField('Province / State', max_length=30)
+	address_country = models.CharField('Country', max_length=30, choices = ADDRESS_CITY_CHOICES, 
+		default='CA')
 	address_postal_code = models.CharField('Postal Code', max_length=10)
 	phone_number = models.CharField(max_length=20)
 	medical_history = models.CharField(max_length=4000)
-	role = models.CharField(max_length=15) # ie. professional, patient
+	role = models.CharField(max_length=15, choices = ROLE_CHOICES, default = 'patient') # ie. professional, patient
 	title = models.CharField(max_length=15)
 	profile_picture = models.ImageField(upload_to='profile_pictures')
 

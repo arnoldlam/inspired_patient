@@ -10,7 +10,7 @@
 {% if associates %}
 <ul>
 {% for associate in associates %}
-<li><a href="#" <p>{{ associate.full_name }}</p></a></li>
+<li><a href="{% url 'dashboard:public_profile' associate.user.id %}" <p>{{ associate.full_name }}</p></a></li>
 {% endfor %}
 </ul>
 {% else %}

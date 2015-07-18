@@ -43,7 +43,6 @@ class Note(models.Model):
 	note_content = models.CharField(max_length=250)
 	note_type = models.CharField(max_length=20)
 	url = models.CharField(max_length=500, blank=True)
-	testing = models.CharField(max_length=10, blank=True)
 	
 	def __unicode__(self):
 		return self.subject

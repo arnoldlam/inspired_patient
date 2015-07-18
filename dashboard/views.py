@@ -365,6 +365,7 @@ def ShareNotebookView(request, notebook_id):
 @login_required
 def SearchUserResultsView(request):
 	searched_username = request.GET['username']
+	search_results = []
 	search_results = User.objects.get(username__contains = searched_username)
 
 	return render(request, 'dashboard/user_search_results.html', {

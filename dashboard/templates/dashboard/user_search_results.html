@@ -1,3 +1,15 @@
 {% include "dashboard/header.html" %}
 
 <h3>Search Results</h3>
+
+{% if search_results %}
+
+<ul>
+{% for user in search_results %}
+<li><a href="#">user.username</a></li>
+{% endfor %}
+</ul>
+
+{% else %}
+<p>No users matching that query</p>
+{% endif %}

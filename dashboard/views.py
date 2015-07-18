@@ -399,7 +399,7 @@ def AddAssociate(request, user_id):
 	message = 'Associate added'
 
 	return render(request, 'dashboard/public_profile.html', {
-		'user':user,
+		'user':associate_to_add,
 		'is_associate':is_associate,
 		'message': message,
 	})

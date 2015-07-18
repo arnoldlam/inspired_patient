@@ -12,8 +12,10 @@
 {% if not is_associate %}
 <p><a href="{% url 'dashboard:add_associate' user.id %}">Add user as associate</a></p>
 {% else %}
-<p>Share note with {{ user.first_name }}</p>
-<p>Share notebook with {{ user.first_name }}</p>
+{% comment %}
+<p><a href="#">Share note with {{ user.first_name }}</a></p>
+<p><a href="#">Share notebook with {{ user.first_name }}</a></p>
+{% endcomment %}
 {% endif %}
 
 {% if message %}

@@ -2,6 +2,7 @@
 
 <h3>Notebook: {{ notebook.name }}</h3>
 
+{% if zipped_list %}
 <p>Notes in notebook:</p>
 <table border="1">
 <tr>
@@ -21,6 +22,9 @@
 </tr>
 {% endfor %}
 </table>
+{% else %}
+<p>Notebook is currently empty</p>
+{% endif %}
 
 <p>Editors:</p>
 <ul>

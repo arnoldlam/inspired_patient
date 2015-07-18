@@ -5,6 +5,7 @@ class AddNoteForm(forms.Form):
 	follow_up = forms.CharField(label='Follow-Up', max_length=250)
 	note_content = forms.CharField(label='Note', max_length=250)
 	attachment = forms.FileField(required=False)
+	url = forms.CharField(label='URL', max_length=500)
 
 class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)

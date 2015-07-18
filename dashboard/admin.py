@@ -29,7 +29,7 @@ class UserAdmin(UserAdmin):
 class NoteAdmin(admin.ModelAdmin):
 	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
 	fieldsets = (
-		(None, {'fields': ('subject', 'note_type', 'note_content', 'follow_up',)}),
+		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
 		('Users', {'fields':['author', 'users',],'classes':['show']}),
 	)
 

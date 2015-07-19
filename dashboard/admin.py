@@ -42,9 +42,11 @@ class ClinicAdmin(admin.ModelAdmin):
 
 @admin.register(Notebook):
 	list_display = ('name', 'description', 'date_created', 'date_modified', 'date_accessed')
-	(None, {'fields': ('name', 'description', 'notes')}),
+	fieldsets = (
+		(None, {'fields': ('name', 'description', 'notes')}),
 		('Dates', {'fields':['date_created', 'date_modified', 'date_accessed'],'classes':['show']}),
 		('Users', {'fields':['editors', 'viewers',],'classes':['show']}),
+	)
 
 admin.site.unregister(User)
 admin.site.unregister(Group)

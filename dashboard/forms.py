@@ -36,9 +36,11 @@ class EditProfileForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
+	profile_picture = forms.ImageField()
 	title = forms.CharField(label='Title', max_length=15)	
 	first_name = forms.CharField(label='First Name', max_length=20)
 	last_name = forms.CharField(label='Last Name', max_length=20)
+	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
 
 	address_unit = forms.CharField(label='Unit', max_length=10)
 	address_street = forms.CharField(label='Street', max_length=50)
@@ -49,8 +51,6 @@ class EditProfileForm(forms.Form):
 
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
-	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
-	profile_picture = forms.ImageField()
 
 class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)

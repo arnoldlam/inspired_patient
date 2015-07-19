@@ -167,7 +167,7 @@ def AddNoteView(request):
 				if form.is_valid():
 					attention = form.cleaned_data['attention']
 					importance = form.cleaned_data['importance']
-					new_note = CommunicationNote(subject=subject, note_type='Instruction Note', 
+					new_note = CommunicationNote(subject=subject, note_type='Communication Note', 
 						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user, url=url, attention=attention,
 						importance=importance)		
@@ -222,6 +222,7 @@ def NoteDetail(request, note_id):
 	note_type_dict = {
 				'General Note': Note,
 				'Instruction Note': InstructionNote,
+				'Communication Note': CommunicationNote,
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)

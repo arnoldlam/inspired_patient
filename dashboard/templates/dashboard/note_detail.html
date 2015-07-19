@@ -25,7 +25,7 @@
 <p><strong>Instructions: </strong>{{ note.instructions }}</p>
 {% endif %}
 
-{% note.note_type == 'Communication Note' %}
+{% if note.note_type == 'Communication Note' %}
 <p>Attention: {{ note.attention }}</p>
 <p>Importance: {{ note.importance }}</p>
 {% endif %}

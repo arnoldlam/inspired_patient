@@ -189,11 +189,11 @@ def AddNoteView(request):
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose,
 						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
 			
-			if 'url' in form.cleaned_data:
-				new_note.url = form.cleaned_data['url']
+			# if 'url' in form.cleaned_data:
+			# 	new_note.url = form.cleaned_data['url']
 
-			if 'follow_up' in form.cleaned_data:
-				new_note.follow_up = form.cleaned_data['follow_up']
+			# if 'follow_up' in form.cleaned_data:
+			# 	new_note.follow_up = form.cleaned_data['follow_up']
 
 			new_note.save()
 

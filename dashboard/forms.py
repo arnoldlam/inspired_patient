@@ -57,9 +57,11 @@ class SearchForUserForm(forms.Form):
 class EditProfileForm(ModelForm):
 	class Meta:
 		model = UserProfile
-		fields = ['profile_picture', 'title', 'first_name', 'last_name', 
+		fields = ['profile_picture', 'title', 
 		'role', 'address_street', 'address_city', 'address_country', 'address_province',
 		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
+		first_name = forms.CharField(label='First Name', max_length=20)
+		last_name = forms.CharField(label='Last Name', max_length=20)
 
 class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)

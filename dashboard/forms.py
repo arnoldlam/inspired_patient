@@ -69,12 +69,13 @@ class AddNotebookForm(ModelForm):
 	editors = ModelMultipleChoiceField(queryset = None)
 
 	def __init__(self, *args, **kwargs):
+		user_id = 3
 		super(AddNotebookForm, self).__init__(*args, **kwargs)
-		self.fields['editors'].queryset = User.objects.all()
+		self.fields['editors'].queryset = User.objects.select_related('user_profile').all()
 
 	class Meta:
 		model = Notebook
-		fields = ['name', 'description', 'editors', 'notes']
+		fields = ['name', 'description']
 
 
 

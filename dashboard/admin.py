@@ -44,8 +44,6 @@ class ClinicAdmin(admin.ModelAdmin):
 	list_display = ('name', 'description', 'date_created', 'date_modified', 'date_accessed')
 	fieldsets = (
 		(None, {'fields': ('name', 'description', 'notes')}),
-		('Dates', {'fields':['date_created', 'date_modified', 'date_accessed'],'classes':['show']}),
-		('Users', {'fields':['editors', 'viewers',],'classes':['show']}),
 	)
 
 admin.site.unregister(User)

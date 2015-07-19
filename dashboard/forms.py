@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from dashboard.models import UserProfile, DischargeNote
+from dashboard.models import UserProfile, DischargeNote, Notebook
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)

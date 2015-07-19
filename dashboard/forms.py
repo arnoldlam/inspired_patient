@@ -1,6 +1,7 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, ModelMultipleChoiceField
 from dashboard.models import UserProfile, DischargeNote, Notebook
+from django.contrib.auth.models import User, Group
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)
@@ -65,6 +66,12 @@ class EditProfileForm(forms.Form):
 # 	description = forms.CharField(label='Description', max_length=4000,required=False)
 
 class AddNotebookForm(ModelForm):
+	editors = ModelMultipleChoiceField(queryset = None)
+
+	def __init__(self, *args, **kwargs):
+		super(AddNotebookForm, self).__init__(*args, **kwargs)
+		self.fields['editors'].queryset = User.objects.all()
+
 	class Meta:
 		model = Notebook
 		fields = ['name', 'description', 'editors', 'notes']

@@ -66,12 +66,12 @@ class EditProfileForm(forms.Form):
 # 	description = forms.CharField(label='Description', max_length=4000,required=False)
 
 class AddNotebookForm(ModelForm):
-	editors = ModelMultipleChoiceField(queryset = None)
+	# editors = ModelMultipleChoiceField(queryset = None)
 
-	def __init__(self, *args, **kwargs):
-		user_id = 3
-		super(AddNotebookForm, self).__init__(*args, **kwargs)
-		self.fields['editors'].queryset = User.objects.select_related('user_profile').all()
+	# def __init__(self, *args, **kwargs):
+	# 	user_id = 3
+	# 	super(AddNotebookForm, self).__init__(*args, **kwargs)
+	# 	self.fields['editors'].queryset = User.objects.select_related('user_profile').all()
 
 	class Meta:
 		model = Notebook

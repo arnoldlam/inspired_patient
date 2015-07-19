@@ -172,7 +172,7 @@ def AddNoteView(request):
 						importance=importance)		
 
 			if request.POST['note_type'] == 'discharge_note':
-				form = AddDischargeNoteForm(request.POST,request.FILES)
+				form = AddDischargeNoteForm(request.POST)
 				if form.is_valid():
 
 					procedure = form.cleaned_data['procedure']

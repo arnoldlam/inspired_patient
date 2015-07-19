@@ -145,23 +145,21 @@ def AddNoteView(request):
 			user = request.user
 			
 			subject = form.cleaned_data['subject']
-			follow_up = form.cleaned_data['follow_up']
+			# follow_up = form.cleaned_data['follow_up']
 			note = form.cleaned_data['note_content']
-			url = form.cleaned_data['url']
 
 			if request.POST['note_type'] == 'general_note':
-				new_note = Note(subject=subject, note_type='General Note', follow_up=follow_up, 
+				new_note = Note(subject=subject, note_type='General Note',
 					note_content=note, date_created=timezone.now(), date_accessed=timezone.now(),
 					author=user)
-				new_note.url = url
 			
 			if request.POST['note_type'] == 'instruction_note':
 				form = AddInstructionNoteForm(request.POST,request.FILES)
 				if form.is_valid():
 					instructions = form.cleaned_data['instructions']
 					new_note = InstructionNote(subject=subject, note_type='Instruction Note', 
-						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
-						date_accessed=timezone.now(), instructions=instructions, author=user, url=url)
+						note_content=note, date_created=timezone.now(), 
+						date_accessed=timezone.now(), instructions=instructions, author=user,)
 
 			if request.POST['note_type'] == 'communication_note':
 				form = AddCommunicationNoteForm(request.POST,request.FILES)
@@ -169,8 +167,8 @@ def AddNoteView(request):
 					attention = form.cleaned_data['attention']
 					importance = form.cleaned_data['importance']
 					new_note = CommunicationNote(subject=subject, note_type='Communication Note', 
-						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
-						date_accessed=timezone.now(), author=user, url=url, attention=attention,
+						note_content=note, date_created=timezone.now(), 
+						date_accessed=timezone.now(), author=user, attention=attention,
 						importance=importance)		
 
 			if request.POST['note_type'] == 'discharge_note':
@@ -186,8 +184,8 @@ def AddNoteView(request):
 					emergency_instructions = form.cleaned_data['emergency_instructions']
 
 					new_note = DischargeNote(subject=subject, note_type='Discharge Note', 
-						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
-						date_accessed=timezone.now(), author=user, url=url, procedure=procedure,
+						note_content=note, date_created=timezone.now(), 
+						date_accessed=timezone.now(), author=user,procedure=procedure,
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose,
 						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
 			
@@ -197,6 +195,12 @@ def AddNoteView(request):
 			if request.FILES.get('attachment') != None:
 				attachment = Attachment(file_attachment=request.FILES['attachment'])
 				new_note.attachments.add(attachment)
+
+			if 'url' in form.cleaned_data['url']:
+				new_note.url = form.cleaned_data['url']
+
+			if 'follow_up' in form.cleaned_data['follow_up']:
+				new_note.follow_up = form.cleaned_data['follow_up']
 
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:

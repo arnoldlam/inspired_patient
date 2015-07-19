@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)
@@ -56,6 +57,9 @@ class SearchForUserForm(forms.Form):
 class EditProfileForm(ModelForm):
 	class Meta:
 		model = UserProfile
+		fields = ['profile_picture', 'title', 'first_name', 'last_name', 
+		'role', 'address_street', 'address_city', 'address_country', 'address_province',
+		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
 
 class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)

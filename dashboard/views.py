@@ -7,7 +7,7 @@ from django.views import generic
 from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook
+from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
@@ -161,6 +161,16 @@ def AddNoteView(request):
 					new_note = InstructionNote(subject=subject, note_type='Instruction Note', 
 						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), instructions=instructions, author=user, url=url)
+
+			if request.POST['note_type'] == 'communication_note':
+				form = AddCommunicationNoteForm(request.POST,request.FILES)
+				if form.is_valid():
+					attention = form.cleaned_data['attention']
+					importance = form.cleaned_data['importance']
+					new_note = CommunicationNote(subject=subject, note_type='Instruction Note', 
+						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
+						date_accessed=timezone.now(), instructions=instructions, author=user, url=url, attention=attention,
+						importance=importance)		
 			
 			new_note.save()
 

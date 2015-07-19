@@ -18,7 +18,6 @@ class AddCommunicationNoteForm(AddNoteForm):
 	)	
 	attention = forms.CharField(max_length=250)
 	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
-	instructions = forms.CharField(max_length=4000)	
 
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)

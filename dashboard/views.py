@@ -148,7 +148,7 @@ def AddNoteView(request):
 			follow_up = form.cleaned_data['follow_up']
 			note = form.cleaned_data['note_content']
 			
-			if 'url' in form.cleaned_data:	
+			if form.cleaned_data['url'] != None:	
 				url = form.cleaned_data['url']
 			else:
 				url = ''

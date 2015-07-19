@@ -8,7 +8,7 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 # View for main dashboard
@@ -192,6 +192,12 @@ def AddNoteView(request):
 		if request.GET['note_type'] == 'instruction_note':
 			form = AddInstructionNoteForm()
 			return render(request, 'dashboard/add_instruction_note.html', {
+				'form': form, 
+				'notebook_id':notebook_id,
+			})
+		if request.GET['note_type'] == 'communication_note':
+			form = AddCommunicationNoteForm()
+			return render(request, 'dashboard/add_communication_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,
 			})

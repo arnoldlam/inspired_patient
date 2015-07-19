@@ -10,6 +10,16 @@ class AddNoteForm(forms.Form):
 class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)
 
+class AddCommunicationNoteForm(AddNoteForm):
+	PRIORITY_CHOICES = (
+		('read', 'Read'),
+		('respond', 'Respond'),
+		('urgent', 'Urgent'),
+	)	
+	attention = forms.CharField(max_length=250)
+	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
+	instructions = forms.CharField(max_length=4000)	
+
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 
@@ -35,11 +45,7 @@ class AddNotebookForm(forms.Form):
 	description = forms.CharField(label='Description', max_length=4000)
 
 
-# class AddCommunicationNoteForm(AddNoteForm):	
-# 	attention = forms.CharField(max_length=250)
-# 	importance = forms.CharField(max_length=250)
-# 	instructions = forms.CharField(max_length=4000)	
-# 	# attachments needs to be added
+
 
 # class AddDischargeNoteForm(AddNoteForm):	
 # 	procedure = forms.CharField(max_length=250)

@@ -87,7 +87,7 @@ class Note(models.Model):
 
 class InstructionNote(Note):	
 	instructions = models.CharField(max_length=4000)
-	# attachments needs to be added	
+		
 
 
 class CommunicationNote(Note):	
@@ -108,7 +108,7 @@ class DischargeNote(Note):
 	next_dose = models.CharField(max_length=50)
 	selfcare_instructions = models.TextField()
 	emergency_instructions = models.TextField()
-	# attachments needs to be added
+	
 
 class SelfCareNote(Note):	
 	selfcare_desc = models.CharField(max_length=1000)
@@ -117,13 +117,13 @@ class SelfCareNote(Note):
 	procedure = models.CharField(max_length=4000)
 	time = models.CharField(max_length=250)
 	outcome = models.CharField(max_length=250)	
-	# attachments needs to be added
+	
 
 class MedicalInformationNote(Note):
 	medication_name = models.CharField(max_length=100)
 	medication_dose = models.CharField(max_length=100)
 	medication_duration = models.IntegerField()	
-	# attachments needs to be added
+	
 
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)

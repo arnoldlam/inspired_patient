@@ -189,18 +189,18 @@ def AddNoteView(request):
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose,
 						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
 			
+			if 'url' in form.cleaned_data['url']:
+				new_note.url = form.cleaned_data['url']
+
+			if 'follow_up' in form.cleaned_data['follow_up']:
+				new_note.follow_up = form.cleaned_data['follow_up']
+			
 			new_note.save()
 
 			# If user uploaded an attachment, relate it to the new note
 			if request.FILES.get('attachment') != None:
 				attachment = Attachment(file_attachment=request.FILES['attachment'])
 				new_note.attachments.add(attachment)
-
-			if 'url' in form.cleaned_data['url']:
-				new_note.url = form.cleaned_data['url']
-
-			if 'follow_up' in form.cleaned_data['follow_up']:
-				new_note.follow_up = form.cleaned_data['follow_up']
 
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:

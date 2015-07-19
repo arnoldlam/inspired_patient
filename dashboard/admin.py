@@ -40,11 +40,11 @@ class ClinicAdmin(admin.ModelAdmin):
 		(None, {'fields': ('name', 'address', 'email', 'phone_number', 'users',)}),
 	)
 
-@admin.register(Notebook):
-	list_display = ('name', 'description', 'date_created', 'date_modified', 'date_accessed')
-	(None, {'fields': ('name', 'description', 'notes')}),
-		('Dates', {'fields':['date_created', 'date_modified', 'date_accessed'],'classes':['show']}),
-		('Users', {'fields':['editors', 'viewers',],'classes':['show']}),
+# @admin.register(Notebook):
+# 	list_display = ('name', 'description', 'date_created', 'date_modified', 'date_accessed')
+# 	(None, {'fields': ('name', 'description', 'notes')}),
+# 		('Dates', {'fields':['date_created', 'date_modified', 'date_accessed'],'classes':['show']}),
+# 		('Users', {'fields':['editors', 'viewers',],'classes':['show']}),
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
@@ -54,4 +54,5 @@ admin.site.register(User, UserAdmin)
 admin.site.register(InstructionNote)
 # admin.site.register(MedicalInformationNote)
 # admin.site.register(SelfCareNote)
+admin.site.register(Notebook)
 admin.site.register(Attachment)

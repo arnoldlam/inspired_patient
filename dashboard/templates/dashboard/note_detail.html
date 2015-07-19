@@ -30,14 +30,14 @@
 {% endif %}
 
 {% if note.note_type == 'Discharge Note' %}
-<p>Procedure: {{ note.procedure }}</p>
-<p>Doctor: {{ note.doctor }}</p>
-<p>Weight: {{ note.weight }}</p>
-<p>Medication Name: {{ note.medication_name }}</p>
-<p>Dosage: {{ note.medication_dose }}</p>
-<p>Next Dose: {{ note.next_dose }}</p>
-<p>Selfcare Instructions: {{ note.selfcare_instructions }}</p>
-<p>Emergency Instructions: {{ note.emergency_instructions }}</p>
+<p><b>Procedure:</b> {{ note.procedure }}</p>
+<p><b>Doctor:</b> {{ note.doctor }}</p>
+<p><b>Weight:</b> {{ note.weight }}</p>
+<p><b>Medication Name:</b> {{ note.medication_name }}</p>
+<p><b>Dosage:</b> {{ note.medication_dose }}</p>
+<p><b>Next Dose:</b> {{ note.next_dose }}</p>
+<p><b>Selfcare Instructions:</b> {{ note.selfcare_instructions }}</p>
+<p><b>Emergency Instructions:</b> {{ note.emergency_instructions }}</p>
 {% endif %}
 
 {% if note.follow_up %}

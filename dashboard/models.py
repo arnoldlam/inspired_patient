@@ -128,6 +128,9 @@ class Notebook(models.Model):
 	viewers = models.ManyToManyField(User, related_name="notebooks_read_only", blank=True)
 	editors = models.ManyToManyField(User, related_name="notebooks_read_write")
 	notes = models.ManyToManyField(Note, related_name='notes', blank=True)
+	date_created = models.DateTimeField('date created', auto_now_add=True, blank=True)
+	date_modified = models.DateTimeField('date modified', blank=True)
+	date_accessed = models.DateTimeField('date accessed', blank=True)
 
 	def __unicode__(self):
 		return self.name

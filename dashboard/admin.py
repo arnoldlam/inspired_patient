@@ -33,6 +33,13 @@ class NoteAdmin(admin.ModelAdmin):
 		('Users', {'fields':['author', 'users',],'classes':['show']}),
 	)
 
+@admin.register(Clinic)
+class ClinicAdmin(admin.ModelAdmin):
+	list_display = ('name', 'address', 'email', 'phone_number', )
+	fieldsets = (
+		(None, {'fields': ('name', 'address', 'email', 'phone_number', 'users',)}),
+	)
+
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)

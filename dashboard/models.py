@@ -52,6 +52,9 @@ class Clinic(models.Model):
 	address = models.CharField(max_length=100)
 	email = models.CharField(max_length=50)
 	phone_number = models.CharField(max_length=20)
+
+	def __unicode__(self):
+		return self.name
 	
 class Note(models.Model):
 	users = models.ManyToManyField(User, related_name='notes')

@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from dashboard.models import UserProfile
+from dashboard.models import UserProfile, DischargeNote
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)
@@ -54,29 +54,26 @@ class EditProfileForm(forms.Form):
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
-# class EditProfileForm(ModelForm):
-# 	class Meta:
-# 		model = UserProfile
-# 		fields = ['profile_picture', 'title', 
-# 		'role', 'address_street', 'address_city', 'address_country', 'address_province',
-# 		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
-# 		first_name = forms.CharField(label='First Name', max_length=20)
-# 		last_name = forms.CharField(label='Last Name', max_length=20)
-
 class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)
 	description = forms.CharField(label='Description', max_length=4000)
 
-# class AddDischargeNoteForm(AddNoteForm):	
-# 	procedure = forms.CharField(max_length=250)
-# 	doctor = forms.CharField(max_length=250)
-# 	weight = forms.IntegerField(default=0)
-# 	medication_name = forms.CharField(max_length=100)
-# 	medication_dose = forms.CharField(max_length=100)
-# 	next_dose = forms.CharField(max_length=100)
-# 	selfcare_instructions = forms.CharField(max_length=4000)
-# 	emergency_instructions = forms.CharField(max_length=4000)
-# 	# attachments needs to be added
+class AddDischargeNoteForm(AddNoteForm):	
+	procedure = forms.CharField(max_length=250)
+	doctor = forms.CharField(max_length=250)
+	weight = forms.IntegerField(default=0)
+	medication_name = forms.CharField(max_length=100)
+	medication_dose = forms.CharField(max_length=100)
+	next_dose = forms.CharField(max_length=100)
+	selfcare_instructions = forms.CharField(max_length=4000)
+	emergency_instructions = forms.CharField(max_length=4000)
+	# attachments needs to be added
+
+class AddDischargeNoteForm(ModelForm):
+	class Meta:
+		model = DischargeNote
+		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
+		'next_dose', 'selfcare_instructions', 'emergency_instructions']
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)
@@ -92,3 +89,12 @@ class AddNotebookForm(forms.Form):
 # 	medication_dose = forms.CharField(max_length=100)
 # 	medication_duration = forms.IntegerField()	
 # 	# attachments needs to be added
+
+# class EditProfileForm(ModelForm):
+# 	class Meta:
+# 		model = UserProfile
+# 		fields = ['profile_picture', 'title', 
+# 		'role', 'address_street', 'address_city', 'address_country', 'address_province',
+# 		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
+# 		first_name = forms.CharField(label='First Name', max_length=20)
+# 		last_name = forms.CharField(label='Last Name', max_length=20)

@@ -63,9 +63,9 @@ class Note(models.Model):
 	date_accessed = models.DateTimeField('date accessed')
 	subject = models.CharField(max_length=150)
 	follow_up = models.CharField(max_length=250)
-	note_content = models.CharField(max_length=250)
+	note_content = models.TextField()
 	note_type = models.CharField(max_length=20)
-	url = models.CharField(max_length=500, blank=True)
+	url = models.URLField(max_length=200, blank=True)
 	
 	def __unicode__(self):
 		return self.subject
@@ -105,9 +105,9 @@ class DischargeNote(Note):
 	weight = models.IntegerField(default=0)
 	medication_name = models.CharField(max_length=100)
 	medication_dose = models.CharField(max_length=100)
-	next_dose = models.CharField(max_length=100)
-	selfcare_instructions = models.CharField(max_length=4000)
-	emergency_instructions = models.CharField(max_length=4000)
+	next_dose = models.DateTimeField()
+	selfcare_instructions = models.TextField()
+	emergency_instructions = models.TextField()
 	# attachments needs to be added
 
 class SelfCareNote(Note):	

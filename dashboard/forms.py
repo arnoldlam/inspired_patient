@@ -4,9 +4,9 @@ from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150)
-	note_content = forms.CharField(label='Note', max_length=250)
+	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)
 	attachment = forms.FileField(required=False)
-	url = forms.CharField(label='URL Link', max_length=500)
+	url = forms.URLField(label='URL')
 	follow_up = forms.CharField(label='Follow-Up', max_length=250)
 
 class AddInstructionNoteForm(AddNoteForm):
@@ -24,44 +24,44 @@ class AddCommunicationNoteForm(AddNoteForm):
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 
-# class EditProfileForm(forms.Form):
-# 	ROLE_CHOICES = (
-# 		('patient', 'Patient'),
-# 		('caregiver', 'Caregiver'),
-# 		('parent', 'Parent'),
-# 		('professional', 'Professional'),
-# 	)
+class EditProfileForm(forms.Form):
+	ROLE_CHOICES = (
+		('patient', 'Patient'),
+		('caregiver', 'Caregiver'),
+		('parent', 'Parent'),
+		('professional', 'Professional'),
+	)
 	
-# 	ADDRESS_CITY_CHOICES = (
-# 		('CA', 'Canada'),
-# 		('US', 'United States'),
-# 		('UK', 'United Kingdom'),
-# 	)
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
 
-# 	profile_picture = forms.ImageField()
-# 	title = forms.CharField(label='Title', max_length=15)	
-# 	first_name = forms.CharField(label='First Name', max_length=20)
-# 	last_name = forms.CharField(label='Last Name', max_length=20)
-# 	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
+	profile_picture = forms.ImageField()
+	title = forms.CharField(label='Title', max_length=15)	
+	first_name = forms.CharField(label='First Name', max_length=20)
+	last_name = forms.CharField(label='Last Name', max_length=20)
+	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
 
-# 	address_unit = forms.CharField(label='Unit', max_length=10)
-# 	address_street = forms.CharField(label='Street', max_length=50)
-# 	address_city = forms.CharField(label='City', max_length=30)
-# 	address_province = forms.CharField(label='Province', max_length=30)
-# 	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
-# 	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
+	address_unit = forms.CharField(label='Unit', max_length=10)
+	address_street = forms.CharField(label='Street', max_length=50)
+	address_city = forms.CharField(label='City', max_length=30)
+	address_province = forms.CharField(label='Province', max_length=30)
+	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
 
-# 	medical_history = forms.CharField(label='Medical History', max_length=4000)
-# 	phone_number = forms.CharField(label='Phone Number', max_length=20)
+	medical_history = forms.CharField(label='Medical History', max_length=4000)
+	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
-class EditProfileForm(ModelForm):
-	class Meta:
-		model = UserProfile
-		fields = ['profile_picture', 'title', 
-		'role', 'address_street', 'address_city', 'address_country', 'address_province',
-		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
-		first_name = forms.CharField(label='First Name', max_length=20)
-		last_name = forms.CharField(label='Last Name', max_length=20)
+# class EditProfileForm(ModelForm):
+# 	class Meta:
+# 		model = UserProfile
+# 		fields = ['profile_picture', 'title', 
+# 		'role', 'address_street', 'address_city', 'address_country', 'address_province',
+# 		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
+# 		first_name = forms.CharField(label='First Name', max_length=20)
+# 		last_name = forms.CharField(label='Last Name', max_length=20)
 
 class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)

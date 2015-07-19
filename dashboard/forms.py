@@ -44,12 +44,12 @@ class EditProfileForm(forms.Form):
 	address_street = forms.CharField(label='Street', max_length=50)
 	address_city = forms.CharField(label='City', max_length=30)
 	address_province = forms.CharField(label='Province', max_length=30)
-	address_country = forms.CharField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
 	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
 
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
-	role = forms.CharField(label='Role', choices=ROLE_CHOICES)
+	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
 	profile_picture = forms.ImageField()
 
 class AddNotebookForm(forms.Form):

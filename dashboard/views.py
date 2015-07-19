@@ -300,7 +300,7 @@ def AddNotebookView(request):
 
 			# Create and save new notebook object
 			new_notebook = Notebook(name=notebook_name, description=notebook_description)
-			new_notebook.save()
+			new_notebook.save_m2m()
 
 			# Add new notebook to current user's read-write notebooks
 			user = request.user

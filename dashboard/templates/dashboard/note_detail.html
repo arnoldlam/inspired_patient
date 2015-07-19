@@ -5,6 +5,7 @@
 <p><strong>Date created: </strong>{{ note.date_created }}</p>
 <p><strong>Last accessed:</strong> {{ note.date_accessed }}</p>
 <p>Note: </p><input style="width:500px;height:100px;border-width:2px;border-style: solid;"value="{{ note.note_content }}"readonly>
+
 {% if note.url %}
 <p>Relavent URL: <a href="{{ note.url }}">{{ note.url }}</a></p>
 {% endif %}
@@ -26,6 +27,17 @@
 {% if note.note_type == 'Communication Note' %}
 <p>Attention: {{ note.attention }}</p>
 <p>Importance: {{ note.importance }}</p>
+{% endif %}
+
+{% if note.note_type == 'Discharge Note' %}
+<p>Procedure: {{ note.procedure }}</p>
+<p>Doctor: {{ note.doctor }}</p>
+<p>Weight: {{ note.weight }}</p>
+<p>Medication Name: {{ note.medication_name }}</p>
+<p>Dosage: {{ note.medication_dose }}</p>
+<p>Next Dose: {{ note.next_dose }}</p>
+<p>Selfcare Instructions: {{ note.selfcare_instructions }}</p>
+<p>Emergency Instructions: {{ note.emergency_instructions }}</p>
 {% endif %}
 
 {% if note.follow_up %}

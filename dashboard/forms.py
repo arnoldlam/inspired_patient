@@ -21,6 +21,12 @@ class AddCommunicationNoteForm(AddNoteForm):
 	attention = forms.CharField(max_length=250)
 	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
 
+class AddDischargeNoteForm(ModelForm):
+	class Meta:
+		model = DischargeNote
+		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
+		'next_dose', 'selfcare_instructions', 'emergency_instructions']
+		
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 
@@ -58,11 +64,7 @@ class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)
 	description = forms.CharField(label='Description', max_length=4000)
 
-class AddDischargeNoteForm(ModelForm):
-	class Meta:
-		model = DischargeNote
-		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
-		'next_dose', 'selfcare_instructions', 'emergency_instructions']
+
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)
@@ -71,13 +73,13 @@ class AddDischargeNoteForm(ModelForm):
 # 	procedure = forms.CharField(max_length=4000)
 # 	time = forms.CharField(max_length=250)
 # 	outcome = forms.CharField(max_length=250)	
-# 	# attachments needs to be added
+# 	
 
 # class AddMedicalInformationNoteForm(AddNoteForm):
 # 	medication_name = forms.CharField(max_length=100)
 # 	medication_dose = forms.CharField(max_length=100)
 # 	medication_duration = forms.IntegerField()	
-# 	# attachments needs to be added
+# 	
 
 # class EditProfileForm(ModelForm):
 # 	class Meta:

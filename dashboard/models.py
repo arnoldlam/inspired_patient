@@ -102,7 +102,7 @@ class CommunicationNote(Note):
 class DischargeNote(Note):	
 	procedure = models.CharField(max_length=250)
 	doctor = models.CharField(max_length=250)
-	weight = models.IntegerField(default=0)
+	weight = models.IntegerField()
 	medication_name = models.CharField(max_length=100)
 	medication_dose = models.CharField(max_length=100)
 	next_dose = models.DateTimeField()

@@ -186,7 +186,7 @@ def AddNoteView(request):
 					new_note = DischargeNote(subject=subject, note_type='Discharge Note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user,procedure=procedure,
-						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight
+						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight,
 						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
 			
 			if 'url' in form.cleaned_data:

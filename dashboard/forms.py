@@ -60,9 +60,14 @@ class EditProfileForm(forms.Form):
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
-class AddNotebookForm(forms.Form):
-	name = forms.CharField(label='Notebook name', max_length=20)
-	description = forms.CharField(label='Description', max_length=4000)
+# class AddNotebookForm(forms.Form):
+# 	name = forms.CharField(label='Notebook name', max_length=20)
+# 	description = forms.CharField(label='Description', max_length=4000,required=False)
+
+class AddNotebookForm(ModelForm):
+	class meta:
+		model = Notebook
+		fields = ['name', 'description', 'editors']
 
 
 

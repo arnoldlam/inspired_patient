@@ -105,7 +105,7 @@ class DischargeNote(Note):
 	weight = models.IntegerField()
 	medication_name = models.CharField(max_length=100)
 	medication_dose = models.CharField(max_length=100)
-	next_dose = models.CharField()
+	next_dose = models.CharField(max_length=50)
 	selfcare_instructions = models.TextField()
 	emergency_instructions = models.TextField()
 	# attachments needs to be added

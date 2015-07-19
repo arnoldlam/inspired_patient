@@ -4,7 +4,6 @@
 <p>Note type: <strong>{{ note.note_type }}</strong></p>
 <p><strong>Date created: </strong>{{ note.date_created }}</p>
 <p><strong>Last accessed:</strong> {{ note.date_accessed }}</p>
-<br>
 <p>Note: </p><input style="width:500px;height:100px;border-width:2px;border-style: solid;"value="{{ note.note_content }}"readonly>
 {% if note.url %}
 <p>Relavent URL: <a href="{{ note.url }}">{{ note.url }}</a></p>
@@ -26,6 +25,14 @@
 <p><strong>Instructions: </strong>{{ note.instructions }}</p>
 {% endif %}
 
+{% note.note_type == 'Communication Note' %}
+<p>Attention: {{ note.attention }}</p>
+<p>Importance: {{ note.importance }}</p>
+{% endif %}
+
+{% if note.follow_up %}
 <p><strong>Follow-up:</strong> {{ note.follow_up }}</p>
-<br><br>
+{% endif %}
+
+<br>
 <a href="{% url 'dashboard:share_note' note.id %}">Share Note</a> 

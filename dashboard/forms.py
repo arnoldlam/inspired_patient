@@ -65,7 +65,7 @@ class EditProfileForm(forms.Form):
 # 	description = forms.CharField(label='Description', max_length=4000,required=False)
 
 class AddNotebookForm(ModelForm):
-	class meta:
+	class Meta:
 		model = Notebook
 		fields = ['name', 'description', 'editors']
 

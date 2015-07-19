@@ -7,8 +7,8 @@ from django.views import generic
 from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm
+from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddDischargeNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 # View for main dashboard
@@ -171,6 +171,24 @@ def AddNoteView(request):
 						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user, url=url, attention=attention,
 						importance=importance)		
+
+			if request.POST['note_type'] == 'discharge_note':
+				form = AddDischargeNoteForm(request.POST,request.FILES)
+				if form.is_valid():
+
+					procedure = form.cleaned_data['procedure']
+					doctor = form.cleaned_data['doctor']
+					weight = form.cleaned_data['weight']
+					medication_dose = form.cleaned_data['medication_dose']
+					next_dose = form.cleaned_data['next_dose']
+					selfcare_instructions = form.cleaned_data['selfcare_instructions']
+					emergency_instructions = form.cleaned_data['emergency_instructions']
+
+					new_note = DischargeNote(subject=subject, note_type='Discharge Note', 
+						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
+						date_accessed=timezone.now(), author=user, url=url, procedure=procedure,
+						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose,
+						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
 			
 			new_note.save()
 

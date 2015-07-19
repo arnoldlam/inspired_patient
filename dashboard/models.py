@@ -62,7 +62,7 @@ class Note(models.Model):
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed')
 	subject = models.CharField(max_length=150)
-	follow_up = models.CharField(max_length=250)
+	follow_up = models.CharField(max_length=250, blank=True)
 	note_content = models.TextField()
 	note_type = models.CharField(max_length=20)
 	url = models.URLField(max_length=200, blank=True)
@@ -131,9 +131,9 @@ class Notebook(models.Model):
 	viewers = models.ManyToManyField(User, related_name="notebooks_read_only", blank=True)
 	editors = models.ManyToManyField(User, related_name="notebooks_read_write")
 	notes = models.ManyToManyField(Note, related_name='notes', blank=True)
-	date_created = models.DateTimeField('date created', auto_now_add=True, blank=True)
-	date_modified = models.DateTimeField('date modified', auto_now_add=True, blank=True)
-	date_accessed = models.DateTimeField('date accessed', auto_now_add=True, blank=True)
+	date_created = models.DateTimeField('date created', auto_now_add=True)
+	date_modified = models.DateTimeField('date modified', auto_now_add=True)
+	date_accessed = models.DateTimeField('date accessed', auto_now_add=True)
 
 	def __unicode__(self):
 		return self.name

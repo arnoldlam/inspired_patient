@@ -169,7 +169,7 @@ def AddNoteView(request):
 					importance = form.cleaned_data['importance']
 					new_note = CommunicationNote(subject=subject, note_type='Instruction Note', 
 						follow_up=follow_up, note_content=note, date_created=timezone.now(), 
-						date_accessed=timezone.now(), instructions=instructions, author=user, url=url, attention=attention,
+						date_accessed=timezone.now(), author=user, url=url, attention=attention,
 						importance=importance)		
 			
 			new_note.save()

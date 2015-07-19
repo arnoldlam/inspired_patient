@@ -147,7 +147,9 @@ def AddNoteView(request):
 			subject = form.cleaned_data['subject']
 			follow_up = form.cleaned_data['follow_up']
 			note = form.cleaned_data['note_content']
-			url = form.cleaned_data['url']
+			
+			if 'url' in form.cleaned_data:	
+				url = form.cleaned_data['url']
 
 			if request.POST['note_type'] == 'general_note':
 				new_note = Note(subject=subject, note_type='General Note', follow_up=follow_up, 

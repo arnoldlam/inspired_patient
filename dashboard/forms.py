@@ -58,22 +58,22 @@ class AddNotebookForm(forms.Form):
 	name = forms.CharField(label='Notebook name', max_length=20)
 	description = forms.CharField(label='Description', max_length=4000)
 
-class AddDischargeNoteForm(AddNoteForm):	
-	procedure = forms.CharField(max_length=250)
-	doctor = forms.CharField(max_length=250)
-	weight = forms.IntegerField()
-	medication_name = forms.CharField(max_length=100)
-	medication_dose = forms.CharField(max_length=100)
-	next_dose = forms.CharField(max_length=100)
-	selfcare_instructions = forms.CharField(max_length=4000)
-	emergency_instructions = forms.CharField(max_length=4000)
-	# attachments needs to be added
+# class AddDischargeNoteForm(AddNoteForm):	
+# 	procedure = forms.CharField(max_length=250)
+# 	doctor = forms.CharField(max_length=250)
+# 	weight = forms.IntegerField()
+# 	medication_name = forms.CharField(max_length=100)
+# 	medication_dose = forms.CharField(max_length=100)
+# 	next_dose = forms.DateTimeField()
+# 	selfcare_instructions = forms.CharField(max_length=4000)
+# 	emergency_instructions = forms.CharField(max_length=4000)
+# 	# attachments needs to be added
 
-# class AddDischargeNoteForm(ModelForm):
-# 	class Meta:
-# 		model = DischargeNote
-# 		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
-# 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
+class AddDischargeNoteForm(ModelForm):
+	class Meta:
+		model = DischargeNote
+		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
+		'next_dose', 'selfcare_instructions', 'emergency_instructions']
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

@@ -43,8 +43,6 @@ class ClinicAdmin(admin.ModelAdmin):
 admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)
-admin.site.register(Clinic)
-# admin.site.register(Note)
 # admin.site.register(CommunicationNote)
 # admin.site.register(DischargeNote)
 admin.site.register(InstructionNote)

@@ -4,7 +4,7 @@
 <p>Note type: <strong>{{ note.note_type }}</strong></p>
 <p><strong>Date created: </strong>{{ note.date_created }}</p>
 <p><strong>Last accessed:</strong> {{ note.date_accessed }}</p>
-<p><b>Note:</b> </p><input style="width:500px;height:100px;border-width:2px;border-style: solid;"value="{{ note.note_content }}"readonly>
+<p><b>Note:</b> </p><input style="width:500px;height:150px;border-width:1px;border-style: solid;"value="{{ note.note_content|linebreaks }}"readonly>
 
 {% if note.url %}
 <p>Relavent URL: <a href="{{ note.url }}">{{ note.url }}</a></p>

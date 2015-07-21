@@ -1,3 +1,10 @@
+"""
+Filename: models.py
+Created on: June 13th, 2015th
+Author: Arnold Lam
+Description: Provides the models for Inspired Health
+"""
+
 from django.db import models
 from django.contrib.auth.models import User, Group
 import datetime

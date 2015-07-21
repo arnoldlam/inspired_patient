@@ -1,3 +1,10 @@
+"""
+Filename: views.py
+Created on: June 13th, 2015th
+Author: Arnold Lam
+Description: Provides the views for Inspired Health
+"""
+
 from django.shortcuts import render,get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -324,7 +331,7 @@ def NotebookDetail(request, notebook_id):
 	notebook = get_object_or_404(Notebook, pk=notebook_id)
 	notebook_editors = notebook.editors.all()
 	notebook_viewers = notebook.viewers.all()
-	notes_in_notebook = notebook.notes.all().order_by('date_created')
+	notes_in_notebook = notebook.notes.all().order_by('-date_created')
 	user = request.user
 	author_array = []
 

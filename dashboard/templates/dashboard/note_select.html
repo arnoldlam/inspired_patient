@@ -4,7 +4,7 @@
 
 {% if notebook_id %}
 <a href="{% url 'dashboard:add_note' %}?note_type=general_note&notebook_id={{notebook_id}}">General Note</a><br>
-<a href="{% url 'dashboard:add_note' %}?note_type=instruction_note&notebook_id={{notebook_id}}">Instruction Note</a>
+<a href="{% url 'dashboard:add_note' %}?note_type=instruction_note&notebook_id={{notebook_id}}">Instruction Note</a><br>
 <a href="{% url 'dashboard:add_note' %}?note_type=communication_note&notebook_id={{notebook_id}}">Communication Note</a><br>
 <a href="{% url 'dashboard:add_note' %}?note_type=discharge_note&notebook_id={{notebook_id}}">Discharge Note</a><br>
 {% else %}

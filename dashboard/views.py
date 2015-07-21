@@ -324,7 +324,7 @@ def NotebookDetail(request, notebook_id):
 	notebook = get_object_or_404(Notebook, pk=notebook_id)
 	notebook_editors = notebook.editors.all()
 	notebook_viewers = notebook.viewers.all()
-	notes_in_notebook = notebook.notes.all()
+	notes_in_notebook = notebook.notes.all().order_by('date_created')
 	user = request.user
 	author_array = []
 

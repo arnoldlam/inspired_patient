@@ -9,6 +9,7 @@ class AddNoteForm(forms.Form):
 		self.USER_CHOICES = kwargs.pop('test_values')
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 
+	USER_CHOICES
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)
 	attachment = forms.FileField(required=False)

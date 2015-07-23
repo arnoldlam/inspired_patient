@@ -5,9 +5,8 @@ from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
 
 class AddNoteForm(forms.Form):
-	def __init__(self, test_values, *args, **kwargs):
+	def __init__(self, test_values):
 		self.USER_CHOICES = test_values
-		super(AddNoteForm, self).__init__(*args, **kwargs)
 		self.fields['choices'] = forms.ModelMultipleChoiceField(widget=CheckboxSelectMultiple, choices = self.USER_CHOICES)
 
 	subject = forms.CharField(label='Subject', max_length=150)

@@ -8,8 +8,8 @@ class AddNoteForm(forms.Form):
 	def __init__(self, *args, **kwargs):
 		self.USER_CHOICES = kwargs.pop('test_values')
 		super(AddNoteForm, self).__init__(*args, **kwargs)
+		self.choices = forms.ModelMultipleChoiceField(widget=CheckboxSelectMultiple, choices = self.USER_CHOICES)
 
-	USER_CHOICES
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)
 	attachment = forms.FileField(required=False)

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm, ModelMultipleChoiceField, ValidationError
+from django.forms.widgets import CheckboxSelectMultiple
 from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
 

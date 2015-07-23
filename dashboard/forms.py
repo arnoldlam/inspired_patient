@@ -5,8 +5,8 @@ from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
 
 class AddNoteForm(forms.Form):
-	def __init__(self, *args, **kwargs):
-		self.custom_label = kwargs['test_values']
+	def __init__(self, test_values):
+		self.custom_label = test_values
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		self.fields['choices'] = forms.CharField(label=custom_label, max_length=10)
 

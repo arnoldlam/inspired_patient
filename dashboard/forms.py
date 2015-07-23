@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Group
 class AddNoteForm(forms.Form):
 	def __init__(self, test_values):
 		self.custom_label = test_values
-		super(AddNoteForm, self).__init__(*args, **kwargs)
+		super(AddNoteForm, self).__init__()
 		self.fields['choices'] = forms.CharField(label=custom_label, max_length=10)
 
 	subject = forms.CharField(label='Subject', max_length=150)

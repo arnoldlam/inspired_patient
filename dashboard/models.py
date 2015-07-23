@@ -152,3 +152,12 @@ class Attachment(models.Model):
 
 	def __unicode__(self):
 		return self.file_attachment.name
+
+class Notification(models.Model):
+	VIEW_STATUS_CHOICES = (
+		('unread', 'Unread'),
+		('read', 'Read'),
+	)
+
+	name = models.CharField(max_length=100)
+	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')

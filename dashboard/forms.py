@@ -6,9 +6,9 @@ from django.contrib.auth.models import User, Group
 
 class AddNoteForm(forms.Form):
 	def __init__(self, test_values):
-		self.custom_label = test_values
+		self.custom_choices = test_values
 		super(AddNoteForm, self).__init__()
-		self.fields['choices'] = forms.CharField(label=self.custom_label, max_length=10)
+		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Test Choices', choices=self.custom_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

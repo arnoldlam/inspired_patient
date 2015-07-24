@@ -163,7 +163,7 @@ def AddNoteView(request):
 					author=user)
 			
 			if request.POST['note_type'] == 'instruction_note':
-				form = AddInstructionNoteForm(request.POST,request.FILES)
+				form = AddInstructionNoteForm(request.user.id, request.POST,request.FILES)
 				if form.is_valid():
 					instructions = form.cleaned_data['instructions']
 					new_note = InstructionNote(subject=subject, note_type='Instruction Note', 
@@ -171,7 +171,7 @@ def AddNoteView(request):
 						date_accessed=timezone.now(), instructions=instructions, author=user,)
 
 			if request.POST['note_type'] == 'communication_note':
-				form = AddCommunicationNoteForm(request.POST,request.FILES)
+				form = AddCommunicationNoteForm(request.user.id, request.POST,request.FILES)
 				if form.is_valid():
 					attention = form.cleaned_data['attention']
 					importance = form.cleaned_data['importance']

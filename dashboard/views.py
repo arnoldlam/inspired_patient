@@ -122,13 +122,14 @@ def ClinicView(request):
 def NotesView(request):
 	user = request.user
 	notes = user.notes.all()
-	notes = notes.extend(user.authored_notes.all)
+	notes_authored = user.notes_authored.all()
 	notes = notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_only = user.notebooks_read_only.all()
 	notebooks_read_write = user.notebooks_read_write.all()
 
 	return render(request, 'dashboard/notes.html', {
 		'notes':notes,
+		'notes_authored':notes_authored,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
 		})

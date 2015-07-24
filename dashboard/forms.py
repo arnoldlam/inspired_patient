@@ -12,11 +12,11 @@ class AddNoteForm(forms.Form):
 		current_user = User.objects.get(pk=self.user_id)
 		users = current_user.user_profile.associates.all()
 
-		list_of_names = ()
+		list_of_names = []
 		for user in users:
 			list_of_names.append(user.full_name)
-		user_choices = zip(list_of_names, users)
-		
+		user_choices = zip(tuple(list_of_names), users)
+
 		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Users', choices=user_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)

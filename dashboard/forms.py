@@ -11,7 +11,12 @@ class AddNoteForm(forms.Form):
 		
 		current_user = User.objects.get(pk=self.user_id)
 		users = current_user.user_profile.associates.all()
-		# self.fields['choices'] = forms.ModelMultipleChoiceField(label='Users', choices=self.custom_choices)
+
+		for user in users:
+			list_of_names.append(user.full_name)
+
+		user_choices = zip(users, list_of_names)
+		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Users', choices=user_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

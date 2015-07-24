@@ -223,7 +223,7 @@ def AddNoteView(request):
 				notebook = get_object_or_404(Notebook, pk=notebook_id)
 				notebook.notes.add(new_note)
 
-			user.authored_notes.add(new_note)
+			request.user.authored_notes.add(new_note)
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
 		if 'notebook_id' in request.GET:

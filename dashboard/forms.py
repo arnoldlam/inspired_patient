@@ -15,7 +15,7 @@ class AddNoteForm(forms.Form):
 
 		list_of_names = []
 		for associate in associates:
-			name = associate.full_name
+			name = associate.full_name()
 			list_of_names.append(name)
 		user_choices = zip(associates, list_of_names)
 

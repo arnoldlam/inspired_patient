@@ -89,7 +89,7 @@ class Note(models.Model):
 		for user in self.users.all():
 			if user.id == user_id:
 				return 1
-		if user_id == self.author.id
+		if user_id == self.author.id:
 			return 1
 		return 0
 
@@ -155,11 +155,11 @@ class Attachment(models.Model):
 	def __unicode__(self):
 		return self.file_attachment.name
 
-class Notification(models.Model):
-	VIEW_STATUS_CHOICES = (
-		('unread', 'Unread'),
-		('read', 'Read'),
-	)
+# class Notification(models.Model):
+# 	VIEW_STATUS_CHOICES = (
+# 		('unread', 'Unread'),
+# 		('read', 'Read'),
+# 	)
 
-	name = models.CharField(max_length=100)
-	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
+# 	name = models.CharField(max_length=100)
+# 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')

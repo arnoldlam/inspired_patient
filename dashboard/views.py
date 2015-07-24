@@ -273,7 +273,7 @@ def NoteDetail(request, note_id):
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
 	attachments = note.attachments.all()
 	user = request.user
-	note_users = note.users.all()
+	# note_users = note.users.all()
 
 	# for note_user in note_users:
 	if note.ifUserCanAccessNote(user.id):

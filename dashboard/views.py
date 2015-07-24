@@ -122,6 +122,7 @@ def ClinicView(request):
 def NotesView(request):
 	user = request.user
 	notes = user.notes.all()
+	notes = notes.extend(user.authored_notes.all)
 	notes = notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_only = user.notebooks_read_only.all()
 	notebooks_read_write = user.notebooks_read_write.all()
@@ -209,6 +210,7 @@ def AddNoteView(request):
 				attachment = Attachment(file_attachment=request.FILES['attachment'])
 				new_note.attachments.add(attachment)
 
+			# If list of users was in post request, add them to note
 			if 'choices' in form.cleaned_data:
 				for user in form.cleaned_data['choices']:
 					user = User.objects.get(username=user)

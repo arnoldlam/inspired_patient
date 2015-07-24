@@ -7,7 +7,7 @@ from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
 	def __init__(self, *args, **kwargs):
-		user_id = args[0]
+		user_id = args
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		
 		current_user = User.objects.get(pk=user_id)
@@ -17,9 +17,9 @@ class AddNoteForm(forms.Form):
 		for associate in associates:
 			name = associate.full_name()
 			list_of_names.append(name)
-		user_choices = zip(associates, list_of_names)
+		self.user_choices = zip(associates, list_of_names)
 
-		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=user_choices)
+		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=self.user_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

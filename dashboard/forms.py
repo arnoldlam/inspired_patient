@@ -6,9 +6,9 @@ from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
-	def __init__(self, user_id):
+	def __init__(self, user_id, *args, **kwargs):
 		self.user_id = user_id
-		super(AddNoteForm, self).__init__()
+		super(AddNoteForm, self).__init__(*args, **kwargs)
 		
 		current_user = User.objects.get(pk=self.user_id)
 		associates = current_user.user_profile.associates.all()

@@ -10,7 +10,7 @@ class AddNoteForm(forms.Form):
 		super(AddNoteForm, self).__init__()
 		
 		current_user = User.objects.get(pk=self.user_id)
-		users = current_user.associates.all()
+		users = current_user.user_profile.associates.all()
 		# self.fields['choices'] = forms.ModelMultipleChoiceField(label='Users', choices=self.custom_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)

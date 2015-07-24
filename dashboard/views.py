@@ -238,13 +238,13 @@ def AddNoteView(request):
 				'notebook_id':notebook_id,
 			})
 		if request.GET['note_type'] == 'instruction_note':
-			form = AddInstructionNoteForm()
+			form = AddInstructionNoteForm(request.user.id)
 			return render(request, 'dashboard/add_instruction_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,
 			})
 		if request.GET['note_type'] == 'communication_note':
-			form = AddCommunicationNoteForm()
+			form = AddCommunicationNoteForm(request.user.id)
 			return render(request, 'dashboard/add_communication_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,
@@ -345,7 +345,6 @@ def NotebookDetail(request, notebook_id):
 
 	# Place array of user objects in author_array
 	for note in notes_in_notebook:
-		# author_array.append(note.getAuthor())
 		author_array.append(note.author)
 
 	zipped_list = zip(notes_in_notebook, author_array)

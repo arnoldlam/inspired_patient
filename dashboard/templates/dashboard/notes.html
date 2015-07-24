@@ -48,8 +48,8 @@
 <h3>Notes You Created</h3>	
 
 <ul>
-{% if notes_authored %}
-	{% for note in notes_authored %}
+{% if authored_notes %}
+	{% for note in authored_notes %}
 		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
 	{% endfor %}
 {% else %}

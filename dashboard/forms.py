@@ -11,11 +11,11 @@ class AddNoteForm(forms.Form):
 		super(AddNoteForm, self).__init__()
 		
 		current_user = User.objects.get(pk=self.user_id)
-		users = current_user.user_profile.associates.all()
+		associates = current_user.user_profile.associates.all()
 
 		list_of_names = []
-		for user in users:
-			name = user.full_name
+		for associate in associates:
+			name = associate.full_name
 			list_of_names.append(name)
 		user_choices = zip(users, list_of_names)
 

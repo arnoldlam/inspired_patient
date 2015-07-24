@@ -211,6 +211,7 @@ def AddNoteView(request):
 
 			if 'choices' in form.cleaned_data:
 				for user in form.cleaned_data['choices']:
+					user = User.objects.get(username=user)
 					user.notes.add(new_note)
 
 			# If note is to be created in notebook, add note into notebook

@@ -15,8 +15,8 @@ class AddNoteForm(forms.Form):
 
 		self.list_of_names = []
 		for associate in self.associates:
-			name = associate.full_name()
-			self.__class__list_of_names.append(name)
+			name = self.associate.full_name()
+			self.list_of_names.append(name)
 		self.user_choices = zip(self.associates, self.list_of_names)
 
 		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=self.user_choices)

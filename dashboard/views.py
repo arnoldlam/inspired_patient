@@ -147,7 +147,7 @@ def NotesSelectView(request):
 @login_required
 def AddNoteView(request):
 	if request.method == 'POST':
-		form = AddNoteForm(request.POST, request.FILES)
+		form = AddNoteForm(request.user.id, request.POST, request.FILES)
 		if form.is_valid():
 			user = request.user
 			

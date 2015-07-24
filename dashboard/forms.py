@@ -7,7 +7,7 @@ from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
 	def __init__(self, *args, **kwargs):
-		self.user_id = args.user_id
+		self.user_id = args[0]
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		
 		self.current_user = User.objects.get(pk=self.user_id)

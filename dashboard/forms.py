@@ -5,10 +5,14 @@ from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
 
 class AddNoteForm(forms.Form):
-	def __init__(self, test_values):
+	def __init__(self, *test_values):
 		self.custom_choices = test_values
+		test_values_to_zip = (
+			'value1', 'value2', 'value3'
+		)
+		choicess=zip(self.custom_choices, test_values_to_zip)
 		super(AddNoteForm, self).__init__()
-		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Test Choices', choices=self.custom_choices)
+		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Test Choices', choices=choicess)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

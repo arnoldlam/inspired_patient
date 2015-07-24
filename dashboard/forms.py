@@ -3,6 +3,7 @@ from django.forms import ModelForm, MultipleChoiceField, ValidationError
 from django.forms.widgets import CheckboxSelectMultiple
 from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
+from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id):
@@ -14,7 +15,7 @@ class AddNoteForm(forms.Form):
 
 		list_of_names = []
 		for user in users:
-			name = user.im_self.full_name
+			name = user.full_name
 			list_of_names.append(name)
 		user_choices = zip(users, list_of_names)
 

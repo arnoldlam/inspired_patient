@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, ModelMultipleChoiceField, ValidationError
+from django.forms import ModelForm, MultipleChoiceField, ValidationError
 from django.forms.widgets import CheckboxSelectMultiple
 from dashboard.models import UserProfile, DischargeNote, Notebook
 from django.contrib.auth.models import User, Group
@@ -15,9 +15,9 @@ class AddNoteForm(forms.Form):
 		list_of_names = []
 		for user in users:
 			list_of_names.append(user.full_name)
-		user_choices = zip(tuple(list_of_names), users)
+		user_choices = zip(list_of_names, users)
 
-		self.fields['choices'] = forms.ModelMultipleChoiceField(label='Users', choices=user_choices)
+		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=user_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

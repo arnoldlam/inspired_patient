@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 
 class AddNoteForm(forms.Form):
-	def __init__(self, user_id, *args, **kwargs):
+	def __init__(self, *args, **kwargs):
 		self.user_id = user_id
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		

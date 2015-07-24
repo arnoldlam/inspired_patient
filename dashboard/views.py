@@ -275,16 +275,16 @@ def NoteDetail(request, note_id):
 	user = request.user
 	note_users = note.users.all()
 
-	for note_user in note_users:
-		if note.ifUserCanAccessNote(user.id):
-			# update date accessed for note
-			note.noteAccessedNow()
-			return render(request, 'dashboard/note_detail.html', {
-				'note':note,
-				'attachments':attachments,
-			})
-		else:
-			raise Http404("Note not found.")
+	# for note_user in note_users:
+	if note.ifUserCanAccessNote(user.id):
+		# update date accessed for note
+		note.noteAccessedNow()
+		return render(request, 'dashboard/note_detail.html', {
+			'note':note,
+			'attachments':attachments,
+		})
+	else:
+		raise Http404("Note not found.")
 
 # View for sharing notes
 @login_required

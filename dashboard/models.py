@@ -89,6 +89,8 @@ class Note(models.Model):
 		for user in self.users.all():
 			if user.id == user_id:
 				return 1
+		if user_id == self.author.id
+			return 1
 		return 0
 
 

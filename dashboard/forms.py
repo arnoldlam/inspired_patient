@@ -10,16 +10,16 @@ class AddNoteForm(forms.Form):
 		self.user_id = user_id
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		
-		current_user = User.objects.get(pk=self.user_id)
-		associates = current_user.user_profile.associates.all()
+		self.current_user = User.objects.get(pk=self.user_id)
+		self.associates = current_user.user_profile.associates.all()
 
-		list_of_names = []
-		for associate in associates:
+		self.list_of_names = []
+		for associate in self.associates:
 			name = associate.full_name()
-			list_of_names.append(name)
-		user_choices = zip(associates, list_of_names)
+			self.__class__list_of_names.append(name)
+		self.user_choices = zip(self.associates, self.list_of_names)
 
-		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=user_choices)
+		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=self.user_choices)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

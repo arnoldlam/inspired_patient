@@ -11,7 +11,7 @@ class AddNoteForm(forms.Form):
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 		
 		self.current_user = User.objects.get(pk=self.user_id)
-		self.associates = current_user.user_profile.associates.all()
+		self.associates = self.current_user.user_profile.associates.all()
 
 		self.list_of_names = []
 		for associate in self.associates:

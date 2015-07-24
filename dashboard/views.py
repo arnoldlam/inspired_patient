@@ -209,6 +209,10 @@ def AddNoteView(request):
 				attachment = Attachment(file_attachment=request.FILES['attachment'])
 				new_note.attachments.add(attachment)
 
+			if 'choices' in form.cleaned_data:
+				for user in form.cleaned_data['choices']:
+					user.notes.add(new_note)
+
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:
 				notebook_id = request.POST['notebook_id']

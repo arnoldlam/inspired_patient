@@ -224,7 +224,9 @@ def AddNoteView(request):
 			notebook_id = ''
 
 		test_values = (
-			'value1', 'value2', 'value3',
+			('value1', 'value1'), 
+			('value2', 'value2'),
+			('value3', 'value3'),
 		)
 
 		if request.GET['note_type'] == 'general_note':

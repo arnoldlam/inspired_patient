@@ -19,7 +19,7 @@ class AddNoteForm(forms.Form):
 			list_of_names.append(name)
 		self.user_choices = zip(associates, list_of_names)
 
-		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=self.user_choices)
+		self.fields['choices'] = forms.MultipleChoiceField(label='Users', choices=self.user_choices, required=False)
 
 	subject = forms.CharField(label='Subject', max_length=150)
 	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea)

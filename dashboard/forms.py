@@ -8,7 +8,7 @@ class AddNoteForm(forms.Form):
 	def __init__(self, *test_values):
 		self.custom_choices = test_values
 		test_values_to_zip = (
-			'value1', 'value2', 'value3'
+			'value1', 'value2', 'value3',
 		)
 		choicess=zip(self.custom_choices, test_values_to_zip)
 		super(AddNoteForm, self).__init__()

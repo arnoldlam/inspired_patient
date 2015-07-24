@@ -224,11 +224,11 @@ def AddNoteView(request):
 			notebook_id = ''
 
 		test_values = (
-			'value1', 'value2', 'value3'
+			'value1', 'value2', 'value3',
 		)
 
 		if request.GET['note_type'] == 'general_note':
-			form = AddNoteForm(test_values)
+			form = AddNoteForm(*test_values)
 			return render(request, 'dashboard/add_general_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,

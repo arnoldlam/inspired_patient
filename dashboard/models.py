@@ -77,7 +77,7 @@ class Note(models.Model):
 	# note_users = models.ManyToManyField(User, through='NoteUser')
 	author = models.ForeignKey(User, related_name='authored_notes', null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
-	date_accessed = models.DateTimeField('date accessed')
+	date_accessed = models.DateTimeField('date accessed', auto_now_add=True)
 	subject = models.CharField(max_length=150)
 	follow_up = models.CharField(max_length=250, blank=True)
 	note_content = models.TextField()

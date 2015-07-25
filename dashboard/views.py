@@ -211,10 +211,14 @@ def AddNoteView(request):
 				new_note.attachments.add(attachment)
 
 			# If list of users was in post request, add them to note
-			if 'choices' in form.cleaned_data:
-				for user in form.cleaned_data['choices']:
+			if 'choices_for_editors' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
 					user.notes_read_write.add(new_note)
+			if 'choices_for_viewers' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_viewers']:
+					user = User.objects.get(username=user)
+					user.notes_view_only.add(new_note)
 
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:

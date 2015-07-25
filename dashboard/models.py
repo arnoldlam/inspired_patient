@@ -64,8 +64,16 @@ class Clinic(models.Model):
 		return self.name
 	
 class Note(models.Model):
+	NOTE_TYPE_CHOICES = (
+		('general_note', 'General note'),
+		('instruction_note', 'Instruction note'),
+		('communication_note', 'Communication note'),
+		('discharge_note', 'Discharge note'),
+	)
+
 	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
 	viewers = models.ManyToManyField(User, related_name='note_view_only', blank=True)
+	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
 	author = models.ForeignKey(User, related_name='authored_notes', blank=True, null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
@@ -73,7 +81,7 @@ class Note(models.Model):
 	subject = models.CharField(max_length=150)
 	follow_up = models.CharField(max_length=250, blank=True)
 	note_content = models.TextField()
-	note_type = models.CharField(max_length=20)
+	note_type = models.CharField(max_length=20, choices=NOTE_TYPE_CHOICES, default='general_note')
 	url = models.URLField(max_length=200, blank=True)
 	
 	def __unicode__(self):

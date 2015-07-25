@@ -157,7 +157,7 @@ def AddNoteView(request):
 			note = form.cleaned_data['note_content']
 
 			if request.POST['note_type'] == 'general_note':
-				new_note = Note(subject=subject, note_type='General Note',
+				new_note = Note(subject=subject, note_type='general_note',
 					note_content=note, date_created=timezone.now(), date_accessed=timezone.now(),
 					author=user)
 			
@@ -263,7 +263,7 @@ def NoteDetail(request, note_id):
 
 	# Dictionary to match requested note type with model
 	note_type_dict = {
-				'General Note': Note,
+				'general_note': Note,
 				'Instruction Note': InstructionNote,
 				'Communication Note': CommunicationNote,
 				'Discharge Note': DischargeNote,

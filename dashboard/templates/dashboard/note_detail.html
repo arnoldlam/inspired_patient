@@ -1,7 +1,7 @@
 {% include "dashboard/header.html" %}
 
 <h3>Subject: {{ note.subject }}</h3>
-<p>Note type: <strong>{{ note.note_type }}</strong></p>
+<p>Note type: <strong>{{ note.get_note_type_display }}</strong></p>
 <p><strong>Date created: </strong>{{ note.date_created }}</p>
 <p><strong>Last accessed:</strong> {{ note.date_accessed }}</p>
 <p><b>Note:</b> </p>

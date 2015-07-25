@@ -165,7 +165,7 @@ def AddNoteView(request):
 				form = AddInstructionNoteForm(request.user.id, request.POST,request.FILES)
 				if form.is_valid():
 					instructions = form.cleaned_data['instructions']
-					new_note = InstructionNote(subject=subject, note_type='Instruction Note', 
+					new_note = InstructionNote(subject=subject, note_type='instruction_note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), instructions=instructions, author=user,)
 
@@ -174,7 +174,7 @@ def AddNoteView(request):
 				if form.is_valid():
 					attention = form.cleaned_data['attention']
 					importance = form.cleaned_data['importance']
-					new_note = CommunicationNote(subject=subject, note_type='Communication Note', 
+					new_note = CommunicationNote(subject=subject, note_type='communication_note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user, attention=attention,
 						importance=importance)		
@@ -191,7 +191,7 @@ def AddNoteView(request):
 					selfcare_instructions = form.cleaned_data['selfcare_instructions']
 					emergency_instructions = form.cleaned_data['emergency_instructions']
 
-					new_note = DischargeNote(subject=subject, note_type='Discharge Note', 
+					new_note = DischargeNote(subject=subject, note_type='discharge_note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user,procedure=procedure,
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight,
@@ -261,12 +261,12 @@ def NoteDetail(request, note_id):
 	# Get requested note type
 	note_type_requested = request.GET['note_type']
 
-	# Dictionary to match requested note type with model
+	# Dictionary to match requested note type from GET with model
 	note_type_dict = {
 				'general_note': Note,
-				'Instruction Note': InstructionNote,
-				'Communication Note': CommunicationNote,
-				'Discharge Note': DischargeNote,
+				'instruction_note': InstructionNote,
+				'communication_note': CommunicationNote,
+				'discharge_note': DischargeNote,
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)

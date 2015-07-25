@@ -30,7 +30,7 @@ class NoteAdmin(admin.ModelAdmin):
 	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
 	fieldsets = (
 		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
-		('Users', {'fields':['author', 'users',],'classes':['show']}),
+		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
 
 @admin.register(Clinic)

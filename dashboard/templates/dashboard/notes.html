@@ -17,7 +17,7 @@
 
 <span>
 
-<h3>Notebooks you can edit</h3>	
+<h3>Notebooks</h3>	
 
 	<ul>
 {% if notebooks_read_write %}
@@ -31,16 +31,29 @@
 </span>
 
 <span>
-<h3>Recent notes</h3>	
+<h3>Notes share with you</h3>	
 
 <ul>
-{% if notes %}
-	{% for note in notes %}
-		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
-	{% endfor %}
-{% else %}
-	<p>No notes added</p>
-{% endif %}
+	<li>Notes you can edit</li>
+	<ul>
+	{% if notes %}
+		{% for note in notes %}
+			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+		{% endfor %}
+	{% else %}
+		<p>No notes added</p>
+	{% endif %}
+	</ul>
+	<li>Notes you can read</li>
+	<ul>
+	{% if notes %}
+		{% for note in notes %}
+			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+		{% endfor %}
+	{% else %}
+		<p>No notes added</p>
+	{% endif %}
+	</ul>
 </ul>
 </span>
 

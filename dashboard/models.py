@@ -64,7 +64,8 @@ class Clinic(models.Model):
 		return self.name
 	
 class Note(models.Model):
-	users = models.ManyToManyField(User, related_name='notes')
+	users = models.ManyToManyField(User, related_name='notes', blank=True)
+	viewers = models.ManyToManyField(User, related_name='note_view_only', blank=True)
 	author = models.ForeignKey(User, related_name='authored_notes', blank=True, null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed')

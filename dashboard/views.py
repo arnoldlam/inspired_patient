@@ -154,7 +154,6 @@ def AddNoteView(request):
 			user = request.user
 			
 			subject = form.cleaned_data['subject']
-			# follow_up = form.cleaned_data['follow_up']
 			note = form.cleaned_data['note_content']
 
 			if request.POST['note_type'] == 'general_note':

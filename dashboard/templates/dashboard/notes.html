@@ -36,22 +36,22 @@
 <ul>
 	<li>Notes you can edit</li>
 	<ul>
-	{% if notes %}
-		{% for note in notes %}
+	{% if notes_read_write %}
+		{% for note in notes_read_write %}
 			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
 		{% endfor %}
 	{% else %}
-		<p>No notes added</p>
+		<p>No notes</p>
 	{% endif %}
 	</ul>
 	<li>Notes you can read</li>
 	<ul>
-	{% if notes %}
-		{% for note in notes %}
+	{% if notes_read_only %}
+		{% for note in notes_read_only %}
 			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
 		{% endfor %}
 	{% else %}
-		<p>No notes added</p>
+		<p>No notes</p>
 	{% endif %}
 	</ul>
 </ul>

@@ -70,11 +70,10 @@ class Note(models.Model):
 		('communication_note', 'Communication note'),
 		('discharge_note', 'Discharge note'),
 	)
-
-	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
-	viewers = models.ManyToManyField(User, related_name='notes_view_only', blank=True)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
+	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
+	viewers = models.ManyToManyField(User, related_name='notes_read_only', blank=True)
 	author = models.ForeignKey(User, related_name='authored_notes', null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed', auto_now_add=True)

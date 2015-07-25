@@ -79,23 +79,10 @@ class EditProfileForm(forms.Form):
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
-# class AddNotebookForm(forms.Form):
-# 	name = forms.CharField(label='Notebook name', max_length=20)
-# 	description = forms.CharField(label='Description', max_length=4000,required=False)
-
 class AddNotebookForm(ModelForm):
-	# editors = ModelMultipleChoiceField(queryset = None)
-
-	# def __init__(self, *args, **kwargs):
-	# 	user_id = 3
-	# 	super(AddNotebookForm, self).__init__(*args, **kwargs)
-	# 	self.fields['editors'].queryset = User.objects.select_related('user_profile').all()
-
 	class Meta:
 		model = Notebook
 		fields = ['name', 'description']
-
-
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

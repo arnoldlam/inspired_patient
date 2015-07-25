@@ -122,17 +122,19 @@ def ClinicView(request):
 def NotesView(request):
 	user = request.user
 	authored_notes = user.authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
-	notes = user.notes_read_write.all()
-	notes = notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+
 	notebooks_read_only = user.notebooks_read_only.all()
 	notebooks_read_write = user.notebooks_read_write.all()
 
 	return render(request, 'dashboard/notes.html', {
-		'notes':notes,
+		'notes_read_write':notes_read_write,
+		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
-		})
+	})
 
 # View for selecting type of note to add
 @login_required
@@ -218,7 +220,7 @@ def AddNoteView(request):
 			if 'choices_for_viewers' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
-					user.notes_view_only.add(new_note)
+					user.notes_read_only.add(new_note)
 
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:

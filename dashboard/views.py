@@ -96,7 +96,7 @@ def CollaborationView(request):
 	user = request.user
 	user_profile = user.user_profile
 	associates = user_profile.associates.all()
-	notes = user.notes.all()
+	notes = user.notes_read_write.all()
 	notebooks_read_write = user.notebooks_read_write.all()
 	notebooks_read_only = user.notebooks_read_only.all()
 
@@ -121,7 +121,7 @@ def ClinicView(request):
 @login_required
 def NotesView(request):
 	user = request.user
-	notes = user.notes.all()
+	notes = user.notes_read_write.all()
 	authored_notes = user.authored_notes.all()
 	notes = notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_only = user.notebooks_read_only.all()
@@ -214,7 +214,7 @@ def AddNoteView(request):
 			if 'choices' in form.cleaned_data:
 				for user in form.cleaned_data['choices']:
 					user = User.objects.get(username=user)
-					user.notes.add(new_note)
+					user.notes_read_write.add(new_note)
 
 			# If note is to be created in notebook, add note into notebook
 			if 'notebook_id' in request.POST:
@@ -272,7 +272,6 @@ def NoteDetail(request, note_id):
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
 	attachments = note.attachments.all()
 	user = request.user
-	# note_users = note.users.all()
 
 	# for note_user in note_users:
 	if note.ifUserCanAccessNote(user.id):
@@ -294,7 +293,7 @@ def ShareNote(request, note_id):
 			email = form.cleaned_data['email']
 			user = get_object_or_404(User, username = email)
 			note = get_object_or_404(Note, id=note_id)
-			user.notes.add(note)
+			user.notes_read_write.add(note)
 
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
@@ -373,7 +372,7 @@ def AddNotesToNotebookView(request, notebook_id):
 		return HttpResponseRedirect(redirect_url)
 	else:
 		user = request.user
-		notes = user.notes.all()
+		notes = user.notes_read_write.all()
 		notebook = get_object_or_404(Notebook, pk=notebook_id)
 
 		# Grab notes not currently in notebook
@@ -400,7 +399,7 @@ def ShareNotebookView(request, notebook_id):
 
 				# For each note in notebook, allow user to access
 				for note in notebook.notes.all():
-					note.users.add(user)
+					note.editors.add(user)
 					note.save()
 
 		# URL for redirect to newly create notebook's detail page
@@ -472,7 +471,3 @@ def ClinicDetailView(request, clinic_id):
 	return render(request, 'dashboard/clinic_detail.html', {
 		'clinic':clinic,
 	})
-
-
-
-

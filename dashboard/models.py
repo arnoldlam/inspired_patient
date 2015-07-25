@@ -64,8 +64,9 @@ class Clinic(models.Model):
 		return self.name
 	
 class Note(models.Model):
-	users = models.ManyToManyField(User, related_name='notes', blank=True)
+	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
 	viewers = models.ManyToManyField(User, related_name='note_view_only', blank=True)
+	# note_users = models.ManyToManyField(User, through='NoteUser')
 	author = models.ForeignKey(User, related_name='authored_notes', blank=True, null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed')
@@ -94,11 +95,20 @@ class Note(models.Model):
 			return 1
 		return 0
 
+# Intermediate model describing relationship between Note and User
+# class NoteUser(models.Model):
+# 	PERMISSIONS_CHOICES = (
+# 		('read_only', 'Read only'),
+# 		('read_and_write', 'Read and write'),
+# 	)
+
+# 	note = models.ForeignKey(Note)
+# 	user = models.ForeignKey(User)
+# 	permissions = models.CharField('Note Permissions', max_length=30, choices=PERMISSIONS_CHOICES, default='read_only')
+# 	date_accessed = models.DateTimeField('date accessed')
 
 class InstructionNote(Note):	
 	instructions = models.CharField(max_length=4000)
-		
-
 
 class CommunicationNote(Note):	
 	IMPORTANCE_CHOICES = (

@@ -75,7 +75,7 @@ class Note(models.Model):
 	viewers = models.ManyToManyField(User, related_name='note_view_only', blank=True)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
-	author = models.ForeignKey(User, related_name='authored_notes', blank=True, null=True)
+	author = models.ForeignKey(User, related_name='authored_notes', null=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed')
 	subject = models.CharField(max_length=150)
@@ -96,7 +96,7 @@ class Note(models.Model):
 	# Parameters: user_id
 	# Returns: Boolean whether user can access note
 	def ifUserCanAccessNote(self, user_id):
-		for user in self.users.all():
+		for user in self.editors.all():
 			if user.id == user_id:
 				return 1
 		if user_id == self.author.id:

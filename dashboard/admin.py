@@ -25,13 +25,20 @@ class UserAdmin(UserAdmin):
 		('User Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',),})
 	)
 
+class RepliesInline(admin.TabularInline):
+	model = NoteReply
+	extra = 1
+
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
 	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
 	fieldsets = (
-		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up', 'replies',)}),
+		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
 		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
+	inlines=[ChoiceInLine]
+	list_filter = ['date_created']
+	search_fields = ['subject', 'note_content']
 
 @admin.register(Clinic)
 class ClinicAdmin(admin.ModelAdmin):

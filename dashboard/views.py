@@ -493,8 +493,8 @@ def AddNoteReplyView(request, note_id):
 			new_reply.save()
 
 			# URL for redirect back to note
-			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id, 'note_type':note.note_type})
-			return HttpResponseRedirect(redirect_url)
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+			return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
 	else:
 		form = AddNoteReplyForm()
 		return render(request, 'dashboard/add_note_reply.html', {

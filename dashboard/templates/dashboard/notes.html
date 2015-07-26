@@ -31,31 +31,30 @@
 </span>
 
 <span>
-<h3>Notes share with you</h3>	
+<h3>Notes you can reply</h3>	
 
 <ul>
-	<li>Notes you can edit</li>
-	<ul>
-	{% if notes_read_write %}
-		{% for note in notes_read_write %}
-			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
-		{% endfor %}
-	{% else %}
-		<p>No notes</p>
-	{% endif %}
-	</ul>
-	<li>Notes you can read</li>
-	<ul>
-	{% if notes_read_only %}
-		{% for note in notes_read_only %}
-			<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
-		{% endfor %}
-	{% else %}
-		<p>No notes</p>
-	{% endif %}
-	</ul>
+{% if notes_read_write %}
+	{% for note in notes_read_write %}
+		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+	{% endfor %}
+{% else %}
+	<p>No notes</p>
+{% endif %}
 </ul>
-</span>
+
+<h3>Notes you can view</h3>
+
+<ul>
+{% if notes_read_only %}
+	{% for note in notes_read_only %}
+		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+	{% endfor %}
+{% else %}
+	<p>No notes</p>
+{% endif %}
+</ul>
+
 
 <span>
 <h3>Notes You Created</h3>	

@@ -82,7 +82,7 @@ class Note(models.Model):
 	note_content = models.TextField()
 	note_type = models.CharField(max_length=20, choices=NOTE_TYPE_CHOICES, default='general_note')
 	url = models.URLField(max_length=200, blank=True)
-	
+
 	def __unicode__(self):
 		return self.subject
 
@@ -172,6 +172,14 @@ class Attachment(models.Model):
 
 	def __unicode__(self):
 		return self.file_attachment.name
+
+class NoteReply(models.Model):
+	note = models.ForeignKey(note, related_name='replies')
+	title = models.CharField(max_length=100)
+	content = models.TextField()
+	author = models.ForeignKey(User, related_name='note_replies')
+	date_created = models.DateTimeField('date created', auto_now_add=True)
+
 
 # class Notification(models.Model):
 # 	VIEW_STATUS_CHOICES = (

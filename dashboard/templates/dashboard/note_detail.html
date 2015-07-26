@@ -47,8 +47,19 @@
 
 <br>
 <a href="{% url 'dashboard:share_note' note.id %}">Share Note</a> 
+<br>
 <a href="{% url 'dashboard:add_note_reply' note.id %}">Add reply</a>
 
 {% if replies %}
 <h3>Replies</h3>
+{% for reply in replies %}
+<ul>
+	<li>{{ reply.title }}</li>
+	<ul>
+		<li>Author: {{ reply.author }}</li>
+		<li>Reply date: {{ reply.date_created }}</li>
+		<li>Content: {{ reply.content }}</li>
+	</ul>
+</ul>
+{% endfor %}
 {% endif %}

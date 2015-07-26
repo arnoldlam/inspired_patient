@@ -276,6 +276,7 @@ def NoteDetail(request, note_id):
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
+	replies = note.replies
 	attachments = note.attachments.all()
 	user = request.user
 
@@ -287,6 +288,7 @@ def NoteDetail(request, note_id):
 			'user':user,
 			'note':note,
 			'attachments':attachments,
+			'replies':replies,
 		})
 	else:
 		raise Http404("Note not found.")

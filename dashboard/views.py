@@ -482,6 +482,7 @@ def ClinicDetailView(request, clinic_id):
 @login_required
 def AddNoteReplyView(request, note_id):
 	if request.method == 'POST':
+		form = AddNoteReplyForm(request.POST)
 		if form.is_valid():
 			note = get_object_or_404(Note, pk=note_id)
 			user = request.user

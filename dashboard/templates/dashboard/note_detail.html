@@ -56,7 +56,7 @@
 <ul>
 	<li>{{ reply.title }}</li>
 	<ul>
-		<li>Author: {{ reply.author }}</li>
+		<li>Author: {{ reply.author.user_profile.full_name }}</li>
 		<li>Reply date: {{ reply.date_created }}</li>
 		<li>Content: {{ reply.content }}</li>
 	</ul>

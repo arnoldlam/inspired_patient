@@ -54,7 +54,7 @@
 <h3>Replies</h3>
 {% for reply in replies %}
 <ul>
-	<li>{{ reply.title }}</li>
+	<li>Title: {{ reply.title }}</li>
 	<ul>
 		<li>Author: {{ reply.author.user_profile.full_name }}</li>
 		<li>Reply date: {{ reply.date_created }}</li>

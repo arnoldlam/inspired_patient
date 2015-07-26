@@ -36,7 +36,7 @@ class NoteAdmin(admin.ModelAdmin):
 		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
 		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
-	inlines=[ChoiceInLine]
+	inlines=[RepliesInline]
 	list_filter = ['date_created']
 	search_fields = ['subject', 'note_content']
 

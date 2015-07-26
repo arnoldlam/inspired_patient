@@ -181,6 +181,9 @@ class NoteReply(models.Model):
 	author = models.ForeignKey(User, related_name='note_replies')
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 
+	__unicode__(self):
+		return self.title
+
 
 # class Notification(models.Model):
 # 	VIEW_STATUS_CHOICES = (

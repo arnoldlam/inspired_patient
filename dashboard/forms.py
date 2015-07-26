@@ -85,7 +85,7 @@ class AddNotebookForm(ModelForm):
 		fields = ['name', 'description']
 
 class AddNoteReplyForm(ModelForm):
-	class meta:
+	class Meta:
 		model = NoteReply
 		fields = ['title', 'content']
 

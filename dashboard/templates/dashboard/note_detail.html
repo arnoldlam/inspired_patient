@@ -48,7 +48,10 @@
 <br>
 <a href="{% url 'dashboard:share_note' note.id %}">Share Note</a> 
 <br>
+
+{% if user not in note.viewers.all() %}
 <a href="{% url 'dashboard:add_note_reply' note.id %}">Add reply</a>
+{% endif %}
 
 {% if replies %}
 <h3>Replies</h3>

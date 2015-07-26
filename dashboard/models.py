@@ -95,14 +95,6 @@ class Note(models.Model):
 	# Parameters: user_id
 	# Returns: Boolean whether user can access note
 	def ifUserCanAccessNote(self, user_id):
-		# for user in self.editors.all():
-		# 	if user.id == user_id:
-		# 		return 1
-		# for user in self.viewers.all():
-		# 	if user.id == user_id:
-		# 		return 1
-		# if user_id == self.author.id:
-		# 	return 1
 		if self.editors.filter(id=user_id).count > 0:
 			return 1
 		if self.viewers.filter(id=user_id).count > 0:

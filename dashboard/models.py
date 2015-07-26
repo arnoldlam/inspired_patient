@@ -103,9 +103,9 @@ class Note(models.Model):
 		# 		return 1
 		# if user_id == self.author.id:
 		# 	return 1
-		if user in self.editors:
+		if user in self.editors.all():
 			return 1
-		if user in self.viewers:
+		if user in self.viewers.all():
 			return 1
 		if user == self.author:
 			return 1

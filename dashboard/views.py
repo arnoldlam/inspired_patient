@@ -276,7 +276,7 @@ def NoteDetail(request, note_id):
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
-	replies = note.replies
+	replies = note.replies.all()
 	attachments = note.attachments.all()
 	user = request.user
 

@@ -94,7 +94,7 @@ class Note(models.Model):
 
 	# Parameters: user_id
 	# Returns: Boolean whether user can access note
-	def ifUserCanAccessNote(self, user_id):
+	def ifUserCanAccessNote(self, user):
 		# for user in self.editors.all():
 		# 	if user.id == user_id:
 		# 		return 1

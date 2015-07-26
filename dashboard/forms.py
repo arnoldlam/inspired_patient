@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, MultipleChoiceField, ValidationError
 from django.forms.widgets import CheckboxSelectMultiple
-from dashboard.models import UserProfile, DischargeNote, Notebook
+from dashboard.models import UserProfile, DischargeNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 
@@ -83,6 +83,11 @@ class AddNotebookForm(ModelForm):
 	class Meta:
 		model = Notebook
 		fields = ['name', 'description']
+
+class AddNoteReplyForm(ModelForm):
+	class meta:
+		model = NoteReply
+		fields = ['title', 'content']
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

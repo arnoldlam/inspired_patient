@@ -7,7 +7,7 @@
 <body>
 	{% include "dashboard/header.html" %}
 
-	<h2>Add a reply</h2>
+	<h3>Add a reply</h3>
 
 	<form action="{% url 'dashboard:add_note_reply' note_id %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}

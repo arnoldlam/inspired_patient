@@ -482,7 +482,18 @@ def ClinicDetailView(request, clinic_id):
 @login_required
 def AddNoteReplyView(request, note_id):
 	if request.method == 'POST':
-		pass
+		if form.is_valid():
+			note = get_object_or_404(Note, pk=note_id)
+			user = request.user
+			title = form.cleaned_data['title']
+			content = form.cleaned_data['content']
+
+			new_reply = NoteReply(note=note, title=title, content=content, author=user)
+			new_reply.save()
+
+			# URL for redirect back to note
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+			return HttpResponseRedirect(redirect_url)
 	else:
 		form = AddNoteReplyForm()
 		return render(request, 'dashboard/add_note_reply.html', {

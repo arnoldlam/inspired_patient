@@ -48,3 +48,7 @@
 <br>
 <a href="{% url 'dashboard:share_note' note.id %}">Share Note</a> 
 <a href="{% url 'dashboard:add_note_reply' note.id %}">Add reply</a>
+
+{% if replies %}
+<h3>Replies</h3>
+{% endif %}

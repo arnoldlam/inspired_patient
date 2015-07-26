@@ -487,4 +487,5 @@ def AddNoteReplyView(request, note_id):
 		form = AddNoteReplyForm()
 		return render(request, 'dashboard/add_note_reply.html', {
 			'form':form,
+			'note_id':note_id
 		})

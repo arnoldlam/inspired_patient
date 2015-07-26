@@ -284,6 +284,7 @@ def NoteDetail(request, note_id):
 		# update date accessed for note
 		note.noteAccessedNow()
 		return render(request, 'dashboard/note_detail.html', {
+			'user':user,
 			'note':note,
 			'attachments':attachments,
 		})

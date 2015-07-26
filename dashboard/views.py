@@ -281,7 +281,7 @@ def NoteDetail(request, note_id):
 	user = request.user
 
 	# for note_user in note_users:
-	if note.ifUserCanAccessNote(user.id):
+	if note.ifUserCanAccessNote(user_id):
 		# update date accessed for note
 		note.noteAccessedNow()
 		return render(request, 'dashboard/note_detail.html', {

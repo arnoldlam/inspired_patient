@@ -478,3 +478,13 @@ def ClinicDetailView(request, clinic_id):
 	return render(request, 'dashboard/clinic_detail.html', {
 		'clinic':clinic,
 	})
+
+@login_required
+def AddNoteReplyView(request, note_id):
+	if request.method == 'POST':
+		pass
+	else:
+		form = AddNoteReplyForm()
+		return render(request, 'dashboard/add_note_reply.html', {
+			'form':form,
+		})

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Add a reply</title>
+</head>
+<body>
+	{% include "dashboard/header.html" %}
+
+	<h2>Add a reply</h2>
+
+	<form action="{% url 'dashboard:add_note_reply' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_ul }} <br>
+	<input type="submit" value="Add reply" />
+	</form>
+</body>
+</html>

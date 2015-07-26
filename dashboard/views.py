@@ -14,7 +14,7 @@ from django.views import generic
 from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote
+from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 

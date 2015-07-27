@@ -33,6 +33,9 @@ class AttachmentInline(admin.TabularInline):
 	model = Attachment
 	extra = 1
 
+class NotificationInline(admin.TabularInline):
+	model = Notification
+
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
 	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
@@ -40,7 +43,7 @@ class NoteAdmin(admin.ModelAdmin):
 		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
 		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
-	inlines=[RepliesInline, AttachmentInline]
+	inlines=[RepliesInline, AttachmentInline, NotificationInline]
 	list_filter = ['date_created']
 	search_fields = ['subject', 'note_content']
 

@@ -1,0 +1,15 @@
+<h3>Welcome to Inspired Health!</h3>
+
+<h4>Please complete the following fields to create a new user</h4>
+
+<form action="{% url 'dashboard:create_user' %}" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_ul }}
+	<br>
+	<input type="submit" value="Save"/>
+</form>
+
+<br>
+{# 
+<a href="{% url 'dashboard:profile' %}">Cancel</a>
+ #}

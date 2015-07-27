@@ -193,3 +193,5 @@ class NoteReply(models.Model):
 
 # 	name = models.CharField(max_length=100)
 # 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
+# 	message = models.CharField(max_length=)
+

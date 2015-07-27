@@ -8,6 +8,8 @@
 	<input type="hidden" name="next" value="/dashboard/" />
 </form>
 
+<a href="{% url 'dashboard:create_user' %}">Sign Up</a>
+
 {% if form.errors %}
 <p>Invalid login credentials</p>
 {% endif %}

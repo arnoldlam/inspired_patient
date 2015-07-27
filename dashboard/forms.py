@@ -89,6 +89,10 @@ class AddNoteReplyForm(ModelForm):
 		model = NoteReply
 		fields = ['title', 'content']
 
+class CreateNewUserForm(forms.Form):
+	username = forms.EmailField(label="Email Address")
+	password = forms.PasswordInput()
+
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)
 # 	frequency = forms.CharField(max_length=150)

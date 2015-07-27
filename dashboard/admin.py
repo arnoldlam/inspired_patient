@@ -6,9 +6,6 @@ from django.contrib.auth.models import User, Group
 
 from .models import UserProfile, Clinic, Note, CommunicationNote, DischargeNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
-class NotificationInline(admin.TabularInline):
-	model = Notification
-
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False
@@ -21,7 +18,7 @@ class UserProfileInline(admin.StackedInline):
 	)
 
 class UserAdmin(UserAdmin):
-	inlines = (UserProfileInline, NotificationInline)
+	inlines = (UserProfileInline, )
 	fieldsets = (
 		('Basic Information', {'fields': (('username', 'password'), ('first_name', 'last_name'), 'email',)}),
 		('Date Information' , {'fields': ('last_login', 'date_joined',)}),

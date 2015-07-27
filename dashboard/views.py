@@ -513,3 +513,11 @@ def AddNoteReplyView(request, note_id):
 			'form':form,
 			'note_id':note_id
 		})
+
+@login_required
+def NotificationsView(request):
+	user = request.user
+
+	return render(request, 'dashboard/notifications.html', {
+		'user':user,
+	})

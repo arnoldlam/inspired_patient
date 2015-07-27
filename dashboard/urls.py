@@ -25,4 +25,5 @@ urlpatterns = [
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/$', views.NotebookDetail, name='notebook_detail'),
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/add_notes', views.AddNotesToNotebookView, name='add_notes_to_notebook'),
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/share', views.ShareNotebookView, name='share_notebook'),
+	url(r'^notifications/$', views.NotificationsView, name='notifications'),
 ]

@@ -517,7 +517,7 @@ def AddNoteReplyView(request, note_id):
 @login_required
 def NotificationsView(request):
 	user = request.user
-	notifications = user.notifications_received.filter(date_created=timezone.now()).order_by('-date_created')[:10]
+	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,

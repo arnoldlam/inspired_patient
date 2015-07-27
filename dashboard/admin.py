@@ -13,7 +13,6 @@ class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False
 	verbose_name_plural = 'User Profile'
-	inlines = [NotificationInline]
 	fieldsets = (
 		(None, {'fields': ('profile_picture', 'role', 'title', 'associates', 'phone_number', 
 			'medical_history',)}),
@@ -23,6 +22,7 @@ class UserProfileInline(admin.StackedInline):
 
 class UserAdmin(UserAdmin):
 	inlines = (UserProfileInline, )
+	inlines = [NotificationInline]
 	fieldsets = (
 		('Basic Information', {'fields': (('username', 'password'), ('first_name', 'last_name'), 'email',)}),
 		('Date Information' , {'fields': ('last_login', 'date_joined',)}),

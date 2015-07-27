@@ -5,7 +5,7 @@
 <h3>Unread Notifications</h3>
 <ul>
 {% for notification in notifications %}
-{% if notification.status == 'Unread' %}
+{% if notification.view_status == 'unread' %}
 <ul>
 	<li>Title: {{ notification.title }}</li>
 	<li>Message: {{ notification.message }}</li>
@@ -17,7 +17,7 @@
 <h3>Read Notifications</h3>
 <ul>
 {% for notification in notifications %}
-{% if notification.status == 'Read' %}
+{% if notification.view_status == 'read' %}
 <ul>
 	<li>Title: {{ notification.title }}</li>
 	<li>Message: {{ notification.message }}</li>

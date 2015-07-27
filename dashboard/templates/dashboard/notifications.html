@@ -6,7 +6,7 @@
 <ul>
 {% for notification in notifications %}
 {% if notification.view_status == 'unread' %}
-<li>Title: {{ notification.title }}</li>
+<li>Notification: {{ notification.title }}</li>
 <ul>
 	<li>Message: {{ notification.message }}</li>
 </ul>
@@ -18,7 +18,7 @@
 <ul>
 {% for notification in notifications %}
 {% if notification.view_status == 'read' %}
-<li>Title: {{ notification.title }}</li>
+<li>Notification: {{ notification.title }}</li>
 <ul>
 	<li>Message: {{ notification.message }}</li>
 </ul>

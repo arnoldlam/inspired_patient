@@ -6,7 +6,7 @@
 <ul>
 {% for notification in notifications %}
 {% if notification.view_status == 'unread' %}
-<li>Notification: {{ notification.message }}</li>
+<li>{{ notification.message }}</li>
 <ul>
 	<li>Date: {{ notification.date_created }}</li>
 	{% if notification.action_url %}

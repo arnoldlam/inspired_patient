@@ -10,6 +10,7 @@
 <div style="float:right;">
 <table style="float:left;">
 	<tr><td style="text-align:right"><a href="{% url 'dashboard:profile' %}">{{ user.user_profile.full_name }}</a></td></tr>
+	<tr><td><a href="#">Notifcations (1)</a></td></tr>
 	<tr><td style="text-align:right"><a href="{% url 'django.contrib.auth.views.logout' %}?next=/accounts/login">Logout</a></td></tr>
 </table>
 <a href="{% url 'dashboard:profile' %}"><img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture" style="height:65px;width:65px;"/></a>

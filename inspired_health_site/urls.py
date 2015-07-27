@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from dashboard import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url('^accounts/', include('django.contrib.auth.urls')),
+    url('^accounts/sign_up', views.CreateNewUserView, name='create_user'),
 ]

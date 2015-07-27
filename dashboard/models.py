@@ -200,4 +200,4 @@ class Notification(models.Model):
 	date_read = models.DateTimeField('date accessed', null=True, blank=True)
 
 	def __unicode__(self):
-		return self.title
+		return self.message

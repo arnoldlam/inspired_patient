@@ -197,3 +197,6 @@ class Notification(models.Model):
 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
 	message = models.CharField(max_length=400)
 	action_url = models.URLField(blank=True)
+
+	def __unicode__(self):
+		return self.title

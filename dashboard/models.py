@@ -191,7 +191,7 @@ class Notification(models.Model):
 		('read', 'Read'),
 	)
 
-	sender = models.ForeignKey(User, related_name='notifications_sent')
+	sender = models.ForeignKey(User, related_name='notifications_sent', blank=True)
 	recipient = models.ForeignKey(User, related_name='notifications_received')
 	title = models.CharField(max_length=100)
 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')

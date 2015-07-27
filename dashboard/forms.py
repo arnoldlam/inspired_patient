@@ -91,7 +91,7 @@ class AddNoteReplyForm(ModelForm):
 
 class CreateNewUserForm(forms.Form):
 	username = forms.EmailField(label="Email Address")
-	password = forms.PasswordInput()
+	password = forms.CharField(widget=forms.PasswordInput)
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

@@ -6,10 +6,9 @@
 	{% csrf_token %}
 	{{ form.as_ul }}
 	<br>
-	<input type="submit" value="Save"/>
+	<input type="submit" value="Create user"/>
 </form>
 
-<br>
-{# 
-<a href="{% url 'dashboard:profile' %}">Cancel</a>
- #}
+<!--
+<a href="{% url 'accounts/login' %}">Cancel</a>
+-->

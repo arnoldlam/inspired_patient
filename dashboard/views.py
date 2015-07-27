@@ -444,14 +444,15 @@ def SearchUserResultsView(request):
 
 @login_required
 def PublicProfileView(request, user_id):
-	user = get_object_or_404(User, pk=user_id)
+	public_profile_user = get_object_or_404(User, pk=user_id)
 	associates = request.user.user_profile.associates.all()
 	logged_in_user = request.user
 
 	is_associate = logged_in_user.user_profile.is_associate(user)
 
 	return render(request, 'dashboard/public_profile.html', {
-		'user':user,
+		'logged_in_user':user,
+		'public_profile_user':public_profile_user,
 		'is_associate':is_associate,
 	})
 

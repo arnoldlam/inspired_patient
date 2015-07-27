@@ -1,20 +1,20 @@
 {% include "dashboard/header.html" %}
 
-<h3>User Profile for {{ user.first_name }} {{ user.last_name }}</h3>
+<h3>User Profile for {{ public_profile_user.first_name }} {{ public_profile_user.last_name }}</h3>
 
-<img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture" style="height:100px;width:100px;"/>
+<img src="{{ public_profile_user.user_profile.profile_picture.url }}" alt="Profile Picture" style="height:100px;width:100px;"/>
 
 <ul>
-<li>Title: {{ user.user_profile.title }}</li>
-<li>Name: {{ user.user_profile.full_name }} </li>
+<li>Title: {{ public_profile_user.user_profile.title }}</li>
+<li>Name: {{ public_profile_user.user_profile.full_name }} </li>
 </ul>
 
 {% if not is_associate %}
-<p><a href="{% url 'dashboard:add_associate' user.id %}">Add user as associate</a></p>
+<p><a href="{% url 'dashboard:add_associate' public_profile_user.id %}">Add user as associate</a></p>
 {% else %}
 {% comment %}
-<p><a href="#">Share note with {{ user.first_name }}</a></p>
-<p><a href="#">Share notebook with {{ user.first_name }}</a></p>
+<p><a href="#">Share note with {{ public_profile_user.first_name }}</a></p>
+<p><a href="#">Share notebook with {{ public_profile_user.first_name }}</a></p>
 {% endcomment %}
 {% endif %}
 

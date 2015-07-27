@@ -2,7 +2,7 @@
 
 <h4>Please complete the following fields to create a new user</h4>
 
-<form action="{% url 'dashboard:create_user' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'create_user' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
 	{{ form.as_ul }}
 	<br>

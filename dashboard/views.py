@@ -517,7 +517,7 @@ def AddNoteReplyView(request, note_id):
 @login_required
 def NotificationsView(request):
 	user = request.user
-	notifications = user.notifications.all()
+	notifications = user.notifications_received.all()
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,

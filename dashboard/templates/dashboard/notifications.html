@@ -6,21 +6,13 @@
 <ul>
 {% for notification in notifications %}
 {% if notification.view_status == 'unread' %}
-<li>Notification: {{ notification.title }}</li>
+<li>Notification: {{ notification.message }}</li>
 <ul>
-	<li>Message: {{ notification.message }}</li>
-</ul>
-{% endif %}
-{% endfor %}
-</ul>
-
-<h3>Read notifications</h3>
-<ul>
-{% for notification in notifications %}
-{% if notification.view_status == 'read' %}
-<li>Notification: {{ notification.title }}</li>
-<ul>
-	<li>Message: {{ notification.message }}</li>
+	<li>Date: {{ notification.date_created }}</li>
+	{% if notification.action_url %}
+	<li>Link: {{ notification.action_url }}</li>
+	{% endif %}
+	<li><a href="#">Mark as Read</a></li>
 </ul>
 {% endif %}
 {% endfor %}

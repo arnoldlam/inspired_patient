@@ -24,7 +24,7 @@ def Dashboard(request):
 	user = request.user
 	return render(request, 'dashboard/index.html', {
 		'user':user,
-		})
+	})
 
 # View for seeing profile's details
 @login_required

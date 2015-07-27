@@ -21,8 +21,7 @@ class UserProfileInline(admin.StackedInline):
 	)
 
 class UserAdmin(UserAdmin):
-	inlines = (UserProfileInline, )
-	inlines = [NotificationInline]
+	inlines = (UserProfileInline, NotificationInline)
 	fieldsets = (
 		('Basic Information', {'fields': (('username', 'password'), ('first_name', 'last_name'), 'email',)}),
 		('Date Information' , {'fields': ('last_login', 'date_joined',)}),

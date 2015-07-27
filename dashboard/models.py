@@ -185,14 +185,15 @@ class NoteReply(models.Model):
 		return self.title
 
 
-# class Notification(models.Model):
-# 	VIEW_STATUS_CHOICES = (
-# 		('unread', 'Unread'),
-# 		('read', 'Read'),
-# 	)
+class Notification(models.Model):
+	VIEW_STATUS_CHOICES = (
+		('unread', 'Unread'),
+		('read', 'Read'),
+	)
 
-# 	recipient = models.ForeignKey(User, related_name='notifications')
-# 	name = models.CharField(max_length=100)
-# 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
-# 	message = models.CharField(max_length=400)
-# 	action_url = models.URLField(blank=True)
+	sender = models.ForeignKey(User, related_name='notifications_sent')
+	recipient = models.ForeignKey(User, related_name='notifications_received')
+	title = models.CharField(max_length=100)
+	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
+	message = models.CharField(max_length=400)
+	action_url = models.URLField(blank=True)

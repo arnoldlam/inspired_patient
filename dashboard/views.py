@@ -530,4 +530,5 @@ def MarkNotificationAsRead(request):
 	notification.view_status = 'read'
 	notification.save()
 
-	return HttpResponseRedirect(reverse('dashboard:mark_notification_as_read'))
+	return HttpResponseRedirect(reverse('dashboard:notifications'))
+

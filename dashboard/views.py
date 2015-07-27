@@ -526,7 +526,7 @@ def NotificationsView(request):
 
 @login_required
 def MarkNotificationAsRead(request):
-	notification = get_object_or_404(notification, pk=request.GET['notification_id'])
+	notification = get_object_or_404(Notification, pk=request.GET['notification_id'])
 	notification.view_status = 'read'
 	notification.save()
 

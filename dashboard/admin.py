@@ -6,6 +6,9 @@ from django.contrib.auth.models import User, Group
 
 from .models import UserProfile, Clinic, Note, CommunicationNote, DischargeNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
+class NotificationInline(admin.TabularInline):
+	model = Notification
+
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False
@@ -33,9 +36,6 @@ class RepliesInline(admin.TabularInline):
 class AttachmentInline(admin.TabularInline):
 	model = Attachment
 	extra = 1
-
-class NotificationInline(admin.TabularInline):
-	model = Notification
 
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):

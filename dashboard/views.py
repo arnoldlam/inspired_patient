@@ -448,7 +448,7 @@ def PublicProfileView(request, user_id):
 	associates = request.user.user_profile.associates.all()
 	logged_in_user = request.user
 
-	is_associate = logged_in_user.user_profile.is_associate(user)
+	is_associate = logged_in_user.user_profile.is_associate(public_profile_user)
 
 	return render(request, 'dashboard/public_profile.html', {
 		'logged_in_user':user,

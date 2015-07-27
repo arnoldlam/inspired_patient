@@ -10,6 +10,7 @@ class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False
 	verbose_name_plural = 'User Profile'
+	inlines = [NotificationInline]
 	fieldsets = (
 		(None, {'fields': ('profile_picture', 'role', 'title', 'associates', 'phone_number', 
 			'medical_history',)}),
@@ -43,7 +44,7 @@ class NoteAdmin(admin.ModelAdmin):
 		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
 		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
-	inlines=[RepliesInline, AttachmentInline, NotificationInline]
+	inlines=[RepliesInline, AttachmentInline]
 	list_filter = ['date_created']
 	search_fields = ['subject', 'note_content']
 

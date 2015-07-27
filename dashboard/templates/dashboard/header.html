@@ -1,4 +1,8 @@
 <h2>Inspired Health</h2>
+{% load static from staticfiles %}
+
+<img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture" style="height:100px;width:100px;"/>
+
 <a href="{% url 'dashboard:profile' %}">Profile</a>
 <a href="{% url 'dashboard:collaboration' %}">Collaboration</a>
 <a href="{% url 'dashboard:notes' %}">Notes</a>

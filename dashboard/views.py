@@ -523,3 +523,11 @@ def NotificationsView(request):
 		'user':user,
 		'notifications':notifications,
 	})
+
+@login_required
+def MarkNotificationAsRead(request):
+	notification = get_object_or_404(notification, pk=request.GET['notification_id'])
+	notification.view_status = 'read'
+	notification.save()
+
+	return HttpResponseRedirect(reverse('dashboard:mark_notification_as_read'))

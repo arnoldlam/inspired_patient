@@ -191,7 +191,8 @@ class NoteReply(models.Model):
 # 		('read', 'Read'),
 # 	)
 
+# 	recipient = models.ForeignKey(User, related_name='notifications')
 # 	name = models.CharField(max_length=100)
 # 	view_status = models.CharField(max_length=15, choices=VIEW_STATUS_CHOICES, default='unread')
-# 	message = models.CharField(max_length=)
-
+# 	message = models.CharField(max_length=400)
+# 	action_url = models.URLField(blank=True)

@@ -31,7 +31,6 @@
 	{% if notification.action_url %}
 	<li>Link: {{ notification.action_url }}</li>
 	{% endif %}
-	<li><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}">Mark as Read</a></li>
 </ul>
 {% endfor %}
 </ul>

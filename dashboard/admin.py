@@ -7,8 +7,8 @@ from django.contrib.auth.models import User, Group
 from .models import UserProfile, Clinic, Note, CommunicationNote, DischargeNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
 class UserRelationInline(admin.TabularInline):
-	model = UserProfile.associates.through
-
+	model = UserProfile
+	
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False

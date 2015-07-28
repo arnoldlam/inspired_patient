@@ -6,6 +6,9 @@ from django.contrib.auth.models import User, Group
 
 from .models import UserProfile, Clinic, Note, CommunicationNote, DischargeNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
+class UserRelationInline(admin.TabularInline):
+	model = UserProfile.associates.through
+
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile
 	can_delete = False
@@ -16,6 +19,7 @@ class UserProfileInline(admin.StackedInline):
 		('Address', {'fields':['address_unit', 'address_street', 'address_city', 'address_province', 'address_country', 'address_postal_code'],
 		 'classes':['show']}),
 	)
+	inlines = [UserRelationInline]
 
 class UserAdmin(UserAdmin):
 	inlines = (UserProfileInline, )

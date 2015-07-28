@@ -476,17 +476,16 @@ def AddAssociate(request, user_id):
 	user_profile.associates.add(associate_to_add.user_profile)
 	user_profile.save()
 	
-	message = user_profile.full_name() + "has added you as a team member."
+	message = user_profile.full_name() + " has added you as a team member."
 	notification = Notification(recipient=associate_to_add, message=message)
 	notification.save()
 	
 	is_associate = 1
 	message = 'Associate added'
 
-
-
 	return render(request, 'dashboard/public_profile.html', {
-		'user':associate_to_add,
+		'user':logged_in_user,
+		'public_profile_user':public_profile_user,
 		'is_associate':is_associate,
 		'message': message,
 	})

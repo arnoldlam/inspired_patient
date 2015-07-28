@@ -22,7 +22,7 @@
 {% endif %}
 
 <h3>Read notifications</h3>
-{% if unread_notifications %}
+{% if read_notifications %}
 <ul>
 {% for notification in read_notifications %}
 <li>{{ notification.message }}</li>

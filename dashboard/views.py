@@ -520,6 +520,8 @@ def NotificationsView(request):
 	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 
 	# Get unread and read notifications
+	unread_notifications = []
+	read_notifications = []
 	for notification in notifications:
 		if notification.view_status == 'unread':
 			unread_notifications.append(notification)

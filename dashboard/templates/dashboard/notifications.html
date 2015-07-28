@@ -4,9 +4,9 @@
 
 
 <h3>Unread notifications</h3>
+{% if unread_notifications %}
 <ul>
-{% for notification in notifications %}
-{% if notification.view_status == 'unread' %}
+{% for notification in unread_notifications %}
 <li>{{ notification.message }}</li>
 <ul>
 	<li>Date: {{ notification.date_created }}</li>
@@ -15,6 +15,24 @@
 	{% endif %}
 	<li><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}">Mark as Read</a></li>
 </ul>
-{% endif %}
 {% endfor %}
 </ul>
+{% else %}
+<p>No unread notifications</p>
+
+<h3>Read notifications</h3>
+{% if unread_notifications %}
+<ul>
+{% for notification in read_notifications %}
+<li>{{ notification.message }}</li>
+<ul>
+	<li>Date: {{ notification.date_created }}</li>
+	{% if notification.action_url %}
+	<li>Link: {{ notification.action_url }}</li>
+	{% endif %}
+	<li><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}">Mark as Read</a></li>
+</ul>
+{% endfor %}
+</ul>
+{% else %}
+<p>No read notifications</p>

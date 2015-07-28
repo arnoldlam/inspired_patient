@@ -519,9 +519,18 @@ def NotificationsView(request):
 	user = request.user
 	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 
+	# Get unread and read notifications
+	for notification in notifications:
+		if notification.view_status == 'unread':
+			unread_notifications.append(notification)
+		if notificaiton.view_status == 'read':
+			read_notifications.append(notification)
+
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,
 		'notifications':notifications,
+		'unread_notifications':unread_notifications,
+		'read_notifications':read_notifications
 	})
 
 @login_required

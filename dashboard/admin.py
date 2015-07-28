@@ -12,7 +12,7 @@ class UserProfileInline(admin.StackedInline):
 	verbose_name_plural = 'User Profile'
 	fieldsets = (
 		(None, {'fields': ('profile_picture', 'role', 'title', 'associates', 'phone_number', 
-			'medical_history', 'associates')}),
+			'medical_history', )}),
 		('Address', {'fields':['address_unit', 'address_street', 'address_city', 'address_province', 'address_country', 'address_postal_code'],
 		 'classes':['show']}),
 	)

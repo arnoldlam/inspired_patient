@@ -525,7 +525,7 @@ def NotificationsView(request):
 	for notification in notifications:
 		if notification.view_status == 'unread':
 			unread_notifications.append(notification)
-		if notificaiton.view_status == 'read':
+		if notification.view_status == 'read':
 			read_notifications.append(notification)
 
 	return render(request, 'dashboard/notifications.html', {

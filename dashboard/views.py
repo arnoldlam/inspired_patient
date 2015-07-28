@@ -476,7 +476,7 @@ def AddAssociate(request, user_id):
 	user_profile.associates.add(associate_to_add.user_profile)
 	user_profile.save()
 	
-	message = user_profile.full_name + "has added you as a team member."
+	message = user_profile.full_name() + "has added you as a team member."
 	notification = Notification(recipient=associate_to_add, message=message)
 	notification.save()
 	

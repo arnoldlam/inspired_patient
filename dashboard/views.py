@@ -415,6 +415,10 @@ def ShareNotebookView(request, notebook_id):
 				notebook.editors.add(user)
 				notebook.save()
 
+				message = "The notebook " + notebook.name + " was shared with you."
+				notification = Notification(recipient=user, message=message)
+				notification.save()
+
 				# For each note in notebook, allow user to access
 				for note in notebook.notes.all():
 					note.editors.add(user)
@@ -545,6 +549,7 @@ def NotificationsView(request):
 def MarkNotificationAsRead(request):
 	notification = get_object_or_404(Notification, pk=request.GET['notification_id'])
 	notification.view_status = 'read'
+	notification.date_read = timezone.now()
 	notification.save()
 
 	return HttpResponseRedirect(reverse('dashboard:notifications'))

@@ -22,28 +22,29 @@ def CreateNewUserView(request):
 	if request.method == 'POST':
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
-		if user_form.is_valid():
-			# username = user_form.cleaned_data['username']
-			# password = user_form.clean_password2()
-
+		if user_form.is_valid() and user_profile_form.is_valid():
 			new_user = user_form.save()
 			
-			# medical_history = user_profile_form.cleaned_data['medical_history']
-			# phone_number = user_profile_form.cleaned_data['phone_number']
-			# title = user_profile_form.cleaned_data['title']
+			medical_history = user_profile_form.cleaned_data['medical_history']
+			phone_number = user_profile_form.cleaned_data['phone_number']
+			title = user_profile_form.cleaned_data['title']
+			profile_picture = request.FILES['profile_picture']
 
-			# # Address Information
-			# address_unit = user_profile_form.cleaned_data['address_unit']
-			# address_street = user_profile_form.cleaned_data['address_street']
-			# address_city = user_profile_form.cleaned_data['address_city']
-			# address_province = user_profile_form.cleaned_data['address_province']
-			# address_country = user_profile_form.cleaned_data['address_country']
-			# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
+			# Address Information
+			address_unit = user_profile_form.cleaned_data['address_unit']
+			address_street = user_profile_form.cleaned_data['address_street']
+			address_city = user_profile_form.cleaned_data['address_city']
+			address_province = user_profile_form.cleaned_data['address_province']
+			address_country = user_profile_form.cleaned_data['address_country']
+			address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
-			# profile_picture = request.FILES['profile_picture']
+			new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
+				address_city=address_city, address_province=address_province, address_country=address_country,
+				address_postal_code=address_postal_code, medical_history=medical_history, phone_number=phone_number,
+				title=title, profile_picture=profile_picture
+			)
+			new_user_profile.save()
 
-			# new_user = User(username=username, password=password, email=username)
-			# new_user.save()
 
 			# if user_profile_form.cleaned_data['is_professional'] == True:
 			# 	form = CreateProfessionalProfileForm()

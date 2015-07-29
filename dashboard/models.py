@@ -25,7 +25,7 @@ class UserProfile(models.Model):
 	)
 
 	user = models.OneToOneField(User, related_name="user_profile")
-	associates = models.ManyToManyField("self", blank=True, null=True)
+	associates = models.ManyToManyField("self", blank=True)
 	address_street = models.CharField('Street', max_length=50)
 	address_unit = models.CharField('Unit', max_length=10)
 	address_city = models.CharField('City', max_length=30)
@@ -37,7 +37,7 @@ class UserProfile(models.Model):
 	medical_history = models.CharField(max_length=4000, blank=True)
 	role = models.CharField(max_length=15, choices = ROLE_CHOICES, default='patient') # ie. professional, patient
 	title = models.CharField(max_length=15)
-	profile_picture = models.ImageField(upload_to='profile_pictures')
+	profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
 
 	def __unicode__(self):
 		return self.user.username

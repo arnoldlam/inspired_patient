@@ -49,9 +49,6 @@ def CreateNewUserView(request):
 				form = CreateProfessionalProfileForm()
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,
-				})
-			return render(request, 'dashboard/index.html', {
-				'user':user,
 			})
 	else:
 		# Allow user to select a role

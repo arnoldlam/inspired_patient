@@ -23,8 +23,10 @@ def CreateNewUserView(request):
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 		if user_form.is_valid():
-			username = user_form.cleaned_data['username']
-			password = user_form.clean_password2()
+			# username = user_form.cleaned_data['username']
+			# password = user_form.clean_password2()
+
+			new_user = user_form.save()
 			
 			# medical_history = user_profile_form.cleaned_data['medical_history']
 			# phone_number = user_profile_form.cleaned_data['phone_number']
@@ -40,8 +42,8 @@ def CreateNewUserView(request):
 
 			# profile_picture = request.FILES['profile_picture']
 
-			new_user = User(username=username, password=password, email=username)
-			new_user.save()
+			# new_user = User(username=username, password=password, email=username)
+			# new_user.save()
 
 			# if user_profile_form.cleaned_data['is_professional'] == True:
 			# 	form = CreateProfessionalProfileForm()

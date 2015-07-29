@@ -14,7 +14,7 @@ from django.views import generic
 from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
@@ -28,9 +28,7 @@ def CreateNewUserView(request):
 			medical_history = user_profile_form.cleaned_data['medical_history']
 			phone_number = user_profile_form.cleaned_data['phone_number']
 			title = user_profile_form.cleaned_data['title']
-
-			if 'profile_picture' in request.FILES:
-				profile_picture = request.FILES['profile_picture']
+			profile_picture = request.FILES['profile_picture']
 
 			# Address Information
 			address_unit = user_profile_form.cleaned_data['address_unit']
@@ -46,6 +44,7 @@ def CreateNewUserView(request):
 				title=title, profile_picture=profile_picture
 			)
 			new_user_profile.save()
+
 
 			if user_profile_form.cleaned_data['is_professional'] == True:
 				form = CreateProfessionalProfileForm()

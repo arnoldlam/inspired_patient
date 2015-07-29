@@ -14,7 +14,7 @@ from django.views import generic
 from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import UserProfile, Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
+from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
@@ -47,10 +47,10 @@ def CreateNewUserView(request):
 			)
 			new_user_profile.save()
 
-			# if user_profile_form.cleaned_data['is_professional'] == True:
-			form = CreateProfessionalProfileForm()
-			return render(request, 'dashboard/create_user.html', {
-				'form':form,
+			if user_profile_form.cleaned_data['is_professional'] == True:
+				form = CreateProfessionalProfileForm()
+				return render(request, 'dashboard/create_user.html', {
+					'form':form,
 			})
 	else:
 		# Allow user to select a role

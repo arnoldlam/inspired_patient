@@ -15,17 +15,30 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, CreateNewUserForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, SelectRoleForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 def CreateNewUserView(request):
 	if request.method == 'POST':
 		pass
 	else:
-		form = CreateNewUserForm()
-		return render(request, 'dashboard/create_user.html', {
-			'form':form,
-		})
+		# After selecting a role, return template for user creation for role
+		if 'role' in request.GET:
+			if request.GET['role'] == 'patient':
+				# form = CreateNewPatientForm()
+				pass
+			if request.GET['role'] == 'professional':
+				# form = CreateNewProfessionalForm()
+				pass
+			return render(request, 'dashboard/create_patient', {
+				'form':form,
+			})
+		else:
+			# Allow user to select a role
+			form = SelectRoleForm()
+			return render(request, 'dashboard/create_user.html', {
+				'form':form,
+			})
 
 # View for main dashboard
 @login_required

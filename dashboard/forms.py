@@ -89,7 +89,15 @@ class AddNoteReplyForm(ModelForm):
 		model = NoteReply
 		fields = ['title', 'content']
 
-class CreateNewUserForm(forms.Form):
+class SelectRoleForm(forms.Form):
+	ROLE_CHOICES = (
+		('patient', 'Patient'),
+		('professional', 'Professional'),
+	)
+
+	role = forms.CharField(label='Your Role', widget=Select(choices=ROLE_CHOICES))
+
+class CreateNewPatientForm(forms.Form):
 	username = forms.EmailField(label="Email Address")
 	password = forms.CharField(widget=forms.PasswordInput)
 

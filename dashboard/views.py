@@ -22,32 +22,32 @@ def CreateNewUserView(request):
 	if request.method == 'POST':
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
-		if user_form.is_valid() and user_profile_form.is_valid():
-			username = user_form.cleaned_data['user_form-username']
-			password = user_form.cleaned_data['user_form-password1']
+		if user_form.is_valid():
+			username = user_form.cleaned_data['username']
+			password = user_form.cleaned_data['password']
 			
-			medical_history = user_profile_form.cleaned_data['medical_history']
-			phone_number = user_profile_form.cleaned_data['phone_number']
-			title = user_profile_form.cleaned_data['title']
+			# medical_history = user_profile_form.cleaned_data['medical_history']
+			# phone_number = user_profile_form.cleaned_data['phone_number']
+			# title = user_profile_form.cleaned_data['title']
 
-			# Address Information
-			address_unit = user_profile_form.cleaned_data['address_unit']
-			address_street = user_profile_form.cleaned_data['address_street']
-			address_city = user_profile_form.cleaned_data['address_city']
-			address_province = user_profile_form.cleaned_data['address_province']
-			address_country = user_profile_form.cleaned_data['address_country']
-			address_postal_code = user_profile_form.cleaned_data['address_postal_code']
+			# # Address Information
+			# address_unit = user_profile_form.cleaned_data['address_unit']
+			# address_street = user_profile_form.cleaned_data['address_street']
+			# address_city = user_profile_form.cleaned_data['address_city']
+			# address_province = user_profile_form.cleaned_data['address_province']
+			# address_country = user_profile_form.cleaned_data['address_country']
+			# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
-			profile_picture = request.FILES['profile_picture']
+			# profile_picture = request.FILES['profile_picture']
 
 			new_user = User(username=username, password=password, email=username)
 			new_user.save()
 
-			if user_profile_form.cleaned_data['is_professional'] == True:
-				form = CreateProfessionalProfileForm()
-				return render(request, 'dashboard/create_user.html', {
-					'form':form,
-			})
+			# if user_profile_form.cleaned_data['is_professional'] == True:
+			# 	form = CreateProfessionalProfileForm()
+			# 	return render(request, 'dashboard/create_user.html', {
+			# 		'form':form,
+			# })
 	else:
 		# Allow user to select a role
 		user_form = UserCreationForm(prefix='user_form')

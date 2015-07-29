@@ -4,14 +4,8 @@
 
 <form action="{% url 'create_user' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	<!-- Form for professional profile creation -->
-	{% if form %}
-	{{ form.as_ul }}
-	<!-- Forms for user profile and user creation -->
-	{% else %}
 	{{ user_form.as_ul }}
 	{{ user_profile_form.as_ul }}
- 	{% endif %}
 	<br>
 	<input type="submit" value="Create user"/>
 </form>

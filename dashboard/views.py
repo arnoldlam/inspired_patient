@@ -23,8 +23,8 @@ def CreateNewUserView(request):
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 		if user_form.is_valid() and user_profile_form.is_valid():
-			username = user_form.cleaned_data['username']
-			password = user_form.cleaned_data['password']
+			username = user_form.cleaned_data['user_form-username']
+			password = user_form.cleaned_data['user_form-password1']
 			
 			medical_history = user_profile_form.cleaned_data['medical_history']
 			phone_number = user_profile_form.cleaned_data['phone_number']

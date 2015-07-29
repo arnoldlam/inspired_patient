@@ -101,10 +101,7 @@ class UserProfileCreationForm(forms.Form):
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
 	)
-
-	username = forms.EmailField(label="Email Address")
-	password = forms.CharField(widget=forms.PasswordInput)
-	profile_picture = forms.ImageField()
+	profile_picture = forms.ImageField(required=False)
 	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
 	phone_number = forms.CharField(label="Phone Number")
 	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.Textarea)

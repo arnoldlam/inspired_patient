@@ -21,7 +21,7 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 def CreateNewUserView(request):
 	if request.method == 'POST':
 		user_form = UserCreationForm(request.POST, prefix='user_form')
-		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
+		user_profile_form = UserProfileCreationForm(request.POST, prefix='user_profile_form')
 		if user_form.is_valid() and user_profile_form.is_valid():
 			new_user = user_form.save()
 			
@@ -49,6 +49,10 @@ def CreateNewUserView(request):
 				form = CreateProfessionalProfileForm()
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,
+			})
+			login(request, new_user)
+			return render(request, 'dashboard/index.html', {
+				'user':new_user,
 			})
 	else:
 		# Allow user to select a role

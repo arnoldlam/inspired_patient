@@ -26,7 +26,6 @@ def CreateNewUserView(request):
 			password = form.cleaned_data['password']
 			medical_history = form.cleaned_data['medical_history']
 			phone_number = form.cleaned_data['phone_number']
-			role = form.cleaned_data['role']
 			title = form.cleaned_data['title']
 
 			# Address Information

@@ -89,17 +89,34 @@ class AddNoteReplyForm(ModelForm):
 		model = NoteReply
 		fields = ['title', 'content']
 
-class SelectRoleForm(forms.Form):
-	ROLE_CHOICES = (
-		('patient', 'Patient'),
-		('professional', 'Professional'),
+class CreateUserForm(forms.Form):
+	TITLE_SELECT = (
+		('mr', 'Mr.'),
+		('ms', 'Ms.'),
+		('mrs', 'Mrs.'),
+		('dr', 'Dr.'),
+	)
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
 	)
 
-	role = forms.CharField(label='Your Role', widget=Select(choices=ROLE_CHOICES))
-
-class CreateNewPatientForm(forms.Form):
 	username = forms.EmailField(label="Email Address")
 	password = forms.CharField(widget=forms.PasswordInput)
+	profile_picture = forms.ImageField()
+	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
+	phone_number = forms.CharField(label="Phone Number")
+	medical_history = forms.CharField(label='Note', max_length=4000, widget=forms.Textarea)
+
+	address_unit = forms.CharField(label='Unit', max_length=10)
+	address_street = forms.CharField(label='Street', max_length=50)
+	address_city = forms.CharField(label='City', max_length=30)
+	address_province = forms.CharField(label='Province', max_length=30)
+	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
+	is_professional = forms.BooleanField(label="Are you a professional?")
+
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

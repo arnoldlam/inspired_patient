@@ -5,7 +5,7 @@
 <p>Notes owned: {{ notes.count }}</p>
 <p>Notebooks owned: {{ notebooks_read_write.count }}</p>
 
-<h3>Associates</h3>
+<h3>Team Members</h3>
 
 {% if associates %}
 <ul>
@@ -14,10 +14,10 @@
 {% endfor %}
 </ul>
 {% else %}
-<p>No associates</p>
+<p>No team members</p>
 {% endif %}
 
-<h3>Add new associates</h3>
+<h3>Add new team members</h3>
 
 <form action="{% url 'dashboard:search_results' %}" method="GET">
 Search by email: <input type="text" name="u">

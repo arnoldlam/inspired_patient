@@ -34,8 +34,8 @@ class UserProfile(models.Model):
 		default='CA')
 	address_postal_code = models.CharField('Postal Code', max_length=10)
 	phone_number = models.CharField(max_length=20)
-	medical_history = models.CharField(max_length=4000)
-	role = models.CharField(max_length=15, choices = ROLE_CHOICES, default = 'patient') # ie. professional, patient
+	medical_history = models.CharField(max_length=4000, blank=True)
+	role = models.CharField(max_length=15, choices = ROLE_CHOICES, default='patient') # ie. professional, patient
 	title = models.CharField(max_length=15)
 	profile_picture = models.ImageField(upload_to='profile_pictures')
 

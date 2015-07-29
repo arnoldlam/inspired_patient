@@ -41,7 +41,7 @@ def CreateNewUserView(request):
 			new_user = User(username=username, password=password, email=username)
 			new_user.save()
 
-			if request.POST['is_professional'] == True:
+			if form.cleaned_data['is_professional'] == True:
 				form = CreateProfessionalProfileForm()
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,

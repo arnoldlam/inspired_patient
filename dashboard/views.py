@@ -28,7 +28,9 @@ def CreateNewUserView(request):
 			medical_history = user_profile_form.cleaned_data['medical_history']
 			phone_number = user_profile_form.cleaned_data['phone_number']
 			title = user_profile_form.cleaned_data['title']
-			profile_picture = request.FILES['profile_picture']
+
+			if 'profile_picture' in request.FILES:
+				profile_picture = request.FILES['profile_picture']
 
 			# Address Information
 			address_unit = user_profile_form.cleaned_data['address_unit']

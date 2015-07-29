@@ -89,7 +89,7 @@ class AddNoteReplyForm(ModelForm):
 		model = NoteReply
 		fields = ['title', 'content']
 
-class CreateUserForm(forms.Form):
+class UserProfileCreationForm(forms.Form):
 	TITLE_SELECT = (
 		('mr', 'Mr.'),
 		('ms', 'Ms.'),

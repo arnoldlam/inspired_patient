@@ -15,12 +15,38 @@ from django.utils import timezone
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, CreateUserForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, CreateUserForm, CreateProfessionalProfileForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 def CreateNewUserView(request):
 	if request.method == 'POST':
-		pass
+		form = CreateUserForm(request.POST, request.FILES)
+		if form.is_valid():
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password']
+			medical_history = form.cleaned_data['medical_history']
+			phone_number = form.cleaned_data['phone_number']
+			role = form.cleaned_data['role']
+			title = form.cleaned_data['title']
+
+			# Address Information
+			address_unit = form.cleaned_data['address_unit']
+			address_street = form.cleaned_data['address_street']
+			address_city = form.cleaned_data['address_city']
+			address_province = form.cleaned_data['address_province']
+			address_country = form.cleaned_data['address_country']
+			address_postal_code = form.cleaned_data['address_postal_code']
+
+			profile_picture = request.FILES['profile_picture']
+
+			new_user = User(username=username, password=password, email=username)
+			new_user.save()
+
+			if request.POST['is_professional'] == True:
+				form = CreateProfessionalProfileForm()
+				return render(request, 'dashboard/create_user.html', {
+					'form':form,
+			})
 	else:
 		# Allow user to select a role
 		form = CreateUserForm()

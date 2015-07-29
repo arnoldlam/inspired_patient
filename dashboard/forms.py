@@ -117,6 +117,14 @@ class CreateUserForm(forms.Form):
 	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
 	is_professional = forms.BooleanField(label="Are you a professional?")
 
+class CreateProfessionalProfileForm(forms.Form):
+	qualification = forms.CharField(label='Qualification', max_length=100)
+	job_title = forms.CharField(label='Job Title', max_length=100)
+	office_tel = forms.CharField(label='Office Tel', max_length=50)
+	office_email = forms.EmailField(label='Office Email', max_length=60)
+	office_address = forms.CharField(label='Office Address', max_length=200)
+
+
 
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)

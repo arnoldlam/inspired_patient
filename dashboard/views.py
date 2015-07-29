@@ -50,10 +50,11 @@ def CreateNewUserView(request):
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,
 			})
-			login(request, new_user)
-			return render(request, 'dashboard/index.html', {
-				'user':new_user,
-			})
+	# Automatically log a user in after user creation
+	login(request, new_user)
+	return render(request, 'dashboard/index.html', {
+		'user':new_user,
+	})
 	else:
 		# Allow user to select a role
 		user_form = UserCreationForm(prefix='user_form')

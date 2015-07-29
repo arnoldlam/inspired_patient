@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, CreateUserForm, CreateProfessionalProfileForm
-from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
 def CreateNewUserView(request):
 	if request.method == 'POST':
@@ -48,7 +48,7 @@ def CreateNewUserView(request):
 			})
 	else:
 		# Allow user to select a role
-		form = CreateUserForm()
+		form = UserCreationForm()
 		return render(request, 'dashboard/create_user.html', {
 			'form':form,
 		})

@@ -1,0 +1,9 @@
+<h3>Welcome to Inspired Health!</h3>
+
+<h4>Please choose a role for your new user account</h4>
+
+<form action="{% url 'create_user' %}" method="get" enctype="multipart/form-data">
+	{{ form.as_ul }}
+	<br>
+	<input type="submit" value="Select Role"/>
+</form>

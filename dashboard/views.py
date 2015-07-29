@@ -51,6 +51,10 @@ def CreateNewUserView(request):
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,
 			})
+			else:
+				return render(request, 'dashboard/index.html', {
+					'user':user,
+				})
 	else:
 		# Allow user to select a role
 		user_form = UserCreationForm(prefix='user_form')

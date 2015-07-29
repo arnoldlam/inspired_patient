@@ -6,7 +6,7 @@
 	{% csrf_token %}
 	<!-- Form for professional profile creation -->
 	{% if form %}
-	{{ user_profile_form.as_ul }}
+	{{ form.as_ul }}
 	<!-- Forms for user profile and user creation -->
 	{% else %}
 	{{ user_form.as_ul }}

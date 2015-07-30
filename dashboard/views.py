@@ -46,7 +46,11 @@ def CreateNewUserView(request):
 			new_user_profile.save()
 
 			if user_profile_form.cleaned_data['is_professional'] == True:
-				return HttpResponseRedirect(reverse('dashboard:dashboard'))
+				user = authenticate(username=new_user.username, password=new_user.password)
+				login(request, user)
+				return render(request, 'dashboard/index.html', {
+					'user':user,
+				})
 				form = CreateProfessionalProfileForm()
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,

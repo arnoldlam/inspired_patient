@@ -48,6 +48,10 @@ def CreateNewUserView(request):
 			user = authenticate(username=new_user.username, password=new_user.password)
 			login(request, user)
 
+			return render(request, 'dashboard/index.html', {
+				'user':user,
+			})
+
 			# if user_profile_form.cleaned_data['is_professional'] == True:
 			# 	form = CreateProfessionalProfileForm()
 			# 	return render(request, 'dashboard/create_user.html', {

@@ -21,7 +21,7 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 def CreateNewUserView(request):
 	if request.method == 'POST':
 		user_form = UserCreationForm(request.POST, prefix='user_form')
-		user_profile_form = UserProfileCreationForm(request.POST, prefix='user_profile_form')
+		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 		if user_form.is_valid():
 			new_user = user_form.save()
 
@@ -29,7 +29,7 @@ def CreateNewUserView(request):
 				medical_history = user_profile_form.cleaned_data['medical_history']
 				phone_number = user_profile_form.cleaned_data['phone_number']
 				title = user_profile_form.cleaned_data['title']
-				profile_picture = user_profile_form.cleaned_data['profile_picture']
+				profile_picture = request.FILES['profile_picture']
 
 				# # Address Information
 				# address_unit = user_profile_form.cleaned_data['address_unit']

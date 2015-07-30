@@ -45,6 +45,8 @@ def CreateNewUserView(request):
 			)
 			new_user_profile.save()
 
+			sdflksjnflksnd
+
 			if user_profile_form.cleaned_data['is_professional'] == False:
 				user = authenticate(username=new_user.username, password=new_user.password)
 				login(request, user)

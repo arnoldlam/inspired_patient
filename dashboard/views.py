@@ -85,6 +85,7 @@ def CreateNewUserView(request):
 				# Save first and last name into user before loading template
 				user.first_name = first_name
 				user.last_name = last_name
+				user.save()
 
 				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:

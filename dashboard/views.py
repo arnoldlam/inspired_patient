@@ -29,7 +29,7 @@ def CreateNewUserView(request):
 				medical_history = user_profile_form.cleaned_data['medical_history']
 				phone_number = user_profile_form.cleaned_data['phone_number']
 				title = user_profile_form.cleaned_data['title']
-				# profile_picture = user_profile_form.cleaned_data['profile_picture']
+				profile_picture = user_profile_form.cleaned_data['profile_picture']
 
 				# # Address Information
 				# address_unit = user_profile_form.cleaned_data['address_unit']
@@ -42,7 +42,7 @@ def CreateNewUserView(request):
 				new_user_profile = UserProfile(user=new_user, address_street="Memory Lane", address_unit='123',
 					address_city="Vancouver", address_province="BC", address_country="Canada",
 					address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
-					title=title,
+					title=title, profile_picture=profile_picture,
 				)
 				new_user_profile.save()
 

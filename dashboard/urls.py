@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-	url(r'^$', views.Dashboard, name='main'), # main landing page
+	url(r'^$', views.Dashboard, name='dashboard'), # main landing page
 	url(r'^profile/$', views.Profile, name='profile'),
 	url(r'^profile/edit$', views.EditProfile, name='edit_profile'),
 	url(r'^collaboration$', views.CollaborationView, name='collaboration'),

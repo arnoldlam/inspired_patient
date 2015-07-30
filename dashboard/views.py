@@ -45,8 +45,7 @@ def CreateNewUserView(request):
 			)
 			new_user_profile.save()
 
-			return render(request, 'accounts/login', {
-			})
+			return HttpResponseRedirect('/accounts/login')
 
 			if user_profile_form.cleaned_data['is_professional'] == True:
 				form = CreateProfessionalProfileForm()

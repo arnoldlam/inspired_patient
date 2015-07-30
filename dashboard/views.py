@@ -29,6 +29,7 @@ def CreateNewUserView(request):
 				medical_history = user_profile_form.cleaned_data['medical_history']
 				phone_number = user_profile_form.cleaned_data['phone_number']
 				title = user_profile_form.cleaned_data['title']
+				is_professional = user_profile_form.cleaned_data['is_professional']
 				# profile_picture = request.FILES['profile_picture']
 
 				# # Address Information
@@ -46,12 +47,12 @@ def CreateNewUserView(request):
 				)
 				new_user_profile.save()
 
-				if user_profile_form.cleaned_data['is_professional'] == True:
+				if is_professional:
 					form = CreateProfessionalProfileForm()
 					return render(request, 'dashboard/create_professional.html', {
 						'form':form,
 					})
-				if user_profile_form.cleaned_data['is_professional'] == False:
+				if not is_professional:
 					username = user_form.cleaned_data['username']
 					password = user_form.cleaned_data['password1']
 					user = authenticate(username=username, password=password)

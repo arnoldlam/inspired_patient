@@ -121,8 +121,6 @@ class CreateProfessionalProfileForm(forms.Form):
 	office_email = forms.EmailField(label='Office Email', max_length=60)
 	office_address = forms.CharField(label='Office Address', max_length=200)
 
-
-
 # class AddSelfCareNoteForm(AddNoteForm):	
 # 	selfcare_desc = forms.CharField(max_length=1000)
 # 	frequency = forms.CharField(max_length=150)

@@ -20,6 +20,31 @@ from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
 def CreateNewUserView(request):
 	if request.method == 'POST':
+		if 'qualification' in request.POST:
+			form = CreateProfessionalProfileForm(request.POST)
+			if form.is_valid():
+				qualification = form.cleaned_data['qualification']
+				job_title = form.cleaned_data['job_title']
+				office_tel = form.cleaned_data['office_tel']
+				office_email = form.cleaned_data['office_email']
+				office_address = form.cleaned_data['office_address']
+				
+				# Get user and user profile
+				user = request.user
+				user_profile = user.user_profile
+
+				# Save professional profile details
+				user_profile.qualification = qualification
+				user_profile.job_title = job_title
+				user_profile.office_tel = office_tel
+				user_profile.office_email = office_email
+				user_profile.office_address = office_address
+
+				# Save user profile
+				user_profile.save()
+
+				return HttpResponseRedirect('/dashboard/')
+
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 		if user_form.is_valid():
@@ -46,16 +71,17 @@ def CreateNewUserView(request):
 				)
 				new_user_profile.save()
 
+				username = user_form.cleaned_data['username']
+				password = user_form.cleaned_data['password1']
+				user = authenticate(username=username, password=password)
+				login(request, user)
+
 				if user_profile_form.cleaned_data['is_professional'] == True:
 					form = CreateProfessionalProfileForm()
 					return render(request, 'dashboard/create_professional.html', {
 						'form':form,
 					})
 
-				username = user_form.cleaned_data['username']
-				password = user_form.cleaned_data['password1']
-				user = authenticate(username=username, password=password)
-				login(request, user)
 				return HttpResponseRedirect('/dashboard/')
 	else:
 		# Allow user to select a role

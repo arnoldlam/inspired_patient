@@ -46,11 +46,11 @@ def CreateNewUserView(request):
 				)
 				new_user_profile.save()
 
-				# if user_profile_form.cleaned_data['is_professional'] == True:
-				# 	form = CreateProfessionalProfileForm()
-				# 	return render(request, 'dashboard/create_user.html', {
-				# 		'form':form,
-				# 	})
+				if user_profile_form.cleaned_data['is_professional'] == True:
+					form = CreateProfessionalProfileForm()
+					return render(request, 'dashboard/create_user.html', {
+						'form':form,
+					})
 
 				username = user_form.cleaned_data['username']
 				password = user_form.cleaned_data['password1']

@@ -31,17 +31,17 @@ def CreateNewUserView(request):
 				title = user_profile_form.cleaned_data['title']
 				# profile_picture = user_profile_form.cleaned_data['profile_picture']
 
-				# Address Information
-				address_unit = user_profile_form.cleaned_data['address_unit']
-				address_street = user_profile_form.cleaned_data['address_street']
-				address_city = user_profile_form.cleaned_data['address_city']
-				address_province = user_profile_form.cleaned_data['address_province']
-				address_country = user_profile_form.cleaned_data['address_country']
-				address_postal_code = user_profile_form.cleaned_data['address_postal_code']
+				# # Address Information
+				# address_unit = user_profile_form.cleaned_data['address_unit']
+				# address_street = user_profile_form.cleaned_data['address_street']
+				# address_city = user_profile_form.cleaned_data['address_city']
+				# address_province = user_profile_form.cleaned_data['address_province']
+				# address_country = user_profile_form.cleaned_data['address_country']
+				# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
-				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
-					address_city=address_city, address_province=address_province, address_country=address_country,
-					address_postal_code=address_postal_code, medical_history=medical_history, phone_number=phone_number,
+				new_user_profile = UserProfile(user=new_user, address_street="Memory Lane", address_unit='123',
+					address_city="Vancouver", address_province="BC", address_country="Canada",
+					address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
 					title=title,
 				)
 				new_user_profile.save()
@@ -52,12 +52,12 @@ def CreateNewUserView(request):
 				# 		'form':form,
 				# 	})
 
-			username = user_form.cleaned_data['username']
-			password = user_form.cleaned_data['password1']
-			user = authenticate(username=username, password=password)
-			login(request, user)
+				username = user_form.cleaned_data['username']
+				password = user_form.cleaned_data['password1']
+				user = authenticate(username=username, password=password)
+				login(request, user)
 
-			return HttpResponseRedirect('/dashboard/')
+				return HttpResponseRedirect('/dashboard/')
 
 
 

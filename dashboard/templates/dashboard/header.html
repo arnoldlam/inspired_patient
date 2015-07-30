@@ -17,7 +17,7 @@
 </table>
 <a href="{% url 'dashboard:profile' %}">
 <img src=
-	"{% if user.user_profile.profile_picture.url %}
+	"{% if user.user_profile.profile_picture %}
 	{{ user.user_profile.profile_picture.url }}
 	{% else %}
 	{% static "img/default_profile_picture.png" %}

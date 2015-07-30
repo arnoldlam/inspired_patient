@@ -36,11 +36,11 @@ def CreateNewUserView(request):
 				address_street = user_profile_form.cleaned_data['address_street']
 				address_city = user_profile_form.cleaned_data['address_city']
 				address_province = user_profile_form.cleaned_data['address_province']
-				address_country = user_profile_form.cleaned_data['address_country']
+				# address_country = user_profile_form.cleaned_data['address_country']
 				address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
 				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
-					address_city=address_city, address_province=address_province, address_country=address_country,
+					address_city=address_city, address_province=address_province, address_country="Canada",
 					address_postal_code=address_postal_code, medical_history=medical_history, phone_number=phone_number,
 					title=title,
 				)

@@ -51,6 +51,13 @@ def CreateNewUserView(request):
 					return render(request, 'dashboard/create_professional.html', {
 						'form':form,
 					})
+				if user_profile_form.cleaned_data['is_professional'] == False:
+					username = user_form.cleaned_data['username']
+					password = user_form.cleaned_data['password1']
+					user = authenticate(username=username, password=password)
+					login(request, user)
+
+					return HttpResponseRedirect('/dashboard/')
 	else:
 		# Allow user to select a role
 		user_form = UserCreationForm(prefix='user_form')
@@ -59,13 +66,6 @@ def CreateNewUserView(request):
 			'user_form':user_form,
 			'user_profile_form':user_profile_form,
 		})
-
-	username = user_form.cleaned_data['username']
-	password = user_form.cleaned_data['password1']
-	user = authenticate(username=username, password=password)
-	login(request, user)
-
-	return HttpResponseRedirect('/dashboard/')
 
 # View for main dashboard
 @login_required

@@ -61,7 +61,7 @@ def CreateNewUserView(request):
 				first_name = user_profile_form.cleaned_data['first_name']
 				last_name = user_profile_form.cleaned_data['last_name']
 
-				# # Address Information
+				# Address Information
 				address_unit = user_profile_form.cleaned_data['address_unit']
 				address_street = user_profile_form.cleaned_data['address_street']
 				# address_city = user_profile_form.cleaned_data['address_city']
@@ -124,7 +124,6 @@ def Profile(request):
 		})
 
 # View for profile edit 
-# Handles post request as well
 @login_required
 def EditProfile(request):
 	if request.method == 'POST':
@@ -318,6 +317,7 @@ def AddNoteView(request):
 			request.user.authored_notes.add(new_note)
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
+		# Pass notebook_id to POST handling
 		if 'notebook_id' in request.GET:
 			notebook_id = request.GET['notebook_id']
 		else:
@@ -590,6 +590,7 @@ def AddNoteReplyView(request, note_id):
 			title = form.cleaned_data['title']
 			content = form.cleaned_data['content']
 
+			# Set and save the reply
 			new_reply = NoteReply(note=note, title=title, content=content, author=user)
 			new_reply.save()
 
@@ -624,6 +625,7 @@ def NotificationsView(request):
 		'read_notifications':read_notifications
 	})
 
+# Triggered by "Mark as Read" link on notification
 @login_required
 def MarkNotificationAsRead(request):
 	notification = get_object_or_404(Notification, pk=request.GET['notification_id'])

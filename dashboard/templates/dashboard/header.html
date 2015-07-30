@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +15,14 @@
 	<tr><td><a href="{% url 'dashboard:notifications' %}">Notifications</a></td></tr>
 	<tr><td style="text-align:right"><a href="{% url 'django.contrib.auth.views.logout' %}?next=/accounts/login">Logout</a></td></tr>
 </table>
-<a href="{% url 'dashboard:profile' %}"><img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture" style="height:65px;width:65px;"/></a>
+<a href="{% url 'dashboard:profile' %}">
+<img src=
+	"{% if user.user_profile.profile_picture.url %}
+	{{ user.user_profile.profile_picture.url }}
+	{% else %}
+	{% static "img/default_profile_picture.png" %}
+	{% endif %}" 
+alt="Profile Picture" style="height:65px;width:65px;"/></a>
 </div>
 
 <h2>Inspired Health</h2>

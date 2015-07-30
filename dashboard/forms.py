@@ -96,7 +96,11 @@ class UserProfileCreationForm(forms.Form):
 		('mrs', 'Mrs.'),
 		('dr', 'Dr.'),
 	)
-
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
 	# profile_picture = forms.ImageField()
 	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
 	phone_number = forms.CharField(label="Phone Number", initial="123-123-1234")
@@ -105,11 +109,11 @@ class UserProfileCreationForm(forms.Form):
 
 	address_unit = forms.CharField(label='Unit', max_length=10, initial="123")
 	address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
-	address_city = forms.CharField(label='City', max_length=30, initial="Vancouver")
+	# address_city = forms.CharField(label='City', max_length=30, initial="Vancouver")
 	# address_province = forms.CharField(label='Province', max_length=30, initial="BC")
-	# address_country = forms.CharField(label='Country', max_length=50, initial="Canada")
+	# address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
 	# address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
-	is_professional = forms.BooleanField(label="Are you a professional?")
+	# is_professional = forms.BooleanField(label="Are you a professional?")
 
 class CreateProfessionalProfileForm(forms.Form):
 	qualification = forms.CharField(label='Qualification', max_length=100)

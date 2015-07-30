@@ -45,7 +45,9 @@ def CreateNewUserView(request):
 			# )
 			# new_user_profile.save()
 
-			user = authenticate(username=new_user.username, password=new_user.password)
+			username = user_form.cleaned_data['username']
+			password = user_form.cleaned_data['password1']
+			user = authenticate(username=username, password=password)
 			login(request, user)
 
 			return render(request, 'dashboard/index.html', {

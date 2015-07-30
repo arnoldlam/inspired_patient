@@ -42,7 +42,7 @@ def CreateNewUserView(request):
 				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
 					address_city="Vancouver", address_province="BC", address_country="Canada",
 					address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
-					title=title, profile_picture=profile_picture,
+					title=title,
 				)
 				new_user_profile.save()
 

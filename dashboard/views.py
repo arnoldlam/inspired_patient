@@ -22,7 +22,7 @@ def CreateNewUserView(request):
 	if request.method == 'POST':
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, prefix='user_profile_form')
-		if user_form.is_valid() and user_profile_form.is_valid():
+		if user_form.is_valid():
 			new_user = user_form.save()
 			
 			medical_history = user_profile_form.cleaned_data['medical_history']
@@ -51,7 +51,7 @@ def CreateNewUserView(request):
 				form = CreateProfessionalProfileForm()
 				return render(request, 'dashboard/create_user.html', {
 					'form':form,
-			})
+				})
 
 	else:
 		# Allow user to select a role

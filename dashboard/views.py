@@ -58,6 +58,8 @@ def CreateNewUserView(request):
 				phone_number = user_profile_form.cleaned_data['phone_number']
 				title = user_profile_form.cleaned_data['title']
 				# profile_picture = request.FILES['profile_picture']
+				first_name = user_profile_form.cleaned_data['first_name']
+				last_name = user_profile_form.cleaned_data['last_name']
 
 				# # Address Information
 				address_unit = user_profile_form.cleaned_data['address_unit']
@@ -79,6 +81,10 @@ def CreateNewUserView(request):
 				password = user_form.cleaned_data['password1']
 				user = authenticate(username=username, password=password)
 				login(request, user)
+
+				# Save first and last name into user before loading template
+				user.first_name = first_name
+				user.last_name = last_name
 
 				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:

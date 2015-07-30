@@ -1,6 +1,6 @@
 """
 Filename: views.py
-Created on: June 13th, 2015th
+Created on: June 13th, 2015
 Author: Arnold Lam
 Description: Provides the views for Inspired Health
 """
@@ -18,8 +18,10 @@ from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachm
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
+# Displays and handles forms for user creation
 def CreateNewUserView(request):
 	if request.method == 'POST':
+		# If POST request came from professional profile creation
 		if 'qualification' in request.POST:
 			form = CreateProfessionalProfileForm(request.POST)
 			if form.is_valid():
@@ -97,7 +99,7 @@ def CreateNewUserView(request):
 				# Return to dashboard if not professional
 				return HttpResponseRedirect('/dashboard/')
 	else:
-		# Allow user to select a role
+		# Send two forms to template: one for user and other for user_profile models
 		user_form = UserCreationForm(prefix='user_form')
 		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
 		return render(request, 'dashboard/create_user.html', {
@@ -233,6 +235,7 @@ def NotesSelectView(request):
 		'notebook_id':notebook_id,
 	})
 
+# To-Do: Clean entire view up
 # View for adding a general note
 @login_required
 def AddNoteView(request):
@@ -607,6 +610,8 @@ def AddNoteReplyView(request, note_id):
 @login_required
 def NotificationsView(request):
 	user = request.user
+
+	# Get 10 recent notifications
 	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 
 	# Get unread and read notifications

@@ -1,6 +1,6 @@
 """
 Filename: models.py
-Created on: June 13th, 2015th
+Created on: June 13th, 2015
 Author: Arnold Lam
 Description: Provides the models for Inspired Health
 """

@@ -32,14 +32,14 @@ def CreateNewUserView(request):
 				# profile_picture = request.FILES['profile_picture']
 
 				# # Address Information
-				# address_unit = user_profile_form.cleaned_data['address_unit']
-				# address_street = user_profile_form.cleaned_data['address_street']
+				address_unit = user_profile_form.cleaned_data['address_unit']
+				address_street = user_profile_form.cleaned_data['address_street']
 				# address_city = user_profile_form.cleaned_data['address_city']
 				# address_province = user_profile_form.cleaned_data['address_province']
 				# address_country = user_profile_form.cleaned_data['address_country']
 				# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
-				new_user_profile = UserProfile(user=new_user, address_street="Memory Lane", address_unit='123',
+				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
 					address_city="Vancouver", address_province="BC", address_country="Canada",
 					address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
 					title=title, profile_picture=profile_picture,
@@ -58,9 +58,6 @@ def CreateNewUserView(request):
 				login(request, user)
 
 				return HttpResponseRedirect('/dashboard/')
-
-
-
 	else:
 		# Allow user to select a role
 		user_form = UserCreationForm(prefix='user_form')

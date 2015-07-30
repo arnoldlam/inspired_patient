@@ -107,8 +107,8 @@ class UserProfileCreationForm(forms.Form):
 	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.Textarea,
 	 initial="None")
 
-	# address_unit = forms.CharField(label='Unit', max_length=10, initial="123")
-	# address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
+	address_unit = forms.CharField(label='Unit', max_length=10, initial="123")
+	address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
 	# address_city = forms.CharField(label='City', max_length=30, initial="Vancouver")
 	# address_province = forms.CharField(label='Province', max_length=30, initial="BC")
 	# address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)

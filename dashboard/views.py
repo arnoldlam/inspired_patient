@@ -47,9 +47,12 @@ def CreateNewUserView(request):
 
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
+
+		# Save new user if user_form is valid
 		if user_form.is_valid():
 			new_user = user_form.save()
 
+			# Check if user_profile_form is valid and save variables to user profile
 			if user_profile_form.is_valid():			
 				medical_history = user_profile_form.cleaned_data['medical_history']
 				phone_number = user_profile_form.cleaned_data['phone_number']
@@ -71,17 +74,20 @@ def CreateNewUserView(request):
 				)
 				new_user_profile.save()
 
+				# Login as new user
 				username = user_form.cleaned_data['username']
 				password = user_form.cleaned_data['password1']
 				user = authenticate(username=username, password=password)
 				login(request, user)
 
+				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:
 					form = CreateProfessionalProfileForm()
 					return render(request, 'dashboard/create_professional.html', {
 						'form':form,
 					})
 
+				# Return to dashboard if not professional
 				return HttpResponseRedirect('/dashboard/')
 	else:
 		# Allow user to select a role

@@ -39,6 +39,13 @@ class UserProfile(models.Model):
 	title = models.CharField(max_length=15)
 	profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
 
+	# Optional fields for professionals
+	qualification = models.CharField(max_length=250, blank=True)
+	job_title = models.CharField('Job Title', max_length=100, blank=True)
+	office_tel = models.CharField('Office Telephone', max_length=50, blank=True)
+	office_email = models.EmailField('Office Email', blank=True)
+	office_address = models.CharField('Office Address', max_length=250, blank=True)
+
 	def __unicode__(self):
 		return self.user.username
 

@@ -45,13 +45,14 @@ def CreateNewUserView(request):
 			# )
 			# new_user_profile.save()
 
-			return HttpResponseRedirect('/accounts/login')
+			user = authenticate(username=new_user.username, password=new_user.password)
+			login(request, user)
 
-			if user_profile_form.cleaned_data['is_professional'] == True:
-				form = CreateProfessionalProfileForm()
-				return render(request, 'dashboard/create_user.html', {
-					'form':form,
-				})
+			# if user_profile_form.cleaned_data['is_professional'] == True:
+			# 	form = CreateProfessionalProfileForm()
+			# 	return render(request, 'dashboard/create_user.html', {
+			# 		'form':form,
+			# 	})
 
 	else:
 		# Allow user to select a role

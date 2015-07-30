@@ -51,7 +51,7 @@ def CreateNewUserView(request):
 			user = authenticate(username=username, password=password)
 			login(request, user)
 
-			return HttpResponseRedirect('dashboard:main')
+			return redirect('/dashboard/')
 
 			# if user_profile_form.cleaned_data['is_professional'] == True:
 			# 	form = CreateProfessionalProfileForm()

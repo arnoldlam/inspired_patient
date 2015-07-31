@@ -12,10 +12,10 @@
 {% endif %}
 
 <h3>Notebooks</h3>
-{% if notes %}
-	{% for note in notes %}
-		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+{% if notebooks %}
+	{% for notebook in notebook %}
+		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
 	{% endfor %}
 {% else %}
-	<p>No notes</p>
+	<p>No notebooks shared with you</p>
 {% endif %}

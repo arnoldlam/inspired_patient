@@ -458,7 +458,7 @@ def HealthToolsSearchResultsView(request):
 	query = request.GET['q']
 
 	notebooks = Notebook.objects.filter(name__icontains=query)[:5]
-	notes = Note.objects.filter(name__icontains=query)[:5]
+	notes = Note.objects.filter(subject__icontains=query)[:5]
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,

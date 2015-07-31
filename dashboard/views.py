@@ -454,7 +454,7 @@ def NotebookDetail(request, notebook_id):
 
 @login_required
 def HealthToolsSearchResultsView(request):
-	return render(request, 'dashboard:health_tools_search_results.html' {
+	return render(request, 'dashboard:health_tools_search_results.html', {
 		'user':user,
 	})
 

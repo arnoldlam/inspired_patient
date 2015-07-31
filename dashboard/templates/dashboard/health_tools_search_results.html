@@ -1,1 +1,21 @@
 {% include "dashboard/header.html" %}
+
+<h2>Search Results</h2>
+
+<h3>Notes</h3>
+{% if notes %}
+	{% for note in notes %}
+		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+	{% endfor %}
+{% else %}
+	<p>No notes</p>
+{% endif %}
+
+<h3>Notebooks</h3>
+{% if notes %}
+	{% for note in notes %}
+		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+	{% endfor %}
+{% else %}
+	<p>No notes</p>
+{% endif %}

@@ -455,8 +455,15 @@ def NotebookDetail(request, notebook_id):
 @login_required
 def HealthToolsSearchResultsView(request):
 	user = request.user
+	query = request.GET['q']
+
+	notebooks = Notebook.objects.filter(name__icontains=query)[:5]
+	notes = Note.objects.filter(name__icontains=query)[:5]
+
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,
+		'notebooks':notebooks,
+		'notes':notes,
 	})
 
 @login_required

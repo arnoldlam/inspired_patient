@@ -1,14 +1,14 @@
 {% include "dashboard/header.html" %}
 
-<br>
+<br><br>
 <form action="{% url 'dashboard:health_tools_search_results' %}" method="GET">
-Search notes and notebooks: <input type="text" name="u">
+Search notes and notebooks: <input type="text" name="q">
 <input type="submit" value="Search" />
 </form>
 
 <h3>Notebooks</h3>	
 
-	<ul>
+<ul>
 {% if notebooks_read_write %}
 	{% for notebook in notebooks_read_write %}
 		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
@@ -16,7 +16,7 @@ Search notes and notebooks: <input type="text" name="u">
 {% else %}
 	<p>No notebooks shared with you</p>
 {% endif %}
-	</ul>
+</ul>
 
 
 

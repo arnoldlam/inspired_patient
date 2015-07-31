@@ -13,9 +13,9 @@
 
 <h3>Notebooks</h3>
 {% if notebooks %}
-	{% for notebook in notebook %}
+	{% for notebook in notebooks %}
 		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
 	{% endfor %}
 {% else %}
-	<p>No notebooks shared with you</p>
+	<p>No notebooks</p>
 {% endif %}

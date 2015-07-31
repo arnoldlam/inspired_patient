@@ -1,21 +1,9 @@
 {% include "dashboard/header.html" %}
 
-<!-- <span>
-<h3>Notebooks you can read</h3>	
-
-	<ul>
-{% if notebooks_read_only %}
-	{% for notebook in notebooks_read_only %}
-		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
-	{% endfor %}
-{% else %}
-	<p>No notebooks you own</p>
-{% endif %}
-	</ul>
-</span>
--->
-
-<span>
+<form action="{% url 'dashboard:health_tools_search_results' %}" method="GET">
+Search notes and notebooks: <input type="text" name="u">
+<input type="submit" value="Search" />
+</form>
 
 <h3>Notebooks</h3>	
 
@@ -28,9 +16,9 @@
 	<p>No notebooks shared with you</p>
 {% endif %}
 	</ul>
-</span>
 
-<span>
+
+
 <h3>Notes you can reply</h3>	
 
 <ul>
@@ -56,7 +44,7 @@
 </ul>
 
 
-<span>
+
 <h3>Notes you created</h3>	
 
 <ul>
@@ -68,7 +56,7 @@
 	<p>No notes authored</p>
 {% endif %}
 </ul>
-</span>
+
 
 <a href="{% url 'dashboard:notes_select' %}">New note</a><br>
 <a href="{% url 'dashboard:add_notebook' %}">New notebook</a>

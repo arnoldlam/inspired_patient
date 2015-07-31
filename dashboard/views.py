@@ -453,6 +453,12 @@ def NotebookDetail(request, notebook_id):
 	})
 
 @login_required
+def HealthToolsSearchResultsView(request):
+	return render('dashboard:health_tools_search_results.html' {
+		'user':user,
+	})
+
+@login_required
 def AddNotesToNotebookView(request, notebook_id):
 	if request.method == 'POST':
 		notebook = get_object_or_404(Notebook, pk=notebook_id)

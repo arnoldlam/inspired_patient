@@ -16,6 +16,7 @@ urlpatterns = [
 	url(r'^clinics/$', views.ClinicView, name='clinics'),
 	url(r'^clinics/(?P<clinic_id>[0-9]+)$', views.ClinicDetailView, name='clinic_detail'),
 	url(r'^notes/$', views.NotesView, name='notes'),
+	url(r'^notes/search$', views.HealthToolsSearchResultsView, name='health_tools_search_results'),
 	url(r'^notes/(?P<note_id>[0-9]+)/$', views.NoteDetail, name='note_detail'),
 	url(r'^notes/(?P<note_id>[0-9]+)/add_reply$', views.AddNoteReplyView, name='add_note_reply'),
 	url(r'^notes/add/$', views.NotesSelectView, name='notes_select'),

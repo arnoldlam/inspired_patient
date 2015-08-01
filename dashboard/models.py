@@ -76,6 +76,7 @@ class Note(models.Model):
 		('instruction_note', 'Instruction note'),
 		('communication_note', 'Communication note'),
 		('procedure_note', 'Procedure note'),
+		('self_care_note', 'Self care note'),
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')

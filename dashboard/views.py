@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddProcedureNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
@@ -286,7 +286,20 @@ def AddNoteView(request):
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user,procedure=procedure,
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight,
-						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)		
+						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)
+
+			if request.POST['note_type'] == 'self_care_note':
+				form = AddProcedureNoteForm(request.POST)
+				if form.is_valid():
+
+					medication_name = form.cleaned_data['medication_name']
+					medication_dose = form.cleaned_data['medication_dose']
+					medication_duration = form.cleaned_data['medication_duration']
+
+					new_note = SelfCareNote(subject=subject, note_type='self_care_note', note_content=note, 
+						author=user, medication_name=medication_name, medication_dose=medication_dose, 
+						medication_duration=medication_duration, 
+					)			
 			
 			# Optional parameters to be added to new_note object
 			if 'url' in form.cleaned_data:

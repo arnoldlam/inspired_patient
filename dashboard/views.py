@@ -426,9 +426,9 @@ def AddNotebookView(request):
 			return HttpResponseRedirect(redirect_url)
 	else:
 		form = AddNotebookForm()
-		return render(request, 'dashboard/add_notebook.html', {
-			'form':form
-		})
+	return render(request, 'dashboard/add_notebook.html', {
+		'form':form
+	})
 
 @login_required
 def NotebookDetail(request, notebook_id):

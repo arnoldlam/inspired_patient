@@ -461,7 +461,7 @@ def HealthToolsSearchResultsView(request):
 	notes_can_reply = user.notes_read_write.filter(subject__icontains=query)[:5]
 	notes_can_view = user.notes_read_only.filter(subject__icontains=query)[:5]
 
-	notes = notes + notes_can_view + notes_can_reply
+	notes = notes | notes_can_view | notes_can_reply
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,

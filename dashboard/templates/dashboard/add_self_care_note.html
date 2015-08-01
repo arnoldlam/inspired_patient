@@ -1,0 +1,13 @@
+<h2>Add a new self care note</h2>
+
+<form action="{% url 'dashboard:add_note' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }} <br>
+{% if notebook_id %}
+<input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+{% endif %}
+<input type="hidden" name="note_type" value="self_care_note" />
+<input type="submit" value="Add note" />
+</form>
+
+<a href="{% url 'dashboard:notes' %}">Back to notes</a>

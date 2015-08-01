@@ -289,7 +289,7 @@ def AddNoteView(request):
 						selfcare_instructions=selfcare_instructions, emergency_instructions=emergency_instructions)
 
 			if request.POST['note_type'] == 'self_care_note':
-				form = AddProcedureNoteForm(request.POST)
+				form = AddSelfCareNoteForm(request.POST)
 				if form.is_valid():
 
 					medication_name = form.cleaned_data['medication_name']

@@ -459,13 +459,13 @@ def HealthToolsSearchResultsView(request):
 	notebooks = user.notebooks_read_write.filter(name__icontains=query)[:5]
 	notes = user.authored_notes.filter(subject__icontains=query)[:5]
 	notes_read_write = user.notes_read_write.filter(subject__icontains=query)[:5]
-	notes_can_view = user.notes_read_only.filter(subject__icontains=query)[:5]
+	notes_read_only = user.notes_read_only.filter(subject__icontains=query)[:5]
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,
 		'notebooks':notebooks,
 		'notes':notes,
-		'notes_can_reply':notes_can_reply,
+		'notes_read_only':notes_read_only,
 		'notes_read_write':notes_read_write
 	})
 

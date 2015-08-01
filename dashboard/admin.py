@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 
 # Register your models here.
 
-from .models import UserProfile, Clinic, Note, CommunicationNote, DischargeNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
+from .models import UserProfile, Clinic, Note, CommunicationNote, ProcedureNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile
@@ -63,7 +63,7 @@ admin.site.unregister(User)
 admin.site.unregister(Group)
 admin.site.register(User, UserAdmin)
 # admin.site.register(CommunicationNote)
-# admin.site.register(DischargeNote)
+# admin.site.register(ProcedureNote)
 admin.site.register(InstructionNote)
 # admin.site.register(MedicalInformationNote)
 # admin.site.register(SelfCareNote)

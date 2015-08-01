@@ -15,8 +15,8 @@ from django.utils import timezone
 from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddDischargeNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddProcedureNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
 # Displays and handles forms for user creation
@@ -271,7 +271,7 @@ def AddNoteView(request):
 						importance=importance)		
 
 			if request.POST['note_type'] == 'discharge_note':
-				form = AddDischargeNoteForm(request.POST)
+				form = AddProcedureNoteForm(request.POST)
 				if form.is_valid():
 
 					procedure = form.cleaned_data['procedure']
@@ -282,7 +282,7 @@ def AddNoteView(request):
 					selfcare_instructions = form.cleaned_data['selfcare_instructions']
 					emergency_instructions = form.cleaned_data['emergency_instructions']
 
-					new_note = DischargeNote(subject=subject, note_type='discharge_note', 
+					new_note = ProcedureNote(subject=subject, note_type='discharge_note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user,procedure=procedure,
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight,
@@ -345,7 +345,7 @@ def AddNoteView(request):
 				'notebook_id':notebook_id,
 			})
 		if request.GET['note_type'] == 'discharge_note':
-			form = AddDischargeNoteForm()
+			form = AddProcedureNoteForm()
 			return render(request, 'dashboard/add_discharge_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,
@@ -362,7 +362,7 @@ def NoteDetail(request, note_id):
 				'general_note': Note,
 				'instruction_note': InstructionNote,
 				'communication_note': CommunicationNote,
-				'discharge_note': DischargeNote,
+				'discharge_note': ProcedureNote,
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
@@ -631,15 +631,6 @@ def NotificationsView(request):
 	# Get 10 recent notifications
 	read_notifications = user.notifications_received.filter(view_status__exact="read").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
 	unread_notifications = user.notifications_received.filter(view_status__exact="unread").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
-
-	# Get unread and read notifications
-	# unread_notifications = []
-	# read_notifications = []
-	# for notification in notifications:
-	# 	if notification.view_status == 'unread':
-	# 		unread_notifications.append(notification)
-	# 	if notification.view_status == 'read':
-	# 		read_notifications.append(notification)
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,

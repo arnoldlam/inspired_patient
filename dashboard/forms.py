@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm, MultipleChoiceField, ValidationError
 from django.forms.widgets import CheckboxSelectMultiple, Select
-from dashboard.models import UserProfile, DischargeNote, Notebook, NoteReply
+from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 
@@ -40,9 +40,9 @@ class AddCommunicationNoteForm(AddNoteForm):
 	attention = forms.CharField(max_length=250)
 	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
 
-class AddDischargeNoteForm(ModelForm):
+class AddProcedureNoteForm(ModelForm):
 	class Meta:
-		model = DischargeNote
+		model = ProcedureNote
 		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
 		

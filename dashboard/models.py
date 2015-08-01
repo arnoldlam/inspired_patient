@@ -135,7 +135,7 @@ class CommunicationNote(Note):
 	attention = models.CharField(max_length=250)
 	importance = models.CharField(max_length=20, choices=IMPORTANCE_CHOICES, default='read')
 
-class DischargeNote(Note):	
+class ProcedureNote(Note):	
 	procedure = models.CharField(max_length=250)
 	doctor = models.CharField(max_length=250)
 	weight = models.IntegerField()

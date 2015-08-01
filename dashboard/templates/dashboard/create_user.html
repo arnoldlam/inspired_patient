@@ -4,8 +4,8 @@
 
 <form action="{% url 'create_user' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	{{ user_form.as_ul }}
-	{{ user_profile_form.as_ul }}
+	{{ user_form }}
+	{{ user_profile_form }}
 	<br>
 	<input type="submit" value="Create user"/>
 </form>

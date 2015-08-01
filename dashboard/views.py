@@ -459,6 +459,8 @@ def HealthToolsSearchResultsView(request):
 
 	notebooks = user.notebooks_read_write.filter(Q(name__icontains=query) | Q(description__icontains=query))[:5]
 	user_id = user.id
+
+	# Query to get all notes that belong to user and contains search query in subject or contents
 	notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:10]
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
@@ -627,16 +629,17 @@ def NotificationsView(request):
 	user = request.user
 
 	# Get 10 recent notifications
-	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
+	read_notifications = user.notifications_received.filter(view_status__exact="read").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
+	unread_notifications = user.notifications_received.filter(view_status__exact="unread").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
 
 	# Get unread and read notifications
-	unread_notifications = []
-	read_notifications = []
-	for notification in notifications:
-		if notification.view_status == 'unread':
-			unread_notifications.append(notification)
-		if notification.view_status == 'read':
-			read_notifications.append(notification)
+	# unread_notifications = []
+	# read_notifications = []
+	# for notification in notifications:
+	# 	if notification.view_status == 'unread':
+	# 		unread_notifications.append(notification)
+	# 	if notification.view_status == 'read':
+	# 		read_notifications.append(notification)
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,

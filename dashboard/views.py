@@ -98,19 +98,18 @@ def CreateNewUserView(request):
 
 				# Return to dashboard if not professional
 				return HttpResponseRedirect('/dashboard/')
-		else:
-			return render(request, 'dashboard/create_user.html', {
-				'user_form':user_form,
-				'user_profile_form':user_profile_form,	
-			})
-	else:
+		# else:
+		# 	return render(request, 'dashboard/create_user.html', {
+		# 		'user_form':user_form,
+		# 		'user_profile_form':user_profile_form,	
+		# 	})
 		# Send two forms to template: one for user and other for user_profile models
-		user_form = UserCreationForm(prefix='user_form')
-		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
-		return render(request, 'dashboard/create_user.html', {
-			'user_form':user_form,
-			'user_profile_form':user_profile_form,
-		})
+	user_form = UserCreationForm(prefix='user_form')
+	user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
+	return render(request, 'dashboard/create_user.html', {
+		'user_form':user_form,
+		'user_profile_form':user_profile_form,
+	})
 
 # View for main dashboard
 @login_required

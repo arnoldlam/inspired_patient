@@ -12,7 +12,7 @@
 {% endif %}
 
 <h3>Editable notes</h3>
-{% if notes %}
+{% if notes_read_write %}
 	{% for note in notes_read_write %}
 		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
 	{% endfor %}
@@ -21,7 +21,7 @@
 {% endif %}
 
 <h3>View-Only notes</h3>
-{% if notes %}
+{% if notes_read_only %}
 	{% for note in notes_read_only %}
 		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
 	{% endfor %}

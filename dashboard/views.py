@@ -461,7 +461,7 @@ def HealthToolsSearchResultsView(request):
 	user_id = user.id
 	notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:10]
 
-	notes = user.authored_notes.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
+	# notes = user.authored_notes.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
 	notes_read_write = user.notes_read_write.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
 	notes_read_only = user.notes_read_only.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
 

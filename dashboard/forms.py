@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, MultipleChoiceField, ValidationError
-from django.forms.widgets import CheckboxSelectMultiple, Select
+from django.forms.widgets import CheckboxSelectMultiple, Select, DateTimeInput
 from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
@@ -51,7 +51,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	frequency = forms.CharField(label='Frequency', max_length=100)
 	adverse_event_procedure = forms.CharField(label='Adverse Event Procedure', max_length=500, widget=forms.Textarea)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
-	time = forms.DateTimeField(widget=forms.DateTimeInput())
+	time = forms.DateTimeField(widget=DateTimeInput())
 	outcome = forms.CharField(label='Outcome', max_length=250)
 
 class AddResourceNoteForm(AddNoteForm):

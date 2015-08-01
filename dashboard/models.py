@@ -75,7 +75,7 @@ class Note(models.Model):
 		('general_note', 'General note'),
 		('instruction_note', 'Instruction note'),
 		('communication_note', 'Communication note'),
-		('discharge_note', 'Discharge note'),
+		('procedure_note', 'Procedure note'),
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
@@ -155,7 +155,7 @@ class SelfCareNote(Note):
 	outcome = models.CharField(max_length=250)	
 	
 
-class MedicalInformationNote(Note):
+class ResourceNote(Note):
 	medication_name = models.CharField(max_length=100)
 	medication_dose = models.CharField(max_length=100)
 	medication_duration = models.IntegerField()	

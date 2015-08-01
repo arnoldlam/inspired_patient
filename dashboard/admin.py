@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 
 # Register your models here.
 
-from .models import UserProfile, Clinic, Note, CommunicationNote, ProcedureNote, InstructionNote, MedicalInformationNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
+from .models import UserProfile, Clinic, Note, CommunicationNote, ProcedureNote, InstructionNote, ResourceNote, SelfCareNote, Notebook, Attachment, NoteReply, Notification
 
 class UserProfileInline(admin.StackedInline):
 	model = UserProfile

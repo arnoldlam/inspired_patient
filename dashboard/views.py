@@ -270,7 +270,7 @@ def AddNoteView(request):
 						date_accessed=timezone.now(), author=user, attention=attention,
 						importance=importance)		
 
-			if request.POST['note_type'] == 'discharge_note':
+			if request.POST['note_type'] == 'procedure_note':
 				form = AddProcedureNoteForm(request.POST)
 				if form.is_valid():
 
@@ -282,7 +282,7 @@ def AddNoteView(request):
 					selfcare_instructions = form.cleaned_data['selfcare_instructions']
 					emergency_instructions = form.cleaned_data['emergency_instructions']
 
-					new_note = ProcedureNote(subject=subject, note_type='discharge_note', 
+					new_note = ProcedureNote(subject=subject, note_type='procedure_note', 
 						note_content=note, date_created=timezone.now(), 
 						date_accessed=timezone.now(), author=user,procedure=procedure,
 						doctor=doctor, medication_dose=medication_dose, next_dose=next_dose, weight=weight,
@@ -344,9 +344,9 @@ def AddNoteView(request):
 				'form': form, 
 				'notebook_id':notebook_id,
 			})
-		if request.GET['note_type'] == 'discharge_note':
+		if request.GET['note_type'] == 'procedure_note':
 			form = AddProcedureNoteForm()
-			return render(request, 'dashboard/add_discharge_note.html', {
+			return render(request, 'dashboard/add_procedure_note.html', {
 				'form': form, 
 				'notebook_id':notebook_id,
 			})
@@ -362,7 +362,7 @@ def NoteDetail(request, note_id):
 				'general_note': Note,
 				'instruction_note': InstructionNote,
 				'communication_note': CommunicationNote,
-				'discharge_note': ProcedureNote,
+				'procedure_note': ProcedureNote,
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)

@@ -4,7 +4,7 @@
 
 <form action="{% url 'dashboard:edit_profile' %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	{{ form.as_ul }}
+	{{ form.as_p }}
 	<br>
 	<input type="submit" value="Save"/>
 </form>

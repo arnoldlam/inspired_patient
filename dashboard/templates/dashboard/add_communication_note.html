@@ -2,7 +2,7 @@
 
 <form action="{% url 'dashboard:add_note' %}" method="post" enctype="multipart/form-data">
 {% csrf_token %}
-{{ form.as_ul }} <br>
+{{ form.as_p }} <br>
 {% if notebook_id %}
 <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
 {% endif %}

@@ -11,7 +11,7 @@
 
 	<form action="{% url 'dashboard:add_note_reply' note_id %}" method="post" enctype="multipart/form-data">
 	{% csrf_token %}
-	{{ form.as_ul }} <br>
+	{{ form.as_p }} <br>
 	<input type="submit" value="Add reply" />
 	</form>
 </body>

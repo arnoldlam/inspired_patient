@@ -4,6 +4,6 @@
 
 <form action="{% url 'dashboard:add_notebook' %}" method="post" enctype="multipart/form-data">
 {% csrf_token %}
-{{ form.as_ul }} <br>
+{{ form.as_p }} <br>
 <input type="submit" value="Create notebook" />
 </form>

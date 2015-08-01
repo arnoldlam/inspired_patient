@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.utils import timezone
+from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, DischargeNote, NoteReply, Notification
@@ -456,10 +457,10 @@ def HealthToolsSearchResultsView(request):
 	user = request.user
 	query = request.GET['q']
 
-	notebooks = user.notebooks_read_write.filter(name__icontains=query)[:5]
-	notes = user.authored_notes.filter(subject__icontains=query)[:5]
-	notes_read_write = user.notes_read_write.filter(subject__icontains=query)[:5]
-	notes_read_only = user.notes_read_only.filter(subject__icontains=query)[:5]
+	notebooks = user.notebooks_read_write.filter(Q(name__icontains=query) | Q(description__icontains=query))[:5]
+	notes = user.authored_notes.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
+	notes_read_write = user.notes_read_write.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
+	notes_read_only = user.notes_read_only.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:5]
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,

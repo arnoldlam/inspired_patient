@@ -643,7 +643,6 @@ def NotificationsView(request):
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,
-		'notifications':notifications,
 		'unread_notifications':unread_notifications,
 		'read_notifications':read_notifications
 	})

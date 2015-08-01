@@ -351,7 +351,7 @@ def AddNoteView(request):
 				'notebook_id':notebook_id,
 			})
 		if request.GET['note_type'] == 'self_care_note':
-			form = AddSelfCareNoteForm()
+			form = AddSelfCareNoteForm(request.user.id)
 			return render(request, 'dashboard/add_self_care_note.html', {
 				'form':form,
 				'notebook_id':notebook_id,

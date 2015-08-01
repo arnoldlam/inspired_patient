@@ -45,6 +45,11 @@ class AddProcedureNoteForm(ModelForm):
 		model = ProcedureNote
 		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
+
+class AddSelfCareNoteForm(AddNoteForm):
+	medication_name = forms.CharField(label='Medication Name', max_length=100)
+	medication_dose = forms.CharField(label='Medication Dose', max_length=100)
+	medication_duration = forms.IntegerField(label='Medication Duration', min_value=0)
 		
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)

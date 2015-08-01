@@ -16,7 +16,7 @@ from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddProcedureNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddProcedureNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
 # Displays and handles forms for user creation
@@ -348,6 +348,12 @@ def AddNoteView(request):
 			form = AddProcedureNoteForm()
 			return render(request, 'dashboard/add_procedure_note.html', {
 				'form': form, 
+				'notebook_id':notebook_id,
+			})
+		if request.GET['note_type'] == 'self_care_note':
+			form = AddSelfCareNoteForm()
+			return render(request, 'dashboard/add_self_care_note.html', {
+				'form':form,
 				'notebook_id':notebook_id,
 			})
 

@@ -318,9 +318,9 @@ def AddNoteView(request):
 			# 		)			
 			
 			# Optional parameters to be added to new_note object
-			if 'url' in form.cleaned_data:
+			if form.cleaned_data['url'] != '':
 				new_note.url = form.cleaned_data['url']
-			if 'follow_up' in form.cleaned_data:
+			if form.cleaned_data['follow_up'] != '':
 				new_note.follow_up = form.cleaned_data['follow_up']
 
 			new_note.save()

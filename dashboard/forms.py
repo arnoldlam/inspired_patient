@@ -104,7 +104,7 @@ class UserProfileCreationForm(forms.Form):
 
 	first_name = forms.CharField(label="First Name", max_length=100)
 	last_name = forms.CharField(label="Last Name", max_length=100)
-	# profile_picture = forms.ImageField()
+	profile_picture = forms.ImageField()
 	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
 	phone_number = forms.CharField(label="Phone Number", initial="123-123-1234")
 	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.Textarea,

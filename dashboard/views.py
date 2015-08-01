@@ -98,6 +98,11 @@ def CreateNewUserView(request):
 
 				# Return to dashboard if not professional
 				return HttpResponseRedirect('/dashboard/')
+		else:
+			return render(request, 'dashboard/create_user.html', {
+				'user_form':user_form,
+				'user_profile_form':user_profile_form,	
+			})
 	else:
 		# Send two forms to template: one for user and other for user_profile models
 		user_form = UserCreationForm(prefix='user_form')

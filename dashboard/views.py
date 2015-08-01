@@ -292,14 +292,30 @@ def AddNoteView(request):
 				form = AddSelfCareNoteForm(request.POST)
 				if form.is_valid():
 
-					medication_name = form.cleaned_data['medication_name']
-					medication_dose = form.cleaned_data['medication_dose']
-					medication_duration = form.cleaned_data['medication_duration']
+					self_care_description = form.cleaned_data['self_care_description']
+					frequency = form.cleaned_data['frequency']
+					adverse_event_procedure = form.cleaned_data['adverse_event_procedure']
+					procedure = form.cleaned_data['procedure']
+					time = form.cleaned_data['time']
+					outcome = form.cleaned_data['outcome']
 
 					new_note = SelfCareNote(subject=subject, note_type='self_care_note', note_content=note, 
-						author=user, medication_name=medication_name, medication_dose=medication_dose, 
-						medication_duration=medication_duration, 
+						author=user, self_care_description=self_care_description, frequency=frequency, 
+						adverse_event_procedure=adverse_event_procedure, procedure=procedure, time=time, outcome=outcome
 					)			
+
+			# if request.POST['note_type'] == 'resource_note':
+			# 	form = ResourceNote(request.POST)
+			# 	if form.is_valid():
+
+			# 		medication_name = form.cleaned_data['medication_name']
+			# 		medication_dose = form.cleaned_data['medication_dose']
+			# 		medication_duration = form.cleaned_data['medication_duration']
+
+			# 		new_note = ResourceNote(subject=subject, note_type='self_care_note', note_content=note, 
+			# 			author=user, medication_name=medication_name, medication_dose=medication_dose, 
+			# 			medication_duration=medication_duration, 
+			# 		)			
 			
 			# Optional parameters to be added to new_note object
 			if 'url' in form.cleaned_data:

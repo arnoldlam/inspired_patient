@@ -148,11 +148,11 @@ class ProcedureNote(Note):
 	
 
 class SelfCareNote(Note):	
-	selfcare_desc = models.CharField(max_length=1000)
+	self_care_description = models.TextField()
 	frequency = models.CharField(max_length=150)
-	adverse_event_procedure = models.CharField(max_length=250)
-	procedure = models.CharField(max_length=4000)
-	time = models.CharField(max_length=250)
+	adverse_event_procedure = models.TextField()
+	procedure = models.TextField()
+	time = models.DateTimeField('Time')
 	outcome = models.CharField(max_length=250)	
 	
 

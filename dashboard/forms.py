@@ -47,6 +47,14 @@ class AddProcedureNoteForm(ModelForm):
 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
 
 class AddSelfCareNoteForm(AddNoteForm):
+	self_care_description = forms.CharField(label='Self Care Description', max_length=4000, widget=forms.Textarea)
+	frequency = forms.CharField(label='Frequency', max_length=100)
+	adverse_event_procedure = forms.CharField(label='Adverse Event Procedure', max_length=500, widget=forms.Textarea)
+	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
+	time = forms.DateTimeField()
+	outcome = forms.CharField(label='Outcome', max_length=250)
+
+class AddResourceNoteForm(AddNoteForm):
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dose = forms.CharField(label='Medication Dose', max_length=100)
 	medication_duration = forms.IntegerField(label='Medication Duration', min_value=0)

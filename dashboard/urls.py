@@ -22,6 +22,7 @@ urlpatterns = [
 	url(r'^notes/add/$', views.NotesSelectView, name='notes_select'),
 	url(r'^notes/add/note/$', views.AddNoteView, name='add_note'),
 	url(r'^notes/add/general_note$', views.AddGeneralNoteView, name='add_general_note'),
+	url(r'^notes/add/instruction_note$', views.AddInstructionNoteView, name='add_instruction_note'),
 	url(r'^notes/(?P<note_id>[0-9]+)/share$', views.ShareNote, name='share_note'),
 	url(r'^notes/add_notebook/$', views.AddNotebookView, name='add_notebook'),
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/$', views.NotebookDetail, name='notebook_detail'),

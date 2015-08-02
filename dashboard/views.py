@@ -358,14 +358,15 @@ def AddCommunicationNoteView(request):
 			subject = form.cleaned_data['subject']
 			note = form.cleaned_data['note_content']
 
-			# Relate doctor and clinic to note here
-
 			attention = form.cleaned_data['attention']
 			importance = form.cleaned_data['importance']
+			doctor = forms.cleaned_data['choice_for_doctor']
+			clinic = forms.cleaned_data['choice_for_clinic']
+
 			new_note = CommunicationNote(subject=subject, note_type='communication_note', 
 				note_content=note, date_created=timezone.now(), 
 				date_accessed=timezone.now(), author=user, attention=attention,
-				importance=importance)
+				importance=importance, doctor=doctor, clinic=clinic)
 
 			# Optional parameters to be added to new_note object
 			if form.cleaned_data['url'] != '':
@@ -400,15 +401,15 @@ def AddCommunicationNoteView(request):
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
 		form = AddCommunicationNoteForm(request.user.id)
-		# Pass notebook_id to POST handling
-		if 'notebook_id' in request.GET:
-			notebook_id = request.GET['notebook_id']
-		else:
-			notebook_id = ''
-		return render(request, 'dashboard/add_communication_note.html', {
-			'form': form, 
-			'notebook_id':notebook_id,
-		})
+	# Pass notebook_id to POST handling
+	if 'notebook_id' in request.GET:
+		notebook_id = request.GET['notebook_id']
+	else:
+		notebook_id = ''
+	return render(request, 'dashboard/add_communication_note.html', {
+		'form': form, 
+		'notebook_id':notebook_id,
+	})
 
 # To-Do: Clean entire view up
 # View for adding a general note

@@ -32,11 +32,12 @@ class AddNoteForm(forms.Form):
 class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)
 
-class AddCommunicationNoteForm(AddNoteForm):
+class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
 		doctors = user.user_profile.associates.filter(role__exact="professional")
+		clinics = user.clinics
 
 		doctor_names = []
 		for doctor in doctors:
@@ -44,8 +45,16 @@ class AddCommunicationNoteForm(AddNoteForm):
 			doctor_names.append(name)
 		self.user_choices = zip(doctors, doctor_names)
 
-		self.fields['choices_for_doctors'] = forms.ChoiceField(label='Doctor', choices=self.user_choices)
+		clinic_names = []
+		for clinic in clinics:
+			name = clinic.name
+			clinic_names.append(name)
+		self.doctor_choices = zip(clinics, clinic_name)
 
+		self.fields['choices_for_doctor'] = forms.ChoiceField(label='Doctor', choices=self.doctor_choices)
+		self.fields['choices_for_clinic'] = forms.ChoiceField(label='Clinic', choices=self.clinic_choices)
+
+class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),
 		('respond', 'Respond'),

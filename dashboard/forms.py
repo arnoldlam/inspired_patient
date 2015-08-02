@@ -36,7 +36,7 @@ class AddCommunicationNoteForm(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
-		doctors = user.user_profile.associates.filter(role__exact="professional")
+		doctors = user.user_profile.associates.all()
 
 		doctor_names = []
 		for doctor in doctors:
@@ -44,7 +44,7 @@ class AddCommunicationNoteForm(AddNoteForm):
 			doctor_names.append(name)
 		self.user_choices = zip(doctors, doctor_names)
 
-		self.fields['choices_for_doctors'] = forms.ChoiceField(label='doctor', choices=self.user_choices)
+		self.fields['choices_for_doctors'] = forms.ChoiceField(label='Doctor', choices=self.user_choices)
 
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),

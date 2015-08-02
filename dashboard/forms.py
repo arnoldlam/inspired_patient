@@ -33,12 +33,12 @@ class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)
 
 class AddCommunicationNoteForm(AddNoteForm):
-	PRIORITY_CHOICES = (
+	IMPORTANCE_CHOICES = (
 		('read', 'Read'),
 		('respond', 'Respond'),
 		('urgent', 'Urgent'),
 	)	
-	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
+	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES)
 
 
 # class AddProcedureNoteForm(ModelForm):

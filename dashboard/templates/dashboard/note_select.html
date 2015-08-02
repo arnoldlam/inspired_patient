@@ -10,6 +10,7 @@
 <a href="{% url 'dashboard:add_self_care_note' %}?notebook_id={{notebook_id}}">Self Care Note</a><br>
 <a href="{% url 'dashboard:add_resource_note' %}?notebook_id={{notebook_id}}">Resource Note</a><br>
 <a href="{% url 'dashboard:add_appointment_note' %}?notebook_id={{notebook_id}}">Appointment Note</a><br>
+<a href="{% url 'dashboard:add_contact_note' %}?notebook_id={{notebook_id}}">Contact Note</a><br>
 {% else %}
 <a href="{% url 'dashboard:add_general_note' %}">General Note</a><br>
 <a href="{% url 'dashboard:add_instruction_note' %}">Instruction Note</a><br>
@@ -18,4 +19,5 @@
 <a href="{% url 'dashboard:add_self_care_note' %}">Self Care Note</a><br>
 <a href="{% url 'dashboard:add_resource_note' %}">Resource Note</a><br>
 <a href="{% url 'dashboard:add_appointment_note' %}">Appointment Note</a><br>
+<a href="{% url 'dashboard:add_contact_note' %}">Contact Note</a><br>
 {% endif %}

@@ -81,6 +81,28 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 	time = forms.TimeField(initial=datetime.datetime.now().time())
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
+class AddContactNoteForm(AddNoteForm):
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
+
+	title = forms.CharField(max_length=15)
+	first_name = forms.CharField(label='First name', max_length=100)
+	last_name = forms.CharField(label='Last name', max_length=100)
+	organization_name = forms.CharField(label='Organization name', max_length=100)
+	phone_number_work = forms.CharField(label='Phone Number (Work)', max_length=20)
+	phone_number_home = forms.CharField(label='Phone Number (Home)', max_length=20)
+	email = forms.EmailField()
+
+	unit = forms.CharField(label='Unit', max_length=10, initial="27")
+	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
+	city = forms.CharField(label='City', max_length=30, initial="Vancouver")
+	province = forms.CharField(label='Province', max_length=30, initial="BC")
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
+
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 

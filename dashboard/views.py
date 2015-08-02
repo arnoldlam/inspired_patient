@@ -15,8 +15,8 @@ from django.utils import timezone
 from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
 # Displays and handles forms for user creation
@@ -656,6 +656,83 @@ def AddAppointmentNoteView(request):
 	else:
 		notebook_id = ''
 	return render(request, 'dashboard/add_appointment_note.html', {
+		'form': form, 
+		'notebook_id':notebook_id,
+	})
+
+@login_required
+def AddContactNoteView(request):
+	if request.method == 'POST':
+		form = AddContactNoteForm(request.user.id, request.POST, request.FILES)
+		if form.is_valid():
+			user = request.user
+			subject = form.cleaned_data['subject']
+			note = form.cleaned_data['note_content']
+			note_type = 'contact_note'
+
+			unit = form.cleaned_data['unit']
+			street = form.cleaned_data['street']
+			city = form.cleaned_data['city']
+			province = form.cleaned_data['province']
+			country = form.cleaned_data['country']
+			postal_code = form.cleaned_data['postal_code']
+
+			address = Address(street=street, unit=unit, city=city, province=province, country=country,
+				postal_code=postal_code
+			)
+
+			title = form.cleaned_data['title']
+			first_name = form.cleaned_data['first_name']
+			last_name = form.cleaned_data['last_name']
+			organization_name = form.cleaned_data['organization_name']
+			phone_number_work = form.cleaned_data['phone_number_work']
+			phone_number_home = form.cleaned_data['phone_number_home']
+			email = form.cleaned_data['email']
+
+			new_note = ContactNote(address=address, subject=subject, note_type=note_type, note_content=note, author=user, 
+				title=title, first_name=first_name, last_name=last_name, organization_name=organization_name,
+				phone_number_work=phone_number_work, email=email
+			)
+
+			# Optional parameters to be added to new_note object
+			if form.cleaned_data['url'] != '':
+				new_note.url = form.cleaned_data['url']
+			if form.cleaned_data['follow_up'] != '':
+				new_note.follow_up = form.cleaned_data['follow_up']
+
+			new_note.save()
+
+			# If user uploaded an attachment, relate it to the new note
+			if request.FILES.get('attachment') != None:
+				attachment = Attachment(file_attachment=request.FILES['attachment'])
+				new_note.attachments.add(attachment)
+
+			# If list of users was in post request, add them to note
+			if 'choices_for_editors' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_editors']:
+					user = User.objects.get(username=user)
+					user.notes_read_write.add(new_note)
+			if 'choices_for_viewers' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_viewers']:
+					user = User.objects.get(username=user)
+					user.notes_read_only.add(new_note)
+
+			# If note is to be created in notebook, add note into notebook
+			if 'notebook_id' in request.POST:
+				notebook_id = request.POST['notebook_id']
+				notebook = get_object_or_404(Notebook, pk=notebook_id)
+				notebook.notes.add(new_note)
+
+			request.user.authored_notes.add(new_note)
+			return HttpResponseRedirect(reverse('dashboard:notes'))
+	else:
+		form = AddContactNoteForm(request.user.id)
+	# Pass notebook_id to POST handling
+	if 'notebook_id' in request.GET:
+		notebook_id = request.GET['notebook_id']
+	else:
+		notebook_id = ''
+	return render(request, 'dashboard/add_contact_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 	})

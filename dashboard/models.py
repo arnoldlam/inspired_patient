@@ -69,6 +69,21 @@ class Clinic(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+class Address(models.Model):
+	ADDRESS_COUNTRY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
+
+	street = models.CharField('Street', max_length=50)
+	unit = models.CharField('Unit', max_length=10)
+	city = models.CharField('City', max_length=30)
+	province = models.CharField('Province / State', max_length=30)
+	country = models.CharField('Country', max_length=30, choices = ADDRESS_COUNTRY_CHOICES, 
+		default='CA')
+	postal_code = models.CharField('Postal Code', max_length=10) 
 	
 class Note(models.Model):
 	NOTE_TYPE_CHOICES = (
@@ -165,6 +180,16 @@ class AppointmentNote(Note):
 	doctor = models.ForeignKey(User, related_name='appointments', null=True)
 	clinic = models.ForeignKey(Clinic, related_name='appointments', null=True)
 	reason_for_visit = models.CharField(max_length=200)
+
+class ContactNote(Note):
+	title = models.CharField(max_length=15)
+	first_name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100)
+	organization_name = models.CharField(max_length=100)
+	address = models.OneToOneField(Address, related_name='contact_notes', null=True)
+	phone_number_work = models.CharField('Phone Number (Work)', max_length=20)
+	phone_number_home = models.CharField('Phone Number (Home)', max_length=20)
+	email = models.EmailField()
 
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)

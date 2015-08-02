@@ -162,8 +162,8 @@ class ResourceNote(Note):
 class AppointmentNote(Note):
 	date = models.DateField('Appointment date')
 	time = models.TimeField('Appointment time')
-	doctor = models.ManyToManyField(User, related_name='appointments')
-	clinic = models.ManyToManyField(Clinic, related_name='appointments')
+	doctor = models.ForeignKey(User, related_name='appointments', null=True)
+	clinic = models.ForeignKey(Clinic, related_name='appointments', null=True)
 	reason_for_visit = models.CharField(max_length=200)
 
 class Notebook(models.Model):

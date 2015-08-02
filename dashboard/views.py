@@ -682,7 +682,7 @@ def NoteDetail(request, note_id):
 	attachments = note.attachments.all()
 	user = request.user
 
-	# for note_user in note_users:
+	# Check if user can access note
 	if note.ifUserCanAccessNote(user.id):
 		# update date accessed for note
 		note.noteAccessedNow()

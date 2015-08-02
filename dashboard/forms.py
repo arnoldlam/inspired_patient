@@ -78,7 +78,7 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 
 class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 	date = forms.DateField(initial=datetime.date.today)
-	time = forms.TimeField(initial=datetime.now().time())
+	time = forms.TimeField(initial=datetime.datetime.now().time())
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class SearchForUserForm(forms.Form):

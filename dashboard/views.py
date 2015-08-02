@@ -352,7 +352,7 @@ def AddInstructionNoteView(request):
 @login_required
 def AddCommunicationNoteView(request):
 	if request.method == 'POST':
-		form = AddNoteForm(request.user.id, request.POST, request.FILES)
+		form = AddCommunicationNoteForm(request.user.id, request.POST, request.FILES)
 		if form.is_valid():
 			user = request.user
 			subject = form.cleaned_data['subject']

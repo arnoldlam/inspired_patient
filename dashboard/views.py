@@ -359,8 +359,8 @@ def AddCommunicationNoteView(request):
 			note = form.cleaned_data['note_content']
 
 			importance = form.cleaned_data['importance']
-			doctor = forms.cleaned_data['choice_for_doctor']
-			clinic = forms.cleaned_data['choice_for_clinic']
+			doctor = form.cleaned_data['choice_for_doctor']
+			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = CommunicationNote(subject=subject, note_type='communication_note', 
 				note_content=note, date_created=timezone.now(), date_accessed=timezone.now(), author=user, 

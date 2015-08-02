@@ -41,11 +41,11 @@ class AddCommunicationNoteForm(AddNoteForm):
 	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
 
 
-class AddProcedureNoteForm(ModelForm):
-	class Meta:
-		model = ProcedureNote
-		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
-		'next_dose', 'selfcare_instructions', 'emergency_instructions']
+# class AddProcedureNoteForm(ModelForm):
+# 	class Meta:
+# 		model = ProcedureNote
+# 		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
+# 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
 
 class AddSelfCareNoteForm(AddNoteForm):
 	self_care_description = forms.CharField(label='Self Care Description', max_length=4000, widget=forms.Textarea)

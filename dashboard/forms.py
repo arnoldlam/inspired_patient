@@ -40,7 +40,7 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		clinics = user.clinics.all()
 
 		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
-			empty_label="Select a Doctor", to_field_name="full_name")
+			empty_label="Select a Doctor")
 		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
 			empty_label="Select a Clinic")
 

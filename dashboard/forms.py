@@ -72,9 +72,8 @@ class AddSelfCareNoteForm(AddNoteForm):
 	outcome = forms.CharField(label='Outcome', max_length=250)
 
 class AddResourceNoteForm(AddNoteForm):
-	medication_name = forms.CharField(label='Medication Name', max_length=100)
-	medication_dose = forms.CharField(label='Medication Dose', max_length=100)
-	medication_duration = forms.IntegerField(label='Medication Duration', min_value=0)
+	def __init__(self, user_id, *args, **kwargs):
+		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 		
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)

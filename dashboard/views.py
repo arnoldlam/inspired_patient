@@ -350,7 +350,7 @@ def AddInstructionNoteView(request):
 	})
 
 @login_required
-def AddCommunicationNote(request):
+def AddCommunicationNoteView(request):
 	if request.method == 'POST':
 		form = AddNoteForm(request.user.id, request.POST, request.FILES)
 		if form.is_valid():

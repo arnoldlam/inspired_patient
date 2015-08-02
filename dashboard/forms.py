@@ -37,7 +37,7 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		super(NotesThatRelateToDoctorAndClinic, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
 		doctors = user.user_profile.associates.filter(role__exact="professional")
-		clinics = user.clinics
+		clinics = user.clinics.all()
 
 		doctor_names = []
 		for doctor in doctors:

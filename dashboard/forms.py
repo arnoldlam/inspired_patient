@@ -37,6 +37,8 @@ class AddCommunicationNoteForm(AddNoteForm):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
 
+		self.fields['test_field'] = forms.CharField(label='test_field', initial=user.username)
+
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),
 		('respond', 'Respond'),

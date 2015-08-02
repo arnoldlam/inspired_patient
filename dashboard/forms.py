@@ -33,6 +33,10 @@ class AddInstructionNoteForm(AddNoteForm):
 	instructions = forms.CharField(label='Instructions', max_length=400)
 
 class AddCommunicationNoteForm(AddNoteForm):
+	def __init__(self, user_id, *args, **kwargs):
+		super(AddCommunicationNoteForm, self).__init__(*args, **kwargs)
+		self.user_id = user_id
+
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),
 		('respond', 'Respond'),

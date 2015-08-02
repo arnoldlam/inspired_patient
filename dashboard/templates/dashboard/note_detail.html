@@ -27,7 +27,7 @@
 
 {% if note.note_type == 'communication_note' %}
 <p>Importance: {{ note.importance }}</p>
-<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.user.id %}">{{ note.doctor }}</a></p>
+<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}
 
@@ -38,7 +38,7 @@
 <p><b>Emergency Instructions:</b> {{ note.emergency_instructions }}</p>
 <p><b>Pre-Procedure Instructions:</b> {{ note.selfcare_instructions }}</p>
 <p><b>Follow-Up Instructions:</b> {{ note.follow_up_instructions }}</p>
-<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.user.id %}">{{ note.doctor }}</a></p>
+<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}
 
@@ -51,7 +51,7 @@
 {% endif %}
 
 {% if note.note_type == 'resource_note' %}
-<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.user.id %}">{{ note.doctor }}</a></p>
+<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}
 

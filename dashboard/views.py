@@ -171,13 +171,9 @@ def EditProfile(request):
 			return HttpResponseRedirect(reverse('dashboard:profile'))
 	else:
 		form = EditProfileForm()
-		user = request.user
-		user_profile = user.user_profile
-		return render(request, 'dashboard/edit_profile.html', {
-			'form':form,
-			'user':user,	
-			'user_profile':user_profile,
-			})
+	return render(request, 'dashboard/edit_profile.html', {
+		'form':form,
+	})
 
 @login_required
 def CollaborationView(request):

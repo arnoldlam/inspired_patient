@@ -41,6 +41,14 @@
 <p><b>Emergency Instructions:</b> {{ note.emergency_instructions }}</p>
 {% endif %}
 
+{% if note.note_type == 'self_care_note' %}
+<p><b>Self Care Description:</b> {{ note.self_care_description }}</p>
+<p><b>Frequency:</b> {{ note.frequency }}</p>
+<p><b>Adverse Event Procedure:</b> {{ note.adverse_event_procedure }}</p>
+<p><b>Time:</b> {{ note.time }}</p>
+<p><b>Outcome:</b> {{ note.outcome }}</p>
+{% endif %}
+
 {% if note.follow_up %}
 <p><strong>Follow-up:</strong> {{ note.follow_up }}</p>
 {% endif %}

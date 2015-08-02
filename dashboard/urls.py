@@ -20,7 +20,6 @@ urlpatterns = [
 	url(r'^notes/(?P<note_id>[0-9]+)/$', views.NoteDetail, name='note_detail'),
 	url(r'^notes/(?P<note_id>[0-9]+)/add_reply$', views.AddNoteReplyView, name='add_note_reply'),
 	url(r'^notes/add/$', views.NotesSelectView, name='notes_select'),
-	url(r'^notes/add/note/$', views.AddNoteView, name='add_note'),
 	url(r'^notes/add/general_note$', views.AddGeneralNoteView, name='add_general_note'),
 	url(r'^notes/add/instruction_note$', views.AddInstructionNoteView, name='add_instruction_note'),
 	url(r'^notes/add/communication_note$', views.AddCommunicationNoteView, name='add_communication_note'),

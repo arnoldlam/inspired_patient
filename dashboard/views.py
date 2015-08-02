@@ -305,7 +305,7 @@ def AddNoteView(request):
 					)			
 
 			if request.POST['note_type'] == 'resource_note':
-				form = ResourceNote(request.POST)
+				form = AddResourceNoteForm(request.user.id, request.POST, request.FILES)
 				if form.is_valid():
 
 					medication_name = form.cleaned_data['medication_name']

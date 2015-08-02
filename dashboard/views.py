@@ -681,6 +681,8 @@ def AddContactNoteView(request):
 				postal_code=postal_code
 			)
 
+			address.save()
+
 			title = form.cleaned_data['title']
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']

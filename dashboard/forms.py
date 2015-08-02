@@ -36,7 +36,7 @@ class AddCommunicationNoteForm(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
-		doctors = user.user_profile.associates.all()
+		doctors = user.user_profile.associates.filter(role__exact="professional")
 
 		doctor_names = []
 		for doctor in doctors:

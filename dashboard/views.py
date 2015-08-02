@@ -421,7 +421,7 @@ def AddProcedureNoteView(request):
 
 			procedure = form.cleaned_data['procedure']
 			weight = form.cleaned_data['weight']
-			selfcare_instructions = form.cleaned_data['selfcare_instructions']
+			self_care_instructions = form.cleaned_data['self_care_instructions']
 			emergency_instructions = form.cleaned_data['emergency_instructions']
 			pre_procedure_instructions = form.cleaned_data['pre_procedure_instructions']
 			follow_up_instructions = form.cleaned_data['follow_up_instructions']
@@ -429,7 +429,7 @@ def AddProcedureNoteView(request):
 			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = ProcedureNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				procedure=procedure, weight=weight,selfcare_instructions=selfcare_instructions, 
+				procedure=procedure, weight=weight,self_care_instructions=self_care_instructions, 
 				emergency_instructions=emergency_instructions, pre_procedure_instructions=pre_procedure_instructions, 
 				follow_up_instructions=follow_up_instructions, doctor=doctor.user, clinic=clinic
 			)

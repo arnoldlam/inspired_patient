@@ -54,7 +54,7 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	procedure = forms.CharField(max_length=1000, widget=forms.Textarea)
-	weight = forms.IntegerField()
+	weight = forms.models.DecimalField(max_digits=5, decimal_places=2, min_value=0)
 	self_care_instructions = forms.CharField(label="Self Care Instructions", max_length=1000, 
 		widget=forms.Textarea)
 	emergency_instructions = forms.CharField(label="Emergency Instructions", max_length=1000, 

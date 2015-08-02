@@ -139,7 +139,7 @@ class CommunicationNote(Note):
 
 class ProcedureNote(Note):	
 	procedure = models.TextField()
-	weight = models.IntegerField()
+	weight = models.DecimalField(max_digits=5, decimal_places=2)
 	self_care_instructions = models.TextField()
 	emergency_instructions = models.TextField()
 	pre_procedure_instructions = models.TextField()

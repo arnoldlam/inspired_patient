@@ -25,28 +25,34 @@
 <p><strong>Instructions: </strong>{{ note.instructions }}</p>
 {% endif %}
 
-{% if note.note_type == 'Communication Note' %}
-<p>Attention: {{ note.attention }}</p>
+{% if note.note_type == 'communication_note' %}
 <p>Importance: {{ note.importance }}</p>
+<p><a href="#">Doctor: {{ note.doctor }}</a></p>
+<p><a href="#">Clinic: {{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.note_type == 'procedure_note' %}
 <p><b>Procedure:</b> {{ note.procedure }}</p>
-<p><b>Doctor:</b> {{ note.doctor }}</p>
 <p><b>Weight:</b> {{ note.weight }}</p>
-<p><b>Medication Name:</b> {{ note.medication_name }}</p>
-<p><b>Dosage:</b> {{ note.medication_dose }}</p>
-<p><b>Next Dose:</b> {{ note.next_dose }}</p>
-<p><b>Selfcare Instructions:</b> {{ note.selfcare_instructions }}</p>
+<p><b>Self Care Instructions:</b> {{ note.selfcare_instructions }}</p>
 <p><b>Emergency Instructions:</b> {{ note.emergency_instructions }}</p>
+<p><b>Pre-Procedure Instructions:</b> {{ note.selfcare_instructions }}</p>
+<p><b>Follow-Up Instructions:</b> {{ note.follow_up_instructions }}</p>
+<p><a href="#">Doctor: {{ note.doctor }}</a></p>
+<p><a href="#">Clinic: {{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.note_type == 'self_care_note' %}
-<p><b>Self Care Description:</b> {{ note.self_care_description }}</p>
+<p><b>Description:</b> {{ note.description }}</p>
 <p><b>Frequency:</b> {{ note.frequency }}</p>
-<p><b>Adverse Event Procedure:</b> {{ note.adverse_event_procedure }}</p>
-<p><b>Time:</b> {{ note.time }}</p>
+<p><b>Procedure:</b> {{ note.procedure }}</p>
+<p><b>Emergency Procedure:</b> {{ note.emergency_procedure }}</p>
 <p><b>Outcome:</b> {{ note.outcome }}</p>
+{% endif %}
+
+{% if note.note_type == 'resource_note' %}
+<p><a href="#">Doctor: {{ note.doctor }}</a></p>
+<p><a href="#">Clinic: {{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.follow_up %}
@@ -65,11 +71,11 @@
 <h3>Replies</h3>
 {% for reply in replies %}
 <ul>
-	<li>Title: {{ reply.title }}</li>
+	<li>{{ reply.title }}</li>
 	<ul>
-		<li>Author: {{ reply.author.user_profile.full_name }}</li>
-		<li>Reply date: {{ reply.date_created }}</li>
-		<li>Content: {{ reply.content }}</li>
+		<li>By: {{ reply.author.user_profile.full_name }}</li>
+		<li>Date: {{ reply.date_created }}</li>
+		<li>Reply: {{ reply.content }}</li>
 	</ul>
 </ul>
 {% endfor %}

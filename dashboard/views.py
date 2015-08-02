@@ -429,7 +429,7 @@ def AddProcedureNoteView(request):
 			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = ProcedureNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				procedure=procedure, weight=weight,self_care_instructions=self_care_instructions, 
+				procedure=procedure, weight=weight, self_care_instructions=self_care_instructions, 
 				emergency_instructions=emergency_instructions, pre_procedure_instructions=pre_procedure_instructions, 
 				follow_up_instructions=follow_up_instructions, doctor=doctor.user, clinic=clinic
 			)
@@ -473,6 +473,70 @@ def AddProcedureNoteView(request):
 	else:
 		notebook_id = ''
 	return render(request, 'dashboard/add_procedure_note.html', {
+		'form': form, 
+		'notebook_id':notebook_id,
+	})
+
+@login_required
+def AddSelfCareNoteView(request):
+	if request.method == 'POST':
+		form = AddSelfCareNoteForm(request.user.id, request.POST, request.FILES)
+		if form.is_valid():
+			user = request.user
+			subject = form.cleaned_data['subject']
+			note_content = form.cleaned_data['note_content']
+			note_type = 'self_care_note'
+
+			description = form.cleaned_data['description']
+			frequency = form.cleaned_data['frequency']
+			emergency_procedure = form.cleaned_data['emergency_procedure']
+			procedure = form.cleaned_data['procedure']
+			outcome = form.cleaned_data['outcome']
+
+			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
+				author=user, description=description, emergency_procedure=emergency_procedure, 
+				frequency=frequency, procedure=procedure, outcome=outcome
+			)		
+
+			# Optional parameters to be added to new_note object
+			if form.cleaned_data['url'] != '':
+				new_note.url = form.cleaned_data['url']
+			if form.cleaned_data['follow_up'] != '':
+				new_note.follow_up = form.cleaned_data['follow_up']
+
+			new_note.save()
+
+			# If user uploaded an attachment, relate it to the new note
+			if request.FILES.get('attachment') != None:
+				attachment = Attachment(file_attachment=request.FILES['attachment'])
+				new_note.attachments.add(attachment)
+
+			# If list of users was in post request, add them to note
+			if 'choices_for_editors' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_editors']:
+					user = User.objects.get(username=user)
+					user.notes_read_write.add(new_note)
+			if 'choices_for_viewers' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_viewers']:
+					user = User.objects.get(username=user)
+					user.notes_read_only.add(new_note)
+
+			# If note is to be created in notebook, add note into notebook
+			if 'notebook_id' in request.POST:
+				notebook_id = request.POST['notebook_id']
+				notebook = get_object_or_404(Notebook, pk=notebook_id)
+				notebook.notes.add(new_note)
+
+			request.user.authored_notes.add(new_note)
+			return HttpResponseRedirect(reverse('dashboard:notes'))
+	else:
+		form = AddSelfCareNoteForm(request.user.id)
+	# Pass notebook_id to POST handling
+	if 'notebook_id' in request.GET:
+		notebook_id = request.GET['notebook_id']
+	else:
+		notebook_id = ''
+	return render(request, 'dashboard/add_self_care_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 	})

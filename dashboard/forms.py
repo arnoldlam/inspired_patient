@@ -64,19 +64,11 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	follow_up_instructions = forms.CharField(label="Follow-Up Instructions", max_length=1000, 
 		widget=forms.Textarea)
 
-
-# class AddProcedureNoteForm(ModelForm):
-# 	class Meta:
-# 		model = ProcedureNote
-# 		fields = ['subject', 'note_content', 'procedure', 'doctor', 'weight', 'medication_dose', 
-# 		'next_dose', 'selfcare_instructions', 'emergency_instructions']
-
 class AddSelfCareNoteForm(AddNoteForm):
-	self_care_description = forms.CharField(label='Self Care Description', max_length=4000, widget=forms.Textarea)
-	frequency = forms.CharField(label='Frequency', max_length=100)
-	adverse_event_procedure = forms.CharField(label='Adverse Event Procedure', max_length=500, widget=forms.Textarea)
+	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
+	frequency = forms.CharField(label='Frequency', max_length=150)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
-	time = forms.DateTimeField(widget=DateTimeInput(), initial=timezone.now())
+	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
 	outcome = forms.CharField(label='Outcome', max_length=250)
 
 class AddResourceNoteForm(AddNoteForm):

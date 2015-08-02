@@ -412,7 +412,7 @@ def AddCommunicationNoteView(request):
 @login_required
 def AddProcedureNoteView(request):
 	if request.method == 'POST':
-		forms = AddProcedureNoteForm(request.user.id, request.POST, request.FILES)
+		form = AddProcedureNoteForm(request.user.id, request.POST, request.FILES)
 		if form.is_valid():
 			user = request.user
 			subject = form.cleaned_data['subject']

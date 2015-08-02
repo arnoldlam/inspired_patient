@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, MultipleChoiceField, ValidationError
+from django.forms import ModelForm, MultipleChoiceField, ValidationError, ModelChoiceField
 from django.forms.widgets import CheckboxSelectMultiple, Select, DateTimeInput
 from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
@@ -39,20 +39,23 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		doctors = user.user_profile.associates.filter(role__exact="professional")
 		clinics = user.clinics.all()
 
-		doctor_names = []
-		for doctor in doctors:
-			name = doctor.full_name()
-			doctor_names.append(name)
-		doctor_choices = zip(doctors, doctor_names)
+		# doctor_names = []
+		# for doctor in doctors:
+		# 	name = doctor.full_name()
+		# 	doctor_names.append(name)
+		# doctor_choices = zip(doctors, doctor_names)
 
-		clinic_names = []
-		for clinic in clinics:
-			name = clinic.name
-			clinic_names.append(name)
-		clinic_choices = zip(clinics, clinic_names)
+		# clinic_names = []
+		# for clinic in clinics:
+		# 	name = clinic.name
+		# 	clinic_names.append(name)
+		# clinic_choices = zip(clinics, clinic_names)
 
-		self.fields['choice_for_doctor'] = forms.ChoiceField(label='Doctor', choices=doctor_choices)
-		self.fields['choice_for_clinic'] = forms.ChoiceField(label='Clinic', choices=clinic_choices)
+
+		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
+			empty_label="Select a Doctor")
+		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
+			empty_label="Select a Clinic")
 
 class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (

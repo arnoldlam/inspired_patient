@@ -138,9 +138,9 @@ class CommunicationNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='communication_notes', null=True)
 
 class ProcedureNote(Note):	
-	procedure = models.CharField(max_length=250)
+	procedure = models.TextField()
 	weight = models.IntegerField()
-	selfcare_instructions = models.TextField()
+	self_care_instructions = models.TextField()
 	emergency_instructions = models.TextField()
 	pre_procedure_instructions = models.TextField()
 	follow_up_instructions = models.TextField()

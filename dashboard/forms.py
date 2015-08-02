@@ -52,6 +52,18 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	)	
 	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES)
 
+class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
+	procedure = forms.CharField(max_length=1000, widget=forms.Textarea)
+	weight = forms.IntegerField()
+	self_care_instructions = forms.CharField(label="Self Care Instructions", max_length=1000, 
+		widget=forms.Textarea)
+	emergency_instructions = forms.CharField(label="Emergency Instructions", max_length=1000, 
+		widget=forms.Textarea)
+	pre_procedure_instructions = forms.CharField(label="Pre-Procedure Instructions", max_length=1000, 
+		widget=forms.Textarea)
+	follow_up_instructions = forms.CharField(label="Follow-Up Instructions", max_length=1000, 
+		widget=forms.Textarea)
+
 
 # class AddProcedureNoteForm(ModelForm):
 # 	class Meta:
@@ -74,36 +86,6 @@ class AddResourceNoteForm(AddNoteForm):
 		
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
-
-class EditProfileForm(forms.Form):
-	ROLE_CHOICES = (
-		('patient', 'Patient'),
-		('caregiver', 'Caregiver'),
-		('parent', 'Parent'),
-		('professional', 'Professional'),
-	)
-	
-	ADDRESS_CITY_CHOICES = (
-		('CA', 'Canada'),
-		('US', 'United States'),
-		('UK', 'United Kingdom'),
-	)
-
-	profile_picture = forms.ImageField()
-	title = forms.CharField(label='Title', max_length=15)	
-	first_name = forms.CharField(label='First Name', max_length=20)
-	last_name = forms.CharField(label='Last Name', max_length=20)
-	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
-
-	address_unit = forms.CharField(label='Unit', max_length=10)
-	address_street = forms.CharField(label='Street', max_length=50)
-	address_city = forms.CharField(label='City', max_length=30)
-	address_province = forms.CharField(label='Province', max_length=30)
-	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
-	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
-
-	medical_history = forms.CharField(label='Medical History', max_length=4000)
-	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
 class AddNotebookForm(ModelForm):
 	class Meta:
@@ -151,26 +133,32 @@ class CreateProfessionalProfileForm(forms.Form):
 	office_email = forms.EmailField(label='Office Email', max_length=60)
 	office_address = forms.CharField(label='Office Address', max_length=200)
 
-# class AddSelfCareNoteForm(AddNoteForm):	
-# 	selfcare_desc = forms.CharField(max_length=1000)
-# 	frequency = forms.CharField(max_length=150)
-# 	adverse_event_procedure = forms.CharField(max_length=250)
-# 	procedure = forms.CharField(max_length=4000)
-# 	time = forms.CharField(max_length=250)
-# 	outcome = forms.CharField(max_length=250)	
-# 	
+class EditProfileForm(forms.Form):
+	ROLE_CHOICES = (
+		('patient', 'Patient'),
+		('caregiver', 'Caregiver'),
+		('parent', 'Parent'),
+		('professional', 'Professional'),
+	)
+	
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
 
-# class AddMedicalInformationNoteForm(AddNoteForm):
-# 	medication_name = forms.CharField(max_length=100)
-# 	medication_dose = forms.CharField(max_length=100)
-# 	medication_duration = forms.IntegerField()	
-# 	
+	profile_picture = forms.ImageField()
+	title = forms.CharField(label='Title', max_length=15)	
+	first_name = forms.CharField(label='First Name', max_length=20)
+	last_name = forms.CharField(label='Last Name', max_length=20)
+	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
 
-# class EditProfileForm(ModelForm):
-# 	class Meta:
-# 		model = UserProfile
-# 		fields = ['profile_picture', 'title', 
-# 		'role', 'address_street', 'address_city', 'address_country', 'address_province',
-# 		'address_country', 'address_postal_code', 'medical_history', 'phone_number']
-# 		first_name = forms.CharField(label='First Name', max_length=20)
-# 		last_name = forms.CharField(label='Last Name', max_length=20)
+	address_unit = forms.CharField(label='Unit', max_length=10)
+	address_street = forms.CharField(label='Street', max_length=50)
+	address_city = forms.CharField(label='City', max_length=30)
+	address_province = forms.CharField(label='Province', max_length=30)
+	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
+
+	medical_history = forms.CharField(label='Medical History', max_length=4000)
+	phone_number = forms.CharField(label='Phone Number', max_length=20)

@@ -39,21 +39,8 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		doctors = user.user_profile.associates.filter(role__exact="professional")
 		clinics = user.clinics.all()
 
-		# doctor_names = []
-		# for doctor in doctors:
-		# 	name = doctor.full_name()
-		# 	doctor_names.append(name)
-		# doctor_choices = zip(doctors, doctor_names)
-
-		# clinic_names = []
-		# for clinic in clinics:
-		# 	name = clinic.name
-		# 	clinic_names.append(name)
-		# clinic_choices = zip(clinics, clinic_names)
-
-
 		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
-			empty_label="Select a Doctor")
+			empty_label="Select a Doctor", to_field_name="full_name")
 		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
 			empty_label="Select a Clinic")
 

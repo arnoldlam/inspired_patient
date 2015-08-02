@@ -1,6 +1,6 @@
 <h2>Add a new communication note</h2>
 
-<form action="{% url 'dashboard:add_note' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'dashboard:add_communication_note' %}" method="post" enctype="multipart/form-data">
 {% csrf_token %}
 {{ form.as_p }} <br>
 {% if notebook_id %}

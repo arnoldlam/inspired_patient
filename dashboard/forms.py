@@ -43,16 +43,16 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		for doctor in doctors:
 			name = doctor.full_name()
 			doctor_names.append(name)
-		self.user_choices = zip(doctors, doctor_names)
+		self.doctor_choices = zip(doctors, doctor_names)
 
 		clinic_names = []
 		for clinic in clinics:
 			name = clinic.name
 			clinic_names.append(name)
-		self.doctor_choices = zip(clinics, clinic_names)
+		clinic_choices = zip(clinics, clinic_names)
 
-		self.fields['choices_for_doctor'] = forms.ChoiceField(label='Doctor', choices=self.doctor_choices)
-		self.fields['choices_for_clinic'] = forms.ChoiceField(label='Clinic', choices=self.clinic_choices)
+		self.fields['choice_for_doctor'] = forms.ChoiceField(label='Doctor', choices=self.doctor_choices)
+		self.fields['choice_for_clinic'] = forms.ChoiceField(label='Clinic', choices=clinic_choices)
 
 class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (

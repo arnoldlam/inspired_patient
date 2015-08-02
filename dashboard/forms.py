@@ -42,9 +42,9 @@ class AddCommunicationNoteForm(AddNoteForm):
 		for doctor in doctors:
 			name = doctor.full_name()
 			doctor_names.append(name)
-		user_choices = zip(doctors, doctor_names)
+		self.user_choices = zip(doctors, doctor_names)
 
-		self.fields['choices_for_editors'] = forms.ChoiceField(label='Editors', choices=user_choices)
+		self.fields['choices_for_editors'] = forms.ChoiceField(label='Editors', choices=self.user_choices)
 
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),

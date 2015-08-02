@@ -27,8 +27,8 @@
 
 {% if note.note_type == 'communication_note' %}
 <p>Importance: {{ note.importance }}</p>
-<p><a href="#">Doctor: {{ note.doctor }}</a></p>
-<p><a href="#">Clinic: {{ note.clinic }}</a></p>
+<p>Doctor: <a href="#">{{ note.doctor }}</a></p>
+<p>Clinic: <a href="#">{{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.note_type == 'procedure_note' %}
@@ -38,8 +38,8 @@
 <p><b>Emergency Instructions:</b> {{ note.emergency_instructions }}</p>
 <p><b>Pre-Procedure Instructions:</b> {{ note.selfcare_instructions }}</p>
 <p><b>Follow-Up Instructions:</b> {{ note.follow_up_instructions }}</p>
-<p><a href="#">Doctor: {{ note.doctor }}</a></p>
-<p><a href="#">Clinic: {{ note.clinic }}</a></p>
+<p>Doctor: <a href="#">{{ note.doctor }}</a></p>
+<p>Clinic: <a href="#">{{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.note_type == 'self_care_note' %}
@@ -51,8 +51,8 @@
 {% endif %}
 
 {% if note.note_type == 'resource_note' %}
-<p><a href="#">Doctor: {{ note.doctor }}</a></p>
-<p><a href="#">Clinic: {{ note.clinic }}</a></p>
+<p>Doctor: <a href="#">{{ note.doctor }}</a></p>
+<p>Clinic: <a href="#">{{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.follow_up %}

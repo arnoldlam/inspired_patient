@@ -276,13 +276,12 @@ def AddGeneralNoteView(request):
 			request.user.authored_notes.add(new_note)
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
-		# Pass notebook_id to POST handling
-		if 'notebook_id' in request.GET:
-			notebook_id = request.GET['notebook_id']
-		else:
-			notebook_id = ''
-
 		form = AddNoteForm(request.user.id)
+	# Pass notebook_id to POST handling
+	if 'notebook_id' in request.GET:
+		notebook_id = request.GET['notebook_id']
+	else:
+		notebook_id = ''
 	return render(request, 'dashboard/add_general_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,

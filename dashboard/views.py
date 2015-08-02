@@ -655,7 +655,7 @@ def AddAppointmentNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
-	return render(request, 'dashboard/add_resource_note.html', {
+	return render(request, 'dashboard/add_appointment_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 	})

@@ -357,17 +357,29 @@ def AddNoteView(request):
 
 		if request.GET['note_type'] == 'general_note':
 			form = AddNoteForm(request.user.id)
+			template = 'dashboard/add_general_note.html'
+		
 		if request.GET['note_type'] == 'instruction_note':
 			form = AddInstructionNoteForm(request.user.id)
+			template = 'dashboard/add_instruction_note.html'
+		
 		if request.GET['note_type'] == 'communication_note':
 			form = AddCommunicationNoteForm(request.user.id)
+			template = 'dashboard/add_communication_note.html'
+		
 		if request.GET['note_type'] == 'procedure_note':
 			form = AddProcedureNoteForm()
+			template = 'dashboard/add_procedure_note.html'
+		
 		if request.GET['note_type'] == 'self_care_note':
 			form = AddSelfCareNoteForm(request.user.id)
+			template = 'dashboard/add_self_care_note.html'
+		
 		if request.GET['note_type'] == 'resource_note':
 			form = AddResourceNoteForm(request.user.id)
-		return render(request, 'dashboard/add_general_note.html', {
+			template = 'dashboard/add_resource_note.html'
+		
+		return render(request, template, {
 			'form': form, 
 			'notebook_id':notebook_id,
 		})

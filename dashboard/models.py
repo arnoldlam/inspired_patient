@@ -81,7 +81,6 @@ class Note(models.Model):
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
-	users = models.ManyToManyField(User, related_name='notes', blank=True)
 	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
 	viewers = models.ManyToManyField(User, related_name='notes_read_only', blank=True)
 	author = models.ForeignKey(User, related_name='authored_notes', null=True)

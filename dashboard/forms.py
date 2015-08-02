@@ -35,6 +35,7 @@ class AddInstructionNoteForm(AddNoteForm):
 class AddCommunicationNoteForm(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
+		user = User.objects.get(pk=self.user_id)
 
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),

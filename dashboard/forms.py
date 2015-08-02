@@ -34,7 +34,7 @@ class AddInstructionNoteForm(AddNoteForm):
 
 class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
-		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
+		super(NotesThatRelateToDoctorAndClinic, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
 		doctors = user.user_profile.associates.filter(role__exact="professional")
 		clinics = user.clinics

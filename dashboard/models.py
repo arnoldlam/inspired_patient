@@ -77,6 +77,7 @@ class Note(models.Model):
 		('communication_note', 'Communication note'),
 		('procedure_note', 'Procedure note'),
 		('self_care_note', 'Self care note'),
+		('resource_note', 'Resource note'),
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
@@ -133,33 +134,38 @@ class CommunicationNote(Note):
 		('respond', 'Respond'),
 		('urgent', 'Urgent'),
 	)
-	attention = models.CharField(max_length=250)
 	importance = models.CharField(max_length=20, choices=IMPORTANCE_CHOICES, default='read')
+	doctor = models.ForeignKey(User, related_name='communication_notes', null=True)
+	clinic = models.ForeignKey(Clinic, related_name='communication_notes', null=True)
 
 class ProcedureNote(Note):	
 	procedure = models.CharField(max_length=250)
-	doctor = models.CharField(max_length=250)
 	weight = models.IntegerField()
-	medication_name = models.CharField(max_length=100)
-	medication_dose = models.CharField(max_length=100)
-	next_dose = models.CharField(max_length=50)
 	selfcare_instructions = models.TextField()
 	emergency_instructions = models.TextField()
-	
+	pre_procedure_instructions = models.TextField()
+	follow_up_instructions = models.TextField()
+	doctor = models.ForeignKey(User, related_name='procedure_notes', null=True)
+	clinic = models.ForeignKey(Clinic, related_name='procedure_notes', null=True)
 
 class SelfCareNote(Note):	
-	self_care_description = models.TextField()
+	description = models.TextField()
 	frequency = models.CharField(max_length=150)
-	adverse_event_procedure = models.TextField()
+	emergency_procedure = models.TextField()
 	procedure = models.TextField()
-	time = models.DateTimeField('Time')
-	outcome = models.CharField(max_length=250)	
-	
+	outcome = models.CharField(max_length=250)
 
 class ResourceNote(Note):
-	medication_name = models.CharField(max_length=100)
-	medication_dose = models.CharField(max_length=100)
-	medication_duration = models.IntegerField()	
+	doctor = models.ForeignKey(User, related_name='resource_notes', null=True)
+	clinic = models.ForeignKey(Clinic, related_name='resource_notes', null=True)
+
+# class AppointmentNote(Note):
+# 	date = models.DateField('Appointment date')
+# 	time = models.TimeField('Appointment time')
+# 	doctor = models.ManyToManyField(User, related_name='appointments')
+# 	clinic = models.ManyToManyField(Clinic, related_name='appointments')
+# 	reason_for_visit = models.CharField(max_length=200)
+# 	agenda = models.TextField()
 	
 
 class Notebook(models.Model):

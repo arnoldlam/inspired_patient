@@ -38,8 +38,8 @@ class AddCommunicationNoteForm(AddNoteForm):
 		('respond', 'Respond'),
 		('urgent', 'Urgent'),
 	)	
-	attention = forms.CharField(max_length=250)
 	importance = forms.ChoiceField(choices=PRIORITY_CHOICES)
+
 
 class AddProcedureNoteForm(ModelForm):
 	class Meta:

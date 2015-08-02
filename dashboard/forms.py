@@ -36,8 +36,15 @@ class AddCommunicationNoteForm(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddCommunicationNoteForm, self).__init__(user_id, *args, **kwargs)
 		user = User.objects.get(pk=self.user_id)
+		doctors = user.user_profile.associates.filter(role__exact="professional")
 
-		self.fields['test_field'] = forms.CharField(label='test_field', initial=user.username)
+		doctor_names = []
+		for doctor in doctors:
+			name = doctor.full_name()
+			doctor_names.append(name)
+		user_choices = zip(doctors, doctor_names)
+
+		self.fields['choices_for_editors'] = forms.ChoiceField(label='Editors', choices=user_choices)
 
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),

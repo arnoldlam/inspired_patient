@@ -5,6 +5,7 @@ from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 from django.utils import timezone
+import datetime
 
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
@@ -74,7 +75,12 @@ class AddSelfCareNoteForm(AddNoteForm):
 class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
-		
+
+class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
+	date = forms.DateField(initial=datetime.date.today)
+	time = forms.TimeField(initial=datetime.now().time())
+	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
+
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 

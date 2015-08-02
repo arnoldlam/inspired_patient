@@ -78,6 +78,7 @@ class Note(models.Model):
 		('procedure_note', 'Procedure note'),
 		('self_care_note', 'Self care note'),
 		('resource_note', 'Resource note'),
+		('appointment_note', 'Appointment note'), 
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
@@ -158,14 +159,12 @@ class ResourceNote(Note):
 	doctor = models.ForeignKey(User, related_name='resource_notes', null=True)
 	clinic = models.ForeignKey(Clinic, related_name='resource_notes', null=True)
 
-# class AppointmentNote(Note):
-# 	date = models.DateField('Appointment date')
-# 	time = models.TimeField('Appointment time')
-# 	doctor = models.ManyToManyField(User, related_name='appointments')
-# 	clinic = models.ManyToManyField(Clinic, related_name='appointments')
-# 	reason_for_visit = models.CharField(max_length=200)
-# 	agenda = models.TextField()
-	
+class AppointmentNote(Note):
+	date = models.DateField('Appointment date')
+	time = models.TimeField('Appointment time')
+	doctor = models.ManyToManyField(User, related_name='appointments')
+	clinic = models.ManyToManyField(Clinic, related_name='appointments')
+	reason_for_visit = models.CharField(max_length=200)
 
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)

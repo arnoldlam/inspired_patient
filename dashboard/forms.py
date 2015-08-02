@@ -71,7 +71,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
 	outcome = forms.CharField(label='Outcome', max_length=250)
 
-class AddResourceNoteForm(AddNoteForm):
+class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 		

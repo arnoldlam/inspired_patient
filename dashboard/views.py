@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.db.models import Q
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddProcedureNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm
 from django.contrib.auth.forms import AdminPasswordChangeForm, UserCreationForm
 
@@ -304,18 +304,18 @@ def AddNoteView(request):
 						adverse_event_procedure=adverse_event_procedure, procedure=procedure, time=time, outcome=outcome
 					)			
 
-			# if request.POST['note_type'] == 'resource_note':
-			# 	form = ResourceNote(request.POST)
-			# 	if form.is_valid():
+			if request.POST['note_type'] == 'resource_note':
+				form = ResourceNote(request.POST)
+				if form.is_valid():
 
-			# 		medication_name = form.cleaned_data['medication_name']
-			# 		medication_dose = form.cleaned_data['medication_dose']
-			# 		medication_duration = form.cleaned_data['medication_duration']
+					medication_name = form.cleaned_data['medication_name']
+					medication_dose = form.cleaned_data['medication_dose']
+					medication_duration = form.cleaned_data['medication_duration']
 
-			# 		new_note = ResourceNote(subject=subject, note_type='self_care_note', note_content=note, 
-			# 			author=user, medication_name=medication_name, medication_dose=medication_dose, 
-			# 			medication_duration=medication_duration, 
-			# 		)			
+					new_note = ResourceNote(subject=subject, note_type='resource_note', note_content=note, 
+						author=user, medication_name=medication_name, medication_dose=medication_dose, 
+						medication_duration=medication_duration, 
+					)			
 			
 			# Optional parameters to be added to new_note object
 			if form.cleaned_data['url'] != '':
@@ -357,40 +357,20 @@ def AddNoteView(request):
 
 		if request.GET['note_type'] == 'general_note':
 			form = AddNoteForm(request.user.id)
-			return render(request, 'dashboard/add_general_note.html', {
-				'form': form, 
-				'notebook_id':notebook_id,
-			})
 		if request.GET['note_type'] == 'instruction_note':
 			form = AddInstructionNoteForm(request.user.id)
-			return render(request, 'dashboard/add_instruction_note.html', {
-				'form': form, 
-				'notebook_id':notebook_id,
-			})
 		if request.GET['note_type'] == 'communication_note':
 			form = AddCommunicationNoteForm(request.user.id)
-			return render(request, 'dashboard/add_communication_note.html', {
-				'form': form, 
-				'notebook_id':notebook_id,
-			})
 		if request.GET['note_type'] == 'procedure_note':
 			form = AddProcedureNoteForm()
-			return render(request, 'dashboard/add_procedure_note.html', {
-				'form': form, 
-				'notebook_id':notebook_id,
-			})
 		if request.GET['note_type'] == 'self_care_note':
 			form = AddSelfCareNoteForm(request.user.id)
-			return render(request, 'dashboard/add_self_care_note.html', {
-				'form':form,
-				'notebook_id':notebook_id,
-			})
 		if request.GET['note_type'] == 'resource_note':
 			form = AddResourceNoteForm(request.user.id)
-			return render(request, 'dashboard/add_resource_note.html', {
-				'form':form,
-				'notebook_id':notebook_id,
-			})
+		return render(request, 'dashboard/add_general_note.html', {
+			'form': form, 
+			'notebook_id':notebook_id,
+		})
 
 
 # View for note details
@@ -406,6 +386,7 @@ def NoteDetail(request, note_id):
 				'communication_note': CommunicationNote,
 				'procedure_note': ProcedureNote,
 				'self_care_note': SelfCareNote,
+				'resource_note': ResourceNote,
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)

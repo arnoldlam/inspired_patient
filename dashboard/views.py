@@ -747,7 +747,7 @@ def AddMedicationNoteView(request):
 			user = request.user
 			subject = form.cleaned_data['subject']
 			note = form.cleaned_data['note_content']
-			note_type = 'contact_note'
+			note_type = 'medication_note'
 
 			unit = form.cleaned_data['unit']
 			street = form.cleaned_data['street']
@@ -834,9 +834,11 @@ def NoteDetail(request, note_id):
 				'resource_note': ResourceNote,
 				'appointment_note': AppointmentNote,
 				'contact_note': ContactNote, 
+				'medication_note': MedicationNote, 
 	}
 
-	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
+	# note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
+	note = get_object_or_404(Note, pk=note_id)
 	replies = note.replies.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 	attachments = note.attachments.all()
 	user = request.user

@@ -84,6 +84,9 @@ class Address(models.Model):
 	country = models.CharField('Country', max_length=30, choices = ADDRESS_COUNTRY_CHOICES, 
 		default='CA')
 	postal_code = models.CharField('Postal Code', max_length=10) 
+
+	def __unicode__(self):
+		return unit + street + ", " + city + ", " + province
 	
 class Note(models.Model):
 	NOTE_TYPE_CHOICES = (
@@ -94,6 +97,7 @@ class Note(models.Model):
 		('self_care_note', 'Self care note'),
 		('resource_note', 'Resource note'),
 		('appointment_note', 'Appointment note'), 
+		('contact_note', 'Contact note'), 
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')
@@ -190,6 +194,9 @@ class ContactNote(Note):
 	phone_number_work = models.CharField('Phone Number (Work)', max_length=20)
 	phone_number_home = models.CharField('Phone Number (Home)', max_length=20)
 	email = models.EmailField()
+
+	def full_name(self):
+		return first_name + " " + last_name
 
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)

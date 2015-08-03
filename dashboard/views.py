@@ -754,6 +754,7 @@ def NoteDetail(request, note_id):
 				'self_care_note': SelfCareNote,
 				'resource_note': ResourceNote,
 				'appointment_note': AppointmentNote,
+				'contact_note': ContactNote, 
 	}
 
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)

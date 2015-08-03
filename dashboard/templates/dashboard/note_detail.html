@@ -55,6 +55,16 @@
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}
 
+{% if note.note_type == 'contact_note' %}
+<p><b>Title:</b> {{ note.title }}</p>
+<p><b>Name:</b> {{ note.full_name }}</p>
+<p><b>Organization Name:</b> {{ note.organization }}</p>
+<p><b>Address:</b> {{ note.address }}</p>
+<p><b>Work Phone:</b> {{ note.phone_number_work }}</p>
+<p><b>Home Phone:</b> {{ note.phone_number_home }}</p>
+<p><b>Email:</b> <a href="mailto:{{ note.email }}">{{ note.email }}</a></p>
+{% endif %}
+
 {% if note.follow_up %}
 <p><strong>Follow-up:</strong> {{ note.follow_up }}</p>
 {% endif %}

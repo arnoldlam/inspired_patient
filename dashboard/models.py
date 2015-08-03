@@ -198,6 +198,15 @@ class ContactNote(Note):
 	def full_name(self):
 		return self.first_name + " " + self.last_name
 
+class MedicationNote(Note):
+	medication_name = models.CharField(max_length=100)
+	medication_dosage = models.CharField(max_length=100)
+	medication_frequency = models.CharField(max_length=100)
+	medication_duration = models.CharField(max_length=100)
+	pharmacy_name = models.CharField(max_length=50)
+	pharmacy_address = models.OneToOneField(Address, related_name='medication_notes')
+	pharmacy_telephone = models.CharField(max_length=50)
+
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)
 	description = models.CharField(max_length=4000, blank=True)

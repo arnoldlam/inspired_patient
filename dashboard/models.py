@@ -113,6 +113,9 @@ class Note(models.Model):
 	note_type = models.CharField(max_length=20, choices=NOTE_TYPE_CHOICES, default='general_note')
 	url = models.URLField(max_length=200, blank=True)
 
+	# Optional date and time for some note types
+	date_and_time = models.DateTimeField('Date and Time', blank=True)
+
 	def __unicode__(self):
 		return self.subject
 
@@ -169,7 +172,6 @@ class ProcedureNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='procedure_notes', null=True)
 
 class SelfCareNote(Note):	
-	date_and_time = models.DateTimeField('Date and Time')
 	description = models.TextField()
 	frequency = models.CharField(max_length=150)
 	emergency_procedure = models.TextField()
@@ -181,7 +183,6 @@ class ResourceNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='resource_notes', null=True)
 
 class AppointmentNote(Note):
-	date_and_time = models.DateTimeField('Date and Time')
 	doctor = models.ForeignKey(User, related_name='appointments', null=True)
 	clinic = models.ForeignKey(Clinic, related_name='appointments', null=True)
 	reason_for_visit = models.CharField(max_length=200)
@@ -200,7 +201,6 @@ class ContactNote(Note):
 		return self.first_name + " " + self.last_name
 
 class MedicationNote(Note):
-	date_and_time = models.DateTimeField('Date and Time')
 	medication_name = models.CharField(max_length=100)
 	medication_dosage = models.CharField(max_length=100)
 	medication_frequency = models.CharField(max_length=100)

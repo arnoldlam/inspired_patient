@@ -66,6 +66,7 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 		widget=forms.Textarea)
 
 class AddSelfCareNoteForm(AddNoteForm):
+	date_and_time = forms.DateField('Data/Time', initial=timezone.now())
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
 	frequency = forms.CharField(label='Frequency', max_length=150)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
@@ -109,6 +110,7 @@ class AddMedicationNoteForm(AddNoteForm):
 		('UK', 'United Kingdom'),
 	)
 
+	date_and_time = forms.DateField('Data/Time', initial=timezone.now())
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
 	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)

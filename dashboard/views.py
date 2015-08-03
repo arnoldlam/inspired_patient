@@ -488,10 +488,11 @@ def AddSelfCareNoteView(request):
 			emergency_procedure = form.cleaned_data['emergency_procedure']
 			procedure = form.cleaned_data['procedure']
 			outcome = form.cleaned_data['outcome']
+			date_and_time = form.cleaned_data['date_and_time']
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 
-				frequency=frequency, procedure=procedure, outcome=outcome
+				frequency=frequency, procedure=procedure, outcome=outcome, date_and_time=date_and_time,
 			)		
 
 			# Optional parameters to be added to new_note object
@@ -767,11 +768,12 @@ def AddMedicationNoteView(request):
 			medication_duration = form.cleaned_data['medication_duration']
 			pharmacy_name = form.cleaned_data['pharmacy_name']
 			pharmacy_telephone = form.cleaned_data['pharmacy_telephone']
+			date_and_time = form.cleaned_data['date_and_time']
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, note_content=note, 
 				author=user, medication_name=medication_name, medication_dosage=medication_dosage, 
 				medication_frequency=medication_frequency, pharmacy_name=pharmacy_name, 
-				pharmacy_telephone=pharmacy_telephone,
+				pharmacy_telephone=pharmacy_telephone, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object
@@ -1123,8 +1125,10 @@ def MarkNotificationAsRead(request):
 def SchedulingView(request):
 	user = request.user
 
-	# Get all appointment notes that belong to user
-	appointment_notes = Note.objects.filter(Q(editors__id=user.id) | Q(viewers__id=user.id) | Q(author__id=user.id)).filter(note_type__exact='appointment_note').filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
+	# Get all appointment, medication, and self care notes that belong to user and sort by date
+	upcoming_tasks = Note.objects.filter(Q(editors__id=user.id) | Q(viewers__id=user.id) | Q(author__id=user.id))
+	upcoming_tasks = upcoming_tasks.filter(Q(note_type__exact='appointment_note') | Q(note_type__exact='medication_note') | Q(note_type__exact='self_care_note'))
+	upcoming_tasks = upcoming_tasks.filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
 
 	return render(request, 'dashboard/scheduling.html', {
 		'user':user, 	

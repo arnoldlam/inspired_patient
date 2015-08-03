@@ -169,6 +169,7 @@ class ProcedureNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='procedure_notes', null=True)
 
 class SelfCareNote(Note):	
+	date_and_time = models.DateTimeField('Date and Time')
 	description = models.TextField()
 	frequency = models.CharField(max_length=150)
 	emergency_procedure = models.TextField()
@@ -199,6 +200,7 @@ class ContactNote(Note):
 		return self.first_name + " " + self.last_name
 
 class MedicationNote(Note):
+	date_and_time = models.DateTimeField('Date and Time')
 	medication_name = models.CharField(max_length=100)
 	medication_dosage = models.CharField(max_length=100)
 	medication_frequency = models.CharField(max_length=100)

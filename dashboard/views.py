@@ -1128,7 +1128,7 @@ def SchedulingView(request):
 	# Get all appointment, medication, and self care notes that belong to user and sort by date
 	upcoming_tasks = Note.objects.filter(Q(editors__id=user.id) | Q(viewers__id=user.id) | Q(author__id=user.id))
 	upcoming_tasks = upcoming_tasks.filter(Q(note_type__exact='appointment_note') | Q(note_type__exact='medication_note') | Q(note_type__exact='self_care_note'))
-	upcoming_tasks = upcoming_tasks.filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
+	upcoming_tasks = upcoming_tasks.filter(date_accessed__lte=timezone.now()).order_by('date_and_time')[:10]
 
 	return render(request, 'dashboard/scheduling.html', {
 		'upcoming_tasks':upcoming_tasks,

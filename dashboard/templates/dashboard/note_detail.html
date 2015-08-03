@@ -65,6 +65,16 @@
 <p><b>Email:</b> <a href="mailto:{{ note.email }}">{{ note.email }}</a></p>
 {% endif %}
 
+{% if note.note_type == 'medication_note' %}
+<p><b>Medication Name:</b> {{ note.medication_name }}</p>
+<p><b>Medication Dosage:</b> {{ note.medication_dosage }}</p>
+<p><b>Medication Frequency:</b> {{ note.medication_frequency }}</p>
+<p><b>Medication Duration:</b> {{ note.medication_duration }}</p>
+<p><b>Pharmacy Name:</b> {{ note.pharmacy_name }}</p>
+<p><b>Pharmacy Name:</b> {{ note.pharmacy_telephone }}</p>
+<p><b>Pharmacy Address:</b> {{ note.pharmacy_address }}</p>
+{% endif %}
+
 {% if note.follow_up %}
 <p><strong>Follow-up:</strong> {{ note.follow_up }}</p>
 {% endif %}

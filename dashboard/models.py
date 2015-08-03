@@ -180,8 +180,7 @@ class ResourceNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='resource_notes', null=True)
 
 class AppointmentNote(Note):
-	date = models.DateField('Appointment date')
-	time = models.TimeField('Appointment time')
+	date_and_time = models.DateTimeField('Date and Time')
 	doctor = models.ForeignKey(User, related_name='appointments', null=True)
 	clinic = models.ForeignKey(Clinic, related_name='appointments', null=True)
 	reason_for_visit = models.CharField(max_length=200)

@@ -608,13 +608,12 @@ def AddAppointmentNoteView(request):
 			note_type = 'appointment_note'
 
 			reason_for_visit = form.cleaned_data['reason_for_visit']
-			date = form.cleaned_data['date']
-			time = form.cleaned_data['time']
+			date_and_time = form.cleaned_data['date_and_time']
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = AppointmentNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, time=time, date=date,
+				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object
@@ -1123,6 +1122,9 @@ def MarkNotificationAsRead(request):
 @login_required
 def SchedulingView(request):
 	user = request.user
+
+	# Get all appointment notes that belong to user
+	appointment_notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).filter(note_type__exact='appointment_note').filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
 
 	return render(request, 'dashboard/scheduling.html', {
 		'user':user, 	

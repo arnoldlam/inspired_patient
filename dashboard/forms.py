@@ -77,8 +77,7 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 
 class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
-	date = forms.DateField(initial=datetime.date.today)
-	time = forms.TimeField(initial=datetime.datetime.now().time())
+	date_and_time = forms.DateField('Appointment Data/Time', initial=timezone.now())
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class AddContactNoteForm(AddNoteForm):
@@ -109,7 +108,7 @@ class AddMedicationNoteForm(AddNoteForm):
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
 	)
-	
+
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
 	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)

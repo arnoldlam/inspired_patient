@@ -103,6 +103,21 @@ class AddContactNoteForm(AddNoteForm):
 	country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
 	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 
+class AddMedicationNoteForm(AddNoteForm):
+	medication_name = forms.CharField(label='Medication Name', max_length=100)
+	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
+	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)
+	medication_duration = forms.CharField(label='Medication Duration', max_length=100)
+	pharmacy_name = forms.CharField(label='Pharmacy Name', max_length=50)
+	pharmacy_telephone = forms.CharField(label='Pharmacy Tel', max_length=50)
+
+	unit = forms.CharField(label='Unit', max_length=10, initial="27")
+	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
+	city = forms.CharField(label='City', max_length=30, initial="Vancouver")
+	province = forms.CharField(label='Province', max_length=30, initial="BC")
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
+
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 

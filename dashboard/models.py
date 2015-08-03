@@ -98,6 +98,7 @@ class Note(models.Model):
 		('resource_note', 'Resource note'),
 		('appointment_note', 'Appointment note'), 
 		('contact_note', 'Contact note'), 
+		('medication_note', 'Medication note'),
 	)
 	# For intermediate model
 	# note_users = models.ManyToManyField(User, through='NoteUser')

@@ -86,7 +86,7 @@ class Address(models.Model):
 	postal_code = models.CharField('Postal Code', max_length=10) 
 
 	def __unicode__(self):
-		return self.unit + self.street + ", " + self.city + ", " + self.province
+		return self.unit + " " + self.street + ", " + self.city + ", " + self.province
 	
 class Note(models.Model):
 	NOTE_TYPE_CHOICES = (

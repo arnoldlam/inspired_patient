@@ -92,8 +92,8 @@ class AddContactNoteForm(AddNoteForm):
 	first_name = forms.CharField(label='First name', max_length=100)
 	last_name = forms.CharField(label='Last name', max_length=100)
 	organization_name = forms.CharField(label='Organization name', max_length=100)
-	phone_number_work = forms.CharField(label='Phone Number (Work)', max_length=20)
-	phone_number_home = forms.CharField(label='Phone Number (Home)', max_length=20)
+	phone_number_work = forms.CharField(label='Work Phone', max_length=20)
+	phone_number_home = forms.CharField(label='Home Phone', max_length=20)
 	email = forms.EmailField()
 
 	unit = forms.CharField(label='Unit', max_length=10, initial="27")

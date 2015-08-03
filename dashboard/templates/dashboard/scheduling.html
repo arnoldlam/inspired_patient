@@ -7,7 +7,7 @@
 {% if upcoming_tasks %}
 <ul>
 {% for upcoming_task in upcoming_tasks %}
-<li><a href="{% url 'dashboard:note_detail' upcoming_task.id %}?note_type={{ upcoming_task.note_type }}"></a>{{ upcoming_tasks.subject }}</a></li>
+<li><a href="{% url 'dashboard:note_detail' upcoming_task.id %}?note_type={{ upcoming_task.note_type }}"></a>{{ upcoming_task.subject }}</a></li>
 {% endfor %}
 </ul>
 {% else %}

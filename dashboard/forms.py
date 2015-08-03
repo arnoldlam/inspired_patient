@@ -5,7 +5,7 @@ from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 from django.utils import timezone
-import datetime
+from datetime import datetime
 
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):

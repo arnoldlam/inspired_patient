@@ -1120,3 +1120,11 @@ def MarkNotificationAsRead(request):
 
 	return HttpResponseRedirect(reverse('dashboard:notifications'))
 
+@login_required
+def SchedulingView(request):
+	user = request.user
+
+	return render(request, 'dashboard/scheduling.html', {
+		'user':user, 	
+	})
+

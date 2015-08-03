@@ -36,4 +36,5 @@ urlpatterns = [
 	url(r'^notes/notebook/(?P<notebook_id>[0-9]+)/share', views.ShareNotebookView, name='share_notebook'),
 	url(r'^notifications/$', views.NotificationsView, name='notifications'),
 	url(r'^notifications/mark_as_read$', views.MarkNotificationAsRead, name='mark_notification_as_read'),
+	url(r'^scheduling/$', views.SchedulingView, name='scheduling'),
 ]

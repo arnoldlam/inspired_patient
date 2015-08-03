@@ -45,6 +45,7 @@
 {% if note.note_type == 'self_care_note' %}
 <p><b>Description:</b> {{ note.description }}</p>
 <p><b>Frequency:</b> {{ note.frequency }}</p>
+<p><b>Date and Time:</b> {{ note.date_and_time }}</p>
 <p><b>Procedure:</b> {{ note.procedure }}</p>
 <p><b>Emergency Procedure:</b> {{ note.emergency_procedure }}</p>
 <p><b>Outcome:</b> {{ note.outcome }}</p>
@@ -70,9 +71,17 @@
 <p><b>Medication Dosage:</b> {{ note.medication_dosage }}</p>
 <p><b>Medication Frequency:</b> {{ note.medication_frequency }}</p>
 <p><b>Medication Duration:</b> {{ note.medication_duration }}</p>
+<p><b>Date and Time:</b> {{ note.date_and_time }}</p>
 <p><b>Pharmacy Name:</b> {{ note.pharmacy_name }}</p>
 <p><b>Pharmacy Name:</b> {{ note.pharmacy_telephone }}</p>
 <p><b>Pharmacy Address:</b> {{ note.pharmacy_address }}</p>
+{% endif %}
+
+{% if note.note_type == 'appointment_note' %}
+<p><b>Date and Time:</b> {{ note.date_and_time }}</p>
+<p><b>Reason for Visit:</b> {{ note.reason_for_visit }}</p>
+<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
+<p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}
 
 {% if note.follow_up %}

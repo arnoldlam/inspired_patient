@@ -1131,6 +1131,7 @@ def SchedulingView(request):
 	upcoming_tasks = upcoming_tasks.filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
 
 	return render(request, 'dashboard/scheduling.html', {
+		'upcoming_tasks',
 		'user':user, 	
 	})
 

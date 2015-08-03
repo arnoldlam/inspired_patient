@@ -196,7 +196,7 @@ class ContactNote(Note):
 	email = models.EmailField()
 
 	def full_name(self):
-		return first_name + " " + last_name
+		return self.first_name + " " + self.last_name
 
 class Notebook(models.Model):
 	name = models.CharField(max_length=20)

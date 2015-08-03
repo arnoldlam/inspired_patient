@@ -1124,7 +1124,7 @@ def SchedulingView(request):
 	user = request.user
 
 	# Get all appointment notes that belong to user
-	appointment_notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).filter(note_type__exact='appointment_note').filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
+	appointment_notes = Note.objects.filter(Q(editors__id=user.id) | Q(viewers__id=user.id) | Q(author__id=user.id)).filter(note_type__exact='appointment_note').filter(date_accessed__lte=timezone.now()).order_by('-date_and_time')[:10]
 
 	return render(request, 'dashboard/scheduling.html', {
 		'user':user, 	

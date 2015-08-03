@@ -66,7 +66,7 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 		widget=forms.Textarea)
 
 class AddSelfCareNoteForm(AddNoteForm):
-	date_and_time = forms.DateField('Data/Time', initial=timezone.now)
+	date_and_time = forms.DateTimeField(label='Data/Time', initial=timezone.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
 	frequency = forms.CharField(label='Frequency', max_length=150)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
@@ -78,7 +78,7 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 
 class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
-	date_and_time = forms.DateField('Appointment Data/Time', initial=datetime.datetime.now())
+	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now)
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class AddContactNoteForm(AddNoteForm):

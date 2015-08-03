@@ -769,7 +769,7 @@ def AddMedicationNoteView(request):
 			pharmacy_name = form.cleaned_data['pharmacy_name']
 			pharmacy_telephone = form.cleaned_data['pharmacy_telephone']
 
-			new_note = MedicationNote(address=address, subject=subject, note_type=note_type, note_content=note, 
+			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, note_content=note, 
 				author=user, medication_name=medication_name, medication_dosage=medication_dosage, 
 				medication_frequency=medication_frequency, pharmacy_name=pharmacy_name, 
 				pharmacy_telephone=pharmacy_telephone,

@@ -104,6 +104,12 @@ class AddContactNoteForm(AddNoteForm):
 	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 
 class AddMedicationNoteForm(AddNoteForm):
+	ADDRESS_CITY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
+	
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
 	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)

@@ -525,7 +525,12 @@ def AddSelfCareNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+
+			# URL for redirect to newly create notebook's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url)
 	else:
 		form = AddSelfCareNoteForm(request.user.id)
 	# Pass notebook_id to POST handling

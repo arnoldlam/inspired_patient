@@ -73,8 +73,8 @@ class AddSelfCareNoteForm(AddNoteForm):
 		('every_month', 'Every Month')
 	)
 
-	date_and_time = forms.DateTimeField(label='Data/Time', initial=timezone.now)
-	end_date = forms.DateTimeField(label='End Data/Time', initial=timezone.now)
+	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now)
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
 	frequency = forms.ChoiceField(label='Frequency', choices=FREQUENCY_CHOICES)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)

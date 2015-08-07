@@ -74,9 +74,9 @@ class AddSelfCareNoteForm(AddNoteForm):
 	)
 
 	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now)
+	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
 	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
-	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
 	outcome = forms.CharField(label='Outcome', max_length=250)
@@ -86,7 +86,15 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 
 class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
+	FREQUENCY_CHOICES = (
+		('not_repeating', 'Not repeating'),
+		('every_day', 'Every Day'),
+		('every_week', 'Every Week'),
+		('every_month', 'Every Month')
+	)
 	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now)
+	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
+	medication_frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class AddContactNoteForm(AddNoteForm):
@@ -118,10 +126,18 @@ class AddMedicationNoteForm(AddNoteForm):
 		('UK', 'United Kingdom'),
 	)
 
+	FREQUENCY_CHOICES = (
+		('not_repeating', 'Not repeating'),
+		('every_day', 'Every Day'),
+		('every_week', 'Every Week'),
+		('every_month', 'Every Month')
+	)
+
 	date_and_time = forms.DateField('Data/Time', initial=datetime.datetime.now)
+	medication_frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
-	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)
 	medication_duration = forms.CharField(label='Medication Duration', max_length=100)
 	pharmacy_name = forms.CharField(label='Pharmacy Name', max_length=50)
 	pharmacy_telephone = forms.CharField(label='Pharmacy Tel', max_length=50)

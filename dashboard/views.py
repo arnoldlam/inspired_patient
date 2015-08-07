@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.utils import timezone
 from django.db.models import Q
+import datetime
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
@@ -512,7 +513,10 @@ def AddSelfCareNoteView(request):
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 
 				frequency=frequency, procedure=procedure, outcome=outcome, date_and_time=date_and_time,
-			)		
+			)
+
+
+
 
 			# Optional parameters to be added to new_note object
 			if form.cleaned_data['url'] != '':
@@ -544,6 +548,17 @@ def AddSelfCareNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
+
+			# Create additional notes for recurring note
+			end_date = form.cleaned_data['end_date']
+			if (frequency == 'every_day'):
+				recurring_date = date_and_time
+				while (recurring_date < end_date):
+					new_note.pk = None
+					new_note.date_and_time = recurring_date
+					new_note.save()
+					
+					recurring_date = recurring_date datetime.timedelta(days=1)
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

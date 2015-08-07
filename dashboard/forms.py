@@ -67,12 +67,14 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 
 class AddSelfCareNoteForm(AddNoteForm):
 	FREQUENCY_CHOICES = (
+		('not_repeating', 'Not repeating'),
 		('every_day', 'Every Day'),
 		('every_week', 'Every Week'),
 		('every_month', 'Every Month')
 	)
 
 	date_and_time = forms.DateTimeField(label='Data/Time', initial=timezone.now)
+	end_date = forms.DateTimeField(label='End Data/Time', initial=timezone.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
 	frequency = forms.ChoiceField(label='Frequency', choices=FREQUENCY_CHOICES)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)

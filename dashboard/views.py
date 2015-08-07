@@ -515,9 +515,6 @@ def AddSelfCareNoteView(request):
 				frequency=frequency, procedure=procedure, outcome=outcome, date_and_time=date_and_time,
 			)
 
-
-
-
 			# Optional parameters to be added to new_note object
 			if form.cleaned_data['url'] != '':
 				new_note.url = form.cleaned_data['url']
@@ -593,12 +590,13 @@ def AddResourceNoteView(request):
 			subject = form.cleaned_data['subject']
 			note = form.cleaned_data['note_content']
 			note_type = 'resource_note'
+			frequency = form.cleaned_data['frequency']
 
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = ResourceNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				doctor=doctor.user, clinic=clinic
+				doctor=doctor.user, clinic=clinic, frequency=frequency,
 			)
 
 			# Optional parameters to be added to new_note object

@@ -557,8 +557,8 @@ def AddSelfCareNoteView(request):
 					new_note.pk = None
 					new_note.date_and_time = recurring_date
 					new_note.save()
-					
-					recurring_date = recurring_date datetime.timedelta(days=1)
+
+					recurring_date = recurring_date + datetime.timedelta(days=1)
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

@@ -94,6 +94,18 @@ def CreateNewUserView(request):
 				new_contact_notebook.save()
 				new_contact_notebook.editors.add(user)
 
+				new_appointment_notebook = Notebook(name='Appointments', description='Place all your appointment notes here',)
+				new_appointment_notebook.save()
+				new_appointment_notebook.editors.add(user)
+
+				new_medications_notebook = Notebook(name='Medications', description='Place all your medications here',)
+				new_medications_notebook.save()
+				new_medications_notebook.editors.add(user)
+
+				new_notebook = Notebook(name='Notes', description='Place all your miscellaneous notes here',)
+				new_notebook.save()
+				new_notebook.editors.add(user)
+
 				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:
 					form = CreateProfessionalProfileForm()

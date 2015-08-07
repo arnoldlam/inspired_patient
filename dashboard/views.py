@@ -90,6 +90,10 @@ def CreateNewUserView(request):
 				user.last_name = last_name
 				user.save()
 
+				new_contact_notebook = Notebook(name='Contacts', description='Place all your contacts here',)
+				new_contact_notebook.save()
+				new_contact_notebook.editors.add(user)
+
 				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:
 					form = CreateProfessionalProfileForm()

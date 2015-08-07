@@ -590,13 +590,12 @@ def AddResourceNoteView(request):
 			subject = form.cleaned_data['subject']
 			note = form.cleaned_data['note_content']
 			note_type = 'resource_note'
-			frequency = form.cleaned_data['frequency']
 
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
 
 			new_note = ResourceNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				doctor=doctor.user, clinic=clinic, frequency=frequency,
+				doctor=doctor.user, clinic=clinic,
 			)
 
 			# Optional parameters to be added to new_note object
@@ -656,9 +655,11 @@ def AddAppointmentNoteView(request):
 			date_and_time = form.cleaned_data['date_and_time']
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
+			frequency = form.cleaned_data['frequency']
 
 			new_note = AppointmentNote(subject=subject, note_type=note_type, note_content=note, author=user, 
 				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,
+				frequency=frequency, 
 			)
 
 			# Optional parameters to be added to new_note object

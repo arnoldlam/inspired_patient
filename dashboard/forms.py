@@ -66,9 +66,15 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 		widget=forms.Textarea)
 
 class AddSelfCareNoteForm(AddNoteForm):
+	FREQUENCY_CHOICES = (
+		('every_day', 'Every Day'),
+		('every_week', 'Every Week'),
+		('every_month', 'Every Month')
+	)
+
 	date_and_time = forms.DateTimeField(label='Data/Time', initial=timezone.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
-	frequency = forms.CharField(label='Frequency', max_length=150)
+	frequency = forms.ChoiceField(label='Frequency', choices=FREQUENCY_CHOICES)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
 	outcome = forms.CharField(label='Outcome', max_length=250)
@@ -82,7 +88,7 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class AddContactNoteForm(AddNoteForm):
-	ADDRESS_CITY_CHOICES = (
+	ADDRESS_COUNTRY_CHOICES = (
 		('CA', 'Canada'),
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
@@ -100,11 +106,11 @@ class AddContactNoteForm(AddNoteForm):
 	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
 	city = forms.CharField(label='City', max_length=30, initial="Vancouver")
 	province = forms.CharField(label='Province', max_length=30, initial="BC")
-	country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES)
 	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 
 class AddMedicationNoteForm(AddNoteForm):
-	ADDRESS_CITY_CHOICES = (
+	ADDRESS_COUNTRY_CHOICES = (
 		('CA', 'Canada'),
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
@@ -122,7 +128,7 @@ class AddMedicationNoteForm(AddNoteForm):
 	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
 	city = forms.CharField(label='City', max_length=30, initial="Vancouver")
 	province = forms.CharField(label='Province', max_length=30, initial="BC")
-	country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES)
 	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 
 class SearchForUserForm(forms.Form):

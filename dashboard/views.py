@@ -555,7 +555,7 @@ def AddSelfCareNoteView(request):
 				if frequency == 'every_week':
 					time_to_add = datetime.timedelta(weeks=1)
 				if frequency == 'every_month':
-					time_to_add = datetime.timedelta(months=1)
+					time_to_add = datetime.timedelta(weeks=4)
 				
 				# Create additional notes for recurring note
 				end_date = form.cleaned_data['end_date']

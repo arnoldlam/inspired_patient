@@ -76,7 +76,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now)
 	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
-	frequency = forms.ChoiceField(label='Frequency', choices=FREQUENCY_CHOICES)
+	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
 	outcome = forms.CharField(label='Outcome', max_length=250)

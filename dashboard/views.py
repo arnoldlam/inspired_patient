@@ -549,7 +549,24 @@ def AddSelfCareNoteView(request):
 
 			request.user.authored_notes.add(new_note)
 
-			addRecurringNotes()
+			# Recurring notes
+			if frequency != 'not_repeating':
+				if frequency == 'every_day':
+					time_to_add = datetime.timedelta(days=1)
+				if frequency == 'every_week':
+					time_to_add = datetime.timedelta(weeks=1)
+				if frequency == 'every_month':
+					time_to_add = datetime.timedelta(days=30)
+				
+				# Create additional notes for recurring note
+				end_date = form.cleaned_data['end_date']
+				recurring_date = date_and_time
+				while recurring_date < end_date:
+					recurring_date = recurring_date + time_to_add
+					new_note.pk = None
+					new_note.id = None
+					new_note.date_and_time = recurring_date
+					new_note.save()
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
@@ -566,26 +583,6 @@ def AddSelfCareNoteView(request):
 		'form': form, 
 		'notebook_id':notebook_id,
 	})
-
-def addRecurringNotes():
-	# Recurring notes
-	if frequency != 'not_repeating':
-		if frequency == 'every_day':
-			time_to_add = datetime.timedelta(days=1)
-		if frequency == 'every_week':
-			time_to_add = datetime.timedelta(weeks=1)
-		if frequency == 'every_month':
-			time_to_add = datetime.timedelta(days=30)
-		
-		# Create additional notes for recurring note
-		end_date = form.cleaned_data['end_date']
-		recurring_date = date_and_time
-		while recurring_date < end_date:
-			recurring_date = recurring_date + time_to_add
-			new_note.pk = None
-			new_note.id = None
-			new_note.date_and_time = recurring_date
-			new_note.save()
 
 @login_required
 def AddResourceNoteView(request):
@@ -697,7 +694,24 @@ def AddAppointmentNoteView(request):
 
 			request.user.authored_notes.add(new_note)
 
-			addRecurringNotes()
+			# Recurring notes
+			if frequency != 'not_repeating':
+				if frequency == 'every_day':
+					time_to_add = datetime.timedelta(days=1)
+				if frequency == 'every_week':
+					time_to_add = datetime.timedelta(weeks=1)
+				if frequency == 'every_month':
+					time_to_add = datetime.timedelta(days=30)
+				
+				# Create additional notes for recurring note
+				end_date = form.cleaned_data['end_date']
+				recurring_date = date_and_time
+				while recurring_date < end_date:
+					recurring_date = recurring_date + time_to_add
+					new_note.pk = None
+					new_note.id = None
+					new_note.date_and_time = recurring_date
+					new_note.save()
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
@@ -862,7 +876,25 @@ def AddMedicationNoteView(request):
 
 			request.user.authored_notes.add(new_note)
 
-			addRecurringNotes()
+			# Recurring notes
+			frequency = medication_frequency
+			if frequency != 'not_repeating':
+				if frequency == 'every_day':
+					time_to_add = datetime.timedelta(days=1)
+				if frequency == 'every_week':
+					time_to_add = datetime.timedelta(weeks=1)
+				if frequency == 'every_month':
+					time_to_add = datetime.timedelta(days=30)
+				
+				# Create additional notes for recurring note
+				end_date = form.cleaned_data['end_date']
+				recurring_date = date_and_time
+				while recurring_date < end_date:
+					recurring_date = recurring_date + time_to_add
+					new_note.pk = None
+					new_note.id = None
+					new_note.date_and_time = recurring_date
+					new_note.save()
 			
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

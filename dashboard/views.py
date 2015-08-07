@@ -553,12 +553,12 @@ def AddSelfCareNoteView(request):
 			end_date = form.cleaned_data['end_date']
 			# if (end_date == 'every_day'):
 			recurring_date = date_and_time
-			# while (recurring_date < end_date):
-			recurring_date = recurring_date + datetime.timedelta(days=1)
-			new_note.pk = None
-			new_note.id = None
-			new_note.date_and_time = recurring_date
-			new_note.save()
+			while (recurring_date < end_date):
+				recurring_date = recurring_date + datetime.timedelta(days=1)
+				new_note.pk = None
+				new_note.id = None
+				new_note.date_and_time = recurring_date
+				new_note.save()
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

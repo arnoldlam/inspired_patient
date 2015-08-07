@@ -94,7 +94,7 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 	)
 	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now)
 	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
-	medication_frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
 
 class AddContactNoteForm(AddNoteForm):
@@ -133,7 +133,7 @@ class AddMedicationNoteForm(AddNoteForm):
 		('every_month', 'Every Month')
 	)
 
-	date_and_time = forms.DateField('Data/Time', initial=datetime.datetime.now)
+	date_and_time = forms.DateTimeField('Data/Time', initial=datetime.datetime.now)
 	medication_frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
 	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
 	medication_name = forms.CharField(label='Medication Name', max_length=100)

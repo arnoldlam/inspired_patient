@@ -118,7 +118,7 @@ class AddMedicationNoteForm(AddNoteForm):
 		('UK', 'United Kingdom'),
 	)
 
-	date_and_time = forms.DateField('Data/Time', initial=datetime.datetime.now())
+	date_and_time = forms.DateField('Data/Time', initial=datetime.datetime.now)
 	medication_name = forms.CharField(label='Medication Name', max_length=100)
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100)
 	medication_frequency = forms.CharField(label='Medication Frequency', max_length=100)

@@ -526,9 +526,8 @@ def AddSelfCareNoteView(request):
 
 			request.user.authored_notes.add(new_note)
 
-			# URL for redirect to newly create notebook's detail page
+			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
-
 			# Redirecting to note detail
 			return HttpResponseRedirect(redirect_url + '?note_type=self_care_note')
 	else:
@@ -652,7 +651,11 @@ def AddAppointmentNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=appointment_note')
 	else:
 		form = AddAppointmentNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -811,7 +814,11 @@ def AddMedicationNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=medication_note')
 	else:
 		form = AddMedicationNoteForm(request.user.id)
 	# Pass notebook_id to POST handling

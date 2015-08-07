@@ -42,6 +42,7 @@ def CreateNewUserView(request):
 				user_profile.office_tel = office_tel
 				user_profile.office_email = office_email
 				user_profile.office_address = office_address
+				user_profile.role = 'professional'
 
 				# Save user profile
 				user_profile.save()
@@ -89,6 +90,8 @@ def CreateNewUserView(request):
 				user.first_name = first_name
 				user.last_name = last_name
 				user.save()
+
+				# Auto-add notebooks during account creation
 
 				new_contact_notebook = Notebook(name='Contacts', description='Place all your contacts here',)
 				new_contact_notebook.save()

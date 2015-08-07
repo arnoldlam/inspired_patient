@@ -551,7 +551,7 @@ def AddSelfCareNoteView(request):
 
 			# Create additional notes for recurring note
 			end_date = form.cleaned_data['end_date']
-			if (frequency == 'every_day'):
+			if (end_date == 'every_day'):
 				recurring_date = date_and_time
 				while (recurring_date < end_date):
 					new_note.pk = None

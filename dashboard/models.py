@@ -112,7 +112,7 @@ class Note(models.Model):
 	url = models.URLField(max_length=200, blank=True)
 
 	# Optional date and time for some note types
-	date_and_time = models.DateTimeField('Date and Time', blank=True)
+	date_and_time = models.DateTimeField('Date and Time', blank=True, null=True)
 
 	def __unicode__(self):
 		return self.subject

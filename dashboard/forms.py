@@ -6,6 +6,7 @@ from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
 from django.utils import timezone
 import datetime
+from django.utils.translation import gettext as _
 
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):

@@ -304,6 +304,7 @@ def AddGeneralNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_general_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -363,6 +364,7 @@ def AddInstructionNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_instruction_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -424,6 +426,7 @@ def AddCommunicationNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_communication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -493,6 +496,7 @@ def AddProcedureNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_procedure_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -583,6 +587,7 @@ def AddSelfCareNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_self_care_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -644,6 +649,7 @@ def AddResourceNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_resource_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -733,6 +739,7 @@ def AddAppointmentNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_appointment_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -813,6 +820,7 @@ def AddContactNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_contact_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -920,6 +928,7 @@ def AddMedicationNoteView(request):
 		notebook_id = request.GET['notebook_id']
 	else:
 		notebook_id = ''
+	user = request.user
 	return render(request, 'dashboard/add_medication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
@@ -977,7 +986,7 @@ def ShareNote(request, note_id):
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
 		form = SearchForUserForm()
-
+	user = request.user	
 	return render(request, 'dashboard/share_note.html', {
 		'form':form,
 		'user':user,
@@ -1008,6 +1017,7 @@ def AddNotebookView(request):
 			return HttpResponseRedirect(redirect_url)
 	else:
 		form = AddNotebookForm()
+	user = request.user
 	return render(request, 'dashboard/add_notebook.html', {
 		'form':form,
 		'user':user,

@@ -99,34 +99,33 @@ def CreateNewUserView(request):
 
 def CreateNewProfessionalView(request):
 	if request.method == 'POST':
-		pass
-		# form = CreateProfessionalProfileForm(request.POST)
-		# if form.is_valid():
-		# 	qualification = form.cleaned_data['qualification']
-		# 	job_title = form.cleaned_data['job_title']
-		# 	office_tel = form.cleaned_data['office_tel']
-		# 	office_email = form.cleaned_data['office_email']
-		# 	office_address = form.cleaned_data['office_address']
+		form = CreateProfessionalProfileForm(request.POST)
+		if form.is_valid():
+			qualification = form.cleaned_data['qualification']
+			job_title = form.cleaned_data['job_title']
+			office_tel = form.cleaned_data['office_tel']
+			office_email = form.cleaned_data['office_email']
+			office_address = form.cleaned_data['office_address']
 			
-		# 	# Get user and user profile
-		# 	user = request.user
-		# 	user_profile = user.user_profile
+			# Get user and user profile
+			user = request.user
+			user_profile = user.user_profile
 
-		# 	# Save professional profile details
-		# 	user_profile.qualification = qualification
-		# 	user_profile.job_title = job_title
-		# 	user_profile.office_tel = office_tel
-		# 	user_profile.office_email = office_email
-		# 	user_profile.office_address = office_address
-		# 	user_profile.role = 'professional'
+			# Save professional profile details
+			user_profile.qualification = qualification
+			user_profile.job_title = job_title
+			user_profile.office_tel = office_tel
+			user_profile.office_email = office_email
+			user_profile.office_address = office_address
+			user_profile.role = 'professional'
 
-		# 	# Save user profile
-		# 	user_profile.save()
+			# Save user profile
+			user_profile.save()
 
-		# 	return HttpResponseRedirect('/dashboard/')
+			return HttpResponseRedirect('/dashboard/')
 	else:
 		form = CreateProfessionalProfileForm()
-	return render(request, 'dashboard/create_user.html', {
+	return render(request, 'dashboard/create_professional.html', {
 		'form':form,
 	})
 

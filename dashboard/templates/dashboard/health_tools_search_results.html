@@ -24,9 +24,13 @@
 		<ul>
 		<li>Notes in notebook: </li>
 			<ul>
-			{% for note in notebook.notes.all %}
-				<li>{{ note.subject }}</li>
-			{% endfor %}
+			{% if notebook.notes.all %}
+				{% for note in notebook.notes.all %}
+					<li>{{ note.subject }}</li>
+				{% endfor %}
+			{% else %}
+				<li>No notes in notebook</li>
+			{% endif %}
 			</ul>
 		</ul>
 	{% endfor %}

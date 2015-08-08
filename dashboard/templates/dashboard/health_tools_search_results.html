@@ -9,6 +9,7 @@
 		<ul>
 			<li>Date created: {{ note.date_created }}</li>
 			<li>Last accessed: {{ note.date_accessed }}</li>
+			<li>Note type: {{ note.get_note_type_display }}</li>
 			<li>Preview: {{ note.note_content }}</li>
 		</ul>
 	{% endfor %}
@@ -22,8 +23,8 @@
 		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
 		<li>Notes in notebook: </li>
 		<ul>
-		{% for note in notebook.notes %}
-			<li>{{ note.title }}</li>
+		{% for note in notebook.notes.all %}
+			<li>{{ note.subject }}</li>
 		{% endfor %}
 		</ul>
 	{% endfor %}

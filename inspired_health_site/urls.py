@@ -19,9 +19,9 @@ from django.contrib.auth import views as auth_views
 from dashboard import views
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
-    url('^accounts/', include('django.contrib.auth.urls')),
-    url('^accounts/sign_up', views.CreateNewUserView, name='create_user'),
-    url('^accounts/sign_up_professional', views.CreateNewProfessionalView, name='create_professional'),
+    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^dashboard/$', include('dashboard.urls', namespace="dashboard")),
+    url(r'^accounts/$', include('django.contrib.auth.urls')),
+    url(r'^accounts/sign_up$', views.CreateNewUserView, name='create_user'),
+    url(r'^accounts/sign_up/professional$', views.CreateNewProfessionalView, name='create_professional'),
 ]

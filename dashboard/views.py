@@ -97,7 +97,6 @@ def CreateNewUserView(request):
 		'user_profile_form':user_profile_form,
 	})
 
-@login_required
 def CreateNewProfessionalView(request):
 	if request.method == 'POST':
 		form = CreateProfessionalProfileForm(request.POST)

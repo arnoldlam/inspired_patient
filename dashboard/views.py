@@ -82,7 +82,7 @@ def CreateNewUserView(request):
 				new_user_profile.save()
 
 				# Login as new user
-				username = user_form.cleaned_data['username']
+				username = user_form.cleaned_data['email']
 				password = user_form.cleaned_data['password1']
 				user = authenticate(username=username, password=password)
 				login(request, user)

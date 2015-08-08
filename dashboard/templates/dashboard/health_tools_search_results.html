@@ -21,11 +21,13 @@
 {% if notebooks %}
 	{% for notebook in notebooks %}
 		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
-		<li>Notes in notebook: </li>
 		<ul>
-		{% for note in notebook.notes.all %}
-			<li>{{ note.subject }}</li>
-		{% endfor %}
+		<li>Notes in notebook: </li>
+			<ul>
+			{% for note in notebook.notes.all %}
+				<li>{{ note.subject }}</li>
+			{% endfor %}
+			</ul>
 		</ul>
 	{% endfor %}
 {% else %}

@@ -23,37 +23,6 @@ from django.contrib.auth.forms import AdminPasswordChangeForm
 # Displays and handles forms for user creation
 def CreateNewUserView(request):
 	if request.method == 'POST':
-		# If POST request came from professional profile creation
-		if 'qualification' in request.POST:
-			form = CreateProfessionalProfileForm(request.POST)
-			if form.is_valid():
-				qualification = form.cleaned_data['qualification']
-				job_title = form.cleaned_data['job_title']
-				office_tel = form.cleaned_data['office_tel']
-				office_email = form.cleaned_data['office_email']
-				office_address = form.cleaned_data['office_address']
-				
-				# Get user and user profile
-				user = request.user
-				user_profile = user.user_profile
-
-				# Save professional profile details
-				user_profile.qualification = qualification
-				user_profile.job_title = job_title
-				user_profile.office_tel = office_tel
-				user_profile.office_email = office_email
-				user_profile.office_address = office_address
-				user_profile.role = 'professional'
-
-				# Save user profile
-				user_profile.save()
-
-				return HttpResponseRedirect('/dashboard/')
-			else:
-				form = 	CreateProfessionalProfileForm()
-			return render(request, 'dashboard/create_user.html', {
-				'form':form,
-			})
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 
@@ -116,10 +85,7 @@ def CreateNewUserView(request):
 
 				# Render addition form to fill out if professional
 				if user_profile_form.cleaned_data['is_professional'] == True:
-					form = CreateProfessionalProfileForm()
-					return render(request, 'dashboard/create_professional.html', {
-						'form':form,
-					})
+					return HttpResponseRedirect(reverse('create_professional'))
 
 				# Return to dashboard if not professional
 				return HttpResponseRedirect('/dashboard/')
@@ -129,6 +95,39 @@ def CreateNewUserView(request):
 	return render(request, 'dashboard/create_user.html', {
 		'user_form':user_form,
 		'user_profile_form':user_profile_form,
+	})
+
+@login_required
+def CreateNewProfessionalView(request):
+	if request.method == 'POST':
+		form = CreateProfessionalProfileForm(request.POST)
+		if form.is_valid():
+			qualification = form.cleaned_data['qualification']
+			job_title = form.cleaned_data['job_title']
+			office_tel = form.cleaned_data['office_tel']
+			office_email = form.cleaned_data['office_email']
+			office_address = form.cleaned_data['office_address']
+			
+			# Get user and user profile
+			user = request.user
+			user_profile = user.user_profile
+
+			# Save professional profile details
+			user_profile.qualification = qualification
+			user_profile.job_title = job_title
+			user_profile.office_tel = office_tel
+			user_profile.office_email = office_email
+			user_profile.office_address = office_address
+			user_profile.role = 'professional'
+
+			# Save user profile
+			user_profile.save()
+
+			return HttpResponseRedirect('/dashboard/')
+	else:
+		form = 	CreateProfessionalProfileForm()
+	return render(request, 'dashboard/create_user.html', {
+		'form':form,
 	})
 
 # View for main dashboard

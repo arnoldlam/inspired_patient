@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url('^accounts/', include('django.contrib.auth.urls')),
     url('^accounts/sign_up', views.CreateNewUserView, name='create_user'),
+    url('^accounts/sign_up/professional', views.CreateNewProfessionalView, name='create_professional'),
 ]

@@ -229,6 +229,7 @@ class EditProfileForm(forms.Form):
 	medical_history = forms.CharField(label='Medical History', max_length=4000)
 	phone_number = forms.CharField(label='Phone Number', max_length=20)
 
+# Taken from Django Docs. Modified to include email instead of username
 class UserCreationForm(forms.ModelForm):
     """
     A form that creates a user, with no privileges, from the given username and
@@ -246,6 +247,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
+        fields = ("username",)
         exclude = ("username",)
 
     def clean_password2(self):

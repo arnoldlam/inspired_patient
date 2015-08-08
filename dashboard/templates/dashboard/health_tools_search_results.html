@@ -6,6 +6,11 @@
 {% if notes %}
 	{% for note in notes %}
 		<li><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note.subject }}</a></li>
+		<ul>
+			<li>Date created: {{ note.date_created }}</li>
+			<li>Last accessed: {{ note.date_accessed }}</li>
+			<li>Preview: {{ note.note_content }}</li>
+		</ul>
 	{% endfor %}
 {% else %}
 	<p>No notes</p>
@@ -15,6 +20,12 @@
 {% if notebooks %}
 	{% for notebook in notebooks %}
 		<li><a href="{% url 'dashboard:notebook_detail' notebook.id %}">{{ notebook.name }}</a></li>
+		<li>Notes in notebook: </li>
+		<ul>
+		{% for note in notebook.notes %}
+			<li>{{ note.title }}</li>
+		{% endfor %}
+		</ul>
 	{% endfor %}
 {% else %}
 	<p>No notebooks</p>

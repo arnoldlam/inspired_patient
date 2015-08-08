@@ -1053,7 +1053,8 @@ def HealthToolsSearchResultsView(request):
 	user_id = user.id
 
 	# Query to get all notes that belong to user and contains search query in subject or contents
-	notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:10]
+	notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id))
+	notes = notes.filter(Q(subject__icontains=query) | Q(note_content__icontains=query))[:10]
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,

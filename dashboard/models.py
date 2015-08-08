@@ -222,7 +222,7 @@ class Notebook(models.Model):
 	description = models.CharField(max_length=4000, blank=True)
 	viewers = models.ManyToManyField(User, related_name="notebooks_read_only", blank=True)
 	editors = models.ManyToManyField(User, related_name="notebooks_read_write")
-	notes = models.ManyToManyField(Note, related_name='notes', blank=True)
+	notes = models.ManyToManyField(Note, related_name='notebooks', blank=True)
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 	date_modified = models.DateTimeField('date modified', auto_now_add=True)
 	date_accessed = models.DateTimeField('date accessed', auto_now_add=True)

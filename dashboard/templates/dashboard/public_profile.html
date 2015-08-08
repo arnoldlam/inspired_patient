@@ -8,15 +8,17 @@
 <li>Title: {{ public_profile_user.user_profile.title }}</li>
 <li>Name: {{ public_profile_user.user_profile.full_name }} </li>
 <li>Role: {{ public_profile_user.user_profile.role }}</li>
+{% if public_profile_user.user_profile.get_role_display == 'professional' %}
+<li>Qualification: {{ public_profile_user.user_profile.qualification }}</li>
+<li>Job Title: {{ public_profile_user.user_profile.job_title }}</li>
+<li>Office Tel: {{ public_profile_user.user_profile.office_tel }}</li>
+<li>Office Email: {{ public_profile_user.user_profile.office_email }}</li>
+<li>Office Address: {{ public_profile_user.user_profile.office_address }}</li>
+{% endif %}
 </ul>
 
 {% if not is_associate %}
 <p><a href="{% url 'dashboard:add_associate' public_profile_user.id %}">Add user as associate</a></p>
-{% else %}
-{% comment %}
-<p><a href="#">Share note with {{ public_profile_user.first_name }}</a></p>
-<p><a href="#">Share notebook with {{ public_profile_user.first_name }}</a></p>
-{% endcomment %}
 {% endif %}
 
 {% if message %}

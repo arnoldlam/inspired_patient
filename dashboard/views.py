@@ -838,7 +838,7 @@ def AddMedicationNoteView(request):
 			pharmacy_telephone = form.cleaned_data['pharmacy_telephone']
 			date_and_time = form.cleaned_data['date_and_time']
 
-			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, note_content=note, 
+			new_note = MedicationNote(subject=subject, note_type=note_type, note_content=note, 
 				author=user, medication_name=medication_name, medication_dosage=medication_dosage, 
 				medication_frequency=medication_frequency, pharmacy_name=pharmacy_name, 
 				pharmacy_telephone=pharmacy_telephone, date_and_time=date_and_time,
@@ -850,6 +850,7 @@ def AddMedicationNoteView(request):
 			if form.cleaned_data['follow_up'] != '':
 				new_note.follow_up = form.cleaned_data['follow_up']
 
+			new_note.pharmacy_address = address
 			new_note.save()
 
 			# If user uploaded an attachment, relate it to the new note
@@ -888,12 +889,13 @@ def AddMedicationNoteView(request):
 				# Create additional notes for recurring note
 				end_date = form.cleaned_data['end_date']
 				recurring_date = date_and_time
+				recurring_date = recurring_date + time_to_add
 				while recurring_date < end_date:
-					recurring_date = recurring_date + time_to_add
 					new_note.pk = None
 					new_note.id = None
 					new_note.date_and_time = recurring_date
 					new_note.save()
+					recurring_date = recurring_date + time_to_add
 			
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

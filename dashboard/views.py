@@ -50,9 +50,10 @@ def CreateNewUserView(request):
 
 				return HttpResponseRedirect('/dashboard/')
 			else:
-				return render(request, 'dashboard/create_user.html', {
-					'form':form,
-				})
+				form = 	CreateProfessionalProfileForm()
+			return render(request, 'dashboard/create_user.html', {
+				'form':form,
+			})
 		user_form = UserCreationForm(request.POST, prefix='user_form')
 		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 

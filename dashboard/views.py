@@ -307,6 +307,7 @@ def AddGeneralNoteView(request):
 	return render(request, 'dashboard/add_general_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -365,6 +366,7 @@ def AddInstructionNoteView(request):
 	return render(request, 'dashboard/add_instruction_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -425,6 +427,7 @@ def AddCommunicationNoteView(request):
 	return render(request, 'dashboard/add_communication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -493,6 +496,7 @@ def AddProcedureNoteView(request):
 	return render(request, 'dashboard/add_procedure_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -582,6 +586,7 @@ def AddSelfCareNoteView(request):
 	return render(request, 'dashboard/add_self_care_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -642,6 +647,7 @@ def AddResourceNoteView(request):
 	return render(request, 'dashboard/add_resource_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -730,6 +736,7 @@ def AddAppointmentNoteView(request):
 	return render(request, 'dashboard/add_appointment_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -809,6 +816,7 @@ def AddContactNoteView(request):
 	return render(request, 'dashboard/add_contact_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 @login_required
@@ -915,6 +923,7 @@ def AddMedicationNoteView(request):
 	return render(request, 'dashboard/add_medication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
+		'user':user,
 	})
 
 # View for note details
@@ -971,6 +980,7 @@ def ShareNote(request, note_id):
 
 	return render(request, 'dashboard/share_note.html', {
 		'form':form,
+		'user':user,
 	})
 
 @login_required
@@ -999,7 +1009,8 @@ def AddNotebookView(request):
 	else:
 		form = AddNotebookForm()
 	return render(request, 'dashboard/add_notebook.html', {
-		'form':form
+		'form':form,
+		'user':user,
 	})
 
 @login_required

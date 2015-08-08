@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Add a reply</title>
-</head>
-<body>
-	{% include "dashboard/header.html" %}
+{% include "dashboard/header.html" %}
 
-	<h3>Add a reply</h3>
+<h3>Add a reply</h3>
 
-	<form action="{% url 'dashboard:add_note_reply' note_id %}" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{ form.as_p }} <br>
-	<input type="submit" value="Add reply" />
-	</form>
+<form action="{% url 'dashboard:add_note_reply' note_id %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+{{ form.as_p }} <br>
+<input type="submit" value="Add reply" />
+</form>
+
 </body>
 </html>

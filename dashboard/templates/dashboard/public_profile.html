@@ -7,8 +7,8 @@
 <ul>
 <li>Title: {{ public_profile_user.user_profile.title }}</li>
 <li>Name: {{ public_profile_user.user_profile.full_name }} </li>
-<li>Role: {{ public_profile_user.user_profile.role }}</li>
-{% if public_profile_user.user_profile.get_role_display == 'professional' %}
+<li>Role: {{ public_profile_user.user_profile.get_role_display }}</li>
+{% if public_profile_user.user_profile.role == 'professional' %}
 <li>Qualification: {{ public_profile_user.user_profile.qualification }}</li>
 <li>Job Title: {{ public_profile_user.user_profile.job_title }}</li>
 <li>Office Tel: {{ public_profile_user.user_profile.office_tel }}</li>

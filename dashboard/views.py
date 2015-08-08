@@ -124,7 +124,7 @@ def CreateNewProfessionalView(request):
 
 			return HttpResponseRedirect('/dashboard/')
 	else:
-		form = 	CreateProfessionalProfileForm()
+		form = CreateProfessionalProfileForm()
 	return render(request, 'dashboard/create_user.html', {
 		'form':form,
 	})

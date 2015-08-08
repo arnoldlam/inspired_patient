@@ -49,76 +49,79 @@ def CreateNewUserView(request):
 				user_profile.save()
 
 				return HttpResponseRedirect('/dashboard/')
-		else:
-			user_form = UserCreationForm(request.POST, prefix='user_form')
-			user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
+			else:
+				return render(request, 'dashboard/create_user.html', {
+					'form':form,
+				})
+		user_form = UserCreationForm(request.POST, prefix='user_form')
+		user_profile_form = UserProfileCreationForm(request.POST, request.FILES, prefix='user_profile_form')
 
-			# Save new user if user_form is valid
-			if user_form.is_valid():
-				new_user = user_form.save()
+		# Save new user if user_form is valid
+		if user_form.is_valid():
+			new_user = user_form.save()
 
-				# Check if user_profile_form is valid and save variables to user profile
-				if user_profile_form.is_valid():			
-					medical_history = user_profile_form.cleaned_data['medical_history']
-					phone_number = user_profile_form.cleaned_data['phone_number']
-					title = user_profile_form.cleaned_data['title']
-					profile_picture = user_profile_form.cleaned_data['profile_picture']
-					first_name = user_profile_form.cleaned_data['first_name']
-					last_name = user_profile_form.cleaned_data['last_name']
+			# Check if user_profile_form is valid and save variables to user profile
+			if user_profile_form.is_valid():			
+				medical_history = user_profile_form.cleaned_data['medical_history']
+				phone_number = user_profile_form.cleaned_data['phone_number']
+				title = user_profile_form.cleaned_data['title']
+				profile_picture = user_profile_form.cleaned_data['profile_picture']
+				first_name = user_profile_form.cleaned_data['first_name']
+				last_name = user_profile_form.cleaned_data['last_name']
 
-					# Address Information
-					address_unit = user_profile_form.cleaned_data['address_unit']
-					address_street = user_profile_form.cleaned_data['address_street']
-					# address_city = user_profile_form.cleaned_data['address_city']
-					# address_province = user_profile_form.cleaned_data['address_province']
-					# address_country = user_profile_form.cleaned_data['address_country']
-					# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
+				# Address Information
+				address_unit = user_profile_form.cleaned_data['address_unit']
+				address_street = user_profile_form.cleaned_data['address_street']
+				# address_city = user_profile_form.cleaned_data['address_city']
+				# address_province = user_profile_form.cleaned_data['address_province']
+				# address_country = user_profile_form.cleaned_data['address_country']
+				# address_postal_code = user_profile_form.cleaned_data['address_postal_code']
 
-					new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
-						address_city="Vancouver", address_province="BC", address_country="Canada",
-						address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
-						title=title, profile_picture=profile_picture,
-					)
-					new_user_profile.save()
+				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
+					address_city="Vancouver", address_province="BC", address_country="Canada",
+					address_postal_code="V6K 3C8", medical_history=medical_history, phone_number=phone_number,
+					title=title, profile_picture=profile_picture,
+				)
+				new_user_profile.save()
 
-					# Login as new user
-					username = user_form.cleaned_data['email']
-					password = user_form.cleaned_data['password1']
-					user = authenticate(username=username, password=password)
-					login(request, user)
+				# Login as new user
+				username = user_form.cleaned_data['email']
+				password = user_form.cleaned_data['password1']
+				user = authenticate(username=username, password=password)
+				login(request, user)
 
-					# Save first and last name into user before loading template
-					user.first_name = first_name
-					user.last_name = last_name
-					user.save()
+				# Save first and last name into user before loading template
+				user.first_name = first_name
+				user.last_name = last_name
+				user.save()
 
-					# Auto-add notebooks during account creation
+				# Auto-add notebooks during account creation
 
-					new_contact_notebook = Notebook(name='Contacts', description='Place all your contacts here',)
-					new_contact_notebook.save()
-					new_contact_notebook.editors.add(user)
+				new_contact_notebook = Notebook(name='Contacts', description='Place all your contacts here',)
+				new_contact_notebook.save()
+				new_contact_notebook.editors.add(user)
 
-					new_appointment_notebook = Notebook(name='Appointments', description='Place all your appointment notes here',)
-					new_appointment_notebook.save()
-					new_appointment_notebook.editors.add(user)
+				new_appointment_notebook = Notebook(name='Appointments', description='Place all your appointment notes here',)
+				new_appointment_notebook.save()
+				new_appointment_notebook.editors.add(user)
 
-					new_medications_notebook = Notebook(name='Medications', description='Place all your medications here',)
-					new_medications_notebook.save()
-					new_medications_notebook.editors.add(user)
+				new_medications_notebook = Notebook(name='Medications', description='Place all your medications here',)
+				new_medications_notebook.save()
+				new_medications_notebook.editors.add(user)
 
-					new_notebook = Notebook(name='Notes', description='Place all your miscellaneous notes here',)
-					new_notebook.save()
-					new_notebook.editors.add(user)
+				new_notebook = Notebook(name='Notes', description='Place all your miscellaneous notes here',)
+				new_notebook.save()
+				new_notebook.editors.add(user)
 
-					# Render addition form to fill out if professional
-					if user_profile_form.cleaned_data['is_professional'] == True:
-						form = CreateProfessionalProfileForm()
-						return render(request, 'dashboard/create_professional.html', {
-							'form':form,
-						})
+				# Render addition form to fill out if professional
+				if user_profile_form.cleaned_data['is_professional'] == True:
+					form = CreateProfessionalProfileForm()
+					return render(request, 'dashboard/create_professional.html', {
+						'form':form,
+					})
 
-					# Return to dashboard if not professional
-					return HttpResponseRedirect('/dashboard/')
+				# Return to dashboard if not professional
+				return HttpResponseRedirect('/dashboard/')
 	else:
 		user_form = UserCreationForm(prefix='user_form')
 		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')

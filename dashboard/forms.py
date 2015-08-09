@@ -8,21 +8,6 @@ from django.utils import timezone
 import datetime
 from django.utils.translation import gettext as _
 
-# Base class for all forms that add address
-class AddressForm(forms.Form):
-	ADDRESS_COUNTRY_CHOICES = (
-		('CA', 'Canada'),
-		('US', 'United States'),
-		('UK', 'United Kingdom'),
-	)
-
-	unit = forms.CharField(max_length=10, initial="27")
-	street = forms.CharField(max_length=50, initial="Memory Lane")
-	city = forms.CharField(max_length=30, initial="Vancouver")
-	province = forms.CharField(max_length=30, initial="BC")
-	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
-	postal_code = forms.CharField(max_length=10, initial="V6K3C9")
-
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddNoteForm, self).__init__(*args, **kwargs)
@@ -252,7 +237,19 @@ class CreateProfessionalProfileForm(forms.Form, AddressForm):
 	job_title = forms.CharField(label='Job Title', max_length=100)
 	office_tel = forms.CharField(label='Office Tel', max_length=50)
 	office_email = forms.EmailField(label='Office Email', max_length=60)
-	office_address = forms.CharField(label='Office Address', max_length=200)
+
+	ADDRESS_COUNTRY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
+
+	unit = forms.CharField(max_length=10, initial="27")
+	street = forms.CharField(max_length=50, initial="Memory Lane")
+	city = forms.CharField(max_length=30, initial="Vancouver")
+	province = forms.CharField(max_length=30, initial="BC")
+	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
+	postal_code = forms.CharField(max_length=10, initial="V6K3C9")
 
 class EditProfileForm(forms.Form):
 	ROLE_CHOICES = (

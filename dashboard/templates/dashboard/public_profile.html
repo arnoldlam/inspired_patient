@@ -15,11 +15,11 @@
 <li>Office Email: {{ public_profile_user.user_profile.office_email }}</li>
 <li>Office Address:</li>
 <iframe
-  width="600"
-  height="450"
+  width="300"
+  height="225"
   frameborder="0" style="border:0"
   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
-    &q=Space+Needle,Seattle+WA" allowfullscreen>
+    &q={{ maps_query }}" allowfullscreen>
 </iframe>
 {% endif %}
 </ul>

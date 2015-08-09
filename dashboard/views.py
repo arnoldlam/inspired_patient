@@ -128,12 +128,12 @@ def CreateNewProfessionalView(request):
 			user_profile.job_title = job_title
 			user_profile.office_tel = office_tel
 			user_profile.office_email = office_email
-			user_profile_form.office_address_street = street
-			user_profile_form.office_address_unit = unit
-			user_profile_form.office_address_city = city
-			user_profile_form.office_address_province = province
-			user_profile_form.office_address_country = country
-			user_profile_form.office_address_postal_code = postal_code
+			user_profile.office_address_street = street
+			user_profile.office_address_unit = unit
+			user_profile.office_address_city = city
+			user_profile.office_address_province = province
+			user_profile.office_address_country = country
+			user_profile.office_address_postal_code = postal_code
 			user_profile.role = 'professional'
 
 			# Save user profile

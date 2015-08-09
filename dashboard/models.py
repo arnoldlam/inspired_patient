@@ -63,7 +63,7 @@ class UserProfile(models.Model):
 	office_tel = models.CharField('Office Telephone', max_length=50, blank=True)
 	office_email = models.EmailField('Office Email', blank=True)
 	address = models.CharField('Office Address', max_length=250, blank=True)
-	office_address = models.OneToOneField(Address, related_name='professional_user_profile_office', blank=True, null=True)
+	address_office = models.OneToOneField(Address, related_name='professional_user_profile_office', blank=True, null=True)
 
 	def __unicode__(self):
 		return self.user.username

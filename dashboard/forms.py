@@ -281,14 +281,17 @@ class EditProfileForm(forms.Form):
 		current_user = User.objects.get(pk=self.user_id)
 		current_user_profile = current_user.user_profile
 
-		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title)	
+		ROLE_CHOICES = (
+			('patient', 'Patient'),
+			('caregiver', 'Caregiver'),
+			('parent', 'Parent'),
+			('professional', 'Professional'),
+		)
 
-	ROLE_CHOICES = (
-		('patient', 'Patient'),
-		('caregiver', 'Caregiver'),
-		('parent', 'Parent'),
-		('professional', 'Professional'),
-	)
+		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title)
+		self.fields['first_name'] = forms.CharField(label='First Name', max_length=20, intial=current_user.first_name)
+		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, intial=current_user.last_name)
+		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, intial=current_user_profile.role))
 	
 	ADDRESS_CITY_CHOICES = (
 		('CA', 'Canada'),
@@ -297,10 +300,6 @@ class EditProfileForm(forms.Form):
 	)
 
 	profile_picture = forms.ImageField()
-	# title = forms.CharField(label='Title', max_length=15, default=self.current_user_profile.title)	
-	first_name = forms.CharField(label='First Name', max_length=20)
-	last_name = forms.CharField(label='Last Name', max_length=20)
-	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)
 
 	address_unit = forms.CharField(label='Unit', max_length=10)
 	address_street = forms.CharField(label='Street', max_length=50)

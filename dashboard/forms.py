@@ -169,10 +169,23 @@ class AddMedicationNoteForm(AddNoteForm):
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
 
-class AddNotebookForm(ModelForm):
-	class Meta:
-		model = Notebook
-		fields = ['name', 'description', 'editors']
+class AddNotebookForm(forms.Form):
+	def __init__(self, user_id, *args, **kwargs):
+		super(AddNoteForm, self).__init__(*args, **kwargs)
+
+		self.user_id = user_id
+		current_user = User.objects.get(pk=self.user_id)
+		associates = current_user.user_profile.associates.all()
+
+		list_of_names = []
+		for associate in associates:
+			name = associate.full_name()
+			list_of_names.append(name)
+		self.user_choices = zip(associates, list_of_names)
+
+		self.fields['name'] = forms.CharField(max_length=20)
+		self.fields['description'] = forms.CharField(max_legnth=4000)
+		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False)
 
 class AddNoteReplyForm(ModelForm):
 	class Meta:

@@ -172,7 +172,7 @@ class SearchForUserForm(forms.Form):
 class AddNotebookForm(ModelForm):
 	class Meta:
 		model = Notebook
-		fields = ['name', 'description']
+		fields = ['name', 'description', 'editors']
 
 class AddNoteReplyForm(ModelForm):
 	class Meta:

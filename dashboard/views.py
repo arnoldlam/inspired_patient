@@ -101,6 +101,19 @@ def CreateNewProfessionalView(request):
 	if request.method == 'POST':
 		form = CreateProfessionalProfileForm(request.POST)
 		if form.is_valid():
+			unit = form.cleaned_data['unit']
+			street = form.cleaned_data['street']
+			city = form.cleaned_data['city']
+			province = form.cleaned_data['province']
+			country = form.cleaned_data['country']
+			postal_code = form.cleaned_data['postal_code']
+
+			address = Address(street=street, unit=unit, city=city, province=province, country=country,
+				postal_code=postal_code
+			)
+
+			address.save()
+
 			qualification = form.cleaned_data['qualification']
 			job_title = form.cleaned_data['job_title']
 			office_tel = form.cleaned_data['office_tel']
@@ -116,7 +129,7 @@ def CreateNewProfessionalView(request):
 			user_profile.job_title = job_title
 			user_profile.office_tel = office_tel
 			user_profile.office_email = office_email
-			user_profile.office_address = office_address
+			user_profile_form.office_address = address
 			user_profile.role = 'professional'
 
 			# Save user profile

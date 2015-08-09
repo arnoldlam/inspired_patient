@@ -44,7 +44,7 @@ class UserProfile(models.Model):
 	job_title = models.CharField('Job Title', max_length=100, blank=True)
 	office_tel = models.CharField('Office Telephone', max_length=50, blank=True)
 	office_email = models.EmailField('Office Email', blank=True)
-	office_address = models.CharField('Office Address', max_length=250, blank=True)
+	office_address = models.ForeignKey(Address, blank=True, null=True)
 
 	def __unicode__(self):
 		return self.user.username

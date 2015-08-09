@@ -281,7 +281,7 @@ class EditProfileForm(forms.Form):
 		current_user = User.objects.get(pk=self.user_id)
 		current_user_profile = current_user.user_profile
 
-		self.fields['title'] = forms.CharField(label='Title', max_length=15, default=current_user_profile.title)	
+		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title)	
 
 	ROLE_CHOICES = (
 		('patient', 'Patient'),

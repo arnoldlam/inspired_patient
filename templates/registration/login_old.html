@@ -1,0 +1,15 @@
+<h2>Inspired Health Login Page</h2>
+
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+	{% csrf_token %}
+	Username: <input type="text" name="username"></input><br>
+	Password: <input type="password" name="password"</input><br><br>
+	<input type="submit" value="Sign in"/>
+	<input type="hidden" name="next" value="/dashboard/" />
+</form>
+
+<a href="{% url 'create_user' %}">Sign Up</a>
+
+{% if form.errors %}
+<p>Invalid login credentials</p>
+{% endif %}

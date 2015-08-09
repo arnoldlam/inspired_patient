@@ -251,8 +251,8 @@ def NotesView(request):
 	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 
-	notebooks_read_only = user.notebooks_read_only.all()
-	notebooks_read_write = user.notebooks_read_write.all()
+	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 
 	return render(request, 'dashboard/notes.html', {
 		'notes_read_write':notes_read_write,

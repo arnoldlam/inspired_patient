@@ -30,6 +30,7 @@
 <p>Team Member: <a href="{% url 'dashboard:public_profile' note.recipient_team_member.id %}"></a></p>
 {% if note.doctor %}
 <p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
+{% endif %}
 {% if note.clinic %}
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>
 {% endif %}

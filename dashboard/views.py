@@ -1028,9 +1028,13 @@ def AddNotebookView(request):
 
 			# Create and save new notebook object
 			new_notebook = Notebook(name=notebook_name, description=notebook_description)
-			# new_notebook = form.save(commit=False)
 			new_notebook.save()
-			# form.save_m2m()
+
+			# If list of users was in post request, add them to notebook
+			if form.cleaned_data['choices_for_editors'] is not None:
+				for user in form.cleaned_data['choices_for_editors']:
+					user = User.objects.get(username=user)
+					user.notebooks_read_write.add(new_notebook)
 
 			# Add new notebook to current user's read-write notebooks
 			user = request.user

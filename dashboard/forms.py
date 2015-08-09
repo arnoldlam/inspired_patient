@@ -8,6 +8,14 @@ from django.utils import timezone
 import datetime
 from django.utils.translation import gettext as _
 
+class AddressForm(forms.Form)
+	unit = forms.CharField(label='Unit', max_length=10, initial="27")
+	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
+	city = forms.CharField(label='City', max_length=30, initial="Vancouver")
+	province = forms.CharField(label='Province', max_length=30, initial="BC")
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES)
+	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
+
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddNoteForm, self).__init__(*args, **kwargs)
@@ -192,7 +200,7 @@ class UserProfileCreationForm(forms.Form):
 	# address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
 
-class CreateProfessionalProfileForm(forms.Form):
+class CreateProfessionalProfileForm(forms.Form, AddressForm):
 	qualification = forms.CharField(label='Qualification', max_length=100)
 	job_title = forms.CharField(label='Job Title', max_length=100)
 	office_tel = forms.CharField(label='Office Tel', max_length=50)

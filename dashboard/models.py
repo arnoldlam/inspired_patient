@@ -88,7 +88,7 @@ class UserProfile(models.Model):
 class Clinic(models.Model):
 	users = models.ManyToManyField(User, related_name='clinics')
 	name = models.CharField(max_length=100)
-	address = models.CharField(max_length=100)
+	address = models.OneToOneField(Address, related_name="clinic")
 	email = models.CharField(max_length=50)
 	phone_number = models.CharField(max_length=20)
 

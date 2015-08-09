@@ -8,6 +8,12 @@ from django.utils import timezone
 import datetime
 from django.utils.translation import gettext as _
 
+"""
+
+Note related forms
+
+"""
+
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddNoteForm, self).__init__(*args, **kwargs)
@@ -162,6 +168,12 @@ class AddNoteReplyForm(ModelForm):
 	class Meta:
 		model = NoteReply
 		fields = ['title', 'content']
+
+"""
+
+User-related forms
+
+"""
 
 # Taken from Django Docs. Modified to include email instead of username
 class UserCreationForm(forms.ModelForm):

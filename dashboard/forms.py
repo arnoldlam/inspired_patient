@@ -55,12 +55,12 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		clinics = user.clinics.all()
 		team_members = user.user_profile.associates.all()
 
+		self.fields['choice_for_team_members'] = forms.ModelChoiceField(label='Team Member', queryset=team_members, 
+			empty_label="Select a Team Member")
 		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
 			empty_label="Select a Doctor")
 		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
 			empty_label="Select a Clinic")
-		self.fields['choice_for_team_members'] = forms.ModelChoiceField(label='Team Member', queryset=team_members, 
-			empty_label="Select a Team Member")
 
 class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (

@@ -151,8 +151,9 @@ class CommunicationNote(Note):
 		('urgent', 'Urgent'),
 	)
 	importance = models.CharField(max_length=20, choices=IMPORTANCE_CHOICES, default='read')
-	doctor = models.ForeignKey(User, related_name='communication_notes', null=True)
-	clinic = models.ForeignKey(Clinic, related_name='communication_notes', null=True)
+	doctor = models.ForeignKey(User, related_name='communication_notes', null=True, blank=True)
+	clinic = models.ForeignKey(Clinic, related_name='communication_notes', null=True, blank=True)
+	recipient_team_member = models.ForeignKey(User, related_name='communication_notes', null=True)
 
 class ProcedureNote(Note):	
 	procedure = models.TextField()

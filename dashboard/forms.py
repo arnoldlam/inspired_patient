@@ -232,7 +232,7 @@ class UserProfileCreationForm(forms.Form):
 	# address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
 
-class CreateProfessionalProfileForm(forms.Form, AddressForm):
+class CreateProfessionalProfileForm(forms.Form):
 	qualification = forms.CharField(label='Qualification', max_length=100)
 	job_title = forms.CharField(label='Job Title', max_length=100)
 	office_tel = forms.CharField(label='Office Tel', max_length=50)

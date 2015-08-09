@@ -1179,8 +1179,8 @@ def PublicProfileView(request, user_id):
 	# Get maps query for Google Maps API for Office location
 	if public_profile_user.user_profile.role == 'professional':
 		public_profile = public_profile_user.user_profile
-		maps_query = public_profile.office_address_unit + "+" + public_profile.office_address_street 
-			+ "+" + public_profile.office_address_city
+		maps_query = public_profile.office_address_unit + "+" + public_profile.office_address_street + "+" 
+		+ public_profile.office_address_city
 	# Get maps query for address for standard users
 	else:
 		maps_query = ''

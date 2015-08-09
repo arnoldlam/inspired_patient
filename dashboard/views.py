@@ -203,7 +203,8 @@ def EditProfile(request):
 			user_profile.phone_number = phone_number
 			user_profile.role = role
 			user_profile.title = title
-			user_profile.profile_picture = request.FILES['profile_picture']
+			if form.cleaned_data['address_postal_code'] is not None:
+				user_profile.profile_picture = form.cleaned_data['address_postal_code']
 
 			user.save()
 			user_profile.save()

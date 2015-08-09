@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, Group
 import datetime
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
+from urllib import quote_plus
 
 class Address(models.Model):
 	ADDRESS_COUNTRY_CHOICES = (

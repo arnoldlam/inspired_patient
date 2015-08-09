@@ -171,7 +171,7 @@ class SearchForUserForm(forms.Form):
 
 class AddNotebookForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
-		super(AddNoteForm, self).__init__(*args, **kwargs)
+		super(AddNotebookForm, self).__init__(*args, **kwargs)
 
 		self.user_id = user_id
 		current_user = User.objects.get(pk=self.user_id)

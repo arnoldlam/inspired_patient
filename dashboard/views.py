@@ -1019,8 +1019,9 @@ def ShareNote(request, note_id):
 
 @login_required
 def AddNotebookView(request):
+	user = request.user
 	if request.method == 'POST':
-		form = AddNotebookForm(request.POST)
+		form = AddNotebookForm(user.id, request.POST)
 		if form.is_valid():
 			notebook_name = form.cleaned_data['name']
 			notebook_description = form.cleaned_data['description']
@@ -1041,8 +1042,7 @@ def AddNotebookView(request):
 			# Redirecting to notebook detail
 			return HttpResponseRedirect(redirect_url)
 	else:
-		form = AddNotebookForm()
-	user = request.user
+		form = AddNotebookForm(user.id)
 	return render(request, 'dashboard/add_notebook.html', {
 		'form':form,
 		'user':user,

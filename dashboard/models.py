@@ -11,24 +11,6 @@ import datetime
 from django.utils import timezone
 from django.core.files.storage import FileSystemStorage
 
-class Address(models.Model):
-	ADDRESS_COUNTRY_CHOICES = (
-		('CA', 'Canada'),
-		('US', 'United States'),
-		('UK', 'United Kingdom'),
-	)
-
-	street = models.CharField('Street', max_length=50)
-	unit = models.CharField('Unit', max_length=10)
-	city = models.CharField('City', max_length=30)
-	province = models.CharField('Province / State', max_length=30)
-	country = models.CharField('Country', max_length=30, choices = ADDRESS_COUNTRY_CHOICES, 
-		default='CA')
-	postal_code = models.CharField('Postal Code', max_length=10) 
-
-	def __unicode__(self):
-		return self.unit + " " + self.street + ", " + self.city + ", " + self.province
-
 class UserProfile(models.Model):
 	ADDRESS_CITY_CHOICES = (
 		('CA', 'Canada'),
@@ -62,6 +44,7 @@ class UserProfile(models.Model):
 	job_title = models.CharField('Job Title', max_length=100, blank=True)
 	office_tel = models.CharField('Office Telephone', max_length=50, blank=True)
 	office_email = models.EmailField('Office Email', blank=True)
+	office_address = models.CharField('Office Address', max_length=250, blank=True)
 
 	def __unicode__(self):
 		return self.user.username
@@ -87,7 +70,23 @@ class Clinic(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Address(models.Model):
+	ADDRESS_COUNTRY_CHOICES = (
+		('CA', 'Canada'),
+		('US', 'United States'),
+		('UK', 'United Kingdom'),
+	)
 
+	street = models.CharField('Street', max_length=50)
+	unit = models.CharField('Unit', max_length=10)
+	city = models.CharField('City', max_length=30)
+	province = models.CharField('Province / State', max_length=30)
+	country = models.CharField('Country', max_length=30, choices = ADDRESS_COUNTRY_CHOICES, 
+		default='CA')
+	postal_code = models.CharField('Postal Code', max_length=10) 
+
+	def __unicode__(self):
+		return self.unit + " " + self.street + ", " + self.city + ", " + self.province
 	
 class Note(models.Model):
 	NOTE_TYPE_CHOICES = (

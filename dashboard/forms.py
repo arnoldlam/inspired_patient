@@ -8,7 +8,7 @@ from django.utils import timezone
 import datetime
 from django.utils.translation import gettext as _
 
-class AddressForm(forms.Form)
+class AddressForm(forms.Form):
 	unit = forms.CharField(label='Unit', max_length=10, initial="27")
 	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
 	city = forms.CharField(label='City', max_length=30, initial="Vancouver")

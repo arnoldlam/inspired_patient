@@ -238,7 +238,7 @@ def ClinicView(request):
 
 	return render(request, 'dashboard/clinics.html', {
 		'clinics':clinics,
-		})
+	})
 
 # View for viewing all notes and notebooks
 @login_required

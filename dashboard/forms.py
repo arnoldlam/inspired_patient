@@ -278,8 +278,10 @@ class EditProfileForm(forms.Form):
 		super(AddNoteForm, self).__init__(*args, **kwargs)
 
 		self.user_id = user_id
-		self.current_user = User.objects.get(pk=self.user_id)
-		self.current_user_profile = current_user.user_profile
+		current_user = User.objects.get(pk=self.user_id)
+		current_user_profile = current_user.user_profile
+
+		self.fields['title'] = forms.CharField(label='Title', max_length=15, default=current_user_profile.title)	
 
 	ROLE_CHOICES = (
 		('patient', 'Patient'),
@@ -295,7 +297,7 @@ class EditProfileForm(forms.Form):
 	)
 
 	profile_picture = forms.ImageField()
-	title = forms.CharField(label='Title', max_length=15, default=self.current_user_profile.title)	
+	# title = forms.CharField(label='Title', max_length=15, default=self.current_user_profile.title)	
 	first_name = forms.CharField(label='First Name', max_length=20)
 	last_name = forms.CharField(label='Last Name', max_length=20)
 	role = forms.ChoiceField(label='Role', choices=ROLE_CHOICES)

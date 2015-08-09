@@ -184,7 +184,7 @@ class AddNotebookForm(forms.Form):
 		self.user_choices = zip(associates, list_of_names)
 
 		self.fields['name'] = forms.CharField(max_length=20)
-		self.fields['description'] = forms.CharField(max_legnth=4000)
+		self.fields['description'] = forms.CharField(max_length=4000)
 		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False)
 
 class AddNoteReplyForm(ModelForm):

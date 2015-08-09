@@ -287,25 +287,23 @@ class EditProfileForm(forms.Form):
 			('parent', 'Parent'),
 			('professional', 'Professional'),
 		)
+		ADDRESS_CITY_CHOICES = (
+			('CA', 'Canada'),
+			('US', 'United States'),
+			('UK', 'United Kingdom'),
+		)
 
 		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title)
 		self.fields['first_name'] = forms.CharField(label='First Name', max_length=20, initial=current_user.first_name)
 		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, initial=current_user.last_name)
+		self.fields['profile_picture'] = forms.ImageField(initial=current_user_profile.profile_picture)
 		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, initial=current_user_profile.role)
 		self.fields['medical_history'] = forms.CharField(label='Medical History', max_length=4000, initial=current_user_profile.medical_history)
 		self.fields['phone_number'] = forms.CharField(label='Phone Number', max_length=20, initial=current_user_profile.phone_number)
-		self.fields['profile_picture'] = forms.ImageField(initial=current_user_profile.profile_picture)
-	
-	ADDRESS_CITY_CHOICES = (
-		('CA', 'Canada'),
-		('US', 'United States'),
-		('UK', 'United Kingdom'),
-	)
 
-	address_unit = forms.CharField(label='Unit', max_length=10)
-	address_street = forms.CharField(label='Street', max_length=50)
-	address_city = forms.CharField(label='City', max_length=30)
-	address_province = forms.CharField(label='Province', max_length=30)
-	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
-	address_postal_code = forms.CharField(label='Postal Code', max_length=10)
-
+		self.fields['address_unit'] = forms.CharField(label='Unit', max_length=10, initial=current_user_profile.address_unit)
+		self.fields['address_street'] = forms.CharField(label='Street', max_length=50, initial=current_user_profile.address_street)
+		self.fields['address_city'] = forms.CharField(label='City', max_length=30, initial=current_user_profile.address_city)
+		self.fields['address_province'] = forms.CharField(label='Province', max_length=30, initial=current_user_profile.address_province)
+		self.fields['address_country'] = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES, initial=current_user_profile.address_country)
+		self.fields['address_postal_code'] = forms.CharField(label='Postal Code', max_length=10, initial=current_user_profile.address_postal_code)

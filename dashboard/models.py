@@ -31,7 +31,7 @@ class Address(models.Model):
 		return self.unit + " " + self.street + ", " + self.city + ", " + self.province
 
 	def mapQuery(self):
-		return urllib.quote_plus(self.unit + " " + self.street + " " + self.city + " " + self.province + " " + self.country)
+		return self.unit + "+" + self.street + "+" + self.city
 
 class UserProfile(models.Model):
 	ADDRESS_CITY_CHOICES = (

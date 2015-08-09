@@ -1175,11 +1175,19 @@ def PublicProfileView(request, user_id):
 	logged_in_user = request.user
 
 	is_associate = logged_in_user.user_profile.is_associate(public_profile_user)
+	
+	# Get maps query for Google Maps API
+	if public_profile_user.user_profile.role == 'professional':
+		public_profile = public_profile_user.user_profile
+		office_address_query = public_profile.unit + "+" + public_profile.street + "+" + public_profile.city
+	else:
+		office_address_query = ''
 
 	return render(request, 'dashboard/public_profile.html', {
 		'user':logged_in_user,
 		'public_profile_user':public_profile_user,
 		'is_associate':is_associate,
+		'maps_query':office_address_query,
 	})
 
 @login_required

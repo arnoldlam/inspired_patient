@@ -27,9 +27,9 @@
 
 {% if note.note_type == 'communication_note' %}
 <p>Importance: {{ note.importance }}</p>
-<p>Recipient Team Member: <a href="{% url 'dashboard:public_profile' note.recipient_team_member.id %}"></a>{{ note.recipient_team_member }}</p>
+<p>Recipient Team Member: <a href="{% url 'dashboard:public_profile' note.recipient_team_member.id %}">{{ note.recipient_team_member.user_profile.full_name }}</a></p>
 {% if note.doctor %}
-<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor }}</a></p>
+<p>Doctor: <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor.user_profile.full_name }}</a></p>
 {% endif %}
 {% if note.clinic %}
 <p>Clinic: <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a></p>

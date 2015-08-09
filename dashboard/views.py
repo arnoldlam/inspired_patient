@@ -405,10 +405,10 @@ def AddCommunicationNoteView(request):
 				importance=importance, recipient_team_member=team_member)
 
 			# Optional parameters to be added to new_note object
-			if 'choice_for_doctor' in form.cleaned_data:
+			if form.cleaned_data['choice_for_doctor'] is not None:
 				doctor = form.cleaned_data['choice_for_doctor'].user
 				new_note.doctor = doctor
-			if 'choice_for_clinic' in form.cleaned_data:
+			if form.cleaned_data['choice_for_clinic'] is not None:
 				clinic = form.cleaned_data['choice_for_clinic']
 				new_note.clinic = clinic
 			if form.cleaned_data['url'] != '':

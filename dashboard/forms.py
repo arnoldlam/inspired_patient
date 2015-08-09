@@ -291,7 +291,7 @@ class EditProfileForm(forms.Form):
 		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title)
 		self.fields['first_name'] = forms.CharField(label='First Name', max_length=20, intial=current_user.first_name)
 		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, intial=current_user.last_name)
-		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, intial=current_user_profile.role))
+		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, intial=current_user_profile.role)
 	
 	ADDRESS_CITY_CHOICES = (
 		('CA', 'Canada'),

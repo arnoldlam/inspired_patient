@@ -84,8 +84,7 @@
   width="300"
   height="225"
   frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
-    &q={{ note.pharmacy_address|escape }}" allowfullscreen>
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc&q={{ note.pharmacy_address.mapQuery }}" allowfullscreen>
 </iframe>
 {% endif %}
 

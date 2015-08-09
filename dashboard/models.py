@@ -64,6 +64,14 @@ class UserProfile(models.Model):
 	office_email = models.EmailField('Office Email', blank=True)
 	office_address = models.CharField('Office Address', max_length=250, blank=True)
 
+	office_address_street = models.CharField('Street', max_length=50, blank=True)
+	office_address_unit = models.CharField('Unit', max_length=10, blank=True)
+	office_address_city = models.CharField('City', max_length=30, blank=True)
+	office_address_province = models.CharField('Province / State', max_length=30, blank=True)
+	office_address_country = models.CharField('Country', max_length=30, choices = ADDRESS_CITY_CHOICES, 
+		default='CA', blank=True)
+	office_address_postal_code = models.CharField('Postal Code', max_length=10, blank=True)
+
 	def __unicode__(self):
 		return self.user.username
 

@@ -398,7 +398,7 @@ def AddCommunicationNoteView(request):
 			note = form.cleaned_data['note_content']
 
 			importance = form.cleaned_data['importance']
-			team_member = form.cleaned_data['choice_for_team_member']
+			team_member = form.cleaned_data['choice_for_team_member'].user
 
 			new_note = CommunicationNote(subject=subject, note_type='communication_note', 
 				note_content=note, date_created=timezone.now(), date_accessed=timezone.now(), author=user, 
@@ -407,7 +407,7 @@ def AddCommunicationNoteView(request):
 			# Optional parameters to be added to new_note object
 			if 'choice_for_doctor' in form.cleaned_data:
 				doctor = form.cleaned_data['choice_for_doctor']
-				new_note.doctor = doctor.user_profile
+				new_note.doctor = doctor.user
 			if 'choice_for_clinic' in form.cleaned_data:
 				clinic = form.cleaned_data['choice_for_clinic']
 				new_note.clinic = clinic

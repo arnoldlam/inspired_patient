@@ -238,18 +238,18 @@ class CreateProfessionalProfileForm(forms.Form, AddressForm):
 	office_tel = forms.CharField(label='Office Tel', max_length=50)
 	office_email = forms.EmailField(label='Office Email', max_length=60)
 
-	ADDRESS_COUNTRY_CHOICES = (
-		('CA', 'Canada'),
-		('US', 'United States'),
-		('UK', 'United Kingdom'),
-	)
+	# ADDRESS_COUNTRY_CHOICES = (
+	# 	('CA', 'Canada'),
+	# 	('US', 'United States'),
+	# 	('UK', 'United Kingdom'),
+	# )
 
-	unit = forms.CharField(max_length=10, initial="27")
-	street = forms.CharField(max_length=50, initial="Memory Lane")
-	city = forms.CharField(max_length=30, initial="Vancouver")
-	province = forms.CharField(max_length=30, initial="BC")
-	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
-	postal_code = forms.CharField(max_length=10, initial="V6K3C9")
+	# unit = forms.CharField(max_length=10, initial="27")
+	# street = forms.CharField(max_length=50, initial="Memory Lane")
+	# city = forms.CharField(max_length=30, initial="Vancouver")
+	# province = forms.CharField(max_length=30, initial="BC")
+	# country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
+	# postal_code = forms.CharField(max_length=10, initial="V6K3C9")
 
 class EditProfileForm(forms.Form):
 	ROLE_CHOICES = (

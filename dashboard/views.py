@@ -101,12 +101,12 @@ def CreateNewProfessionalView(request):
 	if request.method == 'POST':
 		form = CreateProfessionalProfileForm(request.POST)
 		if form.is_valid():
-			# unit = form.cleaned_data['unit']
-			# street = form.cleaned_data['street']
-			# city = form.cleaned_data['city']
-			# province = form.cleaned_data['province']
-			# country = form.cleaned_data['country']
-			# postal_code = form.cleaned_data['postal_code']
+			unit = form.cleaned_data['unit']
+			street = form.cleaned_data['street']
+			city = form.cleaned_data['city']
+			province = form.cleaned_data['province']
+			country = form.cleaned_data['country']
+			postal_code = form.cleaned_data['postal_code']
 
 			# address = Address(street=street, unit=unit, city=city, province=province, country=country,
 			# 	postal_code=postal_code
@@ -118,7 +118,6 @@ def CreateNewProfessionalView(request):
 			job_title = form.cleaned_data['job_title']
 			office_tel = form.cleaned_data['office_tel']
 			office_email = form.cleaned_data['office_email']
-			office_address = form.cleaned_data['office_address']
 			
 			# Get user and user profile
 			user = request.user
@@ -129,7 +128,12 @@ def CreateNewProfessionalView(request):
 			user_profile.job_title = job_title
 			user_profile.office_tel = office_tel
 			user_profile.office_email = office_email
-			user_profile_form.office_address = office_address
+			user_profile_form.office_address_street = street
+			user_profile_form.office_address_unit = unit
+			user_profile_form.office_address_city = city
+			user_profile_form.office_address_province = province
+			user_profile_form.office_address_country = country
+			user_profile_form.office_address_postal_code = postal_code
 			user_profile.role = 'professional'
 
 			# Save user profile

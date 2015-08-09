@@ -167,8 +167,9 @@ def Profile(request):
 # View for profile edit 
 @login_required
 def EditProfile(request):
+	user = request.user
 	if request.method == 'POST':
-		form = EditProfileForm(request.POST, request.FILES)
+		form = EditProfileForm(user.id, request.POST, request.FILES)
 		if form.is_valid():
 			first_name = form.cleaned_data['first_name']
 			last_name = form.cleaned_data['last_name']
@@ -209,9 +210,10 @@ def EditProfile(request):
 
 			return HttpResponseRedirect(reverse('dashboard:profile'))
 	else:
-		form = EditProfileForm()
+		form = EditProfileForm(user.id)
 	return render(request, 'dashboard/edit_profile.html', {
 		'form':form,
+		'user':user,
 	})
 
 @login_required

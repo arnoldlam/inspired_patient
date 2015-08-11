@@ -207,11 +207,11 @@ class UserCreationForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
-    email = forms.EmailField(help_text=_("Please enter your real email address"))
+    email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control'}))
     password1 = forms.CharField(label=_("Password"),
-        widget=forms.PasswordInput)
+        widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label=_("Password confirmation"),
-        widget=forms.PasswordInput,
+        widget=forms.PasswordInput(attrs={'class':'form-control'}),
         help_text=_("Enter the same password as above, for verification."))
 
     class Meta:

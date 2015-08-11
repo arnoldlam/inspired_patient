@@ -268,10 +268,10 @@ class UserProfileCreationForm(forms.Form):
 	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
 
 class CreateProfessionalProfileForm(forms.Form):
-	qualification = forms.CharField(label='Qualification', max_length=100)
-	job_title = forms.CharField(label='Job Title', max_length=100)
-	office_tel = forms.CharField(label='Office Tel', max_length=50)
-	office_email = forms.EmailField(label='Office Email', max_length=60)
+	qualification = forms.CharField(label='Qualification', max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
+	job_title = forms.CharField(label='Job Title', max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
+	office_tel = forms.CharField(label='Office Tel', max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
+	office_email = forms.EmailField(label='Office Email', max_length=60, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 	ADDRESS_COUNTRY_CHOICES = (
 		('CA', 'Canada'),
@@ -279,12 +279,12 @@ class CreateProfessionalProfileForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
-	unit = forms.CharField(max_length=10, initial="27")
-	street = forms.CharField(max_length=50, initial="Memory Lane")
-	city = forms.CharField(max_length=30, initial="Vancouver")
-	province = forms.CharField(max_length=30, initial="BC")
+	unit = forms.CharField(max_length=10, initial="27", widget=forms.TextInput(attrs={'class':'form-control'}))
+	street = forms.CharField(max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control'}))
+	city = forms.CharField(max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control'}))
+	province = forms.CharField(max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
 	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
-	postal_code = forms.CharField(max_length=10, initial="V6K3C9")
+	postal_code = forms.CharField(max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class EditProfileForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):

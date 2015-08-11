@@ -1,10 +1,83 @@
-<h3>Welcome to Inspired Health!</h3>
+{% load staticfiles %}
+{% include "dashboard/accounts_header.html" %}
 
-<h4>Please complete the following fields to create a new user</h4>
+    <section id="contact-page">
+        <div class="container" style="margin-top:100px;">
+            <div class="center">        
+                <h2>Create Your Professional Profile</h2>
+                <p class="lead">Fill in the remaining fields to create a Professional.</p>
+            </div> 
+            <div class="row contact-wrap"> 
+                <div class="error_message" style="display: none"></div>
+                <form class="sign_up_form" method="post" action="{% url 'create_professional' %}" style="color:#4E4E4E;font-size: 16px;font-weight: 300;" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <div class="form-group">
+                            <label>Qualification *</label>
+                            {{ user_profile_form.qualification }}
+                        </div>
+                        <div class="form-group">
+                            <label>Job Title *</label>
+                            {{ user_profile_form.job_title }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Tel *</label>
+                            {{ user_form.office_tel }}
+                        </div> 
+                        <div class="form-group">
+                            <label>Office Email *</label><br>
+                            {{ user_profile_form.office_email }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address Unit *</label>
+                            {{ user_profile_form.address_unit }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address Street *</label>
+                            {{ user_profile_form.address_street }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address City *</label>
+                            {{ user_profile_form.address_city }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address Province *</label>
+                            {{ user_profile_form.address_province }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address Country * </label><br>
+                            {{ user_profile_form.address_country }}
+                        </div>
+                        <div class="form-group">
+                            <label>Office Address Postal Code *</label>
+                            {{ user_profile_form.address_postal_code }}
+                        </div>                                  
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Create Professional</button>
+                        </div>                   
+                    </div>
+                </form> 
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#contact-page-->
 
-<form action="{% url 'create_professional' %}" method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<br>
-	<input type="submit" value="Create user"/>
-</form>
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2015 <a target="_blank" href="#" title="Inpired Patient">Inspired Patient</a>. All Rights Reserved.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+{% include "dashboard/accounts_footer.html" %}
+

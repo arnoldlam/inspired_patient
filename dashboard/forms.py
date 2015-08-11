@@ -256,8 +256,8 @@ class UserProfileCreationForm(forms.Form):
 	profile_picture = forms.ImageField(required=False)
 	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
 	phone_number = forms.CharField(label="Phone Number", initial="123-123-1234", widget=forms.TextInput(attrs={'class':'form-control'}))
-	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.Textarea,
-	 initial="None", widget=forms.TextInput(attrs={'class':'form-control', 'rows':'6'}))
+	medical_history = forms.CharField(label='Medical History', max_length=4000, initial="None", 
+		widget=forms.TextInput(attrs={'class':'form-control', 'rows':'6'}))
 
 	address_unit = forms.CharField(label='Unit', max_length=10, initial="123", widget=forms.TextInput(attrs={'class':'form-control'}))
 	address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control'}))

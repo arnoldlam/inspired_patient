@@ -1,8 +1,6 @@
 {% load staticfiles %}
 {% include "dashboard/accounts_header.html" %}
 
-<div id="inspired_health_logo"><img src="{% static "images/logos/inspired_patient_logo.png" %}" alt="logo"></div>
-
     <section id="contact-page">
         <div class="container" style="margin-top:100px;">
             <div class="center">        
@@ -15,7 +13,7 @@
                     <div class="col-sm-4 col-sm-offset-4">
                         <div class="form-group">
                             <label>First Name *</label>
-                            <input type="text" name="name" class="form-control" required="required">
+                            {{ user_profile_form.first_name }}
                         </div>
                         <div class="form-group">
                             <label>Last Name *</label>

@@ -265,7 +265,7 @@ class UserProfileCreationForm(forms.Form):
 	address_province = forms.CharField(label='Province', max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
 	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
 	address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control'}))
-	is_professional = forms.BooleanField(label="Are you a professional?", required=False, widget=forms.TextInput(attrs={'class':'form-control'}))
+	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
 
 class CreateProfessionalProfileForm(forms.Form):
 	qualification = forms.CharField(label='Qualification', max_length=100)

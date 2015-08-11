@@ -8,8 +8,9 @@
                 <p class="lead">Welcome to Inspired Patient! Fill in the following fields to create your account.</p>
             </div> 
             <div class="row contact-wrap"> 
-                <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+                <div class="error_message" style="display: none"></div>
+                <form id="sign_up_form" method="post" action="{% url 'create_user' %}" >
+                {% csrf_token %}
                     <div class="col-sm-4 col-sm-offset-4">
                         <div class="form-group">
                             <label>First Name *</label>
@@ -32,7 +33,7 @@
                             {{ user_form.password2 }}
                         </div>     
                         <div class="form-group">
-                            <label>Title</label>
+                            <label>Title</label><br>
                             {{ user_profile_form.title }}
                         </div>
                         <div class="form-group">
@@ -60,7 +61,7 @@
                             {{ user_profile_form.address_province }}
                         </div>
                         <div class="form-group">
-                            <label>Address Country</label>
+                            <label>Address Country</label><br>
                             {{ user_profile_form.address_country }}
                         </div>
                         <div class="form-group">
@@ -68,7 +69,7 @@
                             {{ user_profile_form.address_postal_code }}
                         </div>
                         <div class="form-group">
-                            <label>Are You a Professional?</label>
+                            <label>Are You a Professional? </label>
                             {{ user_profile_form.is_professional }}
                         </div>                                      
                         <div class="form-group">

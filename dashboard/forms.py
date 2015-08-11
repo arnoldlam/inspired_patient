@@ -251,20 +251,20 @@ class UserProfileCreationForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
-	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	last_name = forms.CharField(label="Last Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
+	first_name = forms.CharField(label="First Name", max_length=100)
+	last_name = forms.CharField(label="Last Name", max_length=100)
 	profile_picture = forms.ImageField(required=False)
-	title = forms.CharField(widget=Select(choices=TITLE_SELECT, attrs={'class':'form-control'})
-	phone_number = forms.CharField(label="Phone Number", initial="123-123-1234", widget=forms.TextInput(attrs={'class':'form-control'}))
-	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.TextInput(attrs={'class':'form-control', 'rows':'6'}),
+	title = forms.CharField(widget=Select(choices=TITLE_SELECT))
+	phone_number = forms.CharField(label="Phone Number", initial="123-123-1234")
+	medical_history = forms.CharField(label='Medical History', max_length=4000, widget=forms.Textarea,
 	 initial="None")
 
-	address_unit = forms.CharField(label='Unit', max_length=10, initial="123", widget=forms.TextInput(attrs={'class':'form-control'}))
-	address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control'}))
-	address_city = forms.CharField(label='City', max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control'}))
-	address_province = forms.CharField(label='Province', max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
-	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES, widget=forms.TextInput(attrs={'class':'form-control'}))
-	address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control'}))
+	address_unit = forms.CharField(label='Unit', max_length=10, initial="123")
+	address_street = forms.CharField(label='Street', max_length=50, initial="Memory Lane")
+	address_city = forms.CharField(label='City', max_length=30, initial="Vancouver")
+	address_province = forms.CharField(label='Province', max_length=30, initial="BC")
+	address_country = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES)
+	address_postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9")
 	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
 
 class CreateProfessionalProfileForm(forms.Form):

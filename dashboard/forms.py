@@ -251,7 +251,7 @@ class UserProfileCreationForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
-	first_name = forms.CharField(label="First Name", max_length=100)
+	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
 	last_name = forms.CharField(label="Last Name", max_length=100)
 	profile_picture = forms.ImageField(required=False)
 	title = forms.CharField(widget=Select(choices=TITLE_SELECT))

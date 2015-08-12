@@ -14,6 +14,17 @@
 <p>No upcoming tasks</p>
 {% endif %}
 
-<a href="{% url 'dashboard:add_appointment_note' %}">Add an Appointment Note</a><br>
-<a href="{% url 'dashboard:add_medication_note' %}">Add a Medication Note</a><br>
-<a href="{% url 'dashboard:add_self_care_note' %}">Add a Self Care Note</a><br>
+{% if user.user_profile.role == 'professional' %}
+<h3>Patient Appointments</h3>
+
+{% if patient_appointments %}
+	{% for patient_appointment in patient_appointments %}
+	<li><a href="{% url 'dashboard:note_detail' patient_appointment.id %}?note_type={{ patient_appointment.note_type }}">{{ patient_appointment.subject }}</a></li>
+	{% endfor %}
+{% endif %}
+
+{% endif %}
+
+<a href="{% url 'dashboard:add_appointment_note' %}">Add an Appointment</a><br>
+<a href="{% url 'dashboard:add_medication_note' %}">Add a Medication</a><br>
+<a href="{% url 'dashboard:add_self_care_note' %}">Add a Self Care</a><br>

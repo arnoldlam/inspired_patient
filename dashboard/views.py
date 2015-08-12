@@ -1288,8 +1288,11 @@ def SchedulingView(request):
 	upcoming_tasks = upcoming_tasks.filter(Q(note_type__exact='appointment_note') | Q(note_type__exact='medication_note') | Q(note_type__exact='self_care_note'))
 	upcoming_tasks = upcoming_tasks.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')[:10]
 
+	patient_appointments = user.appointments
+
 	return render(request, 'dashboard/scheduling.html', {
 		'upcoming_tasks':upcoming_tasks,
 		'user':user, 	
+		'patient_appointments':patient_appointments,
 	})
 

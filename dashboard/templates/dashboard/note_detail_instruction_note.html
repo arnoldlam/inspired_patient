@@ -16,7 +16,28 @@
                     General Note
                 </div>
                 <div class="panel-body">
-                    <p>{{ note.note_content }}</p>
+                    <form action="">
+                        <div class="form-group">
+                            <label>Note</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">
+                                {{ note.note_content }}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Instructions</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="20">
+                                {{ note.instructions }}
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>URL</label>
+                            <input class="form-control" placeholder="{{ note.url }}"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Follow-Up</label>
+                            <input class="form-control" placeholder="{{ note.follow_up }}"/>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

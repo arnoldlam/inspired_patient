@@ -254,7 +254,7 @@ def NotesView(request):
 	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 
-	return render(request, 'dashboard/notes_new.html', {
+	return render(request, 'dashboard/notes.html', {
 		'notes_read_write':notes_read_write,
 		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
@@ -984,11 +984,13 @@ def NoteDetail(request, note_id):
 	attachments = note.attachments.all()
 	user = request.user
 
+	template_file_name = "dashboard/note_detail_" + note.note_type + ".html"
+
 	# Check if user can access note
 	if note.ifUserCanAccessNote(user.id):
 		# update date accessed for note
 		note.noteAccessedNow()
-		return render(request, 'dashboard/note_detail.html', {
+		return render(request, template_file_name, {
 			'user':user,
 			'note':note,
 			'attachments':attachments,

@@ -21,37 +21,11 @@
                     <div class="list-group">
                     	{% if authored_notes %}
 	                    	{% for note in authored_notes %}
-	                        <a href="#" class="list-group-item" data-toggle="modal" data-target="#myModal">
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
 	                            <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
 	                        </a>
-
-							<div class="col-lg-6">
-						        <!-- /.panel-heading -->
-					            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					                <div class="modal-dialog">
-					                    <div class="modal-content">
-					                        <div class="modal-header">
-					                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					                            <h4 class="modal-title" id="myModalLabel">{{ note.subject }}</h4>
-					                        </div>
-					                        <div class="modal-body">
-					                            {{ note.note_content }}
-					                        </div>
-					                        <div class="modal-footer">
-					                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					                        </div>
-					                    </div>
-					                    <!-- /.modal-content -->
-					                </div>
-					                <!-- /.modal-dialog -->
-					            </div>
-						            <!-- /.modal -->
-						        <!-- .panel-body -->
-						    </div>
-						    <!-- /.panel -->
-
 	                     	{% endfor %}
 	                    {% endif %}
                     </div>

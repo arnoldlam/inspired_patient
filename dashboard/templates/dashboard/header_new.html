@@ -33,6 +33,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="{% static "css/dashboard.css" %}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -175,8 +177,8 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <!--<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-                        <img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <!-- <img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture"> -->
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>

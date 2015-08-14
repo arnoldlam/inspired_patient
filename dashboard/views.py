@@ -262,6 +262,20 @@ def NotesView(request):
 		'notebooks_read_write':notebooks_read_write,
 	})
 
+# View for viewing all notebooks
+@login_required
+def NotebooksView(request):
+	user = request.user
+
+	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+
+	return render(request, 'dashboard/notebooks.html', {
+		'user':user,
+		'notebooks_read_only':notebooks_read_only,
+		'notebooks_read_write':notebooks_read_write,
+	})
+
 # View for selecting type of note to add
 @login_required
 def NotesSelectView(request):

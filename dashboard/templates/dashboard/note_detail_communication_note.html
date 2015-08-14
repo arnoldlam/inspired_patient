@@ -1,0 +1,29 @@
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ note.subject }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    General Note
+                </div>
+                <div class="panel-body">
+                    <p>{{ note.note_content }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->
+
+{% include "dashboard/footer_new.html" %}

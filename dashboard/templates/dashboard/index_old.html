@@ -1,0 +1,11 @@
+{% include "dashboard/header.html" %}
+
+<h2>Inspired Health Dashboard</h2>
+
+<ul>
+	<li><a href="{% url 'dashboard:profile' %}">Profile</a></li>
+	<li><a href="{% url 'dashboard:notes' %}">Health Tools</a></li>
+	<li><a href="{% url 'dashboard:collaboration' %}">Communication</a></li>
+	<li><a href="{% url 'dashboard:scheduling' %}">Scheduling</a></li>
+	<li><a href="{% url 'dashboard:clinics' %}">Clinics</a></li>
+</ul>

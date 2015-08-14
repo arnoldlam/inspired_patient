@@ -150,7 +150,7 @@ def CreateNewProfessionalView(request):
 @login_required
 def Dashboard(request):
 	user = request.user
-	return render(request, 'dashboard/index_new.html', {
+	return render(request, 'dashboard/index.html', {
 		'user':user,
 	})
 

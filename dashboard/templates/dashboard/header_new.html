@@ -55,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="{% static "images/logos/inspired_patient_logo_1.png" %}" alt="Inspired Health Logo"></a>
+                <a class="navbar-brand" href="index.html"><img id="inspired_health_logo" src="{% static "images/logos/inspired_patient_logo_1.png" %}" alt="Inspired Health Logo"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -175,7 +175,8 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <!--<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
+                        <img src="{{ user.user_profile.profile_picture.url }}" alt="Profile Picture">
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -213,7 +214,7 @@
                             <a href="{% url 'dashboard:notes' %}"><i class="fa fa-sticky-note fa-fw"></i> Notes</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa a-book fa-fw"></i> Notebooks</a>
+                            <a href="forms.html"><i class="fa fa-book fa-fw"></i> Notebooks</a>
                         </li>
                         <!--
                         <li>
@@ -232,7 +233,18 @@
                             <a href="{% url 'dashboard:scheduling' %}"><i class="fa fa-calendar-check-o fa-fw"></i> Calendar</a>
                         </li>
                         <li>
-                            <a href="{% url 'dashboard:clinics' %}"><i class="fa fa-edit fa-fw"></i> Create New</a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Create New<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Note</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Notebook</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Schedule</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>

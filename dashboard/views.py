@@ -1250,7 +1250,7 @@ def AddNoteReplyView(request, note_id):
 		if form.is_valid():
 			note = get_object_or_404(Note, pk=note_id)
 			user = request.user
-			title = form.cleaned_data['title']
+			title = 'Some title'
 			content = form.cleaned_data['content']
 
 			# Set and save the reply

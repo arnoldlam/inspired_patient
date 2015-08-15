@@ -51,14 +51,17 @@
                 Replies
             </div>
             <div class="panel-footer">
-                <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                <form action="{% url 'dashboard:add_note_reply' note_id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input id="btn-input" name="{{ form.content.html_name }}" type="text" class="form-control input-sm" placeholder="Type your reply here..." />
                     <span class="input-group-btn">
                         <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Send
+                            Reply
                         </button>
                     </span>
                 </div>
+                </form>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -66,7 +69,7 @@
                     {% for reply in replies %}
                     <li class="left clearfix">
                         <span class="chat-img pull-left">
-                            <img src="{{ public_profile_user.user_profile.profile_picture.url }}" alt="User Avatar" class="img-circle" />
+                            <img src="{{ reply.author.user_profile.profile_picture.url }}" alt="User Avatar" class="img-circle" />
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">

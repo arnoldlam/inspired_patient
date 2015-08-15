@@ -188,9 +188,7 @@ class AddNotebookForm(forms.Form):
 		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False)
 
 class AddNoteReplyForm(ModelForm):
-	class Meta:
-		model = NoteReply
-		fields = ['title', 'content']
+	content = forms.CharField(max_length=1000)
 
 """
 

@@ -18,31 +18,47 @@
                 <div class="panel-body">
                     <form action="">
                         <div class="form-group">
+                            <label>Pre-Procedure Instructions</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.pre_procedure_instructions }}</textarea>
+                        </div>
+                        <div class="form-group">
                             <label>Procedure</label>
-                            <input class="form-control" placeholder="{{ note.procedure }}" />
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.procedure }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
-                            <input class="form-control" placeholder="{{ note.description }}" />
+                            <label>Emergency Instructions</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.emergency_instructions }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Date and Time</label>
-                            <input class="form-control" placeholder="{{ note.date_and_time }}" />
+                            <label>Self-Care Instructions</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.self_care_instructions }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Procedure Frequency</label>
-                            <input class="form-control" placeholder="{{ note.frequency }}" />
+                            <label>Weight</label>
+                            <input class="form-control" placeholder="{{ note.weight }}" />
                         </div>
                         <div class="form-group">
-                            <label>Outcome</label>
-                            <input class="form-control" placeholder="{{ note.outcome }}" />
+                            <label>Follow-Up Instructions</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.follow_up_instructions }}</textarea>
                         </div>
                         <div class="form-group">
-                            <label>Emergency Procedure</label>
-                            <input class="form-control" placeholder="{{ note.emergency_procedure }}" />
+                            <label>Doctor</label>
+                            <p class="form-control"> 
+                            {% if note.doctor %}
+                            <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor.user_profile.full_name }}</a>
+                            {% endif %}
+                            </p>
                         </div>
                         <div class="form-group">
-                            <label>Note</label>
+                            <label>Clinic</label>
+                            <p class="form-control"> 
+                            {% if note.clinic %}
+                            <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a>
+                            {% endif %}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes</label>
                             <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
                         </div>
                     </form>

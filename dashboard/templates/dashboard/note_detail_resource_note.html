@@ -13,10 +13,31 @@
         <div class="col-lg-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    General Note
+                    {{ note.get_note_type_display }}
                 </div>
                 <div class="panel-body">
-                    <p>{{ note.note_content }}</p>
+                    <form action="">
+                        <div class="form-group">
+                            <label>Doctor</label>
+                            <p class="form-control"> 
+                            {% if note.doctor %}
+                            <a href="{% url 'dashboard:public_profile' note.doctor.id %}">{{ note.doctor.user_profile.full_name }}</a>
+                            {% endif %}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Clinic</label>
+                            <p class="form-control"> 
+                            {% if note.clinic %}
+                            <a href="{% url 'dashboard:clinic_detail' note.clinic.id %}">{{ note.clinic }}</a>
+                            {% endif %}
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label>Note</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="20">{{ note.note_content }}</textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -44,45 +44,47 @@
         <!-- /.col-lg-4 -->
     </div>
     <div class="row">
-    <div class="chat-panel panel panel-default col-lg-8 col-md-offset-2">
-        <div class="panel-heading">
-            <i class="fa fa-comments fa-fw"></i>
-            Replies
-        </div>
-        <div class="panel-footer">
-            <div class="input-group">
-                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                <span class="input-group-btn">
-                    <button class="btn btn-warning btn-sm" id="btn-chat">
-                        Send
-                    </button>
-                </span>
+    <div class="col-lg-8 col-md-offset-2">
+        <div class="chat-panel panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-comments fa-fw"></i>
+                Replies
             </div>
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
-            <ul class="chat">
-                {% for reply in replies %}
-                <li class="left clearfix">
-                    <span class="chat-img pull-left">
-                        <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+            <div class="panel-footer">
+                <div class="input-group">
+                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning btn-sm" id="btn-chat">
+                            Send
+                        </button>
                     </span>
-                    <div class="chat-body clearfix">
-                        <div class="header">
-                            <strong class="primary-font">{{ reply.author.user_profile.full_name }}</strong>
-                            <small class="pull-right text-muted">
-                                <i class="fa fa-clock-o fa-fw"></i> {{ reply.date_created }}
-                            </small>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <ul class="chat">
+                    {% for reply in replies %}
+                    <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font">{{ reply.author.user_profile.full_name }}</strong>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o fa-fw"></i> {{ reply.date_created }}
+                                </small>
+                            </div>
+                            <p>
+                                {{ reply.content }}
+                            </p>
                         </div>
-                        <p>
-                            {{ reply.content }}
-                        </p>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- /.panel-body -->
         </div>
-        <!-- /.panel-body -->
     </div>
     <!-- /.panel .chat-panel -->
     </div>

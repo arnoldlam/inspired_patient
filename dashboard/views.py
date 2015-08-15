@@ -972,9 +972,10 @@ def AddMedicationNoteView(request):
 # View for note details
 @login_required
 def NoteDetail(request, note_id):
+	user = request.user
+
 	# Get requested note type
 	note_type_requested = request.GET['note_type']
-
 	# Dictionary to match requested note type from GET with model
 	note_type_dict = {
 				'general_note': Note,
@@ -987,19 +988,19 @@ def NoteDetail(request, note_id):
 				'contact_note': ContactNote, 
 				'medication_note': MedicationNote, 
 	}
-
 	note = get_object_or_404(note_type_dict[note_type_requested], pk=note_id)
 	replies = note.replies.filter(date_created__lte=timezone.now()).order_by('-date_created')[:10]
 	attachments = note.attachments.all()
-	user = request.user
-
 	template_file_name = "dashboard/note_detail_" + note.note_type + ".html"
 
 	# Check if user can access note
 	if note.ifUserCanAccessNote(user.id):
 		# update date accessed for note
 		note.noteAccessedNow()
+		# Form for adding replies 
+		form = AddNoteReplyForm()
 		return render(request, template_file_name, {
+			'form':form,
 			'user':user,
 			'note':note,
 			'attachments':attachments,

@@ -11,3 +11,8 @@
 .note_box {
 	padding-bottom:20px;
 }
+
+#reply_profile_picture {
+	height:45px;
+	width:45px;
+}

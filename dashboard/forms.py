@@ -23,7 +23,7 @@ Note related forms
 
 class NotePermissionsForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
-		super(ShareNoteForm, self).__init__(*args, **kwargs)
+		super(NotePermissionsForm, self).__init__(*args, **kwargs)
 
 		self.user_id = user_id
 		current_user = User.objects.get(pk=self.user_id)

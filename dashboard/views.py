@@ -1323,7 +1323,7 @@ def SchedulingView(request):
 @login_required
 def CreateNewView(request):
 	user = request.user
-	return render(request, 'dashboard/create_new.html' {
+	return render(request, 'dashboard/create_new.html', {
 		'user',user,	
 	})
 

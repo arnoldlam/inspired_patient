@@ -1015,7 +1015,7 @@ def NoteDetail(request, note_id):
 def ShareNote(request, note_id):
 	user = request.user
 	if request.method == 'POST':
-		form = NotePermissionsForm(user.id)
+		form = NotePermissionsForm(user.id, request.POST)
 		if form.is_valid():
 			note = get_object_or_404(Note, pk=note_id)
 

@@ -1,3 +1,9 @@
 #inspired_health_logo {
 	width:27%;
 }
+
+#address_google_map {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

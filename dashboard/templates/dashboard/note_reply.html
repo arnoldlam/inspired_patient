@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-lg-8 col-md-offset-2">
+        <div class="chat-panel panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-comments fa-fw"></i>
+                Replies
+            </div>
+            <div class="panel-footer">
+                <form action="{% url 'dashboard:add_note_reply' note.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input id="btn-input" name="{{ form.content.html_name }}" type="text" class="form-control input-sm" placeholder="Type your reply here..." />
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-warning btn-sm" id="btn-chat"/>
+                            Reply
+                    </span>
+                </div>
+                </form>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="overflow: scroll;">
+                <ul class="chat">
+                    {% for reply in replies %}
+                    <li class="left clearfix">
+                        <span class="chat-img pull-left">
+                            <img id="reply_profile_picture" src="{{ reply.author.user_profile.profile_picture.url }}" alt="User Avatar" class="img-circle" style="height:45px;width:45px;" />
+                        </span>
+                        <div class="chat-body clearfix">
+                            <div class="header">
+                                <strong class="primary-font">{{ reply.author.user_profile.full_name }}</strong>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o fa-fw"></i> {{ reply.date_created }}
+                                </small>
+                            </div>
+                            <p>
+                                {{ reply.content }}
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+<!-- /.panel .chat-panel -->
+</div>

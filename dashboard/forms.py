@@ -21,7 +21,7 @@ Note related forms
 
 """
 
-class NotePermissionsForm(forms.Form)
+class NotePermissionsForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
 		super(ShareNoteForm, self).__init__(*args, **kwargs)
 

@@ -16,3 +16,9 @@
 	height:45px;
 	width:45px;
 }
+
+.submit_note_form_button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

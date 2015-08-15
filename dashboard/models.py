@@ -125,6 +125,26 @@ class Note(models.Model):
 	# Optional date and time for some note types
 	date_and_time = models.DateTimeField('Date and Time', blank=True, null=True)
 
+	def getFontAwesomeIconName(self):
+		if self.note_type == 'general_note':
+			return 'fa-sticky-note' 
+		if self.note_type == 'instruction_note':
+			return 'fa-list-ol'
+		if self.note_type == 'communication_note':
+			return 'fa-comments' 
+		if self.note_type == 'procedure_note':
+			return 'fa-stethoscope'
+		if self.note_type == 'self_care_note':
+			return 'fa-home' 
+		if self.note_type == 'resource_note':
+			return 'fa-file-text'
+		if self.note_type == 'appointment_note':
+			return 'fa-user-md'
+		if self.note_type == 'contact_note':
+			return 'fa-user' 
+		if self.note_type == 'medication_note':
+			return 'fa-medkit' 
+
 	def __unicode__(self):
 		return self.subject
 

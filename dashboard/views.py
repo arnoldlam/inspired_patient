@@ -251,28 +251,10 @@ def NotesView(request):
 	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 
-	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
-	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
-
-	icon_dict = {
-		'general_note':'fa-sticky-note',
-		'instruction_note': 'fa-list-ol',
-		'communication_note': 'fa-comments',
-		'procedure_note': 'fa-stethoscope',
-		'self_care_note': 'fa-home',
-		'resource_note': 'fa-file-text',
-		'appointment_note': 'fa-user-md',
-		'contact_note': 'fa-user', 
-		'medication_note': 'fa-medkit', 
-	}
-
 	return render(request, 'dashboard/notes.html', {
 		'notes_read_write':notes_read_write,
 		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
-		'notebooks_read_only':notebooks_read_only,
-		'notebooks_read_write':notebooks_read_write,
-		'icon_dict':icon_dict,
 	})
 
 # View for viewing all notebooks

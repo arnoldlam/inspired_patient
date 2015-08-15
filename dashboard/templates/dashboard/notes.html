@@ -21,7 +21,7 @@
                     	{% if authored_notes %}
 	                    	{% for note in authored_notes %}
 	                        <a class="note_box" href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
-	                            <i class="fa {{ icon_dict[note.note_type] }} fa-fw"></i> {{ note.subject }}
+	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
 	                        </a>
@@ -47,7 +47,7 @@
                     	{% if notes_read_write %}
 	                    	{% for note in notes_read_write %}
 	                        <a class="note_box" href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
-	                            <i class="fa {{ icon_dict[note.note_type] }} fa-fw"></i> {{ note.subject }}
+	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
 	                        </a>
@@ -73,7 +73,7 @@
                     	{% if notes_read_only %}
 	                    	{% for note in notes_read_only %}
 	                        <a class="note_box" href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
-	                            <i class="fa {{ icon_dict[note.note_type] }} fa-fw"></i> {{ note.subject }}
+	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
 	                        </a>

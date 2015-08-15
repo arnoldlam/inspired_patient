@@ -31,15 +31,15 @@
                         </div>
                         <div class="form-group">
                             <label>Frequency</label>
-                            <input class="form-control" placeholder="{{ note.frequency }}" />
+                            <input class="form-control" placeholder="{{ note.get_frequency_display }}" />
                         </div>
                         <div class="form-group">
                             <label>Emergency Procedure</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.self_care_instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.emergency_procedure }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Outcome</label>
-                            <input class="form-control" placeholder="{{ note.weight }}" />
+                            <input class="form-control" placeholder="{{ note.outcome }}" />
                         </div>
                         <div class="form-group">
                             <label>Additional Notes</label>

@@ -1012,12 +1012,11 @@ def NoteDetail(request, note_id):
 		raise Http404("Note not found.")
 
 @login_required
-def ShareNote(request):
+def ShareNote(request, note_id):
 	user = request.user
 	if request.method == 'POST':
 		form = NotePermissionsForm(user.id)
 		if form.is_valid():
-			note_id = form.cleaned_data['note_id']
 			note = get_object_or_404(Note, pk=note_id)
 
 			# If list of users was in post request, add them to note

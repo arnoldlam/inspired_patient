@@ -1,0 +1,96 @@
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Create New</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        
+        <div id="create_new_note" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Note
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard:add_general_note' %}" class="list-group-item">
+                            <i class="fa fa-sticky-note fa-fw"></i> General
+                        </a>
+                        <a href="{% url 'dashboard:add_instruction_note' %}" class="list-group-item">
+                            <i class="fa fa-list-ol fa-fw"></i> Instruction
+                        </a>
+                        <a href="{% url 'dashboard:add_communication_note' %}" class="list-group-item">
+                            <i class="fa fa-comments fa-fw"></i> Communication
+                        </a>
+                        <a href="{% url 'dashboard:add_procedure_note' %}" class="list-group-item">
+                            <i class="fa fa-stethoscope fa-fw"></i> Procedure
+                        </a>
+                        <a href="{% url 'dashboard:add_resource_note' %}" class="list-group-item">
+                            <i class="fa fa-file-text fa-fw' %}"></i> Resource
+                        </a>
+                        <a href="{% url 'dashboard:add_contact_note' %}" class="list-group-item">
+                            <i class="fa fa-user fa-fw"></i> Contact
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+		<!-- /#create_new_note -->
+
+        <div id="create_new_notebook" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-share fa-fw"></i> Notebook
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard:add_notebook' %}" class="list-group-item">
+                            <i class="fa fa-book fa-fw"></i> {{ notebook.name }}
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+		<!-- /#create_new_notebook -->
+
+        <div id="create_new_calendar_item" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Calendar
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard:add_appointment_note' %}" class="list-group-item">
+                            <i class="fa fa-user-md fa-fw"></i> Appointment
+                        </a>
+                        <a href="{% url 'dashboard:add_self_care_note' %}" class="list-group-item">
+                            <i class="fa fa-home fa-fw"></i> Self Care
+                        </a>
+                        <a href="{% url 'dashboard:add_medication_note' %}" class="list-group-item">
+                            <i class="fa fa-medkit fa-fw"></i> Medication
+                        </a>
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <!-- /#create_new_calendar_item -->
+
+	</div>
+</div>
+<!-- /#page-wrapper -->
+
+{% include "dashboard/footer_new.html" %}

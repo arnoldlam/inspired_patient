@@ -1,0 +1,30 @@
+{% if user.id == note.author.id %}
+<div class="row">
+    <div class="col-lg-8 col-md-offset-2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Note Sharing
+            </div>
+            <div class="panel-body">
+                <form action="{% url 'dashboard:share_note' note.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label>Editors</label>
+                        {{ permissions_form.choices_for_editors }}
+                    </div>
+                    <div class="form-group">
+                        <label>Viewers</label>
+                        {{ permissions_form.choices_for_editors }}
+                    </div>
+                    <button type="submit" class="btn btn-default submit_note_form_button" style="
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    ">Share</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+{% endif %}

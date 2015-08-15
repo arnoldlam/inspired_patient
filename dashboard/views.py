@@ -17,7 +17,7 @@ import datetime
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, NotePermissionsForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 # Displays and handles forms for user creation
@@ -999,7 +999,7 @@ def NoteDetail(request, note_id):
 		note.noteAccessedNow()
 		# Form for adding replies 
 		form = AddNoteReplyForm()
-		permissions_form = AddNoteForm(user.id)
+		permissions_form = NotePermissionsForm(user.id)
 		return render(request, template_file_name, {
 			'form':form,
 			'permissions_form':permissions_form,
@@ -1011,25 +1011,29 @@ def NoteDetail(request, note_id):
 	else:
 		raise Http404("Note not found.")
 
-# View for sharing notes
 @login_required
-def ShareNote(request, note_id):
-	if 'email' in request.GET:
-		form = SearchForUserForm(request.GET)
+def ShareNote(request):
+	user = request.user
+	if request.method == 'POST':
+		form = NotePermissionsForm(user.id)
 		if form.is_valid():
-			email = form.cleaned_data['email']
-			user = get_object_or_404(User, username = email)
-			note = get_object_or_404(Note, id=note_id)
-			user.notes_read_write.add(note)
+			note_id = form.cleaned_data['note_id']
+			note = get_object_or_404(Note, pk=note_id)
 
-			return HttpResponseRedirect(reverse('dashboard:notes'))
-	else:
-		form = SearchForUserForm()
-	user = request.user	
-	return render(request, 'dashboard/share_note.html', {
-		'form':form,
-		'user':user,
-	})
+			# If list of users was in post request, add them to note
+			if 'choices_for_editors' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_editors']:
+					user = User.objects.get(username=user)
+					user.notes_read_write.add(note)
+			if 'choices_for_viewers' in form.cleaned_data:
+				for user in form.cleaned_data['choices_for_viewers']:
+					user = User.objects.get(username=user)
+					user.notes_read_only.add(note)
+	# URL for redirect back to note
+	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
+
+
 
 @login_required
 def AddNotebookView(request):

@@ -21,6 +21,24 @@ Note related forms
 
 """
 
+class NotePermissionsForm(forms.Form)
+	def __init__(self, user_id, *args, **kwargs):
+		super(ShareNoteForm, self).__init__(*args, **kwargs)
+
+		self.user_id = user_id
+		current_user = User.objects.get(pk=self.user_id)
+		associates = current_user.user_profile.associates.all()
+
+		list_of_names = []
+		for associate in associates:
+			name = associate.full_name()
+			list_of_names.append(name)
+		self.user_choices = zip(associates, list_of_names)
+
+		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
+		self.fields['choices_for_viewers'] = forms.MultipleChoiceField(label='Viewers', choices=self.user_choices, required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
+
+
 class AddNoteForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddNoteForm, self).__init__(*args, **kwargs)

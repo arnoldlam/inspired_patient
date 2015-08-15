@@ -20,7 +20,7 @@
                     <div class="list-group">
                     	{% if authored_notes %}
 	                    	{% for note in authored_notes %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box">
 	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
@@ -46,7 +46,7 @@
                     <div class="list-group">
                     	{% if notes_read_write %}
 	                    	{% for note in notes_read_write %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box">
 	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
@@ -72,7 +72,7 @@
                     <div class="list-group">
                     	{% if notes_read_only %}
 	                    	{% for note in notes_read_only %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item">
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box">
 	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
 	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>

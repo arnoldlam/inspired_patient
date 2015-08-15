@@ -13,10 +13,45 @@
         <div class="col-lg-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    General Note
+                    Contact Note
                 </div>
                 <div class="panel-body">
-                    <p>{{ note.note_content }}</p>
+                    <form action="">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input class="form-control" placeholder="{{ note.first_name }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" placeholder="{{ note.last_name }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Organization Name</label>
+                            <input class="form-control" placeholder="{{ note.organization_name }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Work Phone</label>
+                            <input class="form-control" placeholder="{{ note.phone_number_work }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Home Phone</label>
+                            <input class="form-control" placeholder="{{ note.phone_number_home }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" placeholder="{{ note.email }}" />
+                        </div>
+                        <iframe
+                          width="300"
+                          height="225"
+                          frameborder="0" style="border:0"
+                          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc&q={{ note.address.mapQuery }}" allowfullscreen>
+                        </iframe>
+                        <div class="form-group">
+                            <label>Note</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

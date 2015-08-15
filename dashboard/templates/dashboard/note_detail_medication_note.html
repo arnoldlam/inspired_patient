@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label>Medication Frequency</label>
-                            <input class="form-control" placeholder="{{ note.medication_frequency }}" />
+                            <input class="form-control" placeholder="{{ note.get_medication_frequency_display }}" />
                         </div>
                         <div class="form-group">
                             <label>Medication Duration</label>
@@ -47,6 +47,7 @@
                         </div>
                         <div class="form-group">
                         <label>Pharmacy Address</label>
+                        </div>
                         <iframe
                           id="address_google_map"
                           width="300"
@@ -54,7 +55,6 @@
                           frameborder="0" style="border:0"
                           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc&q={{ note.pharmacy_address.mapQuery }}" allowfullscreen>
                         </iframe>
-                        </div>
                         <div class="form-group">
                             <label>Note</label>
                             <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>

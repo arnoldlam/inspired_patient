@@ -13,10 +13,39 @@
         <div class="col-lg-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    General Note
+                    {{ note.get_note_type_display }}
                 </div>
                 <div class="panel-body">
-                    <p>{{ note.note_content }}</p>
+                    <form action="">
+                        <div class="form-group">
+                            <label>Procedure</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.procedure }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="2">{{ note.description }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Date and Time</label>
+                            <input class="form-control" placeholder="{{ note.date_and_time }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Frequency</label>
+                            <input class="form-control" placeholder="{{ note.frequency }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Emergency Procedure</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.self_care_instructions }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Outcome</label>
+                            <input class="form-control" placeholder="{{ note.weight }}" />
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="5">{{ note.note_content }}</textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -43,6 +43,7 @@
                         </div>
                         <div class="form-group">
                         <label>Address</label>
+                        </div>
                         <iframe
                           id="address_google_map"
                           width="300"
@@ -50,7 +51,6 @@
                           frameborder="0" style="border:0"
                           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc&q={{ note.address.mapQuery }}" allowfullscreen>
                         </iframe>
-                        </div>
                         <div class="form-group">
                             <label>Note</label>
                             <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>

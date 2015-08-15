@@ -999,7 +999,7 @@ def NoteDetail(request, note_id):
 		note.noteAccessedNow()
 		# Form for adding replies 
 		form = AddNoteReplyForm()
-		permissions_form = AddNoteForm()
+		permissions_form = AddNoteForm(user.id)
 		return render(request, template_file_name, {
 			'form':form,
 			'permissions_form':permissions_form,

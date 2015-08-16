@@ -1187,7 +1187,6 @@ def EditNotebookView(request, notebook_id):
 			if 'choices_for_editors' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
-					print(user)
 					user.notebooks_read_write.add(notebook)
 					# Grant editor access to note to 
 					for note in notebook.notes.all():
@@ -1195,13 +1194,12 @@ def EditNotebookView(request, notebook_id):
 			if 'choices_for_viewers' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
-					print(user)
 					user.notebooks_read_only.add(notebook)
 					for note in notebook.notes.all():
 						note.viewers.add(user)
 
-	redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
-	return HttpResponseRedirect(redirect_url)
+			redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
+			return HttpResponseRedirect(redirect_url)
 
 
 @login_required

@@ -17,7 +17,7 @@ import datetime
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, NotePermissionsForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, UserPermissionsForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 # Displays and handles forms for user creation
@@ -999,7 +999,7 @@ def NoteDetail(request, note_id):
 		note.noteAccessedNow()
 		# Form for adding replies 
 		form = AddNoteReplyForm()
-		permissions_form = NotePermissionsForm(user.id)
+		permissions_form = UserPermissionsForm(user.id)
 		return render(request, template_file_name, {
 			'form':form,
 			'permissions_form':permissions_form,
@@ -1015,7 +1015,7 @@ def NoteDetail(request, note_id):
 def ShareNote(request, note_id):
 	user = request.user
 	if request.method == 'POST':
-		form = NotePermissionsForm(user.id, request.POST)
+		form = UserPermissionsForm(user.id, request.POST)
 		if form.is_valid():
 			note = get_object_or_404(Note, pk=note_id)
 
@@ -1085,8 +1085,11 @@ def NotebookDetail(request, notebook_id):
 	for note in notes:
 		if note not in notebook.notes.all():
 			notes_not_in_notebook.append(note)
+
+	permissions_form = UserPermissionsForm(user.id)
 	
 	return render(request, 'dashboard/notebook_detail.html', {
+			'permissions_form':permissions_form,
 			'user':user,
 			'notebook':notebook,
 			'editors':notebook_editors,

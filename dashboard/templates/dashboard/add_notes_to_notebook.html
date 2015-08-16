@@ -11,7 +11,7 @@
 		</tr>
 		{% for note in notes %}
 		<tr>
-		<td><p>{{ note.subject }}</p></td>
+		<td><p style="padding-right:50px;">{{ note.subject }}</p></td>
 		<!-- Append checkbox name to for-loop counter -->
 		{% with y=forloop.counter|stringformat:"s" %}
 		{% with checkboxName="isChecked"|add:y %}

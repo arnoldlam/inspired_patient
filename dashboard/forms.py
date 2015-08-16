@@ -21,9 +21,9 @@ Note related forms
 
 """
 
-class NotePermissionsForm(forms.Form):
+class UserPermissionsForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):
-		super(NotePermissionsForm, self).__init__(*args, **kwargs)
+		super(UserPermissionsForm, self).__init__(*args, **kwargs)
 
 		self.user_id = user_id
 		current_user = User.objects.get(pk=self.user_id)

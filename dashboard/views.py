@@ -1129,7 +1129,7 @@ def AddNotesToNotebookView(request, notebook_id):
 		return HttpResponseRedirect(redirect_url)
 	else:
 		user = request.user
-		notes = user.notes_read_write.all()
+		notes = Note.objects.filter(Q(editors__id=user.id) | Q(author__id=user.id))
 		notebook = get_object_or_404(Notebook, pk=notebook_id)
 
 		# Grab notes not currently in notebook

@@ -272,15 +272,15 @@ def NotebooksView(request):
 	})
 
 # View for selecting type of note to add
-@login_required
-def NotesSelectView(request):
-	if 'notebook_id' in request.GET:
-		notebook_id = request.GET['notebook_id']
-	else:
-		notebook_id = ''
-	return render(request, 'dashboard/note_select.html', {
-		'notebook_id':notebook_id,
-	})
+# @login_required
+# def NotesSelectView(request):
+# 	if 'notebook_id' in request.GET:
+# 		notebook_id = request.GET['notebook_id']
+# 	else:
+# 		notebook_id = ''
+# 	return render(request, 'dashboard/note_select.html', {
+# 		'notebook_id':notebook_id,
+# 	})
 
 @login_required
 def AddGeneralNoteView(request):
@@ -1325,7 +1325,12 @@ def SchedulingView(request):
 @login_required
 def CreateNewView(request):
 	user = request.user
+	if 'notebook_id' in request.GET:
+		notebook_id = request.GET['notebook_id']
+	else:
+		notebook_id = ''
 	return render(request, 'dashboard/create_new.html', {
-		'user':user,	
+		'user':user,
+		'notebook_id':notebook_id,	
 	})
 

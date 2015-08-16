@@ -10,6 +10,44 @@
     </div>
     <div class="row">
         
+        {% if notebook_id %}
+
+        <div id="create_new_note" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Note
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="{% url 'dashboard:add_general_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-sticky-note fa-fw"></i> General
+                        </a>
+                        <a href="{% url 'dashboard:add_instruction_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-list-ol fa-fw"></i> Instruction
+                        </a>
+                        <a href="{% url 'dashboard:add_communication_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-comments fa-fw"></i> Communication
+                        </a>
+                        <a href="{% url 'dashboard:add_procedure_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-stethoscope fa-fw"></i> Procedure
+                        </a>
+                        <a href="{% url 'dashboard:add_resource_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-file-text fa-fw' %}"></i> Resource
+                        </a>
+                        <a href="{% url 'dashboard:add_contact_note' %}?notebook_id={{notebook_id}}" class="list-group-item">
+                            <i class="fa fa-user fa-fw"></i> Contact
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <!-- /#create_new_note -->
+
+        {% else %}
+
         <div id="create_new_note" class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -43,6 +81,8 @@
             </div>
         </div>
 		<!-- /#create_new_note -->
+
+        {% endif %}
 
         <div id="create_new_notebook" class="col-lg-4">
             <div class="panel panel-default">

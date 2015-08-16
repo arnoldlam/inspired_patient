@@ -1179,7 +1179,7 @@ def AddNotesToNotebookView(request, notebook_id):
 def EditNotebookView(request, notebook_id):
 	user = request.user
 	if request.method == 'POST':
-		form = UserPermissionsForm(user.id)
+		form = UserPermissionsForm(user.id, request.POST)
 		if form.is_valid():
 			notebook = get_object_or_404(Notebook, pk=notebook_id)
 

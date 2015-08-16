@@ -9,31 +9,6 @@
         <!-- /.col-lg-12 -->
     </div>
     <div class="row">
-        <div id="notes_in_notebook" class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> Notes in Notebook
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
-                    	{% if notes_in_notebook %}
-	                    	{% for note in notes_in_notebook %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-	                            </span>
-	                        </a>
-	                     	{% endfor %}
-	                    {% endif %}
-                    </div>
-                    <!-- /.list-group -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-        </div>
-		<!-- /#notes_in_notebook -->
-
         <div id="notes_in_notebook" class="col-lg-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -54,7 +29,41 @@
 	                        <label>Date Created</label>
 	                        <input class="form-control" placeholder="{{ notebook.date_created }}" />
 	                    </div>
+	                    <div class="form-group">
+	                        <p><a href="{% url 'dashboard:notes_select' %}?notebook_id={{notebook.id}}">Create a note in notebook</a></p>
+	                    </div>
+	                    <div class="form-group">
+	                        <p><a href="{% url 'dashboard:add_notes_to_notebook' notebook.id %}">Add Notes to this notebook</a></p>
+	                    </div>
+	                    <div class="form-group">
+	                        <p><a href="{% url 'dashboard:share_notebook' notebook.id %}">Add teammates to this notebook</a></p>
+	                    </div>
 	                </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+		<!-- /#notes_in_notebook -->
+
+        <div id="notes_in_notebook" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Notes in Notebook
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                    	{% if notes_in_notebook %}
+	                    	{% for note in notes_in_notebook %}
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
+	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+	                            </span>
+	                        </a>
+	                     	{% endfor %}
+	                    {% endif %}
+                    </div>
+                    <!-- /.list-group -->
                 </div>
                 <!-- /.panel-body -->
             </div>

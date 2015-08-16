@@ -31,7 +31,7 @@
 	                    </div>
 						
 						{# Only display options to edit notebook if user is an editor #}
-	                    {% if user in notebook.editors %}
+	                    {% if user in notebook.editors.all %}
 	                    <div class="form-group">
 	                        <p><a href="{% url 'dashboard:create_new' %}?notebook_id={{notebook.id}}">Create a note in notebook</a></p>
 	                    </div>
@@ -79,7 +79,6 @@
 			            		{% endfor %}
 			            	</table>
 			            	<br>
-			            	<input type="submit" value="Add notes">
 			            </form>
 			            {% else %}
 			            <p>All your notes are already in this notebook</p>

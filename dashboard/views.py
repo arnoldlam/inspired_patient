@@ -1184,23 +1184,21 @@ def EditNotebookView(request, notebook_id):
 			notebook = get_object_or_404(Notebook, pk=notebook_id)
 
 			# If list of users was in post request, add them to note
-			if form.cleaned_data['choices_for_editors'] is not None:
+			if 'choices_for_editors' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
+					print(user)
 					user.notebooks_read_write.add(notebook)
-					user.save()
 					# Grant editor access to note to 
 					for note in notebook.notes.all():
 						note.editors.add(user)
-						note.save()
-			if form.cleaned_data['choices_for_viewers'] is not None:
+			if 'choices_for_viewers' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
+					print(user)
 					user.notebooks_read_only.add(notebook)
-					user.save()
 					for note in notebook.notes.all():
 						note.viewers.add(user)
-						note.save()
 
 	redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
 	return HttpResponseRedirect(redirect_url)

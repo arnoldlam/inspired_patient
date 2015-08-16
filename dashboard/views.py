@@ -1074,22 +1074,24 @@ def NotebookDetail(request, notebook_id):
 	notebook = get_object_or_404(Notebook, pk=notebook_id)
 	notebook_editors = notebook.editors.all()
 	notebook_viewers = notebook.viewers.all()
+
+	# Grab notes in notebook
 	notes_in_notebook = notebook.notes.all().order_by('-date_created')
 	user = request.user
-	author_array = []
 
-	# Place array of user objects in author_array
-	for note in notes_in_notebook:
-		author_array.append(note.author)
-
-	zipped_list = zip(notes_in_notebook, author_array)
+	# Grab notes not currently in notebook
+	notes = Note.objects.filter(Q(editors__id=user.id) | Q(author__id=user.id))
+	notes_not_in_notebook = []
+	for note in notes:
+		if note not in notebook.notes.all():
+			notes_not_in_notebook.append(note)
 	
 	return render(request, 'dashboard/notebook_detail.html', {
 			'notebook':notebook,
-			'zipped_list':zipped_list,
 			'editors':notebook_editors,
 			'viewers':notebook_viewers,
 			'notes_in_notebook':notes_in_notebook,
+			'notes_not_in_notebook':notes_not_in_notebook,
 	})
 
 @login_required
@@ -1123,25 +1125,10 @@ def AddNotesToNotebookView(request, notebook_id):
 		
 		notebook.save()
 
-		# URL for redirect to newly create notebook's detail page
-		redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
-		# Redirecting to notebook detail
-		return HttpResponseRedirect(redirect_url)
-	else:
-		user = request.user
-		notes = Note.objects.filter(Q(editors__id=user.id) | Q(author__id=user.id))
-		notebook = get_object_or_404(Notebook, pk=notebook_id)
-
-		# Grab notes not currently in notebook
-		notes_not_in_notebook = []
-		for note in notes:
-			if note not in notebook.notes.all():
-				notes_not_in_notebook.append(note)
-
-		return render(request, 'dashboard/add_notes_to_notebook.html', {
-			'notes':notes_not_in_notebook,
-			'notebook_id':notebook_id,
-		})
+	# URL for redirect to newly create notebook's detail page
+	redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
+	# Redirecting to notebook detail
+	return HttpResponseRedirect(redirect_url)
 
 @login_required
 def ShareNotebookView(request, notebook_id):

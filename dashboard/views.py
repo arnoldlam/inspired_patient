@@ -1087,6 +1087,7 @@ def NotebookDetail(request, notebook_id):
 			notes_not_in_notebook.append(note)
 	
 	return render(request, 'dashboard/notebook_detail.html', {
+			'user':user,
 			'notebook':notebook,
 			'editors':notebook_editors,
 			'viewers':notebook_viewers,

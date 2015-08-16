@@ -22,7 +22,7 @@
 	                    	{% for notebook in notebooks_read_write %}
 	                        <a href="{% url 'dashboard:notebook_detail' notebook.id %}" class="list-group-item">
 	                            <i class="fa fa-sticky-note-o fa-fw"></i> {{ notebook.name }}
-	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+	                            <span class="pull-right text-muted small"><em>{{ notebook.date_created }}</em>
 	                            </span>
 	                        </a>
 	                     	{% endfor %}
@@ -48,7 +48,7 @@
                             {% for notebook in notebooks_read_only %}
                             <a href="{% url 'dashboard:notebook_detail' notebook.id %}" class="list-group-item">
                                 <i class="fa fa-sticky-note-o fa-fw"></i> {{ notebook.name }}
-                                <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+                                <span class="pull-right text-muted small"><em>{{ notebook.date_created }}</em>
                                 </span>
                             </a>
                             {% endfor %}

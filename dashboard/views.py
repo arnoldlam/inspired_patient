@@ -1088,6 +1088,8 @@ def NotebookDetail(request, notebook_id):
 			'notebook':notebook,
 			'zipped_list':zipped_list,
 			'editors':notebook_editors,
+			'viewers':notebook_viewers,
+			'notes_in_notebook':notes_in_notebook,
 	})
 
 @login_required

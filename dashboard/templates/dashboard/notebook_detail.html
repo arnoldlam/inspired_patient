@@ -1,38 +1,67 @@
-{% include "dashboard/header.html" %}
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
 
-<h3>Notebook: {{ notebook.name }}</h3>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{ notebook.name }}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div id="notes_in_notebook" class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Notes in Notebook
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                    	{% if notes_in_notebook %}
+	                    	{% for note in notes_in_notebook %}
+	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
+	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+	                            </span>
+	                        </a>
+	                     	{% endfor %}
+	                    {% endif %}
+                    </div>
+                    <!-- /.list-group -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+		<!-- /#notes_in_notebook -->
 
-{% if zipped_list %}
-<p>Notes in notebook:</p>
-<table border="1">
-<tr>
-<td>Subject</td>
-<td>Created By</td>
-<td>Date Created</td>
-<td>Date Accessed</td>
-<td></td>
-</tr>
-{% for note, author in zipped_list %}
-<tr>
-<td><a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}">{{ note }}</a></td>
-<td>{{ author.first_name }}</td>
-<td>{{ note.date_created }}</td>
-<td>{{ note.date_accessed }}</td>
-<td><a href="#">Remove</a></td>
-</tr>
-{% endfor %}
-</table>
-{% else %}
-<p>Notebook is empty</p>
-{% endif %}
+        <div id="notes_in_notebook" class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil fa-fw"></i> Notebook Details
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+	                <form action="">
+	                    <div class="form-group">
+	                        <label>Name</label>
+	                        <input class="form-control" placeholder="{{ notebook.name }}" />
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Description</label>
+	                        <input class="form-control" placeholder="{{ notebook.description }}" />
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Date Created</label>
+	                        <input class="form-control" placeholder="{{ notebook.date_created }}" />
+	                    </div>
+	                </form>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+		<!-- /#notes_in_notebook -->
+    </div>
+</div>
+<!-- /#page-wrapper -->
 
-<p>Editors:</p>
-<ul>
-{% for editor in editors %}
-<li>{{ editor.user_profile.full_name }}</li>
-{% endfor %}
-</ul>
-
-<p><a href="{% url 'dashboard:notes_select' %}?notebook_id={{notebook.id}}">Create a note in notebook</a> </p>
-<p><a href="{% url 'dashboard:add_notes_to_notebook' notebook.id %}">Add notes to notebook</a> </p>
-<p><a href="{% url 'dashboard:share_notebook' notebook.id %}">Add associates to notebook</a></p>
+{% include "dashboard/footer_new.html" %}

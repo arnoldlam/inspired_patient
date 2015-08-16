@@ -1177,7 +1177,9 @@ def AddNotesToNotebookView(request, notebook_id):
 
 @login_required
 def EditNotebookView(request, notebook_id):
+	user = request.user
 	if request.method == 'POST':
+		form = UserPermissionsForm(user.id)
 		if form.is_valid():
 			notebook = get_object_or_404(Notebook, pk=notebook_id)
 
@@ -1186,10 +1188,14 @@ def EditNotebookView(request, notebook_id):
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
 					user.notebooks_read_write.add(notebook)
+				for note in notebook.notes.all():
+					note.editors.add(user)
 			if form.cleaned_data['choices_for_viewers'] is not None:
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
 					user.notebooks_read_only.add(notebook)
+				for note in notebook.notes.all():
+					note.viewers.add(user)
 
 	redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
 	return HttpResponseRedirect(redirect_url)

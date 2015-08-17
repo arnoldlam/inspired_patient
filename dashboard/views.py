@@ -1134,47 +1134,6 @@ def AddNotesToNotebookView(request, notebook_id):
 	# Redirecting to notebook detail
 	return HttpResponseRedirect(redirect_url)
 
-# @login_required
-# def ShareNotebookView(request, notebook_id):
-# 	if request.method == 'POST':
-# 		notebook = get_object_or_404(Notebook, pk=notebook_id)
-# 		for key in request.POST:
-# 			if 'isChecked' in key:
-# 				user_id = request.POST[key]
-# 				user = get_object_or_404(User, pk=user_id)
-# 				notebook.editors.add(user)
-# 				notebook.save()
-
-# 				message = "The notebook " + notebook.name + " was shared with you."
-# 				notification = Notification(recipient=user, message=message)
-# 				notification.save()
-
-# 				# For each note in notebook, allow user to access
-# 				for note in notebook.notes.all():
-# 					note.editors.add(user)
-# 					note.save()
-
-# 		# URL for redirect to newly create notebook's detail page
-# 		redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
-# 		# Redirecting to notebook detail
-# 		return HttpResponseRedirect(redirect_url)
-# 	else:
-# 		user = request.user
-# 		user_profile = user.user_profile
-# 		associates = user_profile.associates.all()
-# 		notebook = get_object_or_404(Notebook, pk=notebook_id)
-
-# 		# Grab notes not currently in notebook
-# 		users_not_in_notebook = []
-# 		for associate in associates:
-# 			if associate.user not in notebook.editors.all():
-# 				users_not_in_notebook.append(associate)
-
-# 		return render(request, 'dashboard/share_notebook.html', {
-# 			'associates':users_not_in_notebook,
-# 			'notebook_id':notebook_id,
-# 		})
-
 @login_required
 def EditNotebookView(request, notebook_id):
 	user = request.user

@@ -38,6 +38,9 @@
                             <label>Attachments</label>
                             {{ form.attachment }}
                         </div>
+                        {% if notebook_id %}
+                        <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+                        {% endif %}
                     </form>
                     <button type="submit" form="add_general_note_form" class="btn btn-default submit_note_form_button" style="
                         display: block;

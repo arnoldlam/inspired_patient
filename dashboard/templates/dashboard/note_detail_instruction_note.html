@@ -33,6 +33,14 @@
                             <label>Follow-Up</label>
                             <input class="form-control" placeholder="{{ note.follow_up }}"/>
                         </div>
+                        {% if attachments %}
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {% for attachment in attachments %}
+                            <a target="_blank" href="{{ attachment.file_attachment.url }}">{{ attachment.file_attachment.name }}</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>

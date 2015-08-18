@@ -63,7 +63,7 @@ class AddNoteForm(forms.Form):
 	follow_up = forms.CharField(label='Follow-Up', required=False, max_length=250, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class AddInstructionNoteForm(AddNoteForm):
-	instructions = forms.CharField(label='Instructions', max_length=400)
+	instructions = forms.CharField(label='Instructions', max_length=400, widget=forms.Textarea(attrs={'class':'form-control','row':'10','required':'required'}))
 
 class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 	def __init__(self, user_id, *args, **kwargs):

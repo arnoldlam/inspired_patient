@@ -645,15 +645,19 @@ def AddResourceNoteView(request):
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
 
-			new_note = ResourceNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				doctor=doctor.user, clinic=clinic,
-			)
+			new_note = ResourceNote(subject=subject, note_type=note_type, note_content=note, author=user,)
 
 			# Optional parameters to be added to new_note object
 			if form.cleaned_data['url'] != '':
 				new_note.url = form.cleaned_data['url']
 			if form.cleaned_data['follow_up'] != '':
 				new_note.follow_up = form.cleaned_data['follow_up']
+			if form.cleaned_data['choice_for_doctor'] is not None:
+				doctor = form.cleaned_data['choice_for_doctor'].user
+				new_note.doctor = doctor
+			if form.cleaned_data['choice_for_clinic'] is not None:
+				clinic = form.cleaned_data['choice_for_clinic']
+				new_note.clinic = clinic
 
 			new_note.save()
 

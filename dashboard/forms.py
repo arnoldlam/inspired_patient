@@ -110,9 +110,9 @@ class AddSelfCareNoteForm(AddNoteForm):
 		('every_month', 'Every Month')
 	)
 
-	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now)
+	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
-	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea)
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea)
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea)
@@ -122,6 +122,8 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddResourceNoteForm, self).__init__(user_id, *args, **kwargs)
 
+
+
 class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 	FREQUENCY_CHOICES = (
 		('not_repeating', 'Not repeating'),
@@ -129,10 +131,11 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 		('every_week', 'Every Week'),
 		('every_month', 'Every Month')
 	)
-	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now)
-	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES)
-	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now)
-	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200)
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
+	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
 class AddContactNoteForm(AddNoteForm):
 	ADDRESS_COUNTRY_CHOICES = (

@@ -90,16 +90,17 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
-	procedure = forms.CharField(max_length=1000, widget=forms.Textarea)
-	weight = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0)
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','required':'required','rows':'5'})))
+	procedure = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
+	weight = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0,widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 	self_care_instructions = forms.CharField(label="Self Care Instructions", max_length=1000, 
-		widget=forms.Textarea)
+		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 	emergency_instructions = forms.CharField(label="Emergency Instructions", max_length=1000, 
-		widget=forms.Textarea)
+		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 	pre_procedure_instructions = forms.CharField(label="Pre-Procedure Instructions", max_length=1000, 
-		widget=forms.Textarea)
+		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 	follow_up_instructions = forms.CharField(label="Follow-Up Instructions", max_length=1000, 
-		widget=forms.Textarea)
+		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 
 class AddSelfCareNoteForm(AddNoteForm):
 	FREQUENCY_CHOICES = (

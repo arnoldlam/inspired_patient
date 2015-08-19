@@ -92,7 +92,7 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
 	procedure = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
-	weight = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0,widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+	weight = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0,widget=forms.TextInput(attrs={'class':'form-control','required':'required','type':'number'}))
 	self_care_instructions = forms.CharField(label="Self Care Instructions", max_length=1000, 
 		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 	emergency_instructions = forms.CharField(label="Emergency Instructions", max_length=1000, 

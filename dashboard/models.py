@@ -125,6 +125,7 @@ class Note(models.Model):
 	# Optional date and time for some note types
 	date_and_time = models.DateTimeField('Date and Time', blank=True, null=True)
 
+	# Get font name for different note types
 	def getFontAwesomeIconName(self):
 		if self.note_type == 'general_note':
 			return 'fa-sticky-note' 

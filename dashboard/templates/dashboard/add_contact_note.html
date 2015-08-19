@@ -17,6 +17,11 @@
                     Contact
                 </div>
                 <div class="panel-body">
+                {% if form.errors %}
+                <div class="alert alert-warning">
+                    {{ form.errors }}.
+                </div>
+                {% endif %}
                     <form id="add_note_form" action="{% url 'dashboard:add_contact_note' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                         <div class="form-group">

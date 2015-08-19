@@ -74,11 +74,11 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		team_members = user.user_profile.associates.all()
 
 		self.fields['choice_for_team_member'] = forms.ModelChoiceField(label='Team Member', queryset=team_members, 
-			empty_label="Select a Team Member")
+			empty_label="Select a Team Member", widget=forms.SelectMultiple(attrs={'class':'form-control'}))
 		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
-			empty_label="Select a Doctor", required=False)
+			empty_label="Select a Doctor", required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
 		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
-			empty_label="Select a Clinic", required=False)
+			empty_label="Select a Clinic", required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
 
 class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (
@@ -86,7 +86,7 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 		('respond', 'Respond'),
 		('urgent', 'Urgent'),
 	)	
-	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES)
+	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.TextInput(attrs={'class':'form-control','required':'required'})
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	procedure = forms.CharField(max_length=1000, widget=forms.Textarea)

@@ -74,7 +74,7 @@ class NotesThatRelateToDoctorAndClinic(AddNoteForm):
 		team_members = user.user_profile.associates.all()
 
 		self.fields['choice_for_team_member'] = forms.ModelChoiceField(label='Team Member', queryset=team_members, 
-			empty_label="Select a Team Member", widget=forms.Select(attrs={'class':'form-control'}))
+			empty_label="Select a Team Member", required=False, widget=forms.Select(attrs={'class':'form-control'}))
 		self.fields['choice_for_doctor'] = forms.ModelChoiceField(label='Doctor', queryset=doctors, 
 			empty_label="Select a Doctor", required=False, widget=forms.Select(attrs={'class':'form-control'}))
 		self.fields['choice_for_clinic'] = forms.ModelChoiceField(label='Clinic', queryset=clinics, 
@@ -90,7 +90,7 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
-	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','required':'required','rows':'5'}))
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
 	procedure = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 	weight = forms.DecimalField(max_digits=5, decimal_places=2, min_value=0,widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 	self_care_instructions = forms.CharField(label="Self Care Instructions", max_length=1000, 

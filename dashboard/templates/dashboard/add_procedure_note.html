@@ -26,7 +26,7 @@
                     {% csrf_token %}
 	                    <div class="form-group">
 	                        <label>Subject *</label>
-	                        {{ form.title }}
+	                        {{ form.subject }}
 	                    </div>
 	                    <div class="form-group">
 	                        <label>Pre-Procedure Instructions *</label>
@@ -67,7 +67,7 @@
                     		</div>
                     	</div>
 						<div class="form-group">
-						    <label>Additional Notes *</label>
+						    <label>Additional Notes</label>
 						    {{ form.note_content }}
 						</div>
                         <div class="form-group">

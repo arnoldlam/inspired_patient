@@ -86,8 +86,8 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 		('respond', 'Respond'),
 		('urgent', 'Urgent'),
 	)	
-	subject = forms.CharField(required=False)
-	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+
+	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	procedure = forms.CharField(max_length=1000, widget=forms.Textarea)

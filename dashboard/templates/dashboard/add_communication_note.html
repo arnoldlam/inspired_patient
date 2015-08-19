@@ -23,6 +23,10 @@
                 {% endif %}
                     <form id="add_note_form" action="{% url 'dashboard:add_communication_note' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+	                    <div class="form-group">
+	                        <label>Subject *</label>
+	                        {{ form.subject }}
+	                    </div>
                     	<div class="form-group">
                     	    <label>Recipient *</label>
                     	    {{ form.choice_for_team_member }}

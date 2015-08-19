@@ -1,14 +1,95 @@
-{% include "dashboard/header.html" %}
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
 
-<h2>Add a new procedure note</h2>
 
-<form action="{% url 'dashboard:add_procedure_note' %}" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-{{ form.as_p }} <br>
-{% if notebook_id %}
-<input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
-{% endif %}
-<input type="submit" value="Add note" />
-</form>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Create a Procedure Note</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Procedure Note
+                </div>
+                <div class="panel-body">
+                {% if form.errors %}
+                <div class="alert alert-warning">
+                    {{ form.errors }}.
+                </div>
+                {% endif %}
+                    <form id="add_note_form" action="{% url 'dashboard:add_procedure_note' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+	                    <div class="form-group">
+	                        <label>Subject *</label>
+	                        {{ form.title }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Pre-Procedure Instructions *</label>
+	                        {{ form.pre_procedure_instructions }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Procedure *</label>
+	                        {{ form.procedure }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Emergency Instructions *</label>
+	                        {{ form.emergency_instructions }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Self-Care Instructions *</label>
+	                        {{ form.self_care_instructions }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Weight *</label>
+	                        {{ form.weight }}
+	                    </div>
+	                    <div class="form-group">
+	                        <label>Follow-Up Instructions *</label>
+	                        {{ form.follow_up_instructions }}
+	                    </div>
+                    	<div class="row">
+                    		<div class="col-lg-6">
+		                    	<div class="form-group">
+		                    	    <label>Doctor</label>
+		                    	    {{ form.choice_for_doctor }}
+		                    	</div>
+	                    	</div>
+	                    	<div class="col-lg-6">
+		                    	<div class="form-group">
+		                    	    <label>Clinic</label>
+		                    	    {{ form.choice_for_clinic }}
+		                    	</div>
+                    		</div>
+                    	</div>
+						<div class="form-group">
+						    <label>Additional Notes *</label>
+						    {{ form.note_content }}
+						</div>
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {{ form.attachment }}
+                        </div>
+                        {% if notebook_id %}
+                        <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+                        {% endif %}
+                    </form>
+                    <button type="submit" form="add_note_form" class="btn btn-default submit_note_form_button" style="
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    ">Create</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->
 
-<a href="{% url 'dashboard:notes' %}">Back to notes</a>
+{% include "dashboard/footer_new.html" %}

@@ -224,11 +224,11 @@ class ContactNote(Note):
 	title = models.CharField(max_length=15)
 	first_name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
-	organization_name = models.CharField(max_length=100)
+	organization_name = models.CharField(max_length=100, blank=True)
 	address = models.OneToOneField(Address, related_name='contact_notes', null=True)
-	phone_number_work = models.CharField('Phone Number (Work)', max_length=20)
-	phone_number_home = models.CharField('Phone Number (Home)', max_length=20)
-	email = models.EmailField()
+	phone_number_work = models.CharField('Phone Number (Work)', max_length=20, blank=True)
+	phone_number_home = models.CharField('Phone Number (Home)', max_length=20, blank=True)
+	email = models.EmailField(blank=True)
 
 	def full_name(self):
 		return self.first_name + " " + self.last_name

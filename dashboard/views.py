@@ -786,7 +786,6 @@ def AddContactNoteView(request):
 		form = AddContactNoteForm(request.user.id, request.POST, request.FILES)
 		if form.is_valid():
 			user = request.user
-			subject = form.cleaned_data['subject']
 			note = form.cleaned_data['note_content']
 			note_type = 'contact_note'
 
@@ -810,6 +809,7 @@ def AddContactNoteView(request):
 			phone_number_work = form.cleaned_data['phone_number_work']
 			phone_number_home = form.cleaned_data['phone_number_home']
 			email = form.cleaned_data['email']
+			subject = first_name + " " + last_name
 
 			new_note = ContactNote(address=address, subject=subject, note_type=note_type, note_content=note, author=user, 
 				title=title, first_name=first_name, last_name=last_name, organization_name=organization_name,

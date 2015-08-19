@@ -142,17 +142,17 @@ class AddContactNoteForm(AddNoteForm):
 	title = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	first_name = forms.CharField(label='First name', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	last_name = forms.CharField(label='Last name', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	organization_name = forms.CharField(label='Organization name', max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))
-	phone_number_work = forms.CharField(label='Work Phone', max_length=20, widget=forms.TextInput(attrs={'class':'form-control'}))
-	phone_number_home = forms.CharField(label='Home Phone', max_length=20, widget=forms.TextInput(attrs={'class':'form-control'}))
+	organization_name = forms.CharField(label='Organization name', max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	phone_number_work = forms.CharField(label='Work Phone', max_length=20, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	phone_number_home = forms.CharField(label='Home Phone', max_length=20, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
 	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
 
-	unit = forms.CharField(label='Unit', max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
-	street = forms.CharField(label='Street', max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
-	city = forms.CharField(label='City', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
-	province = forms.CharField(label='Province', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
-	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
-	postal_code = forms.CharField(label='Postal Code', max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
+	unit = forms.CharField(label='Unit', max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	street = forms.CharField(label='Street', max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	city = forms.CharField(label='City', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	province = forms.CharField(label='Province', max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control'}),required=False)
+	postal_code = forms.CharField(label='Postal Code', max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
 
 class AddMedicationNoteForm(AddNoteForm):
 	ADDRESS_COUNTRY_CHOICES = (

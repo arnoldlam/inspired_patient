@@ -42,14 +42,18 @@
                     	<div class="row">
                     		<div class="col-lg-6">
 		                    	<div class="form-group">
-								    <label>Notebook Editors</label>
-									{{ permissions_form.choices_for_editors }}
+								    <label>Current Notebook Editors</label>
+								    {% for editor in editors %}
+									<li>{{ editor.user_profile.full_name }}</li>
+									{% endfor %}
 								</div>
                     		</div>
 	                    	<div class="col-lg-6">
 		                    	<div class="form-group">
-									<label>Notebook Viewers</label>
-									{{ permissions_form.choices_for_viewers}}
+									<label>Current Notebook Viewers</label>
+								    {% for viewer in viewers %}
+									<li>{{ viewer.user_profile.full_name }}</li>
+									{% endfor %}
 								</div>
                 			</div>
                     	</div>

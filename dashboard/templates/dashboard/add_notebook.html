@@ -1,9 +1,58 @@
-{% include "dashboard/header.html" %}
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
 
-<h2>Create a new notebook</h2>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Create a Notebook</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Notebook
+                </div>
+                <div class="panel-body">
+                    <form id="add_notebook_form" action="{% url 'dashboard:add_notebook' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label>Name *</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            {{ form.description }}
+                        </div>
+                    	<div class="row">
+                    		<div class="col-lg-6">
+		                    	<div class="form-group">
+		                    	    <label>Editors</label>
+		                    	    {{ form.choices_for_editors }}
+		                    	</div>
+	                    	</div>
+	                    	<div class="col-lg-6">
+		                    	<div class="form-group">
+		                    	    <label>Viewers</label>
+		                    	    {{ form.choices_for_viewers }}
+		                    	</div>
+                    		</div>
+                    	</div>
+                    </form>
+                    <button type="submit" form="add_notebook_form" class="btn btn-default submit_note_form_button" style="
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    ">Create</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->
 
-<form action="{% url 'dashboard:add_notebook' %}" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-{{ form.as_p }} <br>
-<input type="submit" value="Create notebook" />
-</form>
+{% include "dashboard/footer_new.html" %}

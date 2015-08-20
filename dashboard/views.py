@@ -1060,6 +1060,10 @@ def AddNotebookView(request):
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
 					user.notebooks_read_write.add(new_notebook)
+			if form.cleaned_data['choices_for_viewers'] is not None:
+				for user in form.cleaned_data['choices_for_viewers']:
+					user = User.objects.get(username=user)
+					user.notebooks_read_only.add(new_notebook)
 
 			# Add new notebook to current user's read-write notebooks
 			user = request.user

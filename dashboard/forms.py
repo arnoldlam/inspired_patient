@@ -57,7 +57,7 @@ class AddNoteForm(forms.Form):
 		self.fields['choices_for_viewers'] = forms.MultipleChoiceField(label='Viewers', choices=self.user_choices, required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
 
 	subject = forms.CharField(label='Subject', max_length=150, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	note_content = forms.CharField(label='Note', max_length=250, widget=forms.Textarea(attrs={'class':'form-control', 'rows':'20', 'required':'required'}))
+	note_content = forms.CharField(label='Note', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'rows':'20', 'required':'required'}))
 	attachment = forms.FileField(required=False)
 	url = forms.URLField(label='URL', required=False, widget=forms.URLInput(attrs={'class':'form-control', 'type':'url'}))
 	follow_up = forms.CharField(label='Follow-Up', required=False, max_length=250, widget=forms.TextInput(attrs={'class':'form-control'}))

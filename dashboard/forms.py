@@ -185,12 +185,12 @@ class AddMedicationNoteForm(AddNoteForm):
 	pharmacy_name = forms.CharField(label='Pharmacy Name', max_length=50, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	pharmacy_telephone = forms.CharField(label='Pharmacy Tel', max_length=50, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
-	unit = forms.CharField(label='Unit', max_length=10, initial="27", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	unit = forms.CharField(label='Unit', max_length=10, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	street = forms.CharField(label='Street', max_length=50, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	city = forms.CharField(label='City', max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	province = forms.CharField(label='Province', max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
-	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	postal_code = forms.CharField(label='Postal Code', max_length=10, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
 class SearchForUserForm(forms.Form):
 	email = forms.EmailField(label='Email', max_length=60, required = False)
@@ -303,12 +303,12 @@ class CreateProfessionalProfileForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
-	unit = forms.CharField(max_length=10, initial="27", widget=forms.TextInput(attrs={'class':'form-control'}))
-	street = forms.CharField(max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control'}))
+	unit = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
+	street = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
 	city = forms.CharField(max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control'}))
 	province = forms.CharField(max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
 	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
-	postal_code = forms.CharField(max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control'}))
+	postal_code = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class EditProfileForm(forms.Form):
 	def __init__(self, user_id, *args, **kwargs):

@@ -17,7 +17,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
-                    <div class="list-group" style="height:400px;overflow:scroll;">
+                    <div class="list-group" style="height:600px;overflow:scroll;">
                     	{% if authored_notes %}
 	                    	{% for note in authored_notes %}
 	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">

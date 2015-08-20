@@ -11,13 +11,13 @@
     <div class="row">
         
         <div id="authored_notes_panel" class="col-lg-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
                     <i class="fa fa-pencil fa-fw"></i> Notebooks You Can Edit
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
+                <div class="panel-body" style="height:600px;">
+                    <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% if notebooks_read_write %}
 	                    	{% for notebook in notebooks_read_write %}
 	                        <a href="{% url 'dashboard:notebook_detail' notebook.id %}" class="list-group-item" style="padding-bottom: 20px;">
@@ -37,13 +37,13 @@
 		<!-- /#authored_notes_panel -->
 
         <div id="read_write_notes_panel" class="col-lg-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
                     <i class="fa fa-share fa-fw"></i> Notebooks You Can View
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
+                <div class="panel-body" style="height:600px;">
+                    <div class="list-group" style="height:525px; overflow:scroll;">
                         {% if notebooks_read_only %}
                             {% for notebook in notebooks_read_only %}
                             <a href="{% url 'dashboard:notebook_detail' notebook.id %}" class="list-group-item" style="padding-bottom: 20px;">

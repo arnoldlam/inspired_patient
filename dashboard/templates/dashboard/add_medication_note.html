@@ -1,14 +1,130 @@
-{% include "dashboard/header.html" %}
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
 
-<h2>Add a new medication note</h2>
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Create a Medication Note</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Medication Note
+                </div>
+                <div class="panel-body">
+                {% if form.errors %}
+                <div class="alert alert-warning">
+                    {{ form.errors }}.
+                </div>
+                {% endif %}
+                    <form id="add_note_form" action="{% url 'dashboard:add_medication_note' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label>Subject *</label>
+                            {{ form.subject }}
+                        </div>
+                        <div class="form-group">
+                            <label>Medication Name *</label>
+                            {{ form.medication_name }}
+                        </div>
+                        <div class="form-group">
+                            <label>Medication Dosage *</label>
+                            {{ form.medication_dosage }}
+                        </div>
+                        <div class="form-group">
+                            <label>Medication Duration *</label>
+                            {{ form.medication_duration }}
+                        </div>                        
+                        <div class="form-group">
+                            <label>Date and Time *</label>
+                            {{ form.date_and_time }}
+                        </div>
+	                	<div class="row">
+	                		<div class="col-lg-6">
+	                		<div class="form-group">
+	                		    <label>Frequency *</label>
+	                		    {{ form.medication_frequency }}
+	                		</div>
+	                    	</div>
+	                    	<div class="col-lg-6">
+	                        <div class="form-group">
+	                            <label>End Date *</label>
+	                            {{ form.end_date }}
+	                        </div>
+                    		</div>
+                    	</div>
+	                	<div class="row">
+	                		<div class="col-lg-6">
+	                		<div class="form-group">
+	                		    <label>Pharmacy Name *</label>
+	                		    {{ form.pharmacy_name }}
+	                		</div>
+	                    	</div>
+	                    	<div class="col-lg-6">
+	                        <div class="form-group">
+	                            <label>Pharmacy Telephone *</label>
+	                            {{ form.pharmacy_telephone }}
+	                        </div>
+                    		</div>
+                    	</div>
+                        <div class="row">
+                        	<div class="col-lg-6">
+                        		<div class="form-group">
+                        		    <label>Unit</label>
+                        		    {{ form.unit }}
+                        		</div>
+                        		<div class="form-group">
+                        		    <label>Province</label>
+                        		    {{ form.province }}
+                        		</div>
+                        		<div class="form-group">
+                        		    <label>Postal Code</label>
+                        		    {{ form.postal_code }}
+                        		</div>
+                        	</div>
+                        	<div class="col-lg-6">
+                        		<div class="form-group">
+                        		    <label>Street</label>
+                        		    {{ form.street }}
+                        		</div>
+                        		<div class="form-group">
+                        		    <label>City</label>
+                        		    {{ form.city }}
+                        		</div>
+                        		<div class="form-group">
+                        		    <label>Country</label>
+                        		    {{ form.country }}
+                        		</div>
+                        	</div>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            {{ form.note_content }}
+                        </div>
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {{ form.attachment }}
+                        </div>
+                        {% if notebook_id %}
+                        <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+                        {% endif %}
+                    </form>
+                    <button type="submit" form="add_note_form" class="btn btn-default submit_note_form_button" style="
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                    ">Create</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    
+</div>
+<!-- /#page-wrapper -->
 
-<form action="{% url 'dashboard:add_medication_note' %}" method="post" enctype="multipart/form-data">
-{% csrf_token %}
-{{ form.as_p }} <br>
-{% if notebook_id %}
-<input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
-{% endif %}
-<input type="submit" value="Add note" />
-</form>
-
-<a href="{% url 'dashboard:notes' %}">Back to notes</a>
+{% include "dashboard/footer_new.html" %}

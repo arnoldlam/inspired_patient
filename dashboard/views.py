@@ -247,9 +247,9 @@ def ClinicView(request):
 @login_required
 def NotesView(request):
 	user = request.user
-	authored_notes = user.authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
-	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
-	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
+	authored_notes = user.authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
+	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
+	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 
 	return render(request, 'dashboard/notes.html', {
 		'notes_read_write':notes_read_write,

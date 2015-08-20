@@ -30,7 +30,32 @@
 	                        <label>Date Created</label>
 	                        <input class="form-control" placeholder="{{ notebook.date_created }}" />
 	                    </div>
-						
+                    	<div class="row">
+                    		<div class="col-lg-6">
+		                    	<div class="form-group">
+								    <label>Current Notebook Editors</label>
+								    {% if editors %}
+								    {% for editor in editors %}
+									<li>{{ editor.user_profile.full_name }}</li>
+									{% endfor %}
+									{% else %}
+									<p>No editors</p>
+									{% endif %}
+								</div>
+                    		</div>
+	                    	<div class="col-lg-6">
+		                    	<div class="form-group">
+									<label>Current Notebook Viewers</label>
+									{% if viewers %}
+								    {% for viewer in viewers %}
+									<li>{{ viewer.user_profile.full_name }}</li>
+									{% endfor %}
+									{% else %}
+									<p>No viewers</p>
+									{% endif %}
+								</div>
+                			</div>
+                    	</div>
 						{# Only display options to edit notebook if user is an editor #}
 	                    {% if user in notebook.editors.all %}
 	                    <div class="form-group">
@@ -39,24 +64,6 @@
 	                    <div class="form-group">
 	                        <p><a data-toggle="modal" data-target="#myModal" href="#">Add Notes to this notebook</a></p>
 	                    </div>
-                    	<div class="row">
-                    		<div class="col-lg-6">
-		                    	<div class="form-group">
-								    <label>Current Notebook Editors</label>
-								    {% for editor in editors %}
-									<li>{{ editor.user_profile.full_name }}</li>
-									{% endfor %}
-								</div>
-                    		</div>
-	                    	<div class="col-lg-6">
-		                    	<div class="form-group">
-									<label>Current Notebook Viewers</label>
-								    {% for viewer in viewers %}
-									<li>{{ viewer.user_profile.full_name }}</li>
-									{% endfor %}
-								</div>
-                			</div>
-                    	</div>
                     	<div class="row">
                     		<div class="col-lg-6">
 		                    	<div class="form-group">
@@ -126,13 +133,13 @@
 		<!-- /.modal -->
 
         <div id="notes_in_notebook" class="col-lg-5">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
                     <i class="fa fa-pencil fa-fw"></i> Notes in Notebook
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="list-group">
+                <div class="panel-body" style="height:600px;">
+                    <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% if notes_in_notebook %}
 	                    	{% for note in notes_in_notebook %}
 	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">

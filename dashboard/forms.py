@@ -189,7 +189,7 @@ class AddMedicationNoteForm(AddNoteForm):
 	street = forms.CharField(label='Street', max_length=50, initial="Memory Lane", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	city = forms.CharField(label='City', max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	province = forms.CharField(label='Province', max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	postal_code = forms.CharField(label='Postal Code', max_length=10, initial="V6K3C9", widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
 class SearchForUserForm(forms.Form):

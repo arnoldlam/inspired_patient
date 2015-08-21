@@ -1143,7 +1143,7 @@ def NotebookDetail(request, notebook_id):
 	user_id = user.id
 
 	# Grab notes not currently in notebook
-	notes = Note.objects.filter(Q(editors__id__exact=user_id) | Q(editors__id__exact=user_id))
+	notes = Note.objects.filter(Q(editors__id__exact=user_id) | Q(viewers__id__exact=user_id))
 	notes_not_in_notebook = []
 	for note in notes:
 		if note not in notes_in_notebook:
@@ -1343,7 +1343,7 @@ def SchedulingView(request):
 	user = request.user
 	user_id = user.id
 	# Get all appointment, medication, and self care notes that belong to user and sort by date
-	upcoming_tasks = Note.objects.filter(Q(editors__id__exact=user_id) | Q(editors__id__exact=user_id) | Q(author_id=user_id))
+	upcoming_tasks = Note.objects.filter(Q(editors__id__exact=user_id) | Q(viewers__id__exact=user_id))
 	
 	self_care_notes = upcoming_tasks.filter(note_type__exact='self_care_note')
 	self_care_notes = self_care_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')

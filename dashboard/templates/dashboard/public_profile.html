@@ -28,21 +28,28 @@
 							{% static "images/default_profile_picture.png" %}
 							{% endif %}" 
 						alt="Profile Picture" style="height:100px;width:100px;"/>
-						<label>Name: </label>
-						{{ public_profile_user.first_name }}
-						<label>Role: </label>
-						
+						<div>
+							<label>Name: </label>
+							{{ public_profile_user.first_name }}
+						</div>
+						<div>
+							<label>Role: </label>
+							{{ public_profile_user.user_profile.role }}
+						</div>
 						{# Check if this user is an associate before displaying sensitive information #}
 						{% if is_associate %}
 
-						{{ public_profile_user.user_profile.role }}
-						<label>Phone Number: </label>
-						{{ public_profile_user.user_profile.phone_number }}
-						<label>Medical History: </label>
-						{{ public_profile_user.user_profile.medical_history }}
-						
+						<div>
+							<label>Phone Number: </label>
+							{{ public_profile_user.user_profile.phone_number }}
+						</div>
+						<div>
+							<label>Medical History: </label>
+							{{ public_profile_user.user_profile.medical_history }}
+						</div>
 
 						{% if public_profile_user.user_profile.role == 'professional' %}
+							<div>
 							<label>Address</label>
 								<iframe
 								  width="600"
@@ -51,6 +58,7 @@
 								  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
 									&q={{ maps_query }}" allowfullscreen>
 								</iframe>
+							</div>
 						{% endif %}
 
 						{% endif %}

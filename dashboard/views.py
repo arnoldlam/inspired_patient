@@ -1097,6 +1097,7 @@ def NotebookDetail(request, notebook_id):
 	# Grab notes in notebook
 	notes_in_notebook = notebook.notes.all().order_by('-date_created')
 	user = request.user
+	user_id = user.id
 
 	# Grab notes not currently in notebook
 	notes = Note.objects.filter(Q(editors__id__exact=user_id) | Q(editors__id__exact=user_id) | Q(author_id=user_id))

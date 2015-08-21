@@ -1095,7 +1095,7 @@ def NotebookDetail(request, notebook_id):
 	notes = Note.objects.filter(Q(editors__id=user.id) | Q(author__id=user.id))
 	notes_not_in_notebook = []
 	for note in notes:
-		if note not in notebook.notes.all():
+		if note not in notes_in_notebook
 			notes_not_in_notebook.append(note)
 
 	permissions_form = UserPermissionsForm(user.id)

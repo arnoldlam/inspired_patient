@@ -158,11 +158,54 @@ def Dashboard(request):
 @login_required
 def Profile(request):
 	user = request.user
-	user_profile = user.user_profile
+	if request.method == 'POST':
+		form = EditProfileForm(user.id, request.POST, request.FILES)
+		if form.is_valid():
+			first_name = form.cleaned_data['first_name']
+			last_name = form.cleaned_data['last_name']
+
+			address_unit = form.cleaned_data['address_unit']
+			address_street = form.cleaned_data['address_street']
+			address_city = form.cleaned_data['address_city']
+			address_province = form.cleaned_data['address_province']
+			address_country = form.cleaned_data['address_country']
+			address_postal_code = form.cleaned_data['address_postal_code']
+
+			medical_history = form.cleaned_data['medical_history']
+			phone_number = form.cleaned_data['phone_number']
+			role = form.cleaned_data['role']
+			title = form.cleaned_data['title']
+
+			user = request.user
+			user_profile = user.user_profile
+
+			user.first_name = first_name
+			user.last_name = last_name
+
+			user_profile.address_unit = address_unit
+			user_profile.address_street = address_street
+			user_profile.address_city = address_city
+			user_profile.address_province = address_province
+			user_profile.address_country = address_country
+			user_profile.address_postal_code = address_postal_code
+
+			user_profile.medical_history = medical_history
+			user_profile.phone_number = phone_number
+			user_profile.role = role
+			user_profile.title = title
+			if form.cleaned_data['profile_picture'] is not None:
+				user_profile.profile_picture = form.cleaned_data['profile_picture']
+
+			user.save()
+			user_profile.save()
+
+			return HttpResponseRedirect(reverse('dashboard:profile'))
+	else:
+		form = EditProfileForm(user.id)
 	return render(request, 'dashboard/profile.html', {
+		'form':form,
 		'user':user,
-		'user_profile':user_profile,
-		})
+	})
 
 # View for profile edit 
 @login_required

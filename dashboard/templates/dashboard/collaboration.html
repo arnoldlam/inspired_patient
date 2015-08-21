@@ -24,7 +24,7 @@ Search by email: <input type="text" name="u">
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px; overflow:scroll;">
-                    	{% if authored_notes %}
+                    	{% if patients %}
 	                    	{% for patient in patients %}
 	                        <a href="{% url 'dashboard:public_profile' patient.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
 	                            <i class="fa fa-user fa-fw"></i> {{ note.subject }}
@@ -47,7 +47,7 @@ Search by email: <input type="text" name="u">
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px;overflow:scroll;">
-                    	{% if notes_read_write %}
+                    	{% if professionals %}
 	                    	{% for professional in professionals %}
 	                        <a href="{% url 'dashboard:public_profile' professional.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
 	                            <i class="fa fa-user-md fa-fw"></i> {{ professional.full_name }}

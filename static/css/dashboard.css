@@ -24,9 +24,8 @@
 }
 
 #profile_picture {
-	width:100px;
-	height:100px;
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
+	height: 200px;
+    width: 200px;
+    display: block;
+    margin: 20px auto;
 }

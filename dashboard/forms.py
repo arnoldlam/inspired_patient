@@ -339,7 +339,7 @@ class EditProfileForm(forms.Form):
 			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, initial=current_user.last_name,
 			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
-		self.fields['profile_picture'] = forms.ImageField(initial=current_user_profile.profile_picture)
+		self.fields['profile_picture'] = forms.ImageField()
 		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, initial=current_user_profile.role,
 			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 		self.fields['medical_history'] = forms.CharField(label='Medical History', max_length=4000, initial=current_user_profile.medical_history,

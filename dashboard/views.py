@@ -1294,10 +1294,10 @@ def SchedulingView(request):
 	# Get all appointment, medication, and self care notes that belong to user and sort by date
 	upcoming_tasks = Note.objects.filter(Q(editors__id=user.id) | Q(viewers__id=user.id) | Q(author__id=user.id))
 	
-	appointments = upcoming_tasks.filter(note_type__exact='appointment_note')
-	appointments = appointments.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')[:10]
 	self_care_notes = upcoming_tasks.filter(note_type__exact='self_care_note')
 	self_care_notes = self_care_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')[:10]
+	appointments = upcoming_tasks.filter(note_type__exact='appointment_note')
+	appointments = appointments.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')[:10]
 	medication_notes = upcoming_tasks.filter(note_type__exact='medication_note')
 	medication_notes = medication_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')[:10]
 	

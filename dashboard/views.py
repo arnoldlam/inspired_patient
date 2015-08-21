@@ -222,12 +222,19 @@ def CollaborationView(request):
 	user = request.user
 	user_profile = user.user_profile
 	associates = user_profile.associates.all()
+	professionals = associates.filter(role__exact='professional')
+	patients = associates.filter(role__exact='patient')
+	clinics = user.clinics.all()
+
 	notes = user.notes_read_write.all()
 	notebooks_read_write = user.notebooks_read_write.all()
 	notebooks_read_only = user.notebooks_read_only.all()
 
 	return render(request, 'dashboard/collaboration.html', {
 		'associates':associates,
+		'professionals':professionals,
+		'patients':patients,
+		'clinics':clinics,
 		'notes':notes,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,

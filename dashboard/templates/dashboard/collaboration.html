@@ -1,24 +1,3 @@
-{% include "dashboard/header.html" %}
-
-<h3>Your Stats</h3>
-
-<p>Notes owned: {{ notes.count }}</p>
-<p>Notebooks owned: {{ notebooks_read_write.count }}</p>
-
-<h3>Team Members</h3>
-
-{% if associates %}
-<ul>
-{% for associate in associates %}
-<li><a href="{% url 'dashboard:public_profile' associate.user.id %}" <p>{{ associate.full_name }}</p></a></li>
-{% endfor %}
-</ul>
-{% else %}
-<p>No team members</p>
-{% endif %}
-
-<h3>Add new team members</h3>
-
 <!--<form action="{% url 'dashboard:search_results' %}" method="GET">
 Search by email: <input type="text" name="u">
 <br /><br />
@@ -40,17 +19,15 @@ Search by email: <input type="text" name="u">
         <div id="authored_notes_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> Fellow Patients
+                    <i class="fa fa-users fa-fw"></i> Fellow Patients
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% if authored_notes %}
 	                    	{% for patient in patients %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-	                            </span>
+	                        <a href="{% url 'dashboard:public_profile' patient.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa fa-user fa-fw"></i> {{ note.subject }}
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}
@@ -65,17 +42,15 @@ Search by email: <input type="text" name="u">
         <div id="read_write_notes_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-share fa-fw"></i> Professionals
+                    <i class="fa fa-users fa-fw"></i> Professionals
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px;overflow:scroll;">
                     	{% if notes_read_write %}
 	                    	{% for professional in professionals %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-	                            </span>
+	                        <a href="{% url 'dashboard:public_profile' professional.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa fa-user-md fa-fw"></i> {{ professional.full_name }}
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}
@@ -90,17 +65,15 @@ Search by email: <input type="text" name="u">
         <div id="read_only_notes_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-eye fa-fw"></i> Clinics
+                    <i class="fa fa-plus-square fa-fw"></i> Clinics
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px;overflow:scroll;">
                     	{% if clinics %}
 	                    	{% for clinic in clinics %}
-	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-	                            </span>
+	                        <a href="{% url 'dashboard:clinic_detail' clinic.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa fa-stethoscope fa-fw"></i> {{ clinic.name }}
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}

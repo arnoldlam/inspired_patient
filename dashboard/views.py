@@ -1092,7 +1092,7 @@ def NotebookDetail(request, notebook_id):
 	user = request.user
 
 	# Grab notes not currently in notebook
-	notes = Note.objects.filter(Q(editors__id=user.id) | Q(author__id=user.id))
+	notes = Note.objects.filter(Q(editors__id__exact=user_id) | Q(editors__id__exact=user_id) | Q(author_id=user_id))
 	notes_not_in_notebook = []
 	for note in notes:
 		if note not in notes_in_notebook:

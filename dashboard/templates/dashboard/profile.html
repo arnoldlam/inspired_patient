@@ -1,8 +1,3 @@
-{% include "dashboard/header.html" %}
-{% load staticfiles %}
-
-<h3>User Profile for {{ user.first_name }} {{ user.last_name }}</h3>
-
 <!-- If user has no profile picture, display default image -->
 <img src=
 	"{% if user.user_profile.profile_picture %}
@@ -12,23 +7,108 @@
 	{% endif %}" 
 alt="Profile Picture" style="height:100px;width:100px;"/>
 
-<ul>
-	<li>Title: {{user_profile.title}}</li>
-	<li>First Name: {{user.first_name}} </li>
-	<li>Last Name: {{user.last_name}} </li>
-	<li>Medical History: {{user_profile.medical_history}}</li>
-	<li>Address:</li>
-	<ul>
-		<li>Unit: {{user_profile.address_unit}}</li>
-		<li>Street: {{user_profile.address_street}}</li>
-		<li>City: {{user_profile.address_city}}</li>
-		<li>Province: {{user_profile.address_province}}</li>
-		<li>Country: {{user_profile.address_country}}</li>
-	</ul>
-	<li>Phone number: {{ user_profile.phone_number }}</li>
-	<li>Email: <a href="mailto:{{ user.username }}">{{ user.username }}</a></li>
-</ul>
-
-<a href="{% url 'dashboard:edit_profile' %}">Edit Profile</a>
+<a href="{% url 'dashboard:edit_profile' %}">Your Profile</a>
 
  
+ {% load staticfiles %}
+ {% include "dashboard/header_new.html" %}
+
+ <div id="page-wrapper">
+     <div class="row">
+         <div class="col-lg-12">
+             <h1 class="page-header">{{ user.user_profile.full_name }}</h1>
+         </div>
+         <!-- /.col-lg-12 -->
+     </div>
+     <!-- /.row -->
+     <div class="row">
+         <div class="col-lg-8 col-md-offset-2">
+             <div class="panel panel-default">
+                 <div class="panel-heading">
+                     {{ note.get_note_type_display }}
+                 </div>
+                 <div class="panel-body">
+                 <!-- If user has no profile picture, display default image -->
+                 <img id="profile_picture" src=
+                 	"{% if user.user_profile.profile_picture %}
+                 	{{ user.user_profile.profile_picture.url }}
+                 	{% else %}
+                 	{% static "images/default_profile_picture.png" %}
+                 	{% endif %}" 
+                 alt="Profile Picture" style="height:100px;width:100px;"/>
+                     <form action="">
+                        <div class="form-group">
+                            <label>Profile Picture</label>
+                            {{ form.profile_picture }}
+                        </div>
+ 	                	<div class="row">
+ 	                		<div class="col-lg-6">
+	 	                		<div class="form-group">
+	 	                		    <label>First Name *</label>
+	 	                		    {{ form.first_name }}
+ 	                			</div>
+ 	                    	</div>
+ 	                    	<div class="col-lg-6">
+	 	                        <div class="form-group">
+	 	                            <label>Last Name *</label>
+	 	                            {{ form.last_name }}
+	 	                        </div>
+                 			</div>
+                     	</div>
+             			<div class="form-group">
+             			    <label>Role</label>
+             			    {{ form.role }}
+             			</div>
+             			<div class="form-group">
+             			    <label>Phone Number</label>
+             			    {{ form.phone_number }}
+             			</div>
+             			<div class="form-group">
+             			    <label>Medical History</label>
+             			    {{ form.medical_history }}
+             			</div>
+             			<div class="row">
+             				<div class="col-lg-6">
+             					<div class="form-group">
+             					    <label>Unit *</label>
+             					    {{ form.address_unit }}
+             					</div>
+             					<div class="form-group">
+             					    <label>Province *</label>
+             					    {{ form.address_province }}
+             					</div>
+             					<div class="form-group">
+             					    <label>Postal Code *</label>
+             					    {{ form.address_postal_code }}
+             					</div>
+             				</div>
+             				<div class="col-lg-6">
+             					<div class="form-group">
+             					    <label>Street *</label>
+             					    {{ form.address_street }}
+             					</div>
+             					<div class="form-group">
+             					    <label>City *</label>
+             					    {{ form.address_city }}
+             					</div>
+             					<div class="form-group">
+             					    <label>Country *</label>
+             					    {{ form.address_country }}
+             					</div>
+             				</div>
+             			</div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+         <!-- /.col-lg-4 -->
+     </div>
+
+     {% include "dashboard/note_reply.html" %}
+
+     {% include "dashboard/note_permissions.html" %}
+
+ </div>
+ <!-- /#page-wrapper -->
+
+ {% include "dashboard/footer_new.html" %}

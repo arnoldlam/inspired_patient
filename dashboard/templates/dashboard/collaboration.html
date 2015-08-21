@@ -27,7 +27,7 @@ Search by email: <input type="text" name="u">
                     	{% if patients %}
 	                    	{% for patient in patients %}
 	                        <a href="{% url 'dashboard:public_profile' patient.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa fa-user fa-fw"></i> {{ note.subject }}
+	                            <i class="fa fa-user fa-fw"></i> {{ patient.full_name }}
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}

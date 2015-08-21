@@ -22,3 +22,11 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#profile_picture {
+	width:100px;
+	height:100px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}

@@ -16,6 +16,11 @@
                  {{ note.get_note_type_display }}
              </div>
              <div class="panel-body">
+             {% if form.errors %}
+             <div class="alert alert-warning">
+                 {{ form.errors }}.
+             </div>
+             {% endif %}
              <!-- If user has no profile picture, display default image -->
              <img id="profile_picture" src=
              	"{% if user.user_profile.profile_picture %}
@@ -91,10 +96,6 @@
      </div>
      <!-- /.col-lg-4 -->
  </div>
-
- {% include "dashboard/note_reply.html" %}
-
- {% include "dashboard/note_permissions.html" %}
 
 </div>
 <!-- /#page-wrapper -->

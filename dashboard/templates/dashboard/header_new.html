@@ -148,14 +148,14 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 
-                                <form id="{{ search_form_name }}">
+                                <form id="{{ search_form_name }}" action="{{ search_form_action }}" method="post" enctype="multipart/form-data">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 </form>
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" form="{{ search_form_name }}">
                                     <i class="fa fa-search"></i>
                                 </button>
-                                
+
                             </span>
                             </div>
                             <!-- /input-group -->

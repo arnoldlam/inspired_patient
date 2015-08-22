@@ -9,14 +9,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label>Current Editors</label>
+                        <ul>
                         {% if note.editors.all %}
                         {% for editor in note.editors.all %}
                         <li>{{ editor.user_profile.full_name }}</li>
                         {% endfor %}
                         {% else %}
                         <li>No editors</li>
+                        {% endif %}
+                        </ul>
                     </div>
                     <div class="col-md-6">
+                        <ul>
                         <label>Current Viewers</label>
                         {% if note.viewers.all %}
                         {% for viewer in note.viewers.all %}
@@ -24,6 +28,8 @@
                         {% endfor %}
                         {% else %}
                         <li>No viewers</li>
+                        {% endif %}
+                        </ul>
                     </div>
                 </div>
                 <form action="{% url 'dashboard:share_note' note.id %}" method="post" enctype="multipart/form-data">

@@ -11,6 +11,7 @@ from django.forms.widgets import CheckboxSelectMultiple, Select, DateTimeInput
 from dashboard.models import UserProfile, ProcedureNote, Notebook, NoteReply
 from django.contrib.auth.models import User, Group
 from dashboard.models import UserProfile
+from django.db.models import Q
 from django.utils import timezone
 import datetime
 from django.utils.translation import gettext as _
@@ -46,6 +47,7 @@ class AddNoteForm(forms.Form):
 		self.user_id = user_id
 		current_user = User.objects.get(pk=self.user_id)
 		associates = current_user.user_profile.associates.all()
+		notebooks = Notebook.objects.filter(Q(viewers__id=user_id) | Q(editors__id=user_id)).distinct()
 
 		list_of_names = []
 		for associate in associates:
@@ -53,8 +55,18 @@ class AddNoteForm(forms.Form):
 			list_of_names.append(name)
 		self.user_choices = zip(associates, list_of_names)
 
-		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
-		self.fields['choices_for_viewers'] = forms.MultipleChoiceField(label='Viewers', choices=self.user_choices, required=False, widget=forms.SelectMultiple(attrs={'class':'form-control'}))
+		list_of_notebooks = []
+		for notebook in notebooks:
+			name = notebook.name
+			list_of_notebooks.append(name)
+		self.notebook_choices = zip(notebooks, list_of_notebooks)
+
+		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False, 
+			widget=forms.SelectMultiple(attrs={'class':'form-control'}))
+		self.fields['choices_for_viewers'] = forms.MultipleChoiceField(label='Viewers', choices=self.user_choices, required=False, 
+			widget=forms.SelectMultiple(attrs={'class':'form-control'}))
+		self.fields['notebook_id'] = forms.MultipleChoiceField(choices=self.notebook_choices, required=False, 
+			widget=forms.SelectMultiple(attrs={'class':'form-control'}))
 
 	subject = forms.CharField(label='Subject', max_length=150, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	note_content = forms.CharField(label='Note', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'rows':'20', 'required':'required'}))

@@ -38,6 +38,10 @@
                             <label>Attachments</label>
                             {{ form.attachment }}
                         </div>
+                        <div class="form-group">
+                            <label>Place note in notebook</label>
+                            {{ form.notebook_id }}
+                        </div>
                         {% if notebook_id %}
                         <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
                         {% endif %}

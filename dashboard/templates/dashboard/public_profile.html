@@ -20,14 +20,18 @@
 			<div class="alert alert-warning">{{ message }}</div>
 			{% endif %}
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2" id="public_profile_attributes">
+					<div class="col-md-8 col-md-offset-2" style="text-align: cetner;" id="public_profile_attributes">
 						<img id="profile_picture" src=
 							"{% if public_profile_user.user_profile.profile_picture %}
 							{{ public_profile_user.user_profile.profile_picture.url }}
 							{% else %}
 							{% static "images/default_profile_picture.png" %}
 							{% endif %}" 
-						alt="Profile Picture" style="height:100px;width:100px;"/>
+						alt="Profile Picture" style="height: 200px;
+						    width: 200px;
+						    display: block;
+						    margin: 20px auto;
+						    border-radius: 50%;"/>
 						<div>
 							<label>Name: </label>
 							{{ public_profile_user.first_name }}

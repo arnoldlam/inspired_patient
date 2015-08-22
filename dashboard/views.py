@@ -1125,7 +1125,7 @@ def ShareNote(request, note_id):
 					user.notes_read_write.add(note)
 					
 					redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
-					acton_url = redirect_url + "?note_type=" + note.note_type
+					action_url = redirect_url + "?note_type=" + note.note_type
 					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
 					notification = Notification(sender=request.user, recipient=user, message=message,
 						action_url=action_url)
@@ -1136,7 +1136,7 @@ def ShareNote(request, note_id):
 					user.notes_read_only.add(note)
 
 					redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
-					acton_url = redirect_url + "?note_type=" + note.note_type
+					action_url = redirect_url + "?note_type=" + note.note_type
 					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
 					notification = Notification(sender=request.user, recipient=user, message=message,
 						action_url=action_url)

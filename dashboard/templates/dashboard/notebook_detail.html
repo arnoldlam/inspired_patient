@@ -100,7 +100,7 @@
 			            	{% csrf_token %}
 			            	<div class="row">
 			            		<div class="col-md-6">
-			            			<label>Notebook</label>
+			            			<label>Notebook</label><br><br>
 			            			{% for note in notes_not_in_notebook %}
 			            				<div>
 			            					<p>{{ note.subject }}</p>
@@ -108,12 +108,14 @@
 			            			{% endfor %}
 		            			</div>
 		            			<div class="col-md-6">
-			            			<label>Add to notebook</label>
+			            			<label>Add to notebook</label><br><br>
 				            		{% for note in notes_not_in_notebook %}
 				            		<!-- Append checkbox name to for-loop counter -->
 				            		{% with y=forloop.counter|stringformat:"s" %}
 				            		{% with checkboxName="isChecked"|add:y %}
-				            			<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" />
+				            			<div class="form-control">
+				            				<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}"/>
+										</div>
 				            		{% endwith %}
 				            		{% endwith %}
 				            		{% endfor %}

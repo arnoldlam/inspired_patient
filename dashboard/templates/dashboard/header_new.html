@@ -67,50 +67,19 @@
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
+                        {% for notification in notifications %}
                         <li>
-                            <a href="#">
+                            <a href="{{ notification.action_url }}">
                                 <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                    <i class="fa fa-bell fa-fw"></i> {{ notification.message }}
+                                    <span class="pull-right text-muted small">{{ notification.date_created }}</span>
+                                    {% if notification.view_status == 'unread' %}
+                                    <a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}">Mark as read</a>
+                                    {% endif %}
                                 </div>
                             </a>
                         </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
+                        {% endfor %}
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
@@ -148,6 +117,7 @@
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
                                 <form id="{{ search_form_name }}" action="{{ search_form_action }}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 <input type="text" class="form-control" placeholder="{{ search_placeholder }}">
                                 </form>
                                 <span class="input-group-btn">

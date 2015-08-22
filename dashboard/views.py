@@ -1039,6 +1039,7 @@ def AddMedicationNoteView(request):
 @login_required
 def NoteDetail(request, note_id):
 	user = request.user
+	notifications = user.notifications_received
 
 	# Get requested note type
 	note_type_requested = request.GET['note_type']

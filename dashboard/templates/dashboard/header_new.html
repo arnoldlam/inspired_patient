@@ -147,11 +147,15 @@
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
                             <div class="input-group custom-search-form">
+                                
+                                <form id="{{ search_form_name }}">
                                 <input type="text" class="form-control" placeholder="Search...">
+                                </form>
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button class="btn btn-default" type="button" form="{{ search_form_name }}">
                                     <i class="fa fa-search"></i>
                                 </button>
+                                
                             </span>
                             </div>
                             <!-- /input-group -->

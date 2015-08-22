@@ -1051,6 +1051,10 @@ def NoteDetail(request, note_id):
 	attachments = note.attachments.all()
 	template_file_name = "dashboard/note_detail_" + note.note_type + ".html"
 
+	# Set form name for search
+	search_form_name = "search_notes_form"
+	search_form_action = "{% url 'dashboard:health_tools_search_results' %}"
+
 	# Check if user can access note
 	if note.ifUserCanAccessNote(user.id):
 		# update date accessed for note
@@ -1059,6 +1063,8 @@ def NoteDetail(request, note_id):
 		form = AddNoteReplyForm()
 		permissions_form = UserPermissionsForm(user.id)
 		return render(request, template_file_name, {
+			'search_form_name':search_form_name,
+			'search_form_action':search_form_action,
 			'form':form,
 			'permissions_form':permissions_form,
 			'user':user,

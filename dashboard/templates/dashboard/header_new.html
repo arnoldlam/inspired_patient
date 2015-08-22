@@ -74,13 +74,13 @@
                                     <i class="fa fa-bell fa-fw"></i> {{ notification.message }}
                                     <span class="pull-right text-muted small">{{ notification.date_created }}</span>
                                     {% if notification.view_status == 'unread' %}
-                                    <a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}">Mark as read</a>
+                                    <span class="pull-right text-muted small"><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}" style="padding-right: 0px;">Mark as read</a></span>
                                     {% endif %}
                                 </div>
                             </a>
                         </li>
-                        {% endfor %}
                         <li class="divider"></li>
+                        {% endfor %}
                         <li>
                             <a class="text-center" href="#">
                                 <strong>See All Alerts</strong>

@@ -301,7 +301,13 @@ def NotesView(request):
 	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 
+	# Set form name and action for search
+	search_form_name = "search_notes_form"
+	search_form_action = "/dashboard/notes/search"
+
 	return render(request, 'dashboard/notes.html', {
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
 		'notes_read_write':notes_read_write,
 		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
@@ -1051,10 +1057,6 @@ def NoteDetail(request, note_id):
 	attachments = note.attachments.all()
 	template_file_name = "dashboard/note_detail_" + note.note_type + ".html"
 
-	# Set form name for search
-	search_form_name = "search_notes_form"
-	search_form_action = "{% url 'dashboard:health_tools_search_results' %}"
-
 	# Check if user can access note
 	if note.ifUserCanAccessNote(user.id):
 		# update date accessed for note
@@ -1063,8 +1065,6 @@ def NoteDetail(request, note_id):
 		form = AddNoteReplyForm()
 		permissions_form = UserPermissionsForm(user.id)
 		return render(request, template_file_name, {
-			'search_form_name':search_form_name,
-			'search_form_action':search_form_action,
 			'form':form,
 			'permissions_form':permissions_form,
 			'user':user,

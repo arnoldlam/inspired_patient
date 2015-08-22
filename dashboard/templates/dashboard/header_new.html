@@ -115,7 +115,7 @@
                             <div class="input-group custom-search-form">
                                 <form id="{{ search_form_name }}" action="{{ search_form_action }}" method="{{ search_method }}" enctype="multipart/form-data">
                                 {% csrf_token %}
-                                <input type="text" name="{{ input_name }}" class="form-control" placeholder="{{ search_placeholder }}">
+                                <input type="text" name="{{ search_input_name }}" class="form-control" placeholder="{{ search_placeholder }}">
                                 </form>
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit" form="{{ search_form_name }}">

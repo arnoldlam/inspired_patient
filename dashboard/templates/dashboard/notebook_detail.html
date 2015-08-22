@@ -101,23 +101,25 @@
 			            	<div class="row">
 			            		<div class="col-md-6">
 			            			<label>Notebook</label>
+			            			{% for note in notes_not_in_notebook %}
+			            				<div>
+			            					<p>{{ note.subject }}</p>
+										</div>
+			            			{% endfor %}
 		            			</div>
 		            			<div class="col-md-6">
 			            			<label>Add to notebook</label>
+				            		{% for note in notes_not_in_notebook %}
+				            		<!-- Append checkbox name to for-loop counter -->
+				            		{% with y=forloop.counter|stringformat:"s" %}
+				            		{% with checkboxName="isChecked"|add:y %}
+				            			<div class="col-md-6">
+					            			<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" />
+										</div>
+				            		{% endwith %}
+				            		{% endwith %}
+				            		{% endfor %}
 			            		</div>
-			            		{% for note in notes_not_in_notebook %}
-			            		<div class="col-md-6">
-			            			<p>{{ note.subject }}</p>
-			            		</div>
-			            		<!-- Append checkbox name to for-loop counter -->
-			            		{% with y=forloop.counter|stringformat:"s" %}
-			            		{% with checkboxName="isChecked"|add:y %}
-		            			<div class="col-md-6">
-			            			<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" />
-								</div>
-			            		{% endwith %}
-			            		{% endwith %}
-			            		{% endfor %}
 			            	</div>
 			            	<br>
 			            </form>

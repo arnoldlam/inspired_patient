@@ -20,8 +20,8 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <ul>
                         <label>Current Viewers</label>
+                        <ul>
                         {% if note.viewers.all %}
                         {% for viewer in note.viewers.all %}
                         <li>{{ viewer.user_profile.full_name }}</li>

@@ -1123,10 +1123,16 @@ def ShareNote(request, note_id):
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
 					user.notes_read_write.add(note)
+					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
+					notification = Notification(sender=request.user, recipient=user, message=message)
+					notification.save()
 			if 'choices_for_viewers' in form.cleaned_data:
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
 					user.notes_read_only.add(note)
+					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
+					notification = Notification(sender=request.user, recipient=user, message=message)
+					notification.save()
 	# URL for redirect back to note
 	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
 	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)

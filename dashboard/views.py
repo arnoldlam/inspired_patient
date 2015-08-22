@@ -150,14 +150,17 @@ def CreateNewProfessionalView(request):
 @login_required
 def Dashboard(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/index.html', {
 		'user':user,
+		'notifications':notifications,
 	})
 
 # View for seeing profile's details
 @login_required
 def Profile(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	if request.method == 'POST':
 		form = EditProfileForm(user.id, request.POST, request.FILES)
 		if form.is_valid():
@@ -205,6 +208,7 @@ def Profile(request):
 	return render(request, 'dashboard/profile.html', {
 		'form':form,
 		'user':user,
+		'notifications':notifications,
 	})
 
 # View for profile edit 

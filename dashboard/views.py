@@ -304,8 +304,10 @@ def NotesView(request):
 	# Set form name and action for search
 	search_form_name = "search_notes_form"
 	search_form_action = "/dashboard/notes/search"
+	search_placeholder = "Search notes..."
 
 	return render(request, 'dashboard/notes.html', {
+		'search_placeholder':search_placeholder,
 		'search_form_name':search_form_name,
 		'search_form_action':search_form_action,
 		'notes_read_write':notes_read_write,

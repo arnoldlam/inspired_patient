@@ -313,7 +313,7 @@ def NotesView(request):
 
 	# Set form name and action for search
 	search_form_name = "search_notes_form"
-	search_form_action = "/dashboard/notes/search"
+	search_form_action = reverse('dashboard:health_tools_search_results')
 	search_placeholder = "Search notes..."
 
 	return render(request, 'dashboard/notes.html', {

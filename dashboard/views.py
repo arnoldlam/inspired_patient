@@ -206,6 +206,7 @@ def Profile(request):
 	else:
 		form = EditProfileForm(user.id)
 	return render(request, 'dashboard/profile.html', {
+		'notifications':notifications,
 		'form':form,
 		'user':user,
 		'notifications':notifications,
@@ -215,6 +216,7 @@ def Profile(request):
 @login_required
 def EditProfile(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	if request.method == 'POST':
 		form = EditProfileForm(user.id, request.POST, request.FILES)
 		if form.is_valid():
@@ -262,11 +264,13 @@ def EditProfile(request):
 	return render(request, 'dashboard/edit_profile.html', {
 		'form':form,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
 def CollaborationView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	user_profile = user.user_profile
 	associates = user_profile.associates.all()
 	professionals = associates.filter(role__exact='professional')
@@ -285,22 +289,24 @@ def CollaborationView(request):
 		'notes':notes,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
+		'notifications':notifications,
 	})
 
-# View for clinic's associated with user
-@login_required
-def ClinicView(request):
-	user = request.user
-	clinics = user.clinics.all()
+# # View for clinic's associated with user
+# @login_required
+# def ClinicView(request):
+# 	user = request.user
+# 	clinics = user.clinics.all()
 
-	return render(request, 'dashboard/clinics.html', {
-		'clinics':clinics,
-	})
+# 	return render(request, 'dashboard/clinics.html', {
+# 		'clinics':clinics,
+# 	})
 
 # View for viewing all notes and notebooks
 @login_required
 def NotesView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	authored_notes = user.authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
@@ -317,12 +323,14 @@ def NotesView(request):
 		'notes_read_write':notes_read_write,
 		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
+		'notifications':notifications,
 	})
 
 # View for viewing all notebooks
 @login_required
 def NotebooksView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 
 	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
@@ -331,6 +339,7 @@ def NotebooksView(request):
 		'user':user,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
+		'notifications':notifications,
 	})
 
 # View for selecting type of note to add
@@ -396,10 +405,12 @@ def AddGeneralNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_general_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications': notifications,
 	})
 
 @login_required
@@ -456,10 +467,12 @@ def AddInstructionNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_instruction_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -523,10 +536,12 @@ def AddCommunicationNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_communication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -597,10 +612,12 @@ def AddProcedureNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_procedure_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -688,10 +705,12 @@ def AddSelfCareNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_self_care_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications, 
 	})
 
 @login_required
@@ -754,10 +773,12 @@ def AddResourceNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_resource_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -844,10 +865,12 @@ def AddAppointmentNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_appointment_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications
 	})
 
 @login_required
@@ -925,10 +948,12 @@ def AddContactNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_contact_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -1033,10 +1058,12 @@ def AddMedicationNoteView(request):
 	else:
 		notebook_id = ''
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	return render(request, 'dashboard/add_medication_note.html', {
 		'form': form, 
 		'notebook_id':notebook_id,
 		'user':user,
+		'notifications':notifications,
 	})
 
 # View for note details
@@ -1109,6 +1136,7 @@ def ShareNote(request, note_id):
 @login_required
 def AddNotebookView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	if request.method == 'POST':
 		form = AddNotebookForm(user.id, request.POST)
 		if form.is_valid():
@@ -1143,6 +1171,7 @@ def AddNotebookView(request):
 	return render(request, 'dashboard/add_notebook.html', {
 		'form':form,
 		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -1154,6 +1183,7 @@ def NotebookDetail(request, notebook_id):
 	# Grab notes in notebook
 	notes_in_notebook = notebook.notes.all().order_by('-date_created')
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	user_id = user.id
 
 	# Grab notes not currently in notebook
@@ -1173,11 +1203,13 @@ def NotebookDetail(request, notebook_id):
 			'viewers':notebook_viewers,
 			'notes_in_notebook':notes_in_notebook,
 			'notes_not_in_notebook':notes_not_in_notebook,
+			'notifications':notifications
 	})
 
 @login_required
 def HealthToolsSearchResultsView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	query = request.GET['q']
 
 	notebooks = user.notebooks_read_write.filter(Q(name__icontains=query) | Q(description__icontains=query))[:5]
@@ -1191,6 +1223,7 @@ def HealthToolsSearchResultsView(request):
 		'user':user,
 		'notebooks':notebooks,
 		'notes':notes,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -1240,12 +1273,17 @@ def EditNotebookView(request, notebook_id):
 
 @login_required
 def SearchUserResultsView(request):
+	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
+
 	searched_username = request.GET['u']
 	search_results = []
 	search_results = User.objects.filter(username__icontains = searched_username)
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,
+		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -1253,6 +1291,7 @@ def PublicProfileView(request, user_id):
 	public_profile_user = get_object_or_404(User, pk=user_id)
 	associates = request.user.user_profile.associates.all()
 	logged_in_user = request.user
+	notifications = logged_in_user.notifications_received.all().order_by('-date_created')[:5]
 
 	is_associate = logged_in_user.user_profile.is_associate(public_profile_user)
 	
@@ -1269,12 +1308,14 @@ def PublicProfileView(request, user_id):
 		'public_profile_user':public_profile_user,
 		'is_associate':is_associate,
 		'maps_query':maps_query,
+		'notifications':notifications,
 	})
 
 @login_required
 def AddAssociate(request, user_id):
 	associate_to_add = get_object_or_404(User, pk=user_id)
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	user_profile = user.user_profile
 
 	# For now, simply add as associate
@@ -1295,13 +1336,18 @@ def AddAssociate(request, user_id):
 		'public_profile_user':associate_to_add,
 		'is_associate':is_associate,
 		'message': message,
+		'notifications':notifications,
 	})
 
 def ClinicDetailView(request, clinic_id):
+	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	clinic = get_object_or_404(Clinic, pk=clinic_id)
 
 	return render(request, 'dashboard/clinic_detail.html', {
 		'clinic':clinic,
+		'user':user,
+		'notifications':notifications,
 	})
 
 @login_required
@@ -1318,15 +1364,16 @@ def AddNoteReplyView(request, note_id):
 			new_reply = NoteReply(note=note, title=title, content=content, author=user)
 			new_reply.save()
 
-			# URL for redirect back to note
-			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
-			return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
-	else:
-		form = AddNoteReplyForm()
-		return render(request, 'dashboard/add_note_reply.html', {
-			'form':form,
-			'note_id':note_id
-		})
+	# URL for redirect back to note
+	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
+	# else:
+	# 	user = request.user
+	# 	form = AddNoteReplyForm()
+	# 	return render(request, 'dashboard/add_note_reply.html', {
+	# 		'form':form,
+	# 		'note_id':note_id
+	# 	})
 
 @login_required
 def NotificationsView(request):
@@ -1356,6 +1403,7 @@ def MarkNotificationAsRead(request):
 def SchedulingView(request):
 	user = request.user
 	user_id = user.id
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	# Get all appointment, medication, and self care notes that belong to user and sort by date
 	upcoming_tasks = Note.objects.filter(Q(editors__id=user_id) | Q(author_id=user_id) | Q(viewers__id=user_id)).distinct()
 	
@@ -1374,11 +1422,13 @@ def SchedulingView(request):
 		'medication_notes':medication_notes,
 		'user':user, 	
 		'patient_appointments':patient_appointments,
+		'notifications':notifications,
 	})
 
 @login_required
 def CreateNewView(request):
 	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	if 'notebook_id' in request.GET:
 		notebook_id = request.GET['notebook_id']
 	else:
@@ -1386,5 +1436,6 @@ def CreateNewView(request):
 	return render(request, 'dashboard/create_new.html', {
 		'user':user,
 		'notebook_id':notebook_id,	
+		'notifications':notifications,
 	})
 

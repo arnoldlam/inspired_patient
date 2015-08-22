@@ -113,9 +113,7 @@
 				            		<!-- Append checkbox name to for-loop counter -->
 				            		{% with y=forloop.counter|stringformat:"s" %}
 				            		{% with checkboxName="isChecked"|add:y %}
-				            			<div class="col-md-6">
-					            			<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" />
-										</div>
+				            			<input type="checkbox" name="{{ checkboxName }}" value="{{ note.id }}" />
 				            		{% endwith %}
 				            		{% endwith %}
 				            		{% endfor %}

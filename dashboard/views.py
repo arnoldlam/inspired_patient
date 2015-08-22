@@ -283,7 +283,7 @@ def CollaborationView(request):
 
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
-	search_method = "get"
+	search_method = "post"
 	search_placeholder = "Search users..."
 	search_input_name = "u"
 

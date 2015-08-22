@@ -56,10 +56,12 @@ class AddNoteForm(forms.Form):
 		self.user_choices = zip(associates, list_of_names)
 
 		list_of_notebooks = []
+		notebook_ids = []
 		for notebook in notebooks:
 			name = notebook.name
 			list_of_notebooks.append(name)
-		self.notebook_choices = zip(notebooks, list_of_notebooks)
+			notebook_ids.append(notebook.id)
+		self.notebook_choices = zip(notebook_ids, list_of_notebooks)
 
 		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False, 
 			widget=forms.SelectMultiple(attrs={'class':'form-control'}))

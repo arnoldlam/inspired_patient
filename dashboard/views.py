@@ -1039,7 +1039,7 @@ def AddMedicationNoteView(request):
 @login_required
 def NoteDetail(request, note_id):
 	user = request.user
-	notifications = user.notifications_received
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 
 	# Get requested note type
 	note_type_requested = request.GET['note_type']
@@ -1074,6 +1074,7 @@ def NoteDetail(request, note_id):
 			'note':note,
 			'attachments':attachments,
 			'replies':replies,
+			'notifications':notifications,
 		})
 	else:
 		raise Http404("Note not found.")

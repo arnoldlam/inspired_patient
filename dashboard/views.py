@@ -1029,7 +1029,7 @@ def AddMedicationNoteView(request):
 
 # View for note details
 @login_required
-def NoteDetail(request, note_id):
+def NoteDetail(request, note_id, message):
 	user = request.user
 
 	# Get requested note type
@@ -1086,8 +1086,10 @@ def ShareNote(request, note_id):
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
 					user.notes_read_only.add(note)
+
+			message = "Note was successfully shared."
 	# URL for redirect back to note
-	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id, 'message':message,})
 	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
 
 
@@ -1304,8 +1306,10 @@ def AddNoteReplyView(request, note_id):
 			new_reply = NoteReply(note=note, title=title, content=content, author=user)
 			new_reply.save()
 
+			message = "You've successfully added a reply to this note."
+
 			# URL for redirect back to note
-			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id, 'message':message})
 			return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
 	else:
 		form = AddNoteReplyForm()

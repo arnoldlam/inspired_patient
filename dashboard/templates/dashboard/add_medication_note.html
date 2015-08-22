@@ -111,6 +111,11 @@
                         </div>
                         {% if notebook_id %}
                         <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+                        {% else %}
+                        <div class="form-group">
+                            <label>Place note in notebook</label>
+                            {{ form.notebook_id }}
+                        </div>
                         {% endif %}
                     </form>
                     <button type="submit" form="add_note_form" class="btn btn-default submit_note_form_button" style="

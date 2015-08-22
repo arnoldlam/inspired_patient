@@ -281,6 +281,13 @@ def CollaborationView(request):
 	notebooks_read_write = user.notebooks_read_write.all()
 	notebooks_read_only = user.notebooks_read_only.all()
 
+	search_form_name = "search_users"
+	search_form_action = reverse('dashboard:search_results')
+	search_method = "get"
+	search_placeholder = "Search users..."
+	search_input_name = "u"
+
+
 	return render(request, 'dashboard/collaboration.html', {
 		'associates':associates,
 		'professionals':professionals,
@@ -290,6 +297,11 @@ def CollaborationView(request):
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 # # View for clinic's associated with user
@@ -315,15 +327,19 @@ def NotesView(request):
 	search_form_name = "search_notes_form"
 	search_form_action = reverse('dashboard:health_tools_search_results')
 	search_placeholder = "Search notes..."
+	search_method = "post"
+	search_input_name = "q"
 
 	return render(request, 'dashboard/notes.html', {
-		'search_placeholder':search_placeholder,
-		'search_form_name':search_form_name,
-		'search_form_action':search_form_action,
 		'notes_read_write':notes_read_write,
 		'notes_read_only':notes_read_only,
 		'authored_notes':authored_notes,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 # View for viewing all notebooks
@@ -1126,7 +1142,7 @@ def ShareNote(request, note_id):
 					
 					redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
 					action_url = redirect_url + "?note_type=" + note.note_type
-					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
+					message = request.user.user_profile.full_name() + " shared the note '" + note.subject + "'' with you."
 					notification = Notification(sender=request.user, recipient=user, message=message,
 						action_url=action_url)
 					notification.save()
@@ -1137,7 +1153,7 @@ def ShareNote(request, note_id):
 
 					redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
 					action_url = redirect_url + "?note_type=" + note.note_type
-					message = request.user.user_profile.full_name() + " shared the note " + note.subject + " with you."
+					message = request.user.user_profile.full_name() + " shared the note '" + note.subject + "' with you."
 					notification = Notification(sender=request.user, recipient=user, message=message,
 						action_url=action_url)
 					notification.save()
@@ -1271,6 +1287,10 @@ def EditNotebookView(request, notebook_id):
 				for user in form.cleaned_data['choices_for_editors']:
 					user = User.objects.get(username=user)
 					user.notebooks_read_write.add(notebook)
+					message = request.user.user_profile.full_name() + " has shared the notebook '" + notebook.name + "' with you."					
+					action_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
+					notification = Notification(sender=request.user, recipient=user, message=message, action_url=action_url)
+					notification.save()
 					# Grant editor access to note to 
 					for note in notebook.notes.all():
 						note.editors.add(user)
@@ -1280,6 +1300,10 @@ def EditNotebookView(request, notebook_id):
 					user.notebooks_read_only.add(notebook)
 					for note in notebook.notes.all():
 						note.viewers.add(user)
+					message = request.user.user_profile.full_name() + " has shared the notebook '" + notebook.name + "' with you."					
+					action_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
+					notification = Notification(sender=request.user, recipient=user, message=message, action_url=action_url)
+					notification.save()
 
 			redirect_url = reverse('dashboard:notebook_detail', kwargs={'notebook_id': notebook_id})
 			return HttpResponseRedirect(redirect_url)
@@ -1427,6 +1451,8 @@ def SchedulingView(request):
 	appointments = appointments.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
 	medication_notes = upcoming_tasks.filter(note_type__exact='medication_note')
 	medication_notes = medication_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
+
+	todays
 
 	patient_appointments = user.appointments
 

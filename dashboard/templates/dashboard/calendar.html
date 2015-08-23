@@ -13,7 +13,7 @@
     <div id="appointments_panel" class="col-lg-4">
         <div class="panel panel-default" style="height:600px;">
             <div class="panel-heading">
-                <i class="fa fa-pencil fa-fw"></i> Appointments
+                <i class="fa fa-user-md fa-fw"></i> Appointments
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:600px;">
@@ -21,7 +21,7 @@
                 	{% if appointments %}
                     	{% for note in appointments %}
                         <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                            <i class="fa fa-user-md fa-fw"></i> {{ note.subject }}
                             <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                             </span>
                         </a>
@@ -38,7 +38,7 @@
     <div id="self_care_panel" class="col-lg-4">
         <div class="panel panel-default" style="height:600px;">
             <div class="panel-heading">
-                <i class="fa fa-pencil fa-fw"></i> Self Care
+                <i class="fa fa-home fa-fw"></i> Self Care
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:600px;">
@@ -46,7 +46,7 @@
                 	{% if self_care_notes %}
                     	{% for note in self_care_notes %}
                         <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                            <i class="fa fa-home fa-fw"></i> {{ note.subject }}
                             <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                             </span>
                         </a>
@@ -63,7 +63,7 @@
     <div id="medication_panel" class="col-lg-4">
         <div class="panel panel-default" style="height:600px;">
             <div class="panel-heading">
-                <i class="fa fa-pencil fa-fw"></i> Medication
+                <i class="fa fa-medkit fa-fw"></i> Medication
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:600px;">
@@ -71,7 +71,7 @@
                 	{% if medication_notes %}
                     	{% for note in medication_notes %}
                         <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                            <i class="fa fa-medkit fa-fw"></i> {{ note.subject }}
                             <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                             </span>
                         </a>
@@ -92,7 +92,7 @@
         <div id="appointments_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> Today's Tasks
+                    <i class="fa fa-calendar-check-o fa-fw"></i> Today's Tasks
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
@@ -100,7 +100,7 @@
                         {% if today_tasks %}
                             {% for note in today_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                                <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                                <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                                 <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                                 </span>
                             </a>
@@ -117,7 +117,7 @@
         <div id="self_care_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> This Week's Tasks
+                    <i class="fa fa-calendar-check-o fa-fw"></i> This Week's Tasks
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
@@ -125,7 +125,7 @@
                         {% if week_tasks %}
                             {% for note in week_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                                <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                                <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                                 <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                                 </span>
                             </a>
@@ -142,7 +142,7 @@
         <div id="medication_panel" class="col-lg-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> This Month's Tasks
+                    <i class="fa fa-calendar-check-o fa-fw"></i> This Month's Tasks
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
@@ -150,7 +150,7 @@
                         {% if month_tasks %}
                             {% for note in month_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                                <i class="fa fa-sticky-note-o fa-fw"></i> {{ note.subject }}
+                                <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                                 <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
                                 </span>
                             </a>

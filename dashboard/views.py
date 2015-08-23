@@ -327,7 +327,7 @@ def NotesView(request):
 	search_form_name = "search_notes_form"
 	search_form_action = reverse('dashboard:health_tools_search_results')
 	search_placeholder = "Search notes..."
-	search_method = "post"
+	search_method = "get"
 	search_input_name = "q"
 
 	return render(request, 'dashboard/notes.html', {

@@ -18,15 +18,13 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px; overflow:scroll;">
-                    	{% if notes %}
-	                    	{% for notification in notifications %}
-	                        <a href="{{ notification.action_url }}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa fa-bell-o fa-fw"></i> {{ notification.message }}
-	                            <span class="pull-right text-muted small"><em>{{ notification.date_created }}</em>
-	                            </span>
-	                        </a>
-	                     	{% endfor %}
-	                    {% endif %}
+                    	{% for notification in notifications %}
+                        <a href="{{ notification.action_url }}" class="list-group-item note_box" style="padding-bottom: 20px;">
+                            <i class="fa fa-bell-o fa-fw"></i> {{ notification.message }}
+                            <span class="pull-right text-muted small"><em>{{ notification.date_created }}</em>
+                            </span>
+                        </a>
+                     	{% endfor %}
                     </div>
                     <!-- /.list-group -->
                 </div>

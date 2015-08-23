@@ -1,17 +1,3 @@
-<h3>Search Results</h3>
-
-{% if search_results %}
-
-<ul>
-{% for user in search_results %}
-<li><a href="{% url 'dashboard:public_profile' user.id %}">{{ user.username }}</a></li>
-{% endfor %}
-</ul>
-
-{% else %}
-<p>No users matching that query</p>
-{% endif %}
-
 {% load staticfiles %}
 {% include "dashboard/header_new.html" %}
 
@@ -51,7 +37,7 @@
         </div>
 		<!-- /#authored_notes_panel -->
 
-        <div id="authored_notes_panel" class="col-md-4 col-md-offset-6">
+        <div id="authored_notes_panel" class="col-md-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
                     <i class="fa fa-search fa-fw"></i> Non-Team Members

@@ -548,6 +548,7 @@ def AddCommunicationNoteView(request):
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
 			action_url = redirect_url + "?note_type=" + new_note.note_type
 			notifcation = Notification(message=message, recipient=team_member, action_url=action_url)
+			notification.save()
 
 			request.user.authored_notes.add(new_note)
 			return HttpResponseRedirect(reverse('dashboard:notes'))

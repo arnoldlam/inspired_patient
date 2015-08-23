@@ -1326,7 +1326,7 @@ def SearchUserResultsView(request):
 	search_results = []
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
-	search_results_ids = UserProfile.objects.filter(associates__id=user.id).values_list('id', flat=True)
+	search_results_ids = UserProfile.objects.all().values_list('id', flat=True)
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,

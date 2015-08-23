@@ -13,7 +13,7 @@
         <div id="authored_notes_panel" class="col-md-4 col-md-offset-4">
             <div class="panel panel-default" style="height:600px;">
                 <div class="panel-heading">
-                    <i class="fa fa-pencil fa-fw"></i> Notes
+                    <i class="fa fa-search fa-fw"></i> Notes
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:600px;">
@@ -22,7 +22,7 @@
 	                    	{% for note in notes %}
 	                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item note_box" style="padding-bottom: 20px;">
 	                            <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-	                            <span class="pull-right text-muted small"><em>{{ note.note_content }}</em>
+	                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
 	                            </span>
 	                        </a>
 	                     	{% endfor %}

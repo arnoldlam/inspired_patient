@@ -19,7 +19,7 @@
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% for search_result in search_results %}
-                        {% if user.user_profile in search_result.associates.all %}
+                        {% if user.user_profile in search_result.user_profile.associates.all %}
                         <a href="{% url 'dashboard:public_profile' search_result.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
                             <i class="fa fa-user fa-fw"></i> {{ search_result.user_profile.full_name }}
                             <span class="pull-right text-muted small"><em>{{ search_result.username }}</em>

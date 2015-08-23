@@ -542,6 +542,13 @@ def AddCommunicationNoteView(request):
 				notebook = get_object_or_404(Notebook, pk=notebook_id)
 				notebook.notes.add(new_note)
 
+			# Add note to recipient's notes
+			team_member.notes_read_write.add(new_note)
+			message = request.user.user_profile.full_name + " sent the message '" + new_note.subject + "' to you."
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
+			action_url = redirect_url + "?note_type=" + note.note_type
+			notifcation = Notification(message=message, recipient=team_member, action_url=action_url)
+
 			request.user.authored_notes.add(new_note)
 			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:

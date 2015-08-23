@@ -19,11 +19,11 @@
                 <div class="panel-body" style="height:600px;">
                     <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% if search_results %}
-	                    	{% for user in search_results %}
-	                    	{% if request.user in user.user_profile.associates.all %}
-	                        <a href="{% url 'dashboard:public_profile' user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa fa-user fa-fw"></i> {{ user.user_profile.full_name }}
-	                            <span class="pull-right text-muted small"><em>{{ user.username }}</em>
+	                    	{% for search_result in search_results %}
+	                    	{% if user in search_result.user_profile.associates.all %}
+	                        <a href="{% url 'dashboard:public_profile' search_result.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa fa-user fa-fw"></i> {{ search_result.user_profile.full_name }}
+	                            <span class="pull-right text-muted small"><em>{{ search_result.username }}</em>
 	                            </span>
 	                        </a>
 	                        {% endif %}

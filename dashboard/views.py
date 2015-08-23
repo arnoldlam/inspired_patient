@@ -240,7 +240,7 @@ def EditProfile(request):
 
 			user.first_name = first_name
 			user.last_name = last_name
-
+ 
 			user_profile.address_unit = address_unit
 			user_profile.address_street = address_street
 			user_profile.address_city = address_city
@@ -1314,9 +1314,10 @@ def SearchUserResultsView(request):
 	user = request.user
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 
-	searched_username = request.GET['u']
+	search_query = request.GET['u']
 	search_results = []
-	search_results = User.objects.filter(username__icontains = searched_username)
+	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
+		search_query | Q(last_name__icontains = search_query))
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,

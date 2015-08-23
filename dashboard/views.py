@@ -1483,15 +1483,13 @@ def AddNoteReplyView(request, note_id):
 @login_required
 def NotificationsView(request):
 	user = request.user
-
-	# Get 10 recent notifications
-	read_notifications = user.notifications_received.filter(view_status__exact="read").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
-	unread_notifications = user.notifications_received.filter(view_status__exact="unread").filter(date_created__lte=timezone.now()).order_by('-date_created')[:5]
+	
+	# Get all notifications
+	notifications = user.notifications_received.filter(date_created__lte=timezone.now()).order_by('-date_created')
 
 	return render(request, 'dashboard/notifications.html', {
 		'user':user,
-		'unread_notifications':unread_notifications,
-		'read_notifications':read_notifications
+		'notifications':notifications,
 	})
 
 # Triggered by "Mark as Read" link on notification

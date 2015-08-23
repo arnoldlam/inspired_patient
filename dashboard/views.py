@@ -559,7 +559,7 @@ def AddCommunicationNoteView(request):
 			message = request.user.user_profile.full_name() + " sent the message '" + new_note.subject + "' to you."
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
 			action_url = redirect_url + "?note_type=" + new_note.note_type
-			notifcation = Notification(message=message, recipient=team_member, action_url=action_url)
+			notification = Notification(message=message, recipient=team_member, action_url=action_url)
 			notification.save()
 
 			request.user.authored_notes.add(new_note)
@@ -889,7 +889,7 @@ def AddAppointmentNoteView(request):
 					new_note.save()
 					recurring_date = recurring_date + time_to_add
 
-			# Add note to recipient's notes
+			# Add note to doctor's notes
 			doctor = doctor.user
 			doctor.notes_read_write.add(new_note)
 			message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."

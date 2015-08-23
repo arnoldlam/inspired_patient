@@ -33,7 +33,7 @@
                 display: block;
                 margin: 20px auto;
                 border-radius: 50%;"/>
-                 <form action="">
+                 <form id="edit_profile_form" action="{% url 'dashboard:profile' %}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Profile Picture</label>
                         {{ form.profile_picture }}
@@ -94,6 +94,7 @@
          					</div>
          				</div>
          			</div>
+                    <button type="submit" form="edit_profile_form" class="btn btn-primary centered">Save changes</button>
                  </form>
              </div>
          </div>

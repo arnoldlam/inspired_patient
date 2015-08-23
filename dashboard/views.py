@@ -1452,11 +1452,11 @@ def SchedulingView(request):
 	medication_notes = upcoming_tasks.filter(note_type__exact='medication_note')
 	medication_notes = medication_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
 
-	today_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) | Q(date_and_time__lte=(
+	today_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(days=1)))).order_by('date_and_time')
-	week_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) | Q(date_and_time__lte=(
+	week_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(weeks=1)))).order_by('date_and_time')
-	month_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) | Q(date_and_time__lte=(
+	month_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(weeks=4)))).order_by('date_and_time')
 
 	patient_appointments = user.appointments

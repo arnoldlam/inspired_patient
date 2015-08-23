@@ -1,13 +1,60 @@
-<h3>{{ clinic.name }}</h3>
+{% load staticfiles %}
+{% include "dashboard/header_new.html" %}
 
-<ul>
-	<li>Address: {{ clinic.address|escape }}</li>
-	<iframe
-	  width="100%"
-	  height="225"
-	  frameborder="0" style="border:0"
-	  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc&q={{ clinic.address.mapQuery }}" allowfullscreen>
-	</iframe>
-	<li>Email: <a href="mailto:{{ clinic.email }}">{{ clinic.email }}</a></li>
-	<li>Phone Number: {{ clinic.phone_number }}</li>
-</ul>
+<div id="page-wrapper">
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">{{ clinic.name }}</h1>
+	</div>
+ <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-8 col-md-offset-2">
+		 <div class="panel panel-default">
+			<div class="panel-heading">
+				Clinic Details
+			</div>
+			<div class="panel-body">
+			{% if message %}
+			<div class="alert alert-warning">{{ message }}</div>
+			{% endif %}
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2" style="text-align: center;" id="public_profile_attributes">
+						<div>
+							<label>Name: </label>
+							{{ clinic.name }}
+						</div>
+						<div>
+							<label>Role: </label>
+							<a href="mailto:{{ clinic.email }}">{{ clinic.email }}</a>
+						</div>
+						<div>
+							<label>Phone Number: </label>
+							{{ public_profile_user.user_profile.phone_number }}
+						</div>
+						<br><br>
+						<div>
+							<label>Location: </label>
+						</div><br>
+						<div>
+							<iframe
+							  width="100%"
+							  height="225"
+							  frameborder="0" style="border:0"
+							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
+								&q={{ clinic.address.mapQuery }}" allowfullscreen>
+							</iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+ <!-- /.col-lg-4 -->
+</div>
+
+</div>
+<!-- /#page-wrapper -->
+
+{% include "dashboard/footer_new.html" %}

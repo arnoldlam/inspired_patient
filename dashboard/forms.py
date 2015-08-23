@@ -357,19 +357,19 @@ class EditProfileForm(forms.Form):
 		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, initial=current_user_profile.role,
 			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 		self.fields['medical_history'] = forms.CharField(label='Medical History', max_length=4000, initial=current_user_profile.medical_history,
-			widget=forms.Textarea(attrs={'class':'form-control','required':'required','rows':'10'}))
+			widget=forms.Textarea(attrs={'class':'form-control','rows':'10'}))
 		self.fields['phone_number'] = forms.CharField(label='Phone Number', max_length=20, initial=current_user_profile.phone_number,
 			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 
 		self.fields['address_unit'] = forms.CharField(label='Unit', max_length=10, initial=current_user_profile.address_unit,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+			widget=forms.TextInput(attrs={'class':'form-control'}))
 		self.fields['address_street'] = forms.CharField(label='Street', max_length=50, initial=current_user_profile.address_street,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+			widget=forms.TextInput(attrs={'class':'form-control'}))
 		self.fields['address_city'] = forms.CharField(label='City', max_length=30, initial=current_user_profile.address_city,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+			widget=forms.TextInput(attrs={'class':'form-control'}))
 		self.fields['address_province'] = forms.CharField(label='Province', max_length=30, initial=current_user_profile.address_province,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+			widget=forms.TextInput(attrs={'class':'form-control'}))
 		self.fields['address_country'] = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES, initial=current_user_profile.address_country,
-			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
+			widget=forms.Select(attrs={'class':'form-control'}))
 		self.fields['address_postal_code'] = forms.CharField(label='Postal Code', max_length=10, initial=current_user_profile.address_postal_code,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+			widget=forms.TextInput(attrs={'class':'form-control'}))

@@ -895,7 +895,7 @@ def AddAppointmentNoteView(request):
 			message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
 			action_url = redirect_url + "?note_type=" + new_note.note_type
-			notifcation = Notification(message=message, recipient=doctor, action_url=action_url)
+			notification = Notification(message=message, recipient=doctor, action_url=action_url)
 			notification.save()
 
 			# URL for redirect to newly created note's detail page

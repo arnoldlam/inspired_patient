@@ -3,103 +3,105 @@
 
 <div id="page-wrapper">
  <div class="row">
-     <div class="col-lg-12">
-         <h1 class="page-header">{{ user.user_profile.full_name }}</h1>
-     </div>
-     <!-- /.col-lg-12 -->
+	 <div class="col-lg-12">
+		 <h1 class="page-header">{{ user.user_profile.full_name }}</h1>
+	 </div>
+	 <!-- /.col-lg-12 -->
  </div>
  <!-- /.row -->
  <div class="row">
-     <div class="col-lg-8 col-md-offset-2">
-         <div class="panel panel-default">
-             <div class="panel-heading">
-                 User Profile
-             </div>
-             <div class="panel-body">
-             {% if form.errors %}
-             <div class="alert alert-warning">
-                 {{ form.errors }}.
-             </div>
-             {% endif %}
-             <!-- If user has no profile picture, display default image -->
-             <img id="profile_picture" src=
-             	"{% if user.user_profile.profile_picture %}
-             	{{ user.user_profile.profile_picture.url }}
-             	{% else %}
-             	{% static "images/default_profile_picture.png" %}
-             	{% endif %}" 
-             alt="Profile Picture" style="height: 200px;
-                width: 200px;
-                display: block;
-                margin: 20px auto;
-                border-radius: 50%;"/>
-                 <form id="edit_profile_form" action="{% url 'dashboard:profile' %}" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label>Profile Picture</label>
-                        {{ form.profile_picture }}
-                    </div>
-	                	<div class="row">
-	                		<div class="col-lg-6">
- 	                		<div class="form-group">
- 	                		    <label>First Name *</label>
- 	                		    {{ form.first_name }}
-	                			</div>
-	                    	</div>
-	                    	<div class="col-lg-6">
- 	                        <div class="form-group">
- 	                            <label>Last Name *</label>
- 	                            {{ form.last_name }}
- 	                        </div>
-             			</div>
-                 	</div>
-         			<div class="form-group">
-         			    <label>Role</label>
-         			    {{ form.role }}
-         			</div>
-         			<div class="form-group">
-         			    <label>Phone Number</label>
-         			    {{ form.phone_number }}
-         			</div>
-         			<div class="form-group">
-         			    <label>Medical History</label>
-         			    {{ form.medical_history }}
-         			</div>
-         			<div class="row">
-         				<div class="col-lg-6">
-         					<div class="form-group">
-         					    <label>Unit *</label>
-         					    {{ form.address_unit }}
-         					</div>
-         					<div class="form-group">
-         					    <label>Province *</label>
-         					    {{ form.address_province }}
-         					</div>
-         					<div class="form-group">
-         					    <label>Postal Code *</label>
-         					    {{ form.address_postal_code }}
-         					</div>
-         				</div>
-         				<div class="col-lg-6">
-         					<div class="form-group">
-         					    <label>Street *</label>
-         					    {{ form.address_street }}
-         					</div>
-         					<div class="form-group">
-         					    <label>City *</label>
-         					    {{ form.address_city }}
-         					</div>
-         					<div class="form-group">
-         					    <label>Country *</label>
-         					    {{ form.address_country }}
-         					</div>
-         				</div>
-         			</div>
-                    <button type="submit" form="edit_profile_form" class="btn btn-primary centered">Save changes</button>
-                 </form>
-             </div>
-         </div>
-     </div>
-     <!-- /.col-lg-4 -->
+	 <div class="col-lg-8 col-md-offset-2">
+		 <div class="panel panel-default">
+			 <div class="panel-heading">
+				 User Profile
+			 </div>
+			 <div class="panel-body">
+			 {% if form.errors %}
+			 <div class="alert alert-warning">
+				 {{ form.errors }}.
+			 </div>
+			 {% endif %}
+			 <!-- If user has no profile picture, display default image -->
+			 <img id="profile_picture" src=
+				"{% if user.user_profile.profile_picture %}
+				{{ user.user_profile.profile_picture.url }}
+				{% else %}
+				{% static "images/default_profile_picture.png" %}
+				{% endif %}" 
+			 alt="Profile Picture" style="height: 200px;
+				width: 200px;
+				display: block;
+				margin: 20px auto;
+				border-radius: 50%;"/>
+				
+				 <form id="edit_profile_form" action="{% url 'dashboard:profile' %}" method="post" enctype="multipart/form-data">
+				 {% csrf_token %}
+					<div class="form-group">
+						<label>Profile Picture</label>
+						{{ form.profile_picture }}
+					</div>
+						<div class="row">
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>First Name *</label>
+								{{ form.first_name }}
+								</div>
+							</div>
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>Last Name *</label>
+								{{ form.last_name }}
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Role</label>
+						{{ form.role }}
+					</div>
+					<div class="form-group">
+						<label>Phone Number</label>
+						{{ form.phone_number }}
+					</div>
+					<div class="form-group">
+						<label>Medical History</label>
+						{{ form.medical_history }}
+					</div>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Unit *</label>
+								{{ form.address_unit }}
+							</div>
+							<div class="form-group">
+								<label>Province *</label>
+								{{ form.address_province }}
+							</div>
+							<div class="form-group">
+								<label>Postal Code *</label>
+								{{ form.address_postal_code }}
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Street *</label>
+								{{ form.address_street }}
+							</div>
+							<div class="form-group">
+								<label>City *</label>
+								{{ form.address_city }}
+							</div>
+							<div class="form-group">
+								<label>Country *</label>
+								{{ form.address_country }}
+							</div>
+						</div>
+					</div>
+					<button type="submit" form="edit_profile_form" class="btn btn-primary centered">Save changes</button>
+				 </form>
+			 </div>
+		 </div>
+	 </div>
+	 <!-- /.col-lg-4 -->
  </div>
 
 </div>

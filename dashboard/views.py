@@ -1320,6 +1320,7 @@ def EditNotebookView(request, notebook_id):
 @login_required
 def SearchUserResultsView(request):
 	user = request.user
+	user_profile = user.user_profile
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 
 	search_query = request.GET['u']
@@ -1327,7 +1328,7 @@ def SearchUserResultsView(request):
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
 	# search_results_ids = UserProfile.objects.filter(associates__id=user.id).values_list('id', flat=True)
-	search_results_ids = UserProfile.objects.filter(associates=user).values_list('id', flat=True)
+	search_results_ids = UserProfile.objects.filter(associates=user_profile).values_list('id', flat=True)
 
 
 	return render(request, 'dashboard/user_search_results.html', {

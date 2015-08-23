@@ -205,11 +205,23 @@ def Profile(request):
 			return HttpResponseRedirect(reverse('dashboard:profile'))
 	else:
 		form = EditProfileForm(user.id)
+
+	# Variables for search
+	search_form_name = "search_users"
+	search_form_action = reverse('dashboard:search_results')
+	search_method = "get"
+	search_placeholder = "Search users..."
+	search_input_name = "u"
 	return render(request, 'dashboard/profile.html', {
 		'notifications':notifications,
 		'form':form,
 		'user':user,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 # View for profile edit 
@@ -877,6 +889,15 @@ def AddAppointmentNoteView(request):
 					new_note.save()
 					recurring_date = recurring_date + time_to_add
 
+			# Add note to recipient's notes
+			doctor = doctor.user
+			doctor.notes_read_write.add(new_note)
+			message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			action_url = redirect_url + "?note_type=" + new_note.note_type
+			notifcation = Notification(message=message, recipient=doctor, action_url=action_url)
+			notification.save()
+
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
 			# Redirecting to note detail
@@ -1122,6 +1143,14 @@ def NoteDetail(request, note_id):
 		# Form for adding replies 
 		form = AddNoteReplyForm()
 		permissions_form = UserPermissionsForm(user.id)
+
+		# Set form name and action for search
+		search_form_name = "search_notes_form"
+		search_form_action = reverse('dashboard:health_tools_search_results')
+		search_placeholder = "Search notes..."
+		search_method = "get"
+		search_input_name = "q"
+
 		return render(request, template_file_name, {
 			'form':form,
 			'permissions_form':permissions_form,
@@ -1130,6 +1159,11 @@ def NoteDetail(request, note_id):
 			'attachments':attachments,
 			'replies':replies,
 			'notifications':notifications,
+			'search_placeholder':search_placeholder,
+			'search_form_name':search_form_name,
+			'search_form_action':search_form_action,
+			'search_method':search_method,
+			'search_input_name':search_input_name,
 		})
 	else:
 		raise Http404("Note not found.")
@@ -1327,15 +1361,22 @@ def SearchUserResultsView(request):
 	search_results = []
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
-	# search_results_ids = UserProfile.objects.filter(associates__id=user.id).values_list('id', flat=True)
-	search_results_ids = UserProfile.objects.filter(associates=user_profile).values_list('id', flat=True)
 
+	search_form_name = "search_users"
+	search_form_action = reverse('dashboard:search_results')
+	search_method = "get"
+	search_placeholder = "Search users..."
+	search_input_name = "u"
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,
-		'search_results_ids':search_results_ids,
 		'user':user,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 @login_required
@@ -1355,12 +1396,24 @@ def PublicProfileView(request, user_id):
 	else:
 		maps_query = ''
 
+	# Variables for search
+	search_form_name = "search_users"
+	search_form_action = reverse('dashboard:search_results')
+	search_method = "get"
+	search_placeholder = "Search users..."
+	search_input_name = "u"
+
 	return render(request, 'dashboard/public_profile.html', {
 		'user':logged_in_user,
 		'public_profile_user':public_profile_user,
 		'is_associate':is_associate,
 		'maps_query':maps_query,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 @login_required

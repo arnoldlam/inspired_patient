@@ -1324,14 +1324,14 @@ def SearchUserResultsView(request):
 
 	search_query = request.GET['u']
 	search_results = []
-	search_results_team_members = User.objects.filter(associates__id=user.id).filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
-		search_query) | Q(last_name__icontains = search_query)).distinct()
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
+	search_results_ids = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
+		search_query) | Q(last_name__icontains = search_query)).distinct().values_list('id', flat=True)
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,
-		'search_results_team_members':search_results_team_members,
+		'search_results_ids':search_results_ids,
 		'user':user,
 		'notifications':notifications,
 	})

@@ -1317,7 +1317,7 @@ def SearchUserResultsView(request):
 	search_query = request.GET['u']
 	search_results = []
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
-		search_query | Q(last_name__icontains = search_query))
+		search_query) | Q(last_name__icontains = search_query))
 
 	return render(request, 'dashboard/user_search_results.html', {
 		'search_results':search_results,

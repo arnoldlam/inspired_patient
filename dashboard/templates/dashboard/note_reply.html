@@ -13,14 +13,14 @@
                 <div class="input-group">
                     <input id="btn-input" name="{{ form.content.html_name }}" type="text" class="form-control input-sm" placeholder="Type your reply here..." />
                     <span class="input-group-btn">
-                        <input type="submit" class="btn btn-warning btn-sm" id="btn-chat"/>
-                            Reply
+                        <input value="Reply" type="submit" class="btn btn-warning btn-sm" id="btn-chat"/>
                     </span>
                 </div>
                 </form>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="overflow: scroll;">
+                {% if replies %}
                 <ul class="chat">
                     {% for reply in replies %}
                     <li class="left clearfix">
@@ -41,6 +41,13 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {% else %}
+                <div class="row">
+                    <div style="float:none;display:inline-block;vertical-align:middle;margin-right:-4px;text-align:center">
+                        <p>No replies</p>
+                    </div>
+                </div>
+                {% endif %}
             </div>
             <!-- /.panel-body -->
         </div>

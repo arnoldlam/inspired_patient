@@ -1,4 +1,4 @@
-{% if user in note.editors.all %}
+{% if user in note.editors.all or user.id == note.author.id %}
 
 <div class="row">
     <div class="col-lg-8 col-md-offset-2">

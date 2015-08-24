@@ -15,7 +15,14 @@
                 {% if message %}
                 {% endif %}
                 <div class="panel-heading">
-                    General Note
+                    <div class="row">
+                        <div class="col-lg-6">
+                            General Note
+                        </div>
+                        <div class="col-lg-6 pull-right">
+                            Created By: <a href="{% url 'dashboard:public_profile' note.author.id %}">{{ note.author.user_profile.full_name }}</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <form action="">

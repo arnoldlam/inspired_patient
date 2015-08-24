@@ -224,11 +224,11 @@ class AddNotebookForm(forms.Form):
 		self.user_choices = zip(associates, list_of_names)
 
 		self.fields['name'] = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-		self.fields['description'] = forms.CharField(max_length=4000, required=False, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+		self.fields['description'] = forms.CharField(max_length=4000, required=False, widget=forms.TextInput(attrs={'class':'form-control',}))
 		self.fields['choices_for_editors'] = forms.MultipleChoiceField(label='Editors', choices=self.user_choices, required=False,
-			widget=forms.SelectMultiple(attrs={'class':'form-control', 'required':'required'}))
+			widget=forms.SelectMultiple(attrs={'class':'form-control',}))
 		self.fields['choices_for_viewers'] = forms.MultipleChoiceField(label='Viewers', choices=self.user_choices, required=False,
-			widget=forms.SelectMultiple(attrs={'class':'form-control', 'required':'required'}))
+			widget=forms.SelectMultiple(attrs={'class':'form-control',}))
 
 class AddNoteReplyForm(forms.Form):
 	content = forms.CharField(max_length=1000)

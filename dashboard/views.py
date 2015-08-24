@@ -424,8 +424,11 @@ def AddGeneralNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
-	else:
+
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 		form = AddNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
 	if 'notebook_id' in request.GET:
@@ -486,7 +489,10 @@ def AddInstructionNoteView(request):
 					notebook.notes.add(new_note)
 
 				request.user.authored_notes.add(new_note)
-				return HttpResponseRedirect(reverse('dashboard:notes'))
+				# URL for redirect to newly created note's detail page
+				redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+				# Redirecting to note detail
+				return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 	else:
 		form = AddInstructionNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -563,7 +569,10 @@ def AddCommunicationNoteView(request):
 			notification.save()
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 	else:
 		form = AddCommunicationNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -639,7 +648,10 @@ def AddProcedureNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 	else:
 		form = AddProcedureNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -800,7 +812,10 @@ def AddResourceNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 	else:
 		form = AddResourceNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -984,7 +999,10 @@ def AddContactNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			# URL for redirect to newly created note's detail page
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+			# Redirecting to note detail
+			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
 	else:
 		form = AddContactNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
@@ -1340,6 +1358,7 @@ def EditNotebookView(request, notebook_id):
 				for user in form.cleaned_data['choices_for_viewers']:
 					user = User.objects.get(username=user)
 					user.notebooks_read_only.add(notebook)
+					# Grant viewer access to note to 
 					for note in notebook.notes.all():
 						note.viewers.add(user)
 					message = request.user.user_profile.full_name() + " has shared the notebook '" + notebook.name + "' with you."					

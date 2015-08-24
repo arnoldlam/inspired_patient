@@ -17,9 +17,9 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-lg-6">
-                            General Note
+                            {{ note.get_note_type_display }}
                         </div>
-                        <div class="col-lg-6 pull-right">
+                        <div class="col-lg-6 pull-right" style="text-align:right;">
                             Created By: <a href="{% url 'dashboard:public_profile' note.author.id %}">{{ note.author.user_profile.full_name }}</a>
                         </div>
                     </div>

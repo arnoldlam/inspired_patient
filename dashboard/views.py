@@ -198,7 +198,7 @@ def Profile(request):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search users..."
+	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 	return render(request, 'dashboard/profile.html', {
 		'notifications':notifications,
@@ -284,7 +284,7 @@ def CollaborationView(request):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search users..."
+	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
 
@@ -1381,7 +1381,7 @@ def SearchUserResultsView(request):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search users..."
+	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
 	return render(request, 'dashboard/user_search_results.html', {
@@ -1416,7 +1416,7 @@ def PublicProfileView(request, user_id):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search users..."
+	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
 	return render(request, 'dashboard/public_profile.html', {

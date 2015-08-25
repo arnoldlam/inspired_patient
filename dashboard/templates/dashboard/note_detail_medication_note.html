@@ -26,31 +26,31 @@
                     <form action="">
                         <div class="form-group">
                             <label>Medication Name</label>
-                            <input class="form-control" placeholder="{{ note.medication_name }}" />
+                            <input class="form-control" placeholder="{{ note.medication_name }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Medication Dosage</label>
-                            <input class="form-control" placeholder="{{ note.medication_dosage }}" />
+                            <input class="form-control" placeholder="{{ note.medication_dosage }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Time for Medication</label>
-                            <input class="form-control" placeholder="{{ note.date_and_time }}" />
+                            <input class="form-control" placeholder="{{ note.date_and_time }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Medication Frequency</label>
-                            <input class="form-control" placeholder="{{ note.get_medication_frequency_display }}" />
+                            <input class="form-control" placeholder="{{ note.get_medication_frequency_display }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Medication Duration</label>
-                            <input class="form-control" placeholder="{{ note.medication_duration }}" />
+                            <input class="form-control" placeholder="{{ note.medication_duration }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Pharmacy Name</label>
-                            <input class="form-control" placeholder="{{ note.pharmacy_name }}" />
+                            <input class="form-control" placeholder="{{ note.pharmacy_name }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Pharmacy Phone</label>
-                            <input class="form-control" placeholder="{{ note.pharmacy_telephone }}" />
+                            <input class="form-control" placeholder="{{ note.pharmacy_telephone }}" readonly/>
                         </div>
                         <div class="form-group">
                         <label>Pharmacy Address</label>
@@ -64,8 +64,16 @@
                         </iframe>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.note_content }}</textarea>
                         </div>
+                        {% if attachments %}
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {% for attachment in attachments %}
+                            <a target="_blank" href="{{ attachment.file_attachment.url }}">{{ attachment.file_attachment.name }}</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>

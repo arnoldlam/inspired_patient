@@ -26,19 +26,19 @@
                     <form action="">
                         <div class="form-group">
                             <label>Instructions</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.instructions }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="20">{{ note.note_content }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="20" readonly>{{ note.note_content }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>URL</label>
-                            <input class="form-control" placeholder="{{ note.url }}"/>
+                            <input class="form-control" placeholder="{{ note.url }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Follow-Up</label>
-                            <input class="form-control" placeholder="{{ note.follow_up }}"/>
+                            <input class="form-control" placeholder="{{ note.follow_up }}" readonly/>
                         </div>
                         {% if attachments %}
                         <div class="form-group">

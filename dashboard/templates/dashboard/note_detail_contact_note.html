@@ -26,7 +26,7 @@
                     <form action="">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input class="form-control" placeholder="{{ note.first_name }}" />
+                            <input class="form-control" placeholder="{{ note.first_name }}"  readonly/>
                         </div>
                         <div class="form-group">
                             <label>Last Name</label>
@@ -34,19 +34,19 @@
                         </div>
                         <div class="form-group">
                             <label>Organization Name</label>
-                            <input class="form-control" placeholder="{{ note.organization_name }}" />
+                            <input class="form-control" placeholder="{{ note.organization_name }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Work Phone</label>
-                            <input class="form-control" placeholder="{{ note.phone_number_work }}" />
+                            <input class="form-control" placeholder="{{ note.phone_number_work }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Home Phone</label>
-                            <input class="form-control" placeholder="{{ note.phone_number_home }}" />
+                            <input class="form-control" placeholder="{{ note.phone_number_home }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input class="form-control" placeholder="{{ note.email }}" />
+                            <input class="form-control" placeholder="{{ note.email }}" readonly/>
                         </div>
                         <div class="form-group">
                         <label>Address</label>
@@ -60,7 +60,7 @@
                         </iframe>
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.note_content }}</textarea>
                         </div>
                     </form>
                 </div>

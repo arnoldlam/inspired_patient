@@ -23,14 +23,14 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form action="">
+                    <form id="edit_appointment_note_form" action="">
                         <div class="form-group">
                             <label>Date and Time</label>
-                            <input class="form-control" placeholder="{{ note.date_and_time }}"/>
+                            <input class="form-control" placeholder="{{ note.date_and_time }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Reason for Visit</label>
-                            <input class="form-control" placeholder="{{ note.reason_for_visit }}"/>
+                            <input class="form-control" placeholder="{{ note.reason_for_visit }}" readonly/>
                         </div>
                         <div class="form-group">
                             <label>Doctor</label>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label>Additional Notes</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
+                            <textarea  class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.note_content }}</textarea>
                         </div>
                     </form>
                 </div>

@@ -26,7 +26,7 @@
                     <form action="">
                         <div class="form-group">
                             <label>Note</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="20">{{ note.note_content }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="20" readonly>{{ note.note_content }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Doctor</label>
@@ -44,6 +44,14 @@
                             {% endif %}
                             </p>
                         </div>
+                        {% if attachments %}
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {% for attachment in attachments %}
+                            <a target="_blank" href="{{ attachment.file_attachment.url }}">{{ attachment.file_attachment.name }}</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>

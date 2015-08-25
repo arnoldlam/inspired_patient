@@ -26,27 +26,27 @@
                     <form action="">
                         <div class="form-group">
                             <label>Pre-Procedure Instructions</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.pre_procedure_instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.pre_procedure_instructions }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Procedure</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.procedure }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.procedure }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Emergency Instructions</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.emergency_instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.emergency_instructions }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Self-Care Instructions</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.self_care_instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.self_care_instructions }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Weight</label>
-                            <input class="form-control" placeholder="{{ note.weight }}" />
+                            <input class="form-control" placeholder="{{ note.weight }}"  readonly/>
                         </div>
                         <div class="form-group">
                             <label>Follow-Up Instructions</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.follow_up_instructions }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.follow_up_instructions }}</textarea>
                         </div>
                         <div class="form-group">
                             <label>Doctor</label>
@@ -66,8 +66,16 @@
                         </div>
                         <div class="form-group">
                             <label>Additional Notes</label>
-                            <textarea class="form-control" name="note_content" id="note_content" rows="10">{{ note.note_content }}</textarea>
+                            <textarea class="form-control" name="note_content" id="note_content" rows="10" readonly>{{ note.note_content }}</textarea>
                         </div>
+                        {% if attachments %}
+                        <div class="form-group">
+                            <label>Attachments</label>
+                            {% for attachment in attachments %}
+                            <a target="_blank" href="{{ attachment.file_attachment.url }}">{{ attachment.file_attachment.name }}</a>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
                     </form>
                 </div>
             </div>

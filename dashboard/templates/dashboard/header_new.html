@@ -77,13 +77,14 @@
                                     {% endif %}
                                     ></i> {{ notification.message }}
                                     <span class="pull-right text-muted small">{{ notification.date_created }}</span>
-                                    {% if notification.view_status == "unread" %}
-                                    <span class="text-muted small" style="
-                                        float: left;
-                                    "><a href="{% url 'dashboard:mark_notification_as_read' %}?next={{ request.path }}">Mark as Read</a></span>
-                                    {% endif %}
+
                                 </div>
                             </a>
+                            {% if notification.view_status == "unread" %}
+                            <span class="pull-left text-muted small" style="
+                                float: left;
+                            "><a href="{% url 'dashboard:mark_notification_as_read' %}?next={{ request.path }}">Mark as Read</a></span>
+                            {% endif %}
                         </li>
                         <li class="divider custom_divider" style="margin-top:20px"></li>
                         {% endfor %}

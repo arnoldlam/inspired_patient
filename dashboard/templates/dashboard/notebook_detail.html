@@ -30,6 +30,8 @@
 	                        <label>Date Created</label>
 	                        <input class="form-control" placeholder="{{ notebook.date_created }}" />
 	                    </div>
+						{# Only display options to edit notebook if user is an editor #}
+	                    {% if user in notebook.editors.all %}
                     	<div class="row">
                     		<div class="col-lg-6">
 		                    	<div class="form-group">
@@ -56,8 +58,6 @@
 								</div>
                 			</div>
                     	</div>
-						{# Only display options to edit notebook if user is an editor #}
-	                    {% if user in notebook.editors.all %}
 	                    <div class="form-group">
 	                        <p><a href="{% url 'dashboard:create_new' %}?notebook_id={{notebook.id}}">Create a note in notebook</a></p>
 	                    </div>

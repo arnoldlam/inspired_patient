@@ -8,84 +8,6 @@
         </div>
         <!-- /.col-lg-12 -->
     </div>
-    <div class="row">
-
-    <div id="appointments_panel" class="col-lg-4">
-        <div class="panel panel-default" style="height:600px;">
-            <div class="panel-heading">
-                <i class="fa fa-user-md fa-fw"></i> Appointments
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body" style="height:600px;">
-                <div class="list-group" style="height:525px; overflow:scroll;">
-                	{% if appointments %}
-                    	{% for note in appointments %}
-                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-user-md fa-fw"></i> {{ note.subject }}
-                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-                            </span>
-                        </a>
-                     	{% endfor %}
-                    {% endif %}
-                </div>
-                <!-- /.list-group -->
-            </div>
-            <!-- /.panel-body -->
-        </div>
-    </div>
-	<!-- /#appointments_panel -->	
-
-    <div id="self_care_panel" class="col-lg-4">
-        <div class="panel panel-default" style="height:600px;">
-            <div class="panel-heading">
-                <i class="fa fa-home fa-fw"></i> Self Care
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body" style="height:600px;">
-                <div class="list-group" style="height:525px; overflow:scroll;">
-                	{% if self_care_notes %}
-                    	{% for note in self_care_notes %}
-                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-home fa-fw"></i> {{ note.subject }}
-                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-                            </span>
-                        </a>
-                     	{% endfor %}
-                    {% endif %}
-                </div>
-                <!-- /.list-group -->
-            </div>
-            <!-- /.panel-body -->
-        </div>
-    </div>
-	<!-- /#self_care_panel -->	
-
-    <div id="medication_panel" class="col-lg-4">
-        <div class="panel panel-default" style="height:600px;">
-            <div class="panel-heading">
-                <i class="fa fa-medkit fa-fw"></i> Medication
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body" style="height:600px;">
-                <div class="list-group" style="height:525px; overflow:scroll;">
-                	{% if medication_notes %}
-                    	{% for note in medication_notes %}
-                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                            <i class="fa fa-medkit fa-fw"></i> {{ note.subject }}
-                            <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
-                            </span>
-                        </a>
-                     	{% endfor %}
-                    {% endif %}
-                </div>
-                <!-- /.list-group -->
-            </div>
-            <!-- /.panel-body -->
-        </div>
-    </div>
-	<!-- /#medication_panel -->	
-
-	</div>
 
     <div class="row">
 
@@ -101,7 +23,7 @@
                             {% for note in today_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-                                <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+                                <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
                                 </span>
                             </a>
                             {% endfor %}
@@ -126,7 +48,7 @@
                             {% for note in week_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-                                <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+                                <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
                                 </span>
                             </a>
                             {% endfor %}
@@ -151,7 +73,7 @@
                             {% for note in month_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
-                                <span class="pull-right text-muted small"><em>{{ note.date_created }}</em>
+                                <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
                                 </span>
                             </a>
                             {% endfor %}
@@ -165,6 +87,85 @@
         <!-- /#medication_panel --> 
 
     </div>
+    
+    <div class="row">
+
+    <div id="appointments_panel" class="col-lg-4">
+        <div class="panel panel-default" style="height:600px;">
+            <div class="panel-heading">
+                <i class="fa fa-user-md fa-fw"></i> Appointments
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="height:600px;">
+                <div class="list-group" style="height:525px; overflow:scroll;">
+                	{% if appointments %}
+                    	{% for note in appointments %}
+                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
+                            <i class="fa fa-user-md fa-fw"></i> {{ note.subject }}
+                            <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
+                            </span>
+                        </a>
+                     	{% endfor %}
+                    {% endif %}
+                </div>
+                <!-- /.list-group -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+	<!-- /#appointments_panel -->	
+
+    <div id="self_care_panel" class="col-lg-4">
+        <div class="panel panel-default" style="height:600px;">
+            <div class="panel-heading">
+                <i class="fa fa-home fa-fw"></i> Self Care
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="height:600px;">
+                <div class="list-group" style="height:525px; overflow:scroll;">
+                	{% if self_care_notes %}
+                    	{% for note in self_care_notes %}
+                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
+                            <i class="fa fa-home fa-fw"></i> {{ note.subject }}
+                            <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
+                            </span>
+                        </a>
+                     	{% endfor %}
+                    {% endif %}
+                </div>
+                <!-- /.list-group -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+	<!-- /#self_care_panel -->	
+
+    <div id="medication_panel" class="col-lg-4">
+        <div class="panel panel-default" style="height:600px;">
+            <div class="panel-heading">
+                <i class="fa fa-medkit fa-fw"></i> Medication
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="height:600px;">
+                <div class="list-group" style="height:525px; overflow:scroll;">
+                	{% if medication_notes %}
+                    	{% for note in medication_notes %}
+                        <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
+                            <i class="fa fa-medkit fa-fw"></i> {{ note.subject }}
+                            <span class="pull-right text-muted small"><em>{{ note.date_and_time }}</em>
+                            </span>
+                        </a>
+                     	{% endfor %}
+                    {% endif %}
+                </div>
+                <!-- /.list-group -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+	<!-- /#medication_panel -->	
+
+	</div>
 </div>
 <!-- /#page-wrapper -->
 

@@ -130,7 +130,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
 	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
 	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	outcome = forms.CharField(label='Outcome', max_length=250,widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	outcome = forms.CharField(label='Outcome', required=False, max_length=250,widget=forms.TextInput(attrs={'class':'form-control'}))
 	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
 
 class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):

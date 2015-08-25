@@ -38,7 +38,7 @@
 						</div>
 						<div>
 							<label>Role: </label>
-							{{ public_profile_user.user_profile.role }}
+							{{ public_profile_user.user_profile.get_role_display }}
 						</div>
 
 						{% if public_profile_user.user_profile.role == 'professional' %}

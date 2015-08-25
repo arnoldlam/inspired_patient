@@ -670,7 +670,6 @@ def AddSelfCareNoteView(request):
 			frequency = form.cleaned_data['frequency']
 			emergency_procedure = form.cleaned_data['emergency_procedure']
 			procedure = form.cleaned_data['procedure']
-			outcome = form.cleaned_data['outcome']
 			date_and_time = form.cleaned_data['date_and_time']
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
@@ -683,6 +682,8 @@ def AddSelfCareNoteView(request):
 				new_note.url = form.cleaned_data['url']
 			if form.cleaned_data['follow_up'] != '':
 				new_note.follow_up = form.cleaned_data['follow_up']
+			if form.cleaned_data['outcome'] != '':
+				new_note.outcome = form.cleaned_data['outcome']
 
 			new_note.save()
 
@@ -1290,6 +1291,13 @@ def HealthToolsSearchResultsView(request):
 	query = request.GET['q']
 	user_id = user.id
 
+	# Set form name and action for search
+	search_form_name = "search_notes_form"
+	search_form_action = reverse('dashboard:health_tools_search_results')
+	search_placeholder = "Search notes..."
+	search_method = "get"
+	search_input_name = "q"
+
 	# Query to get all notes that belong to user and contains search query in subject or contents
 	notes = Note.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).distinct()
 	notes = notes.filter(Q(subject__icontains=query) | Q(note_content__icontains=query)).distinct()
@@ -1298,6 +1306,11 @@ def HealthToolsSearchResultsView(request):
 		'user':user,
 		'notes':notes,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 @login_required

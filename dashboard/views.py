@@ -32,26 +32,10 @@ def CreateNewUserView(request):
 
 			# Check if user_profile_form is valid and save variables to user profile
 			if user_profile_form.is_valid():			
-				medical_history = user_profile_form.cleaned_data['medical_history']
-				phone_number = user_profile_form.cleaned_data['phone_number']
-				title = user_profile_form.cleaned_data['title']
-				profile_picture = user_profile_form.cleaned_data['profile_picture']
 				first_name = user_profile_form.cleaned_data['first_name']
 				last_name = user_profile_form.cleaned_data['last_name']
 
-				# Address Information
-				address_unit = user_profile_form.cleaned_data['address_unit']
-				address_street = user_profile_form.cleaned_data['address_street']
-				address_city = user_profile_form.cleaned_data['address_city']
-				address_province = user_profile_form.cleaned_data['address_province']
-				address_country = user_profile_form.cleaned_data['address_country']
-				address_postal_code = user_profile_form.cleaned_data['address_postal_code']
-
-				new_user_profile = UserProfile(user=new_user, address_street=address_street, address_unit=address_unit,
-					address_city=address_city, address_province=address_province, address_country=address_country,
-					address_postal_code=address_postal_code, medical_history=medical_history, phone_number=phone_number,
-					title=title, profile_picture=profile_picture,
-				)
+				new_user_profile = UserProfile(user=new_user,)
 				new_user_profile.save()
 
 				# Login as new user
@@ -1519,6 +1503,8 @@ def MarkNotificationAsRead(request):
 	notification.save()
 
 	next_url = request.GET['next']
+	if 'note_type' in request.GET:
+		next_url += "?note_type=" + request.GET['note_type']
 
 	return HttpResponseRedirect(next_url)
 

@@ -269,21 +269,23 @@ class UserCreationForm(forms.ModelForm):
 			)
 		return password2
 
-	def save(self, commit=True):
-		user_check = User.objects.get(username=self.cleaned_data["email"])
-		if user_check is None:
-			user = super(UserCreationForm, self).save(commit=False)
-			user.username = self.cleaned_data["email"]
-			user.email = self.cleaned_data["email"]
-			user.set_password(self.cleaned_data["password1"])
-			if commit:
-				user.save()
-			return user
-		else:
+	def clean_username(self):
+		email = self.cleaned_data["email"]
+		user_check = User.objects.get(username=email)
+		if user_check is not None:
 			raise forms.ValidationError(
 				self.error_messages['email_in_use'],
 				code='email_in_use',
 			)
+		return email
+
+	def save(self, commit=True):
+		user = super(UserCreationForm, self).save(commit=False)
+		user.username = self.cleaned_data["email"]
+		user.email = self.cleaned_data["email"]
+		user.set_password(self.cleaned_data["password1"])
+		if commit:
+			user.save()
 		return user
 
 class UserProfileCreationForm(forms.Form):

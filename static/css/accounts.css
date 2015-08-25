@@ -15,3 +15,8 @@
 .sign_up_form label {
 	font-weight: 300;
 }
+
+.error_message {
+	text-align: center;
+	color: red;
+}

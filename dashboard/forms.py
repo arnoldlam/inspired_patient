@@ -147,9 +147,7 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
 		('every_month', 'Every Month')
 	)
 	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
-	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
-	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))	
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
 class AddContactNoteForm(AddNoteForm):

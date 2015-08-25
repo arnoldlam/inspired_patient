@@ -270,7 +270,7 @@ class UserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-    	user_check = User(username=self.cleaned_data["email"])
+    	user_check = User.objects.get(username=self.cleaned_data["email"])
     	if user_check is None:
 	        user = super(UserCreationForm, self).save(commit=False)
 	        user.username = self.cleaned_data["email"]

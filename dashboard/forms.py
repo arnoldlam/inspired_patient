@@ -267,9 +267,6 @@ class UserCreationForm(forms.ModelForm):
 				self.error_messages['password_mismatch'],
 				code='password_mismatch',
 			)
-		return password2
-
-	def clean_username(self):
 		email = self.cleaned_data["email"]
 		user_check = User.objects.get(username=email)
 		if user_check is not None:
@@ -277,7 +274,7 @@ class UserCreationForm(forms.ModelForm):
 				self.error_messages['email_in_use'],
 				code='email_in_use',
 			)
-		return email
+		return password2
 
 	def save(self, commit=True):
 		user = super(UserCreationForm, self).save(commit=False)

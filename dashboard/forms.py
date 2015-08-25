@@ -245,6 +245,7 @@ class UserCreationForm(forms.ModelForm):
     """
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
+        'email_in_use': _("The email you request is already in use."),
     }
     email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
     password1 = forms.CharField(label=_("Password"),
@@ -269,13 +270,20 @@ class UserCreationForm(forms.ModelForm):
         return password2
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
-        user.username = self.cleaned_data["email"]
-        user.email = self.cleaned_data["email"]
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user
+    	user_check = User(username=self.cleaned_data["email"])
+    	if user_check is None:
+	        user = super(UserCreationForm, self).save(commit=False)
+	        user.username = self.cleaned_data["email"]
+	        user.email = self.cleaned_data["email"]
+	        user.set_password(self.cleaned_data["password1"])
+	        if commit:
+	            user.save()
+	        return user
+	    else:
+	    	raise forms.ValidationError(
+	    	    self.error_messages['email_in_use'],
+	    	    code='email_in_use',
+	    	)
 
 class UserProfileCreationForm(forms.Form):
 	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))

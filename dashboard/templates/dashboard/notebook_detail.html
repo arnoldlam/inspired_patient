@@ -20,15 +20,15 @@
 	                	{% csrf_token %}
 	                    <div class="form-group">
 	                        <label>Name</label>
-	                        <input class="form-control" placeholder="{{ notebook.name }}" />
+	                        <input class="form-control" placeholder="{{ notebook.name }}" readonly/>
 	                    </div>
 	                    <div class="form-group">
 	                        <label>Description</label>
-	                        <input class="form-control" placeholder="{{ notebook.description }}" />
+	                        <input class="form-control" placeholder="{{ notebook.description }}" readonly/>
 	                    </div>
 	                    <div class="form-group">
 	                        <label>Date Created</label>
-	                        <input class="form-control" placeholder="{{ notebook.date_created }}" />
+	                        <input class="form-control" placeholder="{{ notebook.date_created }}" readonly/>
 	                    </div>
 						{# Only display options to edit notebook if user is an editor #}
 	                    {% if user in notebook.editors.all %}

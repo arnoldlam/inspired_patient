@@ -71,12 +71,21 @@
                         <li>
                             <a href="{{ notification.action_url }}">
                                 <div>
-                                    <i class="fa fa-bell fa-fw"></i> {{ notification.message }}
+                                    <i class="fa fa-bell fa-fw" 
+                                    {% if notification.view_status == "unread" %}
+                                    style="color:#F3E735"
+                                    {% endif %}
+                                    ></i> {{ notification.message }}
                                     <span class="pull-right text-muted small">{{ notification.date_created }}</span>
+                                    {% if notification.view_status == "unread" %}
+                                    <span class="text-muted small" style="
+                                        float: left;
+                                    "><a href="{% url 'dashboard:mark_notification_as_read' %}?next={{ request.path }}">Mark as Read</a></span>
+                                    {% endif %}
                                 </div>
                             </a>
                         </li>
-                        <li class="divider custom_divider"></li>
+                        <li class="divider custom_divider" style="margin-top:20px"></li>
                         {% endfor %}
                         <li>
                             <a class="text-center" href="{% url 'dashboard:notifications' %}">

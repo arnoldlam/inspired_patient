@@ -347,8 +347,16 @@ class EditProfileForm(forms.Form):
 			('UK', 'United Kingdom'),
 		)
 
-		self.fields['title'] = forms.CharField(label='Title', max_length=15, initial=current_user_profile.title,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+		TITLE_CHOICES = (
+			('mr', 'Mr.'),
+			('ms', 'Ms.'),
+			('mrs', 'Mrs.'),
+			('dr', 'Dr.'),
+			('nurse', 'Nurse'),
+		)
+
+		self.fields['title'] = forms.ChoiceField(label='Role', choices=TITLE_CHOICES, initial=current_user_profile.title,
+			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 		self.fields['first_name'] = forms.CharField(label='First Name', max_length=20, initial=current_user.first_name,
 			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, initial=current_user.last_name,

@@ -36,12 +36,12 @@
 }
 
 .custom_divider { 
-	margin-top: 20px;
+	margin-top: 20px !important;
 }
 
 .centered {
 	margin-left:auto;
 	margin-right:auto;
-	 ddisplay:block;
+	display:block;
 }
 

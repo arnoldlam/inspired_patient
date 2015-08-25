@@ -846,11 +846,10 @@ def AddAppointmentNoteView(request):
 			date_and_time = form.cleaned_data['date_and_time']
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
-			frequency = form.cleaned_data['frequency']
+			# frequency = form.cleaned_data['frequency']
 
 			new_note = AppointmentNote(subject=subject, note_type=note_type, note_content=note, author=user, 
 				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,
-				frequency=frequency, 
 			)
 
 			# Optional parameters to be added to new_note object
@@ -884,25 +883,25 @@ def AddAppointmentNoteView(request):
 
 			request.user.authored_notes.add(new_note)
 
-			# Recurring notes
-			if frequency != 'not_repeating':
-				if frequency == 'every_day':
-					time_to_add = datetime.timedelta(days=1)
-				if frequency == 'every_week':
-					time_to_add = datetime.timedelta(weeks=1)
-				if frequency == 'every_month':
-					time_to_add = datetime.timedelta(days=30)
+			# # Recurring notes
+			# if frequency != 'not_repeating':
+			# 	if frequency == 'every_day':
+			# 		time_to_add = datetime.timedelta(days=1)
+			# 	if frequency == 'every_week':
+			# 		time_to_add = datetime.timedelta(weeks=1)
+			# 	if frequency == 'every_month':
+			# 		time_to_add = datetime.timedelta(days=30)
 				
-				# Create additional notes for recurring note
-				end_date = form.cleaned_data['end_date']
-				recurring_date = date_and_time
-				recurring_date = recurring_date + time_to_add
-				while recurring_date < end_date:
-					new_note.pk = None
-					new_note.id = None
-					new_note.date_and_time = recurring_date
-					new_note.save()
-					recurring_date = recurring_date + time_to_add
+			# 	# Create additional notes for recurring note
+			# 	end_date = form.cleaned_data['end_date']
+			# 	recurring_date = date_and_time
+			# 	recurring_date = recurring_date + time_to_add
+			# 	while recurring_date < end_date:
+			# 		new_note.pk = None
+			# 		new_note.id = None
+			# 		new_note.date_and_time = recurring_date
+			# 		new_note.save()
+			# 		recurring_date = recurring_date + time_to_add
 
 			# Add note to doctor's notes
 			doctor = doctor.user
@@ -1519,7 +1518,9 @@ def MarkNotificationAsRead(request):
 	notification.date_read = timezone.now()
 	notification.save()
 
-	return HttpResponseRedirect(reverse('dashboard:notifications'))
+	next_url = request.GET['next']
+
+	return HttpResponseRedirect(next_url)
 
 @login_required
 def SchedulingView(request):

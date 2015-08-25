@@ -38,12 +38,14 @@ class UserProfile(models.Model):
 		('CA', 'Canada'),
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
+		('AU', 'Australia'),
 	)
 	ROLE_CHOICES = (
 		('patient', 'Patient'),
 		('caregiver', 'Caregiver'),
 		('parent', 'Parent'),
 		('professional', 'Professional'),
+		('individual', 'Individual'),
 	)
 
 	user = models.OneToOneField(User, related_name="user_profile")

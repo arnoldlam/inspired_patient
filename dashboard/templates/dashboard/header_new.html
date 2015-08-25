@@ -83,7 +83,7 @@
                             {% if notification.view_status == "unread" %}
                             <span class="pull-left text-muted small" style="
                                 float: left;
-                            "><a href="{% url 'dashboard:mark_notification_as_read' %}?next={{ request.path }}">Mark as Read</a></span>
+                            "><a href="{% url 'dashboard:mark_notification_as_read' notification.id %}?next={{ request.path }}">Mark as Read</a></span>
                             {% endif %}
                         </li>
                         <li class="divider custom_divider" style="margin-top:20px"></li>
@@ -105,8 +105,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="{% url 'dashboard:profile' %}"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/accounts/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

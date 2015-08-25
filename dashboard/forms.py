@@ -336,15 +336,14 @@ class EditProfileForm(forms.Form):
 		current_user_profile = current_user.user_profile
 
 		ROLE_CHOICES = (
-			('patient', 'Patient'),
-			('caregiver', 'Caregiver'),
-			('parent', 'Parent'),
+			('individual', 'Individual'),
 			('professional', 'Professional'),
 		)
 		ADDRESS_CITY_CHOICES = (
 			('CA', 'Canada'),
 			('US', 'United States'),
 			('UK', 'United Kingdom'),
+			('AU', 'Australia'),
 		)
 
 		TITLE_CHOICES = (

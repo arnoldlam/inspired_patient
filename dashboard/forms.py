@@ -284,6 +284,7 @@ class UserCreationForm(forms.ModelForm):
 				self.error_messages['email_in_use'],
 				code='email_in_use',
 			)
+		return user
 
 class UserProfileCreationForm(forms.Form):
 	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))

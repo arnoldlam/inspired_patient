@@ -126,7 +126,8 @@ def CreateNewProfessionalView(request):
 			# Save user profile
 			user_profile.save()
 
-			return HttpResponseRedirect('/dashboard/')
+			# return HttpResponseRedirect('/dashboard/notes')
+			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
 		form = CreateProfessionalProfileForm()
 	return render(request, 'dashboard/create_professional.html', {

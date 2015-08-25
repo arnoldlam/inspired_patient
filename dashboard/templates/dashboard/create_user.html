@@ -8,7 +8,10 @@
                 <p class="lead">Welcome to Inspired Patient! Fill in the following fields to create your account.</p>
             </div> 
             <div class="row contact-wrap"> 
-                <div class="error_message" style="display: none"></div>
+                {% if form.errors %}
+                <div class="error_message" style="display: none">
+                {{ form.errors }}.
+                </div>
                 <form class="sign_up_form" method="post" action="{% url 'create_user' %}" style="color:#4E4E4E;font-size: 16px;font-weight: 300;" enctype="multipart/form-data">
                 {% csrf_token %}
                     <div class="col-sm-4 col-sm-offset-4">

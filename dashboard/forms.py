@@ -248,7 +248,7 @@ class UserCreationForm(forms.ModelForm):
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
-    email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
     password1 = forms.CharField(label=_("Password"),
         widget=forms.PasswordInput(attrs={'class':'form-control'}))
     password2 = forms.CharField(label=_("Password confirmation"),

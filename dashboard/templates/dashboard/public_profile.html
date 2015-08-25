@@ -34,37 +34,40 @@
 						    border-radius: 50%;"/>
 						<div>
 							<label>Name: </label>
-							{{ public_profile_user.first_name }}
+							{{ public_profile_user.user_profile.full_name }}
 						</div>
 						<div>
 							<label>Role: </label>
 							{{ public_profile_user.user_profile.role }}
 						</div>
-						{# Check if this user is an associate before displaying sensitive information #}
-						{% if is_associate %}
-
-						<div>
-							<label>Phone Number: </label>
-							{{ public_profile_user.user_profile.phone_number }}
-						</div>
-						<div>
-							<label>Medical History: </label>
-							{{ public_profile_user.user_profile.medical_history }}
-						</div>
 
 						{% if public_profile_user.user_profile.role == 'professional' %}
-							<br><br>
-							<div>
-								<iframe
-								  width="100%"
-								  height="225"
-								  frameborder="0" style="border:0"
-								  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
-									&q={{ maps_query }}" allowfullscreen>
-								</iframe>
-							</div>
-						{% endif %}
-
+						<div>
+							<label>Qualification: </label>
+							{{ public_profile_user.user_profile.qualification }}
+						</div>
+						<div>
+							<label>Job Title: </label>
+							{{ public_profile_user.user_profile.job_title }}
+						</div>
+						<div>
+							<label>Office Tel: </label>
+							{{ public_profile_user.user_profile.office_tel }}
+						</div>
+						<div>
+							<label>Office Email: </label>
+							{{ public_profile_user.user_profile.office_email }}
+						</div>
+						<br><br>
+						<div>
+							<iframe
+							  width="100%"
+							  height="225"
+							  frameborder="0" style="border:0"
+							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAU0G9FZCZ7xylrsBCktRtyjcGcC1rMXzc
+								&q={{ maps_query }}" allowfullscreen>
+							</iframe>
+						</div>
 						{% endif %}
 
 						{% if not is_associate %}

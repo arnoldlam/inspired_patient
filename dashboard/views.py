@@ -1296,7 +1296,6 @@ def HealthToolsSearchResultsView(request):
 
 	return render(request, 'dashboard/health_tools_search_results.html', {
 		'user':user,
-		'notebooks':notebooks,
 		'notes':notes,
 		'notifications':notifications,
 	})

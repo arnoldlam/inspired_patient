@@ -83,10 +83,7 @@
                             {% if notification.view_status == "unread" %}
                             <span class="pull-left text-muted small" style="
                                 float: left;
-                            "><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}&next={{ request.path }}
-                            {% if note %}
-                            &note_type={{ note.note_type }}
-                            {% endif %}
+                            "><a href="{% url 'dashboard:mark_notification_as_read' %}?notification_id={{ notification.id }}&next={{ request.path }}{% if note %}&note_type={{ note.note_type }}{% endif %}
                             ">Mark as Read</a></span>
                             {% endif %}
                         </li>

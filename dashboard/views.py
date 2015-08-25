@@ -14,6 +14,7 @@ from django.views import generic
 from django.utils import timezone
 from django.db.models import Q
 import datetime
+from django.templatetags.static import static
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
@@ -34,6 +35,8 @@ def CreateNewUserView(request):
 			if user_profile_form.is_valid():			
 				first_name = user_profile_form.cleaned_data['first_name']
 				last_name = user_profile_form.cleaned_data['last_name']
+
+				profile_picture = static('images/default_profile_picture.png')
 
 				new_user_profile = UserProfile(user=new_user,)
 				new_user_profile.save()

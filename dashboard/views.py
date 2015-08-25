@@ -674,7 +674,7 @@ def AddSelfCareNoteView(request):
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 
-				frequency=frequency, procedure=procedure, outcome=outcome, date_and_time=date_and_time,
+				frequency=frequency, procedure=procedure, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object

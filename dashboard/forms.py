@@ -239,51 +239,51 @@ User-related forms
 
 # Taken from Django Docs. Modified to include email instead of username
 class UserCreationForm(forms.ModelForm):
-    """
-    A form that creates a user, with no privileges, from the given username and
-    password.
-    """
-    error_messages = {
-        'password_mismatch': _("The two password fields didn't match."),
-        'email_in_use': _("The email you request is already in use."),
-    }
-    email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
-    password1 = forms.CharField(label=_("Password"),
-        widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    password2 = forms.CharField(label=_("Password confirmation"),
-        widget=forms.PasswordInput(attrs={'class':'form-control'}),
-        help_text=_("Enter the same password as above, for verification."))
+	"""
+	A form that creates a user, with no privileges, from the given username and
+	password.
+	"""
+	error_messages = {
+		'password_mismatch': _("The two password fields didn't match."),
+		'email_in_use': _("The email you request is already in use."),
+	}
+	email = forms.EmailField(help_text=_("Please enter your real email address"), widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+	password1 = forms.CharField(label=_("Password"),
+		widget=forms.PasswordInput(attrs={'class':'form-control'}))
+	password2 = forms.CharField(label=_("Password confirmation"),
+		widget=forms.PasswordInput(attrs={'class':'form-control'}),
+		help_text=_("Enter the same password as above, for verification."))
 
-    class Meta:
-        model = User
-        fields = ("username",)
-        exclude = ("username",)
+	class Meta:
+		model = User
+		fields = ("username",)
+		exclude = ("username",)
 
-    def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(
-                self.error_messages['password_mismatch'],
-                code='password_mismatch',
-            )
-        return password2
+	def clean_password2(self):
+		password1 = self.cleaned_data.get("password1")
+		password2 = self.cleaned_data.get("password2")
+		if password1 and password2 and password1 != password2:
+			raise forms.ValidationError(
+				self.error_messages['password_mismatch'],
+				code='password_mismatch',
+			)
+		return password2
 
-    def save(self, commit=True):
-    	user_check = User.objects.get(username=self.cleaned_data["email"])
-    	if user_check is None:
-	        user = super(UserCreationForm, self).save(commit=False)
-	        user.username = self.cleaned_data["email"]
-	        user.email = self.cleaned_data["email"]
-	        user.set_password(self.cleaned_data["password1"])
-	        if commit:
-	            user.save()
-	        return user
-	    else:
-	    	raise forms.ValidationError(
-	    	    self.error_messages['email_in_use'],
-	    	    code='email_in_use',
-	    	)
+	def save(self, commit=True):
+		user_check = User.objects.get(username=self.cleaned_data["email"])
+		if user_check is None:
+			user = super(UserCreationForm, self).save(commit=False)
+			user.username = self.cleaned_data["email"]
+			user.email = self.cleaned_data["email"]
+			user.set_password(self.cleaned_data["password1"])
+			if commit:
+				user.save()
+			return user
+		else:
+			raise forms.ValidationError(
+				self.error_messages['email_in_use'],
+				code='email_in_use',
+			)
 
 class UserProfileCreationForm(forms.Form):
 	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))

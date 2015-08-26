@@ -170,6 +170,15 @@ class AddSelfCareNoteForm(AddNoteForm):
 		('pm', 'P.M.'),
 	)
 
+	FREQUENCY_TYPE_CHOICES = (
+		('minutes', 'Minute(s)'),
+		('hours', 'Hour(s)'),
+		('days', 'Days(s)'),
+		('weeks', 'Week(s)'),
+		('months', 'Month(s)'),
+		('years', 'Year(s)'),
+	)
+
 	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
@@ -182,8 +191,24 @@ class AddSelfCareNoteForm(AddNoteForm):
 		'required':'required','style':'display:inline;width:20%;'}))
 	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
+
+	end_day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:30%;'}))
+	end_year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
+
 	frequency = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control', 
 		'required':'required','type':'number'}))
+	frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:20%;'}))
 
 	description = forms.CharField(label='Description', max_length=4000, 
 		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))

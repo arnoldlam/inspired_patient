@@ -93,6 +93,7 @@ class UserProfile(models.Model):
 
 	def unreadNotificationCount(self):
 		user = self.user
+		count = 0
 		for notification in user.notifications_received.all():
 			if notification.view_status == 'unread':
 				count += 1

@@ -205,9 +205,9 @@ class AddSelfCareNoteForm(AddNoteForm):
 		'required':'required','style':'display:inline;width:20%;'}))
 
 	frequency = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
-		'required':'required','type':'number','style':'display:inline;width:20%;'}))
+		'required':'required','type':'number','style':'display:inline;width:10%;'}))
 	frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
+		'required':'required','style':'display:inline;width:10%;'}))
 
 	description = forms.CharField(label='Description', max_length=4000, 
 		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))

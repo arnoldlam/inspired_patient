@@ -680,7 +680,7 @@ def AddSelfCareNoteView(request):
 
 			# Convert from 12-hours to 24-hours time
 			if am_pm == 'pm':
-				hour = hour + 12
+				hour = int(hour) + 12
 
 			date_and_time = datetime.datetime(year, month, day, hour, minute, 0, 0)
 

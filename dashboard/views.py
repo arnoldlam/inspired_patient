@@ -681,6 +681,8 @@ def AddSelfCareNoteView(request):
 			# Convert from 12-hours to 24-hours time
 			if am_pm == 'pm':
 				hour = int(hour) + 12
+			else:
+				hour = int(hour)
 
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
@@ -724,12 +726,16 @@ def AddSelfCareNoteView(request):
 
 			# Recurring notes
 			if frequency != '0':
-				if frequency == 'every_day':
-					time_to_add = datetime.timedelta(days=1)
-				if frequency == 'every_week':
-					time_to_add = datetime.timedelta(weeks=1)
-				if frequency == 'every_month':
-					time_to_add = datetime.timedelta(days=30)
+				if frequency_type == 'hours':
+					time_to_add = datetime.timedelta(hours=frequency)
+				if frequency == 'days':
+					time_to_add = datetime.timedelta(days=frequency)
+				if frequency == 'weeks':
+					time_to_add = datetime.timedelta(weeks=frequency)
+				# if frequency == 'months':
+				# 	time_to_add = relativedelta(months=frequency)
+				# if frequency == 'years':
+				# 	time_to_add = relativedelta(years=frequency)
 
 				day = form.cleaned_data['end_day']
 				month = form.cleaned_data['end_month']
@@ -743,7 +749,7 @@ def AddSelfCareNoteView(request):
 					hour = hour + 12
 				
 				# Create additional notes for recurring note
-				end_date = datetime.datetime(year, month, day, hour, minute, 0, 0)
+				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 				recurring_date = date_and_time
 				recurring_date = recurring_date + time_to_add
 				while recurring_date < end_date:

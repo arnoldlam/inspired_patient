@@ -172,15 +172,15 @@ class AddSelfCareNoteForm(AddNoteForm):
 
 	# date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, 
 	# 	widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	day = forms.ChoiceField(choices=DAY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+	day = forms.ChoiceField(choices=DAY_CHOICES,empty_label='Day',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	month = forms.ChoiceField(choices=MONTH_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+	month = forms.ChoiceField(choices=MONTH_CHOICES,empty_label='Month',widget=forms.Select(attrs={'class':'form-control', 
+		'required':'required','style':'display:inline;width:30%;'}))
+	year = forms.ChoiceField(choices=YEAR_CHOICES,empty_label='Year',empty_label='Year',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	year = forms.ChoiceField(choices=YEAR_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+	hour = forms.ChoiceField(choices=HOUR_CHOICES,empty_label='Hour',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	hour = forms.ChoiceField(choices=HOUR_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	minute = forms.ChoiceField(choices=MINUTE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
+	minute = forms.ChoiceField(choices=MINUTE_CHOICES,empty_label='Minute',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))

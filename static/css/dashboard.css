@@ -45,3 +45,8 @@
 	display:block;
 }
 
+.date_select {
+	display:inline;
+	width:20%;
+}
+

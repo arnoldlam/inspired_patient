@@ -116,7 +116,7 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 	follow_up_instructions = forms.CharField(label="Follow-Up Instructions", max_length=1000, 
 		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 
-class AddSelfCareNoteForm(AddNoteForm):
+class RepeatingNotesForm(AddNoteForm):
 	day_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 		19,20,21,22,23,24,25,26,27,28,29,30,31]
 	DAY_CHOICES = zip(day_list, day_list)
@@ -177,6 +177,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 		('months', 'Month(s)'),
 	)
 
+class AddSelfCareNoteForm(RepeatingNotesForm):
 	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
@@ -259,24 +260,45 @@ class AddContactNoteForm(AddNoteForm):
 	country = forms.ChoiceField(label='Country', choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control'}),required=False)
 	postal_code = forms.CharField(label='Postal Code', max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}),required=False)
 
-class AddMedicationNoteForm(AddNoteForm):
+class AddMedicationNoteForm(RepeatingNotesForm):
 	ADDRESS_COUNTRY_CHOICES = (
 		('CA', 'Canada'),
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
 	)
 
-	FREQUENCY_CHOICES = (
-		('not_repeating', 'Not repeating'),
-		('every_day', 'Every Day'),
-		('every_week', 'Every Week'),
-		('every_month', 'Every Month')
-	)
+	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:30%;'}))
+	year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
 
-	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
-	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	medication_frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
-	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	end_day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:30%;'}))
+	end_year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+	end_am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:20%;'}))
+
+	frequency = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
+		'required':'required','type':'number','style':'display:inline;width:10%;'}))
+	frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		'required':'required','style':'display:inline;width:15%;'}))
+
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)	
 	medication_name = forms.CharField(label='Medication Name', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	medication_dosage = forms.CharField(label='Medication Dosage', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	medication_duration = forms.CharField(label='Medication Duration', max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))

@@ -243,8 +243,6 @@ class MedicationNote(Note):
 		('every_week', 'Every Week'),
 		('every_month', 'Every Month')
 	)
-
-	medication_frequency = models.CharField(max_length=150, choices=FREQUENCY_CHOICES, default='not_repeating')
 	medication_name = models.CharField(max_length=100)
 	medication_dosage = models.CharField(max_length=100)
 	medication_duration = models.CharField(max_length=100)

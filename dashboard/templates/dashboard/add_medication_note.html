@@ -39,24 +39,58 @@
                             <label>Medication Duration *</label>
                             {{ form.medication_duration }}
                         </div>                        
-                        <div class="form-group">
-                            <label>Date and Time *</label>
-                            {{ form.date_and_time }}
+                        <div class="row">
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Self-Care Time *</label>
+                                <div><br>
+                                {{ form.hour }}
+                                {{ form.minute }}
+                                {{ form.am_pm }}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Self-Care Date *</label>
+                                <div><br>
+                                {{ form.day }}
+                                {{ form.month }}
+                                {{ form.year }}
+                                </div>
+                            </div>
+                            </div>
                         </div>
-	                	<div class="row">
-	                		<div class="col-lg-6">
-	                		<div class="form-group">
-	                		    <label>Frequency *</label>
-	                		    {{ form.medication_frequency }}
-	                		</div>
-	                    	</div>
-	                    	<div class="col-lg-6">
-	                        <div class="form-group">
-	                            <label>End Date *</label>
-	                            {{ form.end_date }}
-	                        </div>
-                    		</div>
-                    	</div>
+                        <div class="form-group">
+                            <label>Frequency *</label>
+                            <div><br>
+                            Every 
+                            {{ form.frequency }}
+                            {{ form.frequency_type }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>End Time *</label>
+                                <div><br>
+                                {{ form.end_hour }}
+                                {{ form.end_minute }}
+                                {{ form.end_am_pm }}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>End Date *</label>
+                                <div><br>
+                                {{ form.end_day }}
+                                {{ form.end_month }}
+                                {{ form.end_year }}
+                                </div>
+                            </div>
+                            </div>
+                        </div>
 	                	<div class="row">
 	                		<div class="col-lg-6">
 	                		<div class="form-group">

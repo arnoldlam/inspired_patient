@@ -1065,7 +1065,19 @@ def AddMedicationNoteView(request):
 			medication_duration = form.cleaned_data['medication_duration']
 			pharmacy_name = form.cleaned_data['pharmacy_name']
 			pharmacy_telephone = form.cleaned_data['pharmacy_telephone']
-			date_and_time = form.cleaned_data['date_and_time']
+			
+			day = form.cleaned_data['day']
+			month = form.cleaned_data['month']
+			year = form.cleaned_data['year']
+			hour = form.cleaned_data['hour']
+			minute = form.cleaned_data['minute']
+			am_pm = form.cleaned_data['am_pm']
+
+			# Convert from 12-hours to 24-hours time
+			if am_pm == 'pm':
+				hour = int(hour) + 12
+
+			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, 
 				note_content=note, author=user, medication_name=medication_name, 
@@ -1106,17 +1118,30 @@ def AddMedicationNoteView(request):
 			request.user.authored_notes.add(new_note)
 
 			# Recurring notes
-			frequency = medication_frequency
-			if frequency != 'not_repeating':
-				if frequency == 'every_day':
-					time_to_add = datetime.timedelta(days=1)
-				if frequency == 'every_week':
-					time_to_add = datetime.timedelta(weeks=1)
-				if frequency == 'every_month':
-					time_to_add = datetime.timedelta(days=30)
+			frequency_type = form.cleaned_data['frequency_type']
+			if frequency != '0':
+				if frequency_type == 'hours':
+					time_to_add = datetime.timedelta(hours=frequency)
+				if frequency_type == 'days':
+					time_to_add = datetime.timedelta(days=frequency)
+				if frequency_type == 'weeks':
+					time_to_add = datetime.timedelta(weeks=frequency)
+				# if frequency == 'months':
+				# 	time_to_add = relativedelta(months=frequency)
+
+				day = form.cleaned_data['end_day']
+				month = form.cleaned_data['end_month']
+				year = form.cleaned_data['end_year']
+				hour = form.cleaned_data['end_hour']
+				minute = form.cleaned_data['end_minute']
+				am_pm = form.cleaned_data['end_am_pm']
+
+				# Convert from 12-hours to 24-hours time
+				if am_pm == 'pm':
+					hour = int(hour) + 12
 				
 				# Create additional notes for recurring note
-				end_date = form.cleaned_data['end_date']
+				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 				recurring_date = date_and_time
 				recurring_date = recurring_date + time_to_add
 				while recurring_date < end_date:

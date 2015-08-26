@@ -172,10 +172,9 @@ class AddSelfCareNoteForm(AddNoteForm):
 
 	FREQUENCY_TYPE_CHOICES = (
 		('hours', 'Hour(s)'),
-		('days', 'Days(s)'),
+		('days', 'Day(s)'),
 		('weeks', 'Week(s)'),
 		('months', 'Month(s)'),
-		('years', 'Year(s)'),
 	)
 
 	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 

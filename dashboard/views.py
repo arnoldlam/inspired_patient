@@ -417,6 +417,7 @@ def AddGeneralNoteView(request):
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
 			# Redirecting to note detail
 			return HttpResponseRedirect(redirect_url + '?note_type=' + new_note.note_type)
+	else:
 		form = AddNoteForm(request.user.id)
 	# Pass notebook_id to POST handling
 	if 'notebook_id' in request.GET:
@@ -729,9 +730,9 @@ def AddSelfCareNoteView(request):
 			if frequency != '0':
 				if frequency_type == 'hours':
 					time_to_add = datetime.timedelta(hours=frequency)
-				if frequency == 'days':
+				if frequency_type == 'days':
 					time_to_add = datetime.timedelta(days=frequency)
-				if frequency == 'weeks':
+				if frequency_type == 'weeks':
 					time_to_add = datetime.timedelta(weeks=frequency)
 				# if frequency == 'months':
 				# 	time_to_add = relativedelta(months=frequency)

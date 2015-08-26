@@ -158,8 +158,8 @@ class AddSelfCareNoteForm(AddNoteForm):
 	)
 
 	def createMinuteChoices():
-		minute_list = []
-		for minute in range(1,60):
+		minute_list = [00, 01, 02, 03, 04, 05, 06, 07, 08, 09]
+		for minute in range(10,60):
 			minute_list.append(minute)
 		return zip(minute_list, minute_list)
 
@@ -170,25 +170,21 @@ class AddSelfCareNoteForm(AddNoteForm):
 		('pm', 'P.M.'),
 	)
 
-	# date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, 
-	# 	widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	day = forms.ChoiceField(choices=DAY_CHOICES,empty_label='Day',widget=forms.Select(attrs={'class':'form-control', 
+	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	month = forms.ChoiceField(choices=MONTH_CHOICES,empty_label='Month',widget=forms.Select(attrs={'class':'form-control', 
+	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:30%;'}))
-	year = forms.ChoiceField(choices=YEAR_CHOICES,empty_label='Year',widget=forms.Select(attrs={'class':'form-control', 
+	year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	hour = forms.ChoiceField(choices=HOUR_CHOICES,empty_label='Hour',widget=forms.Select(attrs={'class':'form-control', 
+	hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
-	minute = forms.ChoiceField(choices=MINUTE_CHOICES,empty_label='Minute',widget=forms.Select(attrs={'class':'form-control', 
+	minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	frequency = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control', 
-		'required':'required', 
-		'type':'number'}))
-	end_date = forms.DateTimeField(initial=datetime.datetime.now, 
-		widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+		'required':'required','type':'number'}))
+
 	description = forms.CharField(label='Description', max_length=4000, 
 		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
 	procedure = forms.CharField(label='Procedure', max_length=500, 

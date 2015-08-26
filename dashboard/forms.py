@@ -204,7 +204,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	end_am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 		'required':'required','style':'display:inline;width:20%;'}))
 
-	frequency = forms.IntegerField(widget=forms.NumberInput(initial="0", attrs={'class':'form-control', 
+	frequency = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
 		'required':'required','type':'number','style':'display:inline;width:20%;'}))
 	frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 		'required':'required','style':'display:inline;width:20%;'}))

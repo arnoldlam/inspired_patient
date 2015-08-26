@@ -95,7 +95,7 @@ class UserProfile(models.Model):
 		user = self.user
 		for notification in user.notifications_received:
 			if notification.view_status == 'unread':
-				count++
+				count += 1
 		return count
 
 class Clinic(models.Model):

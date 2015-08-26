@@ -670,7 +670,15 @@ def AddSelfCareNoteView(request):
 			frequency = form.cleaned_data['frequency']
 			emergency_procedure = form.cleaned_data['emergency_procedure']
 			procedure = form.cleaned_data['procedure']
-			date_and_time = form.cleaned_data['date_and_time']
+			
+			day = form.cleaned_data['day']
+			month = form.cleaned_data['month']
+			year = form.cleaned_data['year']
+			hour = form.cleaned_data['hour']
+			minute = form.cleaned_data['minute']
+			am_pm = form.cleaned_data['am_pm']
+
+			date_and_time = datetime.datetime(2015, 8, 25, 18, 45, 35, 524763)
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 

@@ -176,7 +176,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 		'required':'required','style':'display:inline;width:20%;'}))
 	month = forms.ChoiceField(choices=MONTH_CHOICES,empty_label='Month',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:30%;'}))
-	year = forms.ChoiceField(choices=YEAR_CHOICES,empty_label='Year',empty_label='Year',widget=forms.Select(attrs={'class':'form-control', 
+	year = forms.ChoiceField(choices=YEAR_CHOICES,empty_label='Year',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	hour = forms.ChoiceField(choices=HOUR_CHOICES,empty_label='Hour',widget=forms.Select(attrs={'class':'form-control', 
 		'required':'required','style':'display:inline;width:20%;'}))

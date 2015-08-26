@@ -10,12 +10,12 @@
                     <div class="col-md-6">
                         <label>Current Editors</label>
                         <ul>
+                        <li>{{ note.author.user_profile.full_name }}</li>
                         {% if note.editors.all %}
                         {% for editor in note.editors.all %}
                         <li>{{ editor.user_profile.full_name }}</li>
                         {% endfor %}
                         {% else %}
-                        <li>No editors</li>
                         {% endif %}
                         </ul>
                     </div>

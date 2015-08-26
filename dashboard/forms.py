@@ -117,21 +117,81 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 
 class AddSelfCareNoteForm(AddNoteForm):
-	FREQUENCY_CHOICES = (
-		('not_repeating', 'Not repeating'),
-		('every_day', 'Every Day'),
-		('every_week', 'Every Week'),
-		('every_month', 'Every Month')
+	day_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+		19,20,21,22,23,24,25,26,27,28,29,30,31]
+	DAY_CHOICES = zip(day_list, day_list)
+
+	MONTH_CHOICES = (
+		('1', 'January'),
+		('2', 'February'),
+		('3', 'March'),
+		('4', 'April'),
+		('5', 'May'),
+		('6', 'June'),
+		('7', 'July'),
+		('8', 'August'),
+		('9', 'September'),
+		('10', 'October'),
+		('11', 'November'),
+		('12', 'December'),
 	)
 
-	date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	frequency = forms.ChoiceField(choices=FREQUENCY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
-	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	description = forms.CharField(label='Description', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	procedure = forms.CharField(label='Procedure', max_length=500, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	outcome = forms.CharField(label='Outcome', required=False, max_length=250,widget=forms.TextInput(attrs={'class':'form-control'}))
-	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
+	YEAR_CHOICES = (
+		('2015','2015'),
+		('2016','2016'),
+		('2017','2017'),
+	)
+
+	HOUR_CHOICES = (
+		('1', '01'),
+		('2', '02'),
+		('3', '03'),
+		('4', '04'),
+		('5', '05'),
+		('6', '06'),
+		('7', '07'),
+		('8', '08'),
+		('9', '09'),
+		('10', '10'),
+		('11', '11'),
+		('12', '12'),
+	)
+
+	def createMinuteChoices():
+		minute_list = []
+		for minute in range(1,60):
+			minute_list.append(minute)
+		return zip(minute_list, minute_list)
+
+	MINUTE_CHOICES = createMinuteChoices()
+
+	AM_PM_CHOICES = (
+		('am', 'A.M.'),
+		('pm', 'P.M.'),
+	)
+
+	# date_and_time = forms.DateTimeField(label='Data/Time', initial=datetime.datetime.now, 
+	# 	widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	day = forms.ChoiceField(choices=DAY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	month = forms.ChoiceField(choices=MONTH_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	year = forms.ChoiceField(choices=YEAR_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	hour = forms.ChoiceField(choices=HOUR_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	minute = forms.ChoiceField(choices=MINUTE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required',}))
+	frequency = forms.IntegerField(widget=forms.NumberInput(attrs={'class':'form-control', 'required':'required', 
+		'type':'number'}))
+	end_date = forms.DateTimeField(label='End Data/Time', initial=datetime.datetime.now, 
+		widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	description = forms.CharField(label='Description', max_length=4000, 
+		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+	procedure = forms.CharField(label='Procedure', max_length=500, 
+		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, 
+		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+	outcome = forms.CharField(label='Outcome', required=False, max_length=250,
+		widget=forms.TextInput(attrs={'class':'form-control'}))
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), 
+		required=False)
 
 class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 	def __init__(self, user_id, *args, **kwargs):

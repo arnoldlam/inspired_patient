@@ -2,93 +2,106 @@
 {% include "dashboard/header_new.html" %}
 
 <div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Create a Self-Care Note</h1>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Self-Care Note
-                </div>
-                <div class="panel-body">
-                {% if form.errors %}
-                <div class="alert alert-warning">
-                    {{ form.errors }}.
-                </div>
-                {% endif %}
-                    <form id="add_general_note_form" action="{% url 'dashboard:add_self_care_note' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        <div class="form-group">
-                            <label>Subject *</label>
-                            {{ form.subject }}
-                        </div>
-                        <div class="form-group">
-                            <label>Description *</label>
-                            {{ form.description }}
-                        </div>
-                        <div class="form-group">
-                            <label>Procedure *</label>
-                            {{ form.procedure }}
-                        </div>
-                        <div class="form-group">
-                            <label>Emergency Procedure *</label>
-                            {{ form.emergency_procedure }}
-                        </div>
-                        <div class="form-group">
-                            <label>Outcome </label>
-                            {{ form.outcome }}
-                        </div>
-                        <div class="form-group">
-                            <label>Date and Time *</label>
-                            {{ form.date_and_time }}
-                        </div>
-	                	<div class="row">
-	                		<div class="col-lg-6">
-	                		<div class="form-group">
-	                		    <label>Frequency *</label>
-	                		    {{ form.frequency }}
-	                		</div>
-	                    	</div>
-	                    	<div class="col-lg-6">
-	                        <div class="form-group">
-	                            <label>End Date *</label>
-	                            {{ form.end_date }}
-	                        </div>
-                    		</div>
-                    	</div>
-                        <div class="form-group">
-                            <label>Additional Notes</label>
-                            {{ form.note_content }}
-                        </div>
-                        <div class="form-group">
-                            <label>Attachments</label>
-                            {{ form.attachment }}
-                        </div>
-                        {% if notebook_id %}
-                        <input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
-                        {% else %}
-                        <div class="form-group">
-                            <label>Place note in notebook</label>
-                            {{ form.notebook_id }}
-                        </div>
-                        {% endif %}
-                    </form>
-                    <button type="submit" form="add_general_note_form" class="btn btn-default submit_note_form_button" style="
-                        display: block;
-                        margin-left: auto;
-                        margin-right: auto;
-                    ">Create</button>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-lg-4 -->
-    </div>
-    
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Create a Self-Care Note</h1>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<!-- /.row -->
+	<div class="row">
+		<div class="col-lg-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Self-Care Note
+				</div>
+				<div class="panel-body">
+				{% if form.errors %}
+				<div class="alert alert-warning">
+					{{ form.errors }}.
+				</div>
+				{% endif %}
+					<form id="add_general_note_form" action="{% url 'dashboard:add_self_care_note' %}" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+						<div class="form-group">
+							<label>Subject *</label>
+							{{ form.subject }}
+						</div>
+						<div class="form-group">
+							<label>Description *</label>
+							{{ form.description }}
+						</div>
+						<div class="form-group">
+							<label>Procedure *</label>
+							{{ form.procedure }}
+						</div>
+						<div class="form-group">
+							<label>Emergency Procedure *</label>
+							{{ form.emergency_procedure }}
+						</div>
+						<div class="form-group">
+							<label>Outcome </label>
+							{{ form.outcome }}
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>Self-Care Time *</label>
+								{{ form.hour }}
+								{{ form.hour }}
+							</div>
+							</div>
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>Self-Care Date *</label>
+								{{ form.day }}
+								{{ form.month }}
+								{{ form.year }}
+							</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>Frequency *</label>
+								{{ form.frequency }}
+							</div>
+							</div>
+							<div class="col-lg-6">
+							<div class="form-group">
+								<label>End Date *</label>
+								{{ form.end_date }}
+							</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label>Additional Notes</label>
+							{{ form.note_content }}
+						</div>
+						<div class="form-group">
+							<label>Attachments</label>
+							{{ form.attachment }}
+						</div>
+						{% if notebook_id %}
+						<input type="hidden" name="notebook_id" value="{{ notebook_id }}" />
+						{% else %}
+						<div class="form-group">
+							<label>Place note in notebook</label>
+							{{ form.notebook_id }}
+						</div>
+						{% endif %}
+					</form>
+					<button type="submit" form="add_general_note_form" class="btn btn-default submit_note_form_button" style="
+						display: block;
+						margin-left: auto;
+						margin-right: auto;
+					">Create</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.col-lg-4 -->
+	</div>
+	
 </div>
 <!-- /#page-wrapper -->
 

@@ -117,7 +117,7 @@ class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):
 		widget=forms.Textarea(attrs={'class':'form-control','required':'required'}))
 
 class RepeatingNotesForm(AddNoteForm):
-	def __init__(self):
+	def __init__(self, *args, **kwargs):
 		day_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 			19,20,21,22,23,24,25,26,27,28,29,30,31]
 		self.DAY_CHOICES = zip(day_list, day_list)
@@ -266,6 +266,7 @@ class AddContactNoteForm(AddNoteForm):
 class AddMedicationNoteForm(RepeatingNotesForm):
 	def __init__(self, *args, **kwargs):
 		super(AddMedicationNoteForm, self).__init__(*args, **kwargs)
+		
 		ADDRESS_COUNTRY_CHOICES = (
 			('CA', 'Canada'),
 			('US', 'United States'),

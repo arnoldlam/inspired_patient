@@ -682,7 +682,7 @@ def AddSelfCareNoteView(request):
 			if am_pm == 'pm':
 				hour = int(hour) + 12
 
-			date_and_time = datetime.datetime(year, month, day, hour, minute, 0, 0)
+			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 

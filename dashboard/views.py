@@ -688,7 +688,7 @@ def AddSelfCareNoteView(request):
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
 				author=user, description=description, emergency_procedure=emergency_procedure, 
-				frequency=frequency, procedure=procedure, date_and_time=date_and_time,
+				procedure=procedure, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object
@@ -752,6 +752,7 @@ def AddSelfCareNoteView(request):
 				# Create additional notes for recurring note
 				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 				recurring_date = date_and_time
+				recurring_date = recurring_date + time_to_add
 				recurring_date = recurring_date + time_to_add
 				while recurring_date < end_date:
 					new_note.pk = None

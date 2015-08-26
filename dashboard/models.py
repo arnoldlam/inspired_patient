@@ -201,14 +201,6 @@ class ProcedureNote(Note):
 	clinic = models.ForeignKey(Clinic, related_name='procedure_notes', null=True)
 
 class SelfCareNote(Note):
-	FREQUENCY_CHOICES = (
-		('not_repeating', 'Not repeating'),
-		('every_day', 'Every Day'),
-		('every_week', 'Every Week'),
-		('every_month', 'Every Month')
-	)
-
-	frequency = models.CharField(max_length=150, choices=FREQUENCY_CHOICES, default='not_repeating')
 	description = models.TextField()
 	emergency_procedure = models.TextField()
 	procedure = models.TextField()

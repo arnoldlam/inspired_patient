@@ -158,7 +158,7 @@ class AddSelfCareNoteForm(AddNoteForm):
 	)
 
 	def createMinuteChoices():
-		minute_list = [00, 01, 02, 03, 04, 05, 06, 07, 08, 09]
+		minute_list = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09']
 		for minute in range(10,60):
 			minute_list.append(minute)
 		return zip(minute_list, minute_list)

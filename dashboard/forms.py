@@ -192,7 +192,7 @@ class AddSelfCareNoteForm(RepeatingNotesForm):
 			'required':'required','style':'display:inline;width:20%;'}))
 		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:20%;'}))
-		self.fields['am_pm ']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:20%;'}))
 
 		self.fields['end_day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
@@ -284,7 +284,7 @@ class AddMedicationNoteForm(RepeatingNotesForm):
 			'required':'required','style':'display:inline;width:20%;'}))
 		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:20%;'}))
-		self.fields['am_pm ']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:20%;'}))
 
 		self.fields['end_day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 

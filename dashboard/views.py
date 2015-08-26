@@ -747,7 +747,7 @@ def AddSelfCareNoteView(request):
 
 				# Convert from 12-hours to 24-hours time
 				if am_pm == 'pm':
-					hour = hour + 12
+					hour = int(hour) + 12
 				
 				# Create additional notes for recurring note
 				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)

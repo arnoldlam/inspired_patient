@@ -180,47 +180,47 @@ class AddSelfCareNoteForm(RepeatingNotesForm):
 	def __init__(self, *args, **kwargs):
 		super(AddSelfCareNoteForm, self).__init__(*args, **kwargs)
 
-	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:30%;'}))
-	year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
+		day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:30%;'}))
+		year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
 
-	end_day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	end_month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:30%;'}))
-	end_year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	end_hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	end_minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
-	end_am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:20%;'}))
+		end_day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		end_month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:30%;'}))
+		end_year = forms.ChoiceField(choices=YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		end_hour = forms.ChoiceField(choices=HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		end_minute = forms.ChoiceField(choices=MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
+		end_am_pm = forms.ChoiceField(choices=AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:20%;'}))
 
-	frequency = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
-		'required':'required','type':'number','style':'display:inline;width:10%;'}))
-	frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
-		'required':'required','style':'display:inline;width:15%;'}))
+		frequency = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
+			'required':'required','type':'number','style':'display:inline;width:10%;'}))
+		frequency_type = forms.ChoiceField(choices=FREQUENCY_TYPE_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:15%;'}))
 
-	description = forms.CharField(label='Description', max_length=4000, 
-		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	procedure = forms.CharField(label='Procedure', max_length=500, 
-		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, 
-		widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
-	outcome = forms.CharField(label='Outcome', required=False, max_length=250,
-		widget=forms.TextInput(attrs={'class':'form-control'}))
-	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), 
-		required=False)
+		description = forms.CharField(label='Description', max_length=4000, 
+			widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+		procedure = forms.CharField(label='Procedure', max_length=500, 
+			widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+		emergency_procedure = forms.CharField(label='Emergency Procedure', max_length=500, 
+			widget=forms.Textarea(attrs={'class':'form-control', 'required':'required'}))
+		outcome = forms.CharField(label='Outcome', required=False, max_length=250,
+			widget=forms.TextInput(attrs={'class':'form-control'}))
+		note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), 
+			required=False)
 
 class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 	def __init__(self, user_id, *args, **kwargs):

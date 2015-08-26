@@ -174,10 +174,12 @@ class RepeatingNotesForm(AddNoteForm):
 		('hours', 'Hour(s)'),
 		('days', 'Day(s)'),
 		('weeks', 'Week(s)'),
-		('months', 'Month(s)'),
 	)
 
 class AddSelfCareNoteForm(RepeatingNotesForm):
+	def __init__(self, *args, **kwargs):
+		super(AddSelfCareNoteForm, self).__init__(*args, **kwargs)
+
 	day = forms.ChoiceField(choices=DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 		'required':'required','style':'display:inline;width:20%;'}))
 	month = forms.ChoiceField(choices=MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 

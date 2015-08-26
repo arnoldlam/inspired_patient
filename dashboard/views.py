@@ -725,6 +725,7 @@ def AddSelfCareNoteView(request):
 			request.user.authored_notes.add(new_note)
 
 			# Recurring notes
+			frequency_type = form.cleaned_data['frequency_type']
 			if frequency != '0':
 				if frequency_type == 'hours':
 					time_to_add = datetime.timedelta(hours=frequency)

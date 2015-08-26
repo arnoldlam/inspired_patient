@@ -91,6 +91,13 @@ class UserProfile(models.Model):
 		else:
 			return 0
 
+	def unreadNotificationCount(self):
+		user = self.user
+		for notification in user.notifications_received:
+			if notification.view_status == 'unread':
+				count++
+		return count
+
 class Clinic(models.Model):
 	users = models.ManyToManyField(User, related_name='clinics')
 	name = models.CharField(max_length=100)

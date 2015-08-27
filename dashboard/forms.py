@@ -412,6 +412,7 @@ class UserProfileCreationExtendedForm(forms.Form):
 	)
 
 	ADDRESS_COUNTRY_CHOICES = (
+		('', 'Country'),
 		('CA', 'Canada'),
 		('US', 'United States'),
 		('UK', 'United Kingdom'),
@@ -426,8 +427,7 @@ class UserProfileCreationExtendedForm(forms.Form):
 	street = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
 	city = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
 	province = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class':'form-control'}))
-	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES, empty_label="Country",
-		widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES,widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	postal_code = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class CreateProfessionalProfileForm(forms.Form):

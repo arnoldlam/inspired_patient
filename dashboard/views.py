@@ -101,6 +101,9 @@ def CreateNewUserExtendedView(request):
 				medical_history=medical_history,unit=unit,address_street=street,address_city=city,
 				address_province=province,address_country=country,address_postal_code=postal_code,
 				profile_picture=profile_picture)
+			user_profile.save()
+
+			user.user_profile = user_profile
 
 			# Render addition form to fill out if professional
 			if form.cleaned_data['role'] == 'professional':

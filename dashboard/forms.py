@@ -418,7 +418,7 @@ class UserProfileCreationExtendedForm(forms.Form):
 		('nurse', 'Nurse'),
 	)
 
-	title = forms.CharField(choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	title = forms.ChoiceField(choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	role = forms.CharField(widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	phone_number = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	medical_history = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required', 'rows':'10'}))

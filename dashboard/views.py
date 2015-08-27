@@ -85,37 +85,29 @@ def CreateNewUserExtendedView(request):
 	if request.method == 'POST':
 		form = UserProfileCreationExtendedForm(request.POST)
 		if form.is_valid():
-			title = form.cleaned_data['title']
-			role = form.cleaned_data['role']
-			phone_number = form.cleaned_data['phone_number']
-			medical_history = form.cleaned_data['medical_history']
-			unit = form.cleaned_data['unit']
-			street = form.cleaned_data['street']
-			city = form.cleaned_data['city']
-			province = form.cleaned_data['province']
-			country = form.cleaned_data['country']
-			postal_code = form.cleaned_data['postal_code']
-			profile_picture = form.cleaned_data['profile_picture']
-
-			user_profile = UserProfile(title=title,role=role,phone_number=phone_number, 
-				medical_history=medical_history,unit=unit,address_street=street,address_city=city,
-				address_province=province,address_country=country,address_postal_code=postal_code,
-				profile_picture=profile_picture)
-			user_profile.save()
-
-			user.user_profile = user_profile
+			user.user_profile.title = form.cleaned_data['title']
+			user.user_profile.role = form.cleaned_data['role']
+			user.user_profile.phone_number = form.cleaned_data['phone_number']
+			user.user_profile.medical_history = form.cleaned_data['medical_history']
+			user.user_profile.unit = form.cleaned_data['unit']
+			user.user_profile.street = form.cleaned_data['street']
+			user.user_profile.city = form.cleaned_data['city']
+			user.user_profile.province = form.cleaned_data['province']
+			user.user_profile.country = form.cleaned_data['country']
+			user.user_profile.postal_code = form.cleaned_data['postal_code']
+			user.user_profile.profile_picture = form.cleaned_data['profile_picture']
 
 			# Render addition form to fill out if professional
 			if form.cleaned_data['role'] == 'professional':
 				return HttpResponseRedirect(reverse('create_professional'))
+
+			return HttpResponseRedirect(reverse('dashboard:notes'))
 	else:
 		form = UserProfileCreationExtendedForm()
-
-		# Return to dashboard if not professional
-		return render(request, 'dashboard/create_user_extended.html', {
-			'form':form,
-			'user':user,
-		})
+	return render(request, 'dashboard/create_user_extended.html', {
+		'form':form,
+		'user':user,
+	})
 
 
 def CreateNewProfessionalView(request):

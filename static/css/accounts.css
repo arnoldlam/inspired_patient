@@ -20,3 +20,9 @@
 	text-align: center;
 	color: red;
 }
+
+.centered {
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}

@@ -419,14 +419,14 @@ class UserProfileCreationExtendedForm(forms.Form):
 
 	profile_picture = forms.ImageField()
 	title = forms.ChoiceField(choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
-	role = forms.CharField(choices=ROLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	role = forms.ChoiceField(choices=ROLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	phone_number = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	medical_history = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required', 'rows':'10'}))
 	unit = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
 	street = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
 	city = forms.CharField(max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control'}))
 	province = forms.CharField(max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
-	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
+	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	postal_code = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class CreateProfessionalProfileForm(forms.Form):

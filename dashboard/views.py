@@ -97,6 +97,8 @@ def CreateNewUserExtendedView(request):
 			user.user_profile.postal_code = form.cleaned_data['postal_code']
 			user.user_profile.profile_picture = form.cleaned_data['profile_picture']
 
+			user_profile.save()
+
 			# Render addition form to fill out if professional
 			if form.cleaned_data['role'] == 'professional':
 				return HttpResponseRedirect(reverse('create_professional'))

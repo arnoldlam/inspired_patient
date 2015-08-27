@@ -382,13 +382,6 @@ class UserCreationForm(forms.ModelForm):
 				self.error_messages['password_mismatch'],
 				code='password_mismatch',
 			)
-		email = self.cleaned_data["email"]
-		user_check = User.objects.get(username=email)
-		if user_check is not None:
-			raise forms.ValidationError(
-				self.error_messages['email_in_use'],
-				code='email_in_use',
-			)
 		return password2
 
 	def save(self, commit=True):
@@ -424,6 +417,7 @@ class UserProfileCreationExtendedForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
+	profile_picture = forms.ImageField()
 	title = forms.ChoiceField(choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	role = forms.CharField(widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
 	phone_number = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))

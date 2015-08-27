@@ -18,7 +18,7 @@ from django.templatetags.static import static
 
 from django.contrib.auth.models import User, Group
 from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
-from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, UserPermissionsForm
+from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, UserPermissionsForm, UserProfileCreationExtendedForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
 # Displays and handles forms for user creation
@@ -70,12 +70,8 @@ def CreateNewUserView(request):
 				new_notebook.save()
 				new_notebook.editors.add(user)
 
-				# Render addition form to fill out if professional
-				if user_profile_form.cleaned_data['is_professional'] == True:
-					return HttpResponseRedirect(reverse('create_professional'))
-
 				# Return to dashboard if not professional
-				return HttpResponseRedirect('/dashboard/')
+				return HttpResponseRedirect(reverse('create_user_extended'))
 	else:
 		user_form = UserCreationForm(prefix='user_form')
 		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
@@ -83,6 +79,27 @@ def CreateNewUserView(request):
 		'user_form':user_form,
 		'user_profile_form':user_profile_form,
 	})
+
+def CreateNewUserExtendedView(request):
+	user = request.user
+	if request.method == 'POST':
+		form = UserProfileCreationExtendedForm(request.POST)
+		if form.is_valid():
+			
+			
+			
+			# Render addition form to fill out if professional
+			if user_profile_form.cleaned_data['is_professional'] == True:
+				return HttpResponseRedirect(reverse('create_professional'))
+	else:
+		form = UserProfileCreationExtendedForm()
+
+		# Return to dashboard if not professional
+		return render(request, 'dashboard/create_user_extended.html', {
+			'form':form,
+			'user':user,
+		})
+
 
 def CreateNewProfessionalView(request):
 	if request.method == 'POST':

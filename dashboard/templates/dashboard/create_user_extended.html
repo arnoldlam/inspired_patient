@@ -1,0 +1,87 @@
+{% load staticfiles %}
+{% include "dashboard/accounts_header.html" %}
+
+    <section id="contact-page">
+        <div class="container" style="margin-top:100px;">
+            <div class="center">        
+                <h2>Create Your Profile</h2>
+                <p class="lead">Or <a href="{% url 'dashboard:notes' %}">skip</a> for now to go straight into the app.</p>
+            </div> 
+            {% if form.errors %}
+            <div class="error_message">
+            {{ form.errors }}.
+            </div>
+            {% endif %}
+            <div class="row contact-wrap"> 
+                <form class="sign_up_form" method="post" action="{% url 'create_user' %}" style="color:#4E4E4E;font-size: 16px;font-weight: 300;" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <div class="form-group">
+                            <label>Title *</label>
+                            {{ form.title }}
+                        </div>
+                        <div class="form-group">
+                            <label>Role *</label>
+                            {{ form.role }}
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="form-group">
+                            <label>Medical History *</label>
+                            {{ form.medical_history }}
+                        </div>
+                        <div class="form-group">
+                            <label>Unit *</label>
+                            {{ form.unit }}
+                        </div>
+                        <div class="form-group">
+                            <label>Street *</label>
+                            {{ form.street }}
+                        </div>
+                        <div class="form-group">
+                            <label>City *</label>
+                            {{ form.city }}
+                        </div>
+                        <div class="form-group">
+                            <label>Province *</label>
+                            {{ form.province }}
+                        </div>
+                        <div class="form-group">
+                            <label>Country * </label><br>
+                            {{ form.country }}
+                        </div>
+                        <div class="form-group">
+                            <label>Postal Code *</label>
+                            {{ form.postal_code }}
+                        </div>                                          
+                        <div class="form-group">
+                            <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Create Profile</button>
+                        </div>                   
+                    </div>
+                </form> 
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#contact-page-->
+
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2015 <a target="_blank" href="#" title="Inpired Patient">Inspired Patient</a>. All Rights Reserved.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+{% include "dashboard/accounts_footer.html" %}
+

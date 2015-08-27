@@ -403,7 +403,31 @@ class UserCreationForm(forms.ModelForm):
 class UserProfileCreationForm(forms.Form):
 	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	last_name = forms.CharField(label="Last Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	is_professional = forms.BooleanField(label="Are you a professional?", required=False)
+
+class UserProfileCreationExtendedForm(forms.Form):
+	ROLE_CHOICES = (
+		('individual', 'Individual'),
+		('professional', 'Professional'),
+	)
+
+	TITLE_CHOICES = (
+		('mr', 'Mr.'),
+		('ms', 'Ms.'),
+		('mrs', 'Mrs.'),
+		('dr', 'Dr.'),
+		('nurse', 'Nurse'),
+	)
+
+	title = forms.CharField(choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	role = forms.CharField(widget=forms.Select(attrs={'class':'form-control', 'required':'required'}))
+	phone_number = forms.CharField(max_length=15, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
+	medical_history = forms.CharField(max_length=1000, widget=forms.Textarea(attrs={'class':'form-control', 'required':'required', 'rows':'10'}))
+	unit = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
+	street = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class':'form-control'}))
+	city = forms.CharField(max_length=30, initial="Vancouver", widget=forms.TextInput(attrs={'class':'form-control'}))
+	province = forms.CharField(max_length=30, initial="BC", widget=forms.TextInput(attrs={'class':'form-control'}))
+	country = forms.ChoiceField(choices=ADDRESS_COUNTRY_CHOICES)
+	postal_code = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class CreateProfessionalProfileForm(forms.Form):
 	qualification = forms.CharField(label='Qualification', max_length=100, widget=forms.TextInput(attrs={'class':'form-control'}))

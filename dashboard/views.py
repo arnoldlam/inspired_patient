@@ -86,10 +86,19 @@ def CreateNewUserExtendedView(request):
 		form = UserProfileCreationExtendedForm(request.POST)
 		if form.is_valid():
 			
-			
-			
+			title = form.cleaned_data['title']
+			role = form.cleaned_data['role']
+			phone_number = form.cleaned_data['phone_number']
+			medical_history = form.cleaned_data['medical_history']
+			unit = form.cleaned_data['unit']
+			street = form.cleaned_data['street']
+			city = form.cleaned_data['city']
+			province = form.cleaned_data['province']
+			country = form.cleaned_data['country']
+			postal_code = form.cleaned_data['postal_code']
+
 			# Render addition form to fill out if professional
-			if user_profile_form.cleaned_data['is_professional'] == True:
+			if form.cleaned_data['role'] == 'professional':
 				return HttpResponseRedirect(reverse('create_professional'))
 	else:
 		form = UserProfileCreationExtendedForm()

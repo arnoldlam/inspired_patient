@@ -102,12 +102,12 @@ def CreateNewUserExtendedView(request):
 			user_profile.role = role
 			user_profile.phone_number = phone_number
 			user_profile.medical_history = medical_history
-			user_profile.address_unit = address_unit
-			user_profile.address_street = address_street
-			user_profile.address_city = address_city
-			user_profile.address_province = address_province
-			user_profile.address_country = address_country
-			user_profile.address_postal_code = address_postal_code
+			user_profile.address_unit = unit
+			user_profile.address_street = street
+			user_profile.address_city = city
+			user_profile.address_province = province
+			user_profile.address_country = country
+			user_profile.address_postal_code = postal_code
 			user_profile.profile_picture = profile_picture
 
 			user_profile.save()

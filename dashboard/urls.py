@@ -8,7 +8,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
 	url(r'^$', views.Dashboard, name='dashboard'), # main landing page
 	url(r'^profile/$', views.Profile, name='profile'),
-	url(r'^profile/edit$', views.EditProfile, name='edit_profile'),
+	# url(r'^profile/edit$', views.EditProfile, name='edit_profile'),
 	url(r'^collaboration$', views.CollaborationView, name='collaboration'),
 	url(r'^collaboration/search$', views.SearchUserResultsView, name='search_results'),
 	url(r'^collaboration/profile/(?P<user_id>[0-9]+)$', views.PublicProfileView, name='public_profile'),

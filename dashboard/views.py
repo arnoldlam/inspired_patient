@@ -85,17 +85,31 @@ def CreateNewUserExtendedView(request):
 	if request.method == 'POST':
 		form = UserProfileCreationExtendedForm(request.POST)
 		if form.is_valid():
-			user.user_profile.title = form.cleaned_data['title']
-			user.user_profile.role = form.cleaned_data['role']
-			user.user_profile.phone_number = form.cleaned_data['phone_number']
-			user.user_profile.medical_history = form.cleaned_data['medical_history']
-			user.user_profile.unit = form.cleaned_data['unit']
-			user.user_profile.street = form.cleaned_data['street']
-			user.user_profile.city = form.cleaned_data['city']
-			user.user_profile.province = form.cleaned_data['province']
-			user.user_profile.country = form.cleaned_data['country']
-			user.user_profile.postal_code = form.cleaned_data['postal_code']
-			user.user_profile.profile_picture = form.cleaned_data['profile_picture']
+			user_profile = user.user_profile
+
+			title = form.cleaned_data['title']
+			role = form.cleaned_data['role']
+			phone_number = form.cleaned_data['phone_number']
+			medical_history = form.cleaned_data['medical_history']
+			unit = form.cleaned_data['unit']
+			street = form.cleaned_data['street']
+			city = form.cleaned_data['city']
+			province = form.cleaned_data['province']
+			country = form.cleaned_data['country']
+			postal_code = form.cleaned_data['postal_code']
+			profile_picture = form.cleaned_data['profile_picture']
+
+			user_profile.title = title
+			user_profile.role = role
+			user_profile.phone_number = phone_number
+			user_profile.medical_history = medical_history
+			user_profile.address_unit = address_unit
+			user_profile.address_street = address_street
+			user_profile.address_city = address_city
+			user_profile.address_province = address_province
+			user_profile.address_country = address_country
+			user_profile.address_postal_code = address_postal_code
+			user_profile.profile_picture = profile_picture
 
 			user_profile.save()
 
@@ -122,13 +136,6 @@ def CreateNewProfessionalView(request):
 			province = form.cleaned_data['province']
 			country = form.cleaned_data['country']
 			postal_code = form.cleaned_data['postal_code']
-
-			# address = Address(street=street, unit=unit, city=city, province=province, country=country,
-			# 	postal_code=postal_code
-			# )
-
-			# address.save()
-
 			qualification = form.cleaned_data['qualification']
 			job_title = form.cleaned_data['job_title']
 			office_tel = form.cleaned_data['office_tel']
@@ -241,59 +248,59 @@ def Profile(request):
 	})
 
 # View for profile edit 
-@login_required
-def EditProfile(request):
-	user = request.user
-	notifications = user.notifications_received.all().order_by('-date_created')[:5]
-	if request.method == 'POST':
-		form = EditProfileForm(user.id, request.POST, request.FILES)
-		if form.is_valid():
-			first_name = form.cleaned_data['first_name']
-			last_name = form.cleaned_data['last_name']
+# @login_required
+# def EditProfile(request):
+# 	user = request.user
+# 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
+# 	if request.method == 'POST':
+# 		form = EditProfileForm(user.id, request.POST, request.FILES)
+# 		if form.is_valid():
+# 			first_name = form.cleaned_data['first_name']
+# 			last_name = form.cleaned_data['last_name']
 
-			address_unit = form.cleaned_data['address_unit']
-			address_street = form.cleaned_data['address_street']
-			address_city = form.cleaned_data['address_city']
-			address_province = form.cleaned_data['address_province']
-			address_country = form.cleaned_data['address_country']
-			address_postal_code = form.cleaned_data['address_postal_code']
+# 			address_unit = form.cleaned_data['address_unit']
+# 			address_street = form.cleaned_data['address_street']
+# 			address_city = form.cleaned_data['address_city']
+# 			address_province = form.cleaned_data['address_province']
+# 			address_country = form.cleaned_data['address_country']
+# 			address_postal_code = form.cleaned_data['address_postal_code']
 
-			medical_history = form.cleaned_data['medical_history']
-			phone_number = form.cleaned_data['phone_number']
-			role = form.cleaned_data['role']
-			title = form.cleaned_data['title']
+# 			medical_history = form.cleaned_data['medical_history']
+# 			phone_number = form.cleaned_data['phone_number']
+# 			role = form.cleaned_data['role']
+# 			title = form.cleaned_data['title']
 
-			user = request.user
-			user_profile = user.user_profile
+# 			user = request.user
+# 			user_profile = user.user_profile
 
-			user.first_name = first_name
-			user.last_name = last_name
+# 			user.first_name = first_name
+# 			user.last_name = last_name
  
-			user_profile.address_unit = address_unit
-			user_profile.address_street = address_street
-			user_profile.address_city = address_city
-			user_profile.address_province = address_province
-			user_profile.address_country = address_country
-			user_profile.address_postal_code = address_postal_code
+# 			user_profile.address_unit = address_unit
+# 			user_profile.address_street = address_street
+# 			user_profile.address_city = address_city
+# 			user_profile.address_province = address_province
+# 			user_profile.address_country = address_country
+# 			user_profile.address_postal_code = address_postal_code
 
-			user_profile.medical_history = medical_history
-			user_profile.phone_number = phone_number
-			user_profile.role = role
-			user_profile.title = title
-			if form.cleaned_data['profile_picture'] is not None:
-				user_profile.profile_picture = form.cleaned_data['profile_picture']
+# 			user_profile.medical_history = medical_history
+# 			user_profile.phone_number = phone_number
+# 			user_profile.role = role
+# 			user_profile.title = title
+# 			if form.cleaned_data['profile_picture'] is not None:
+# 				user_profile.profile_picture = form.cleaned_data['profile_picture']
 
-			user.save()
-			user_profile.save()
+# 			user.save()
+# 			user_profile.save()
 
-			return HttpResponseRedirect(reverse('dashboard:profile'))
-	else:
-		form = EditProfileForm(user.id)
-	return render(request, 'dashboard/edit_profile.html', {
-		'form':form,
-		'user':user,
-		'notifications':notifications,
-	})
+# 			return HttpResponseRedirect(reverse('dashboard:profile'))
+# 	else:
+# 		form = EditProfileForm(user.id)
+# 	return render(request, 'dashboard/edit_profile.html', {
+# 		'form':form,
+# 		'user':user,
+# 		'notifications':notifications,
+# 	})
 
 @login_required
 def CollaborationView(request):

@@ -246,74 +246,14 @@ def Profile(request):
 		'search_input_name':search_input_name,
 	})
 
-# View for profile edit 
-# @login_required
-# def EditProfile(request):
-# 	user = request.user
-# 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
-# 	if request.method == 'POST':
-# 		form = EditProfileForm(user.id, request.POST, request.FILES)
-# 		if form.is_valid():
-# 			first_name = form.cleaned_data['first_name']
-# 			last_name = form.cleaned_data['last_name']
-
-# 			address_unit = form.cleaned_data['address_unit']
-# 			address_street = form.cleaned_data['address_street']
-# 			address_city = form.cleaned_data['address_city']
-# 			address_province = form.cleaned_data['address_province']
-# 			address_country = form.cleaned_data['address_country']
-# 			address_postal_code = form.cleaned_data['address_postal_code']
-
-# 			medical_history = form.cleaned_data['medical_history']
-# 			phone_number = form.cleaned_data['phone_number']
-# 			role = form.cleaned_data['role']
-# 			title = form.cleaned_data['title']
-
-# 			user = request.user
-# 			user_profile = user.user_profile
-
-# 			user.first_name = first_name
-# 			user.last_name = last_name
- 
-# 			user_profile.address_unit = address_unit
-# 			user_profile.address_street = address_street
-# 			user_profile.address_city = address_city
-# 			user_profile.address_province = address_province
-# 			user_profile.address_country = address_country
-# 			user_profile.address_postal_code = address_postal_code
-
-# 			user_profile.medical_history = medical_history
-# 			user_profile.phone_number = phone_number
-# 			user_profile.role = role
-# 			user_profile.title = title
-# 			if form.cleaned_data['profile_picture'] is not None:
-# 				user_profile.profile_picture = form.cleaned_data['profile_picture']
-
-# 			user.save()
-# 			user_profile.save()
-
-# 			return HttpResponseRedirect(reverse('dashboard:profile'))
-# 	else:
-# 		form = EditProfileForm(user.id)
-# 	return render(request, 'dashboard/edit_profile.html', {
-# 		'form':form,
-# 		'user':user,
-# 		'notifications':notifications,
-# 	})
-
 @login_required
 def CollaborationView(request):
 	user = request.user
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
-	user_profile = user.user_profile
 	associates = user_profile.associates.all()
 	professionals = associates.filter(role__exact='professional')
 	patients = associates.filter(role__exact='patient')
 	clinics = user.clinics.all()
-
-	notes = user.notes_read_write.all()
-	notebooks_read_write = user.notebooks_read_write.all()
-	notebooks_read_only = user.notebooks_read_only.all()
 
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
@@ -321,15 +261,11 @@ def CollaborationView(request):
 	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
-
 	return render(request, 'dashboard/collaboration.html', {
 		'associates':associates,
 		'professionals':professionals,
 		'patients':patients,
 		'clinics':clinics,
-		'notes':notes,
-		'notebooks_read_only':notebooks_read_only,
-		'notebooks_read_write':notebooks_read_write,
 		'notifications':notifications,
 		'search_placeholder':search_placeholder,
 		'search_form_name':search_form_name,
@@ -337,16 +273,6 @@ def CollaborationView(request):
 		'search_method':search_method,
 		'search_input_name':search_input_name,
 	})
-
-# # View for clinic's associated with user
-# @login_required
-# def ClinicView(request):
-# 	user = request.user
-# 	clinics = user.clinics.all()
-
-# 	return render(request, 'dashboard/clinics.html', {
-# 		'clinics':clinics,
-# 	})
 
 # View for viewing all notes and notebooks
 @login_required
@@ -385,23 +311,53 @@ def NotebooksView(request):
 	notebooks_read_only = user.notebooks_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 	notebooks_read_write = user.notebooks_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')[:10]
 
+	search_form_name = "search_notebooks_form"
+	search_form_action = reverse('dashboard:search_notebooks')
+	search_placeholder = "Search notesbooks..."
+	search_method = "get"
+	search_input_name = "q"
+
 	return render(request, 'dashboard/notebooks.html', {
 		'user':user,
 		'notebooks_read_only':notebooks_read_only,
 		'notebooks_read_write':notebooks_read_write,
 		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
-# View for selecting type of note to add
-# @login_required
-# def NotesSelectView(request):
-# 	if 'notebook_id' in request.GET:
-# 		notebook_id = request.GET['notebook_id']
-# 	else:
-# 		notebook_id = ''
-# 	return render(request, 'dashboard/note_select.html', {
-# 		'notebook_id':notebook_id,
-# 	})
+@login_required
+def SearchNotebooksResultsView(request):
+	user = request.user
+	notifications = user.notifications_received.all().order_by('-date_created')[:5]
+	query = request.GET['q']
+	user_id = user.id
+
+	# Set form name and action for search
+	search_form_name = "search_notebooks_form"
+	search_form_action = reverse('dashboard:search_notebooks')
+	search_placeholder = "Search notesbooks..."
+	search_method = "get"
+	search_input_name = "q"
+
+	# Query to get all notes that belong to user and contains search query in subject or contents
+	notebooks = Notebook.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).distinct()
+	notebooks = notebooks.filter(Q(name__icontains=query) | Q(description__icontains=query)).distinct()
+
+	return render(request, 'dashboard/search_notebooks_results.html', {
+		'user':user,
+		'notebooks':notebooks,
+		'notifications':notifications,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
+	})
+
 
 @login_required
 def AddGeneralNoteView(request):

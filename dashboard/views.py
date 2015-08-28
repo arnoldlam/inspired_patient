@@ -70,7 +70,6 @@ def CreateNewUserView(request):
 				new_notebook.save()
 				new_notebook.editors.add(user)
 
-				# Return to dashboard if not professional
 				return HttpResponseRedirect(reverse('create_user_extended'))
 	else:
 		user_form = UserCreationForm(prefix='user_form')

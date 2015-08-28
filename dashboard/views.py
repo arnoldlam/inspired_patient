@@ -82,7 +82,7 @@ def CreateNewUserView(request):
 def CreateNewUserExtendedView(request):
 	user = request.user
 	if request.method == 'POST':
-		form = UserProfileCreationExtendedForm(request.POST)
+		form = UserProfileCreationExtendedForm(request.POST, request.FILES)
 		if form.is_valid():
 			user_profile = user.user_profile
 

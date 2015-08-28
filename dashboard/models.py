@@ -97,7 +97,8 @@ class UserProfile(models.Model):
 		# for notification in user.notifications_received.count():
 		# 	if notification.view_status == 'unread':
 		# 		count += 1
-		return user.notifications_received.count()
+		# return user.notifications_received.count()
+		return Notification.objects.filter(recipient__id=user.id).filter(view_status='unread').count()
 
 class Clinic(models.Model):
 	users = models.ManyToManyField(User, related_name='clinics')

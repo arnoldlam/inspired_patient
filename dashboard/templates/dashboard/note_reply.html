@@ -11,7 +11,7 @@
                 <form action="{% url 'dashboard:add_note_reply' note.id %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="input-group">
-                    <input requried="required" id="btn-input" name="{{ form.content.html_name }}" type="text" class="form-control input-sm" placeholder="Type your reply here..." />
+                    <input required id="btn-input" name="{{ form.content.html_name }}" type="text" class="form-control input-sm" placeholder="Type your reply here..." />
                     <span class="input-group-btn">
                         <input value="Reply" type="submit" class="btn btn-warning btn-sm" id="btn-chat"/>
                     </span>

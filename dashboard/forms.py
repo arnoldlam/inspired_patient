@@ -73,7 +73,7 @@ class AddNoteForm(forms.Form):
 	subject = forms.CharField(label='Subject', max_length=150, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	note_content = forms.CharField(label='Note', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'rows':'20', 'required':'required'}))
 	attachment = forms.FileField(required=False)
-	url = forms.URLField(label='URL', required=False, widget=forms.URLInput(attrs={'class':'form-control', 'type':'url'}))
+	url = forms.URLField(label='URL', required=False, widget=forms.URLInput(attrs={'class':'form-control', 'type':'url'm 'placeholder':'eg. http://www.inspiredpatient.com'}))
 	follow_up = forms.CharField(label='Follow-Up', required=False, max_length=250, widget=forms.TextInput(attrs={'class':'form-control'}))
 
 class AddInstructionNoteForm(AddNoteForm):

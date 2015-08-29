@@ -249,6 +249,7 @@ def Profile(request):
 @login_required
 def CollaborationView(request):
 	user = request.user
+	user_profile = user.user_profile
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	associates = user_profile.associates.all()
 	professionals = associates.filter(role__exact='professional')

@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url(r'^accounts/', include('django.contrib.auth.urls')),
+    # url(r'^accounts/password_reset', {'template_name': 'password_reset.html'}),
     url(r'^accounts/sign_up$', views.CreateNewUserView, name='create_user'),
     url(r'^accounts/sign_up/continued$', views.CreateNewUserExtendedView, name='create_user_extended'),
     url(r'^accounts/sign_up/professional$', views.CreateNewProfessionalView, name='create_professional'),

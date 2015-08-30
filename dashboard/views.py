@@ -314,7 +314,7 @@ def NotebooksView(request):
 
 	search_form_name = "search_notebooks_form"
 	search_form_action = reverse('dashboard:search_notebooks')
-	search_placeholder = "Search notesbooks..."
+	search_placeholder = "Search notebooks..."
 	search_method = "get"
 	search_input_name = "q"
 
@@ -1530,11 +1530,13 @@ def AddNoteReplyView(request, note_id):
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note.id})
 			action_url = redirect_url + "?note_type=" + note.note_type
 
-			note_users = note.editors.all
+			note_users = note.editors.all()
+			# Notify all editors in note
 			for note_user in note_users:
 				if note_user is not user:
 					notification = Notification(message=message, recipient=note_user, action_url=action_url)
 					notification.save()
+			# Notify author of note
 			if note.author is not user:
 				notification = Notification(message=message, recipient=note.author, action_url=action_url)
 				notification.save()

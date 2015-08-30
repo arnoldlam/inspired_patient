@@ -345,7 +345,7 @@ def SearchNotebooksResultsView(request):
 	search_input_name = "q"
 
 	# Query to get all notes that belong to user and contains search query in subject or contents
-	notebooks = Notebook.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id) | Q(author__id=user_id)).distinct()
+	notebooks = Notebook.objects.filter(Q(editors__id=user_id) | Q(viewers__id=user_id)).distinct()
 	notebooks = notebooks.filter(Q(name__icontains=query) | Q(description__icontains=query)).distinct()
 
 	return render(request, 'dashboard/search_notebooks_results.html', {

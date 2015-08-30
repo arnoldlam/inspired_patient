@@ -852,9 +852,11 @@ def AddAppointmentNoteView(request):
 			note_type = 'appointment_note'
 
 			reason_for_visit = form.cleaned_data['reason_for_visit']
-			doctor = form.cleaned_data['choice_for_doctor'].user
 			clinic = form.cleaned_data['choice_for_clinic']
-			# frequency = form.cleaned_data['frequency']
+			
+			doctor = form.cleaned_data['choice_for_doctor']
+			if doctor is not None:
+				doctor = doctor.user
 
 			day = form.cleaned_data['day']
 			month = form.cleaned_data['month']

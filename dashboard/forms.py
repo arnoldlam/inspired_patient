@@ -427,7 +427,7 @@ class UserProfileCreationExtendedForm(forms.Form):
 		('UK', 'United Kingdom'),
 	)
 
-	profile_picture = forms.ImageField()
+	profile_picture = forms.ImageField(required=False)
 	title = forms.ChoiceField(required=False,choices=TITLE_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
 	role = forms.ChoiceField(required=False,choices=ROLE_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
 	phone_number = forms.CharField(required=False,max_length=15, widget=forms.TextInput(attrs={'class':'form-control'}))

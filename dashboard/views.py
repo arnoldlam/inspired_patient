@@ -1052,7 +1052,7 @@ def AddMedicationNoteView(request):
 
 			medication_name = form.cleaned_data['medication_name']
 			medication_dosage = form.cleaned_data['medication_dosage']
-			medication_frequency = form.cleaned_data['medication_frequency']
+			frequency = form.cleaned_data['frequency']
 			medication_duration = form.cleaned_data['medication_duration']
 			pharmacy_name = form.cleaned_data['pharmacy_name']
 			pharmacy_telephone = form.cleaned_data['pharmacy_telephone']
@@ -1072,7 +1072,7 @@ def AddMedicationNoteView(request):
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, 
 				note_content=note, author=user, medication_name=medication_name, 
-				medication_dosage=medication_dosage, medication_frequency=medication_frequency, 
+				medication_dosage=medication_dosage, medication_frequency=frequency, 
 				pharmacy_name=pharmacy_name, pharmacy_telephone=pharmacy_telephone, 
 				date_and_time=date_and_time,
 			)

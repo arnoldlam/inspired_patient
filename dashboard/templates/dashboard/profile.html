@@ -73,7 +73,7 @@
 						{{ form.phone_number }}
 					</div>
 					<div class="form-group">
-						<label>Medical History</label>
+						<label>Medical History / Notes</label>
 						{{ form.medical_history }}
 					</div>
 					<div class="row">
@@ -106,6 +106,31 @@
 							</div>
 						</div>
 					</div>
+					<label class="centered">Professional Information</label>
+					{% if user.user_profile.role == 'professional' %}
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Job Title</label>
+								{{ form.job_title }}
+							</div>
+							<div class="form-group">
+								<label>Office Tel</label>
+								{{ form.office_tel }}
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<label>Qualification</label>
+								{{ form.qualification }}
+							</div>
+							<div class="form-group">
+								<label>Office Email</label>
+								{{ form.office_email }}
+							</div>
+						</div>
+					</div>
+					{% endif %}
 					<button type="submit" form="edit_profile_form" class="btn btn-primary centered">Save changes</button>
 				 </form>
 			 </div>

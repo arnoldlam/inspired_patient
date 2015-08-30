@@ -247,7 +247,7 @@ class MedicationNote(Note):
 	pharmacy_telephone = models.CharField(max_length=50)
 
 class Notebook(models.Model):
-	name = models.CharField(max_length=20)
+	name = models.CharField(max_length=100)
 	description = models.CharField(max_length=4000, blank=True)
 	viewers = models.ManyToManyField(User, related_name="notebooks_read_only", blank=True)
 	editors = models.ManyToManyField(User, related_name="notebooks_read_write")

@@ -70,6 +70,10 @@ def CreateNewUserView(request):
 				new_notebook.save()
 				new_notebook.editors.add(user)
 
+				new_help_notebook = Notebook.objects.get(name='InspiredPatient Help')
+				new_help_notebook.save()
+				new_help_notebook.viewers.add(user)
+
 				return HttpResponseRedirect(reverse('create_user_extended'))
 	else:
 		user_form = UserCreationForm(prefix='user_form')
@@ -1544,13 +1548,6 @@ def AddNoteReplyView(request, note_id):
 	# URL for redirect back to note
 	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
 	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
-	# else:
-	# 	user = request.user
-	# 	form = AddNoteReplyForm()
-	# 	return render(request, 'dashboard/add_note_reply.html', {
-	# 		'form':form,
-	# 		'note_id':note_id
-	# 	})
 
 @login_required
 def NotificationsView(request):
@@ -1602,6 +1599,13 @@ def SchedulingView(request):
 
 	patient_appointments = user.appointments
 
+	# Set form name and action for search
+	search_form_name = "search_notes_form"
+	search_form_action = reverse('dashboard:health_tools_search_results')
+	search_placeholder = "Search notes..."
+	search_method = "get"
+	search_input_name = "q"
+
 	return render(request, 'dashboard/calendar.html', {
 		'appointments':appointments,
 		'self_care_notes':self_care_notes,
@@ -1612,6 +1616,11 @@ def SchedulingView(request):
 		'today_tasks':today_tasks,
 		'week_tasks':week_tasks,
 		'month_tasks':month_tasks,
+		'search_placeholder':search_placeholder,
+		'search_form_name':search_form_name,
+		'search_form_action':search_form_action,
+		'search_method':search_method,
+		'search_input_name':search_input_name,
 	})
 
 @login_required

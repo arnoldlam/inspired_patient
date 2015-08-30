@@ -904,28 +904,7 @@ def AddAppointmentNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-
-			# # Recurring notes
-			# if frequency != 'not_repeating':
-			# 	if frequency == 'every_day':
-			# 		time_to_add = datetime.timedelta(days=1)
-			# 	if frequency == 'every_week':
-			# 		time_to_add = datetime.timedelta(weeks=1)
-			# 	if frequency == 'every_month':
-			# 		time_to_add = datetime.timedelta(days=30)
-				
-			# 	# Create additional notes for recurring note
-			# 	end_date = form.cleaned_data['end_date']
-			# 	recurring_date = date_and_time
-			# 	recurring_date = recurring_date + time_to_add
-			# 	while recurring_date < end_date:
-			# 		new_note.pk = None
-			# 		new_note.id = None
-			# 		new_note.date_and_time = recurring_date
-			# 		new_note.save()
-			# 		recurring_date = recurring_date + time_to_add
-
-			# Add note to doctor's notes
+			
 			doctor = doctor.user
 			doctor.notes_read_write.add(new_note)
 			message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."

@@ -340,7 +340,7 @@ def SearchNotebooksResultsView(request):
 	# Set form name and action for search
 	search_form_name = "search_notebooks_form"
 	search_form_action = reverse('dashboard:search_notebooks')
-	search_placeholder = "Search notesbooks..."
+	search_placeholder = "Search notebooks..."
 	search_method = "get"
 	search_input_name = "q"
 

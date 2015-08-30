@@ -230,15 +230,24 @@ class AddResourceNoteForm(NotesThatRelateToDoctorAndClinic):
 
 
 
-class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic):
-	FREQUENCY_CHOICES = (
-		('not_repeating', 'Not repeating'),
-		('every_day', 'Every Day'),
-		('every_week', 'Every Week'),
-		('every_month', 'Every Month')
-	)
-	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)
-	date_and_time = forms.DateTimeField(label='Appointment Data/Time', initial=datetime.datetime.now, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))	
+class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic, RepeatingNotesForm):
+	def __init__(self, user_id, *args, **kwargs):
+		super(AddAppointmentNoteForm, self).__init__(user_id, *args, **kwargs)
+
+		self.fields['day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:25%;'}))
+		self.fields['month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:30%;'}))
+		self.fields['year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:25%;'}))
+		self.fields['hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:25%;'}))
+		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:25%;'}))
+		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+			'required':'required','style':'display:inline;width:25%;'}))
+
+	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)	
 	reason_for_visit = forms.CharField(label="Reason for Visit", max_length=200, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 
 class AddContactNoteForm(AddNoteForm):

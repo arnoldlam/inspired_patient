@@ -73,7 +73,7 @@
 						{{ form.phone_number }}
 					</div>
 					<div class="form-group">
-						<label>Medical History / Notes</label>
+						<label>Profile</label>
 						{{ form.medical_history }}
 					</div>
 					<div class="row">
@@ -106,8 +106,10 @@
 							</div>
 						</div>
 					</div>
-					<label class="centered">Professional Information</label>
 					{% if user.user_profile.role == 'professional' %}
+					<div style="text-align:center;">
+						<label class="centered">Professional Information</label>
+					</div>
 					<div class="row">
 						<div class="col-lg-6">
 							<div class="form-group">

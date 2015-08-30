@@ -852,10 +852,23 @@ def AddAppointmentNoteView(request):
 			note_type = 'appointment_note'
 
 			reason_for_visit = form.cleaned_data['reason_for_visit']
-			date_and_time = form.cleaned_data['date_and_time']
 			doctor = form.cleaned_data['choice_for_doctor']
 			clinic = form.cleaned_data['choice_for_clinic']
 			# frequency = form.cleaned_data['frequency']
+
+			day = form.cleaned_data['day']
+			month = form.cleaned_data['month']
+			year = form.cleaned_data['year']
+			hour = form.cleaned_data['hour']
+			minute = form.cleaned_data['minute']
+			am_pm = form.cleaned_data['am_pm']
+
+			# Convert from 12-hours to 24-hours time
+			if am_pm == 'pm':
+				hour = int(hour) + 12
+
+			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
+
 
 			new_note = AppointmentNote(subject=subject, note_type=note_type, note_content=note, author=user, 
 				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,

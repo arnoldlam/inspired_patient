@@ -852,7 +852,7 @@ def AddAppointmentNoteView(request):
 			note_type = 'appointment_note'
 
 			reason_for_visit = form.cleaned_data['reason_for_visit']
-			doctor = form.cleaned_data['choice_for_doctor']
+			doctor = form.cleaned_data['choice_for_doctor'].user
 			clinic = form.cleaned_data['choice_for_clinic']
 			# frequency = form.cleaned_data['frequency']
 
@@ -871,7 +871,7 @@ def AddAppointmentNoteView(request):
 
 
 			new_note = AppointmentNote(subject=subject, note_type=note_type, note_content=note, author=user, 
-				doctor=doctor.user, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,
+				doctor=doctor, clinic=clinic, reason_for_visit=reason_for_visit, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object
@@ -904,14 +904,15 @@ def AddAppointmentNoteView(request):
 				notebook.notes.add(new_note)
 
 			request.user.authored_notes.add(new_note)
-			
-			doctor = doctor.user
-			doctor.notes_read_write.add(new_note)
-			message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."
-			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
-			action_url = redirect_url + "?note_type=" + new_note.note_type
-			notification = Notification(message=message, recipient=doctor, action_url=action_url)
-			notification.save()
+
+			# Add doctor to list of editors and add notification if doctor was included
+			if doctor is not None:
+				doctor.notes_read_write.add(new_note)
+				message = request.user.user_profile.full_name() + " created the appointment '" + new_note.subject + "' with you."
+				redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})
+				action_url = redirect_url + "?note_type=" + new_note.note_type
+				notification = Notification(message=message, recipient=doctor, action_url=action_url)
+				notification.save()
 
 			# URL for redirect to newly created note's detail page
 			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': new_note.id})

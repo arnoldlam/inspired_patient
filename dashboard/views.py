@@ -259,7 +259,7 @@ def CollaborationView(request):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search for new users..."
+	search_placeholder = "Search for team members..."
 	search_input_name = "u"
 
 	return render(request, 'dashboard/collaboration.html', {
@@ -1524,6 +1524,20 @@ def AddNoteReplyView(request, note_id):
 			# Set and save the reply
 			new_reply = NoteReply(note=note, title=title, content=content, author=user)
 			new_reply.save()
+
+			# Add notification
+			message = request.user.user_profile.full_name() + " added a reply to the note '" + note.subject
+			redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note.id})
+			action_url = redirect_url + "?note_type=" + note.note_type
+
+			note_users = note.editors.all
+			for note_user in note_users:
+				if note_user is not user:
+					notification = Notification(message=message, recipient=note_user, action_url=action_url)
+					notification.save()
+			if note.author is not user:
+				notification = Notification(message=message, recipient=note.author, action_url=action_url)
+				notification.save()
 
 	# URL for redirect back to note
 	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})

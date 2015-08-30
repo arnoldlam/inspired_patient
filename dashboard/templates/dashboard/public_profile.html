@@ -32,33 +32,43 @@
 						    display: block;
 						    margin: 20px auto;
 						    border-radius: 50%;"/>
-						<div>
-							<label>Name: </label>
-							{{ public_profile_user.user_profile.full_name }}
-						</div>
-						<div>
-							<label>Role: </label>
-							{{ public_profile_user.user_profile.get_role_display }}
-						</div>
-
-						{% if public_profile_user.user_profile.role == 'professional' %}
-						<div>
-							<label>Qualification: </label>
-							{{ public_profile_user.user_profile.qualification }}
-						</div>
-						<div>
-							<label>Job Title: </label>
-							{{ public_profile_user.user_profile.job_title }}
-						</div>
-						<div>
-							<label>Office Tel: </label>
-							{{ public_profile_user.user_profile.office_tel }}
-						</div>
-						<div>
-							<label>Office Email: </label>
-							{{ public_profile_user.user_profile.office_email }}
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Name: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.full_name }}" />
+								</div>
+								{% if public_profile_user.user_profile.role == 'professional' %}
+								<div class="form-group">
+									<label>Qualification: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.qualification }}" />
+								</div>
+								<div class="form-group">
+									<label>Office Tel: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.office_tel }}" />
+								</div>
+								{% endif %}
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Role: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.get_role_display }}" />
+								</div>
+								{% if public_profile_user.user_profile.role == 'professional' %}
+								<div class="form-group">
+									<label>Job Title: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.job_title }}" />
+								</div>
+								<div class="form-group">
+									<label>Office Email: </label>
+									<input class="form-control" readonly value="{{ public_profile_user.user_profile.office_email }}" />
+								</div>
+								{% endif %}
+							</div>
 						</div>
 						<br><br>
+						{% if public_profile_user.user_profile.role == 'professional' %}
+						<label>Office Address</label>
 						<div>
 							<iframe
 							  width="100%"

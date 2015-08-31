@@ -1470,7 +1470,7 @@ def PublicProfileView(request, user_id):
 		requested_team_member = None
 
 	# If there was a message in GET request
-	if (message in request.GET):
+	if ('message' in request.GET):
 		message = request.GET['message']
 	else:
 		message = None

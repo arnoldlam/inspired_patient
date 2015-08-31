@@ -81,7 +81,7 @@
 						{% endif %}
 
 						{% if not is_associate and public_profile_user.id != user.id %}
-						<p><a href="{% url 'dashboard:add_associate' public_profile_user.id %}">Add user as team member</a></p>
+						<p><a href="{% url 'dashboard:add_associate_request' public_profile_user.id %}">Add user as team member</a></p>
 						{% endif %}
 					</div>
 				</div>

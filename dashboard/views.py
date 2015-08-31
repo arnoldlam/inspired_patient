@@ -1479,6 +1479,19 @@ def PublicProfileView(request, user_id):
 @login_required
 def AddAssociate(request, user_id):
 	associate_to_add = get_object_or_404(User, pk=user_id)
+	user_profile = associate_to_add.user_profile
+	action_url = ""
+
+	# Notify user that he/she has been added as a team member
+	message = user_profile.full_name() + " has requested to add you to their team."
+	notification = Notification(recipient=associate_to_add, message=message, action_url=action_url)
+	notification.save()
+
+	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id})
+
+@login_required
+def AddAssociate(request, user_id):
+	associate_to_add = get_object_or_404(User, pk=user_id)
 	user = request.user
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	user_profile = user.user_profile
@@ -1522,11 +1535,10 @@ def AddNoteReplyView(request, note_id):
 		if form.is_valid():
 			note = get_object_or_404(Note, pk=note_id)
 			user = request.user
-			title = 'Some title'
 			content = form.cleaned_data['content']
 
 			# Set and save the reply
-			new_reply = NoteReply(note=note, title=title, content=content, author=user)
+			new_reply = NoteReply(note=note, content=content, author=user)
 			new_reply.save()
 
 			# Add notification

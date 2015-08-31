@@ -12,6 +12,7 @@ urlpatterns = [
 	url(r'^collaboration/search$', views.SearchUserResultsView, name='search_results'),
 	url(r'^collaboration/profile/(?P<user_id>[0-9]+)$', views.PublicProfileView, name='public_profile'),
 	url(r'^collaboration/add_associate/(?P<user_id>[0-9]+)$', views.AddAssociate, name='add_associate'),
+	url(r'^collaboration/add_associate_request/(?P<user_id>[0-9]+)$', views.AddAssociateRequest, name='add_associate_request'),
 	url(r'^clinics/(?P<clinic_id>[0-9]+)$', views.ClinicDetailView, name='clinic_detail'),
 	url(r'^notes/$', views.NotesView, name='notes'),
 	url(r'^notes/search$', views.HealthToolsSearchResultsView, name='health_tools_search_results'),

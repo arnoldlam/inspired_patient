@@ -269,7 +269,6 @@ class Attachment(models.Model):
 
 class NoteReply(models.Model):
 	note = models.ForeignKey(Note, related_name='replies')
-	title = models.CharField(max_length=100)
 	content = models.TextField()
 	author = models.ForeignKey(User, related_name='note_replies')
 	date_created = models.DateTimeField('date created', auto_now_add=True)

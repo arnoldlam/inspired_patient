@@ -512,13 +512,13 @@ class EditProfileForm(forms.Form):
 			widget=forms.Select(attrs={'class':'form-control'}))
 		self.fields['address_postal_code'] = forms.CharField(label='Postal Code', max_length=10, initial=current_user_profile.address_postal_code,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['job_title'] = forms.CharField(max_length=100, initial=current_user_profile.job_title,
+		self.fields['job_title'] = forms.CharField(required=False,max_length=100, initial=current_user_profile.job_title,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['qualification'] = forms.CharField(max_length=100, initial=current_user_profile.qualification,
+		self.fields['qualification'] = forms.CharField(required=False,max_length=100, initial=current_user_profile.qualification,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['office_tel'] = forms.CharField(max_length=20, initial=current_user_profile.office_tel,
+		self.fields['office_tel'] = forms.CharField(required=False,max_length=20, initial=current_user_profile.office_tel,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['office_email'] = forms.CharField(max_length=100, initial=current_user_profile.office_email,
+		self.fields['office_email'] = forms.CharField(required=False, max_length=100, initial=current_user_profile.office_email,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
 
 

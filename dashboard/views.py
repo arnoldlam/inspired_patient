@@ -1487,7 +1487,7 @@ def AddAssociateRequest(request, user_id):
 	notification = Notification(recipient=associate_to_add, message=message, action_url=action_url)
 	notification.save()
 
-	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id})
+	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id}))
 
 @login_required
 def AddAssociate(request, user_id):

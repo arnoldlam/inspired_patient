@@ -1464,13 +1464,13 @@ def PublicProfileView(request, user_id):
 	search_input_name = "u"
 
 	# If requested team member's user id was in GET, send to template
-	if (request.GET['requested_team_member']):
+	if ('requested_team_member' in request.GET):
 		requested_team_member = request.GET['requested_team_member']
 	else:
 		requested_team_member = None
 
 	# If there was a message in GET request
-	if (request.GET['message']):
+	if (message in request.GET):
 		message = request.GET['message']
 	else:
 		message = None

@@ -2,7 +2,7 @@
 Filename: forms.py
 Created on: June 13th, 2015
 Author: Arnold Lam
-Description: Provides the forms for Inspired Health
+Description: Provides the forms for Inspired Patient
 """
 
 from django import forms

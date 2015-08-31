@@ -2,7 +2,7 @@
 Filename: views.py
 Created on: June 13th, 2015
 Author: Arnold Lam
-Description: Provides the views for Inspired Health
+Description: Provides the views for Inspired Patient
 """
 
 from django.shortcuts import render,get_object_or_404

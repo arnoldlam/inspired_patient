@@ -1477,7 +1477,7 @@ def PublicProfileView(request, user_id):
 	})
 
 @login_required
-def AddAssociate(request, user_id):
+def AddAssociateRequest(request, user_id):
 	associate_to_add = get_object_or_404(User, pk=user_id)
 	user_profile = associate_to_add.user_profile
 	action_url = ""

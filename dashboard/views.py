@@ -70,7 +70,7 @@ def CreateNewUserView(request):
 				new_notebook.save()
 				new_notebook.editors.add(user)
 
-				new_help_notebook = Notebook.objects.get(name='InspiredPatient Help')
+				new_help_notebook = Notebook.objects.get(name='Inspired Patient Help')
 				new_help_notebook.save()
 				new_help_notebook.viewers.add(user)
 

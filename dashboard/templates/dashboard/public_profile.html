@@ -83,6 +83,14 @@
 						{% if not is_associate and public_profile_user.id != user.id %}
 						<p><a href="{% url 'dashboard:add_associate_request' public_profile_user.id %}">Add user as team member</a></p>
 						{% endif %}
+						
+						{% if requested_team_member %}
+						<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
+		                	{% csrf_token %}
+							<input type="hidden" name="team_member_to_add_user_id" value="{{ public_profile_user.id }}"
+						</form>
+						<button type="submit" form="edit_notebook_form" class="btn btn-primary centered">Confirm Request</button>
+						{% endif %}
 					</div>
 				</div>
 			</div>

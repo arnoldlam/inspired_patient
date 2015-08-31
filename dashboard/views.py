@@ -1463,6 +1463,18 @@ def PublicProfileView(request, user_id):
 	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
+	# If requested team member's user id was in GET, send to template
+	if (request.GET['requested_team_member']):
+		requested_team_member = request.GET['requested_team_member']
+	else:
+		requested_team_member = None
+
+	# If there was a message in GET request
+	if (request.GET['message']):
+		message = request.GET['message']
+	else:
+		message = None
+
 	return render(request, 'dashboard/public_profile.html', {
 		'user':logged_in_user,
 		'public_profile_user':public_profile_user,
@@ -1474,13 +1486,18 @@ def PublicProfileView(request, user_id):
 		'search_form_action':search_form_action,
 		'search_method':search_method,
 		'search_input_name':search_input_name,
+		'requested_team_member':requested_team_member,
+		'message':message,
 	})
 
+# Runs when user clicks on add user as team member on their public profile
 @login_required
 def AddAssociateRequest(request, user_id):
+	user = request.user
 	associate_to_add = get_object_or_404(User, pk=user_id)
 	user_profile = associate_to_add.user_profile
-	action_url = ""
+	# Give link to associate to add to add logged in user as a team member
+	action_url = reverse('dashboard:public_profile') + "?requested_team_member=" + user.id
 
 	# Notify user that he/she has been added as a team member
 	message = user_profile.full_name() + " has requested to add you to their team."
@@ -1491,31 +1508,14 @@ def AddAssociateRequest(request, user_id):
 
 @login_required
 def AddAssociate(request, user_id):
-	associate_to_add = get_object_or_404(User, pk=user_id)
 	user = request.user
-	notifications = user.notifications_received.all().order_by('-date_created')[:5]
-	user_profile = user.user_profile
+	if request.method == 'POST':
+		team_member_to_add_user_id = request.POST['team_member_to_add_user_id']
+		team_member_to_add = get_object_or_404(User, pk=team_member_to_add_user_id)
 
-	# For now, simply add as associate
-	# To-Do - Send associate request and make message 'request sent'
-	user_profile.associates.add(associate_to_add.user_profile)
-	user_profile.save()
-	
-	# Notify user that he/she has been added as a team member
-	message = user_profile.full_name() + " has added you as a team member."
-	notification = Notification(recipient=associate_to_add, message=message)
-	notification.save()
-	
-	is_associate = 1
-	message = 'Associate added'
+		user.user_profile.associates.add(team_member_to_add)
 
-	return render(request, 'dashboard/public_profile.html', {
-		'user':user,
-		'public_profile_user':associate_to_add,
-		'is_associate':is_associate,
-		'message': message,
-		'notifications':notifications,
-	})
+		return reverse('dashboard:public_profile') + "?message=Team%20member%20added"
 
 def ClinicDetailView(request, clinic_id):
 	user = request.user

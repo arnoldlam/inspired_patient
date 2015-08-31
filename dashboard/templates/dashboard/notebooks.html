@@ -26,7 +26,11 @@
 	                            </span>
 	                        </a>
 	                     	{% endfor %}
-	                    {% endif %}
+                       {% else %}
+                        <div class="empty_label">
+                            No notebooks
+                        </div>
+                        {% endif %}
                     </div>
                     <!-- /.list-group -->
                 </div>
@@ -51,7 +55,11 @@
                                 </span>
                             </a>
                             {% endfor %}
-                        {% endif %}
+                        {% else %}
+                         <div class="empty_label">
+                             No notebooks
+                         </div>
+                         {% endif %}
                     </div>
                     <!-- /.list-group -->
                 </div>

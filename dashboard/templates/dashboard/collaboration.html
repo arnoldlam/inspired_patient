@@ -31,6 +31,11 @@ Search by email: <input type="text" name="u">
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}
+                        {% else %}
+                         <div class="empty_label">
+                             No patients
+                         </div>
+                         {% endif %}
                     </div>
                     <!-- /.list-group -->
                 </div>
@@ -54,6 +59,11 @@ Search by email: <input type="text" name="u">
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}
+                        {% else %}
+                         <div class="empty_label">
+                             No professionals
+                         </div>
+                         {% endif %}
                     </div>
                     <!-- /.list-group -->
                 </div>
@@ -77,6 +87,11 @@ Search by email: <input type="text" name="u">
 	                        </a>
 	                     	{% endfor %}
 	                    {% endif %}
+                        {% else %}
+                         <div class="empty_label">
+                             No clinics
+                         </div>
+                         {% endif %}
                     </div>
                     <!-- /.list-group -->
                 </div>

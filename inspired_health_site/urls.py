@@ -20,7 +20,7 @@ from dashboard import views as dashboard_views
 from landing_site import views as landing_site_views
 
 urlpatterns = [
-    url(r'^', landing_site_views.IndexView, name='index'),
+    url(r'^$', landing_site_views.IndexView, name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url(r'^accounts/', include('django.contrib.auth.urls')),

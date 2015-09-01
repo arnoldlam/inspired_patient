@@ -1512,7 +1512,7 @@ def AddAssociate(request):
 		user.user_profile.associates.add(team_member_to_add.user_profile)
 
 		team_member_request = user.user_profile.team_member_requests.get(id=team_member_to_add_user_id)
-		team_member_request.delete()
+		user.user_profile.team_member_requests.remove(team_member_request)
 
 		return HttpResponseRedirect(reverse('dashboard:public_profile',kwargs={'user_id': team_member_to_add_user_id}) + "?message=Team%20member%20added")
 

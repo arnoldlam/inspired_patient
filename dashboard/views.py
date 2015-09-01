@@ -1201,6 +1201,11 @@ def NoteDetail(request, note_id):
 		search_method = "get"
 		search_input_name = "q"
 
+		if 'message' in request.GET:
+			message = request.GET['message']
+		else:
+			message = ""
+
 		return render(request, template_file_name, {
 			'form':form,
 			'permissions_form':permissions_form,
@@ -1214,6 +1219,7 @@ def NoteDetail(request, note_id):
 			'search_form_action':search_form_action,
 			'search_method':search_method,
 			'search_input_name':search_input_name,
+			'message':message,
 		})
 	else:
 		raise Http404("Note not found.")
@@ -1251,7 +1257,7 @@ def ShareNote(request, note_id):
 					notification.save()
 	# URL for redirect back to note
 	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
-	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
+	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type + "&message=Note%20shared")
 
 
 
@@ -1558,7 +1564,7 @@ def AddNoteReplyView(request, note_id):
 
 	# URL for redirect back to note
 	redirect_url = reverse('dashboard:note_detail', kwargs={'note_id': note_id})
-	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type)
+	return HttpResponseRedirect(redirect_url + "?note_type=" + note.note_type + "&message=Your%20reply%20was%20added")
 
 @login_required
 def NotificationsView(request):

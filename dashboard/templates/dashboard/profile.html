@@ -17,9 +17,7 @@
 			 </div>
 			 <div class="panel-body">
 			 {% if form.errors %}
-			 <div class="alert alert-warning">
-				 {{ form.errors }}.
-			 </div>
+			 <div class="alert alert-success" style="text-align:center;">{{ message }}</div>
 			 {% endif %}
 			 <!-- If user has no profile picture, display default image -->
 			 <img id="profile_picture" src=

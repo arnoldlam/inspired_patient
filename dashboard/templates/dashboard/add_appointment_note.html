@@ -17,9 +17,7 @@
                 </div>
                 <div class="panel-body">
                 {% if form.errors %}
-                <div class="alert alert-warning">
-                    {{ form.errors }}.
-                </div>
+                <div class="alert alert-success" style="text-align:center;">{{ message }}</div>
                 {% endif %}
                     <form id="add_general_note_form" action="{% url 'dashboard:add_appointment_note' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}

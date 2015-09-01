@@ -284,9 +284,15 @@ def CollaborationView(request):
 def NotesView(request):
 	user = request.user
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
-	authored_notes = user.authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
-	notes_read_write = user.notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
-	notes_read_only = user.notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
+
+	authored_notes = user.authored_notes.filter(~Q(note_type='procedure_note') & ~Q(note_type='self_care_note') & ~Q(note_type='appointment_note')).distinct()
+	authored_notes = authored_notes.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
+
+	notes_read_write = user.notes_read_write.filter(~Q(note_type='procedure_note') & ~Q(note_type='self_care_note') & ~Q(note_type='appointment_note')).distinct()
+	notes_read_write = notes_read_write.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
+	
+	notes_read_only = user.notes_read_only.filter(~Q(note_type='procedure_note') & ~Q(note_type='self_care_note') & ~Q(note_type='appointment_note')).distinct()
+	notes_read_only = notes_read_only.filter(date_accessed__lte=timezone.now()).order_by('-date_accessed')
 
 	# Set form name and action for search
 	search_form_name = "search_notes_form"

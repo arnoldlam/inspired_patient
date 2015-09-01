@@ -1201,7 +1201,7 @@ def NoteDetail(request, note_id):
 		search_method = "get"
 		search_input_name = "q"
 
-		message = request.GET['message'] if 'message' in request.GET else message = None
+		message = request.GET['message'] if 'message' in request.GET else None
 
 		return render(request, template_file_name, {
 			'form':form,
@@ -1467,7 +1467,7 @@ def PublicProfileView(request, user_id):
 	search_input_name = "u"
 
 	# If there was a message in GET request
-	message = request.GET['message'] if 'message' in request.GET else message = None
+	message = request.GET['message'] if 'message' in request.GET else None
 
 	return render(request, 'dashboard/public_profile.html', {
 		'user':logged_in_user,

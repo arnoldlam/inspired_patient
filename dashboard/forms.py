@@ -198,7 +198,7 @@ class AddSelfCareNoteForm(RepeatingNotesForm):
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minute,choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
@@ -250,7 +250,7 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic, RepeatingNotesFor
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minute,choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
@@ -299,7 +299,7 @@ class AddMedicationNoteForm(RepeatingNotesForm):
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minute,choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))

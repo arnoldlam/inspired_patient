@@ -269,7 +269,7 @@ def CollaborationView(request):
 	return render(request, 'dashboard/collaboration.html', {
 		'associates':associates,
 		'professionals':professionals,
-		'individual':individual,
+		'individuals':individuals,
 		'clinics':clinics,
 		'notifications':notifications,
 		'search_placeholder':search_placeholder,
@@ -1319,6 +1319,12 @@ def NotebookDetail(request, notebook_id):
 			notes_not_in_notebook.append(note)
 
 	permissions_form = UserPermissionsForm(user.id)
+
+	search_form_name = "search_notebooks_form"
+	search_form_action = reverse('dashboard:search_notebooks')
+	search_placeholder = "Search notebooks..."
+	search_method = "get"
+	search_input_name = "q"
 	
 	return render(request, 'dashboard/notebook_detail.html', {
 			'permissions_form':permissions_form,
@@ -1328,7 +1334,12 @@ def NotebookDetail(request, notebook_id):
 			'viewers':notebook_viewers,
 			'notes_in_notebook':notes_in_notebook,
 			'notes_not_in_notebook':notes_not_in_notebook,
-			'notifications':notifications
+			'notifications':notifications,
+			'search_placeholder':search_placeholder,
+			'search_form_name':search_form_name,
+			'search_form_action':search_form_action,
+			'search_method':search_method,
+			'search_input_name':search_input_name,
 	})
 
 @login_required

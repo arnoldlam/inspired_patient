@@ -8,11 +8,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
 	url(r'^$', views.Dashboard, name='dashboard'), # main landing page
 	url(r'^profile/$', views.Profile, name='profile'),
-	url(r'^collaboration$', views.CollaborationView, name='collaboration'),
-	url(r'^collaboration/search$', views.SearchUserResultsView, name='search_results'),
-	url(r'^collaboration/profile/(?P<user_id>[0-9]+)$', views.PublicProfileView, name='public_profile'),
-	url(r'^collaboration/add_associate$', views.AddAssociate, name='add_associate'),
-	url(r'^collaboration/add_associate_request/(?P<user_id>[0-9]+)$', views.AddAssociateRequest, name='add_associate_request'),
+	url(r'^teams$', views.CollaborationView, name='collaboration'),
+	url(r'^teams/search$', views.SearchUserResultsView, name='search_results'),
+	url(r'^teams/profile/(?P<user_id>[0-9]+)$', views.PublicProfileView, name='public_profile'),
+	url(r'^teams/add_associate$', views.AddAssociate, name='add_associate'),
+	url(r'^teams/add_associate_request/(?P<user_id>[0-9]+)$', views.AddAssociateRequest, name='add_associate_request'),
 	url(r'^clinics/(?P<clinic_id>[0-9]+)$', views.ClinicDetailView, name='clinic_detail'),
 	url(r'^notes/$', views.NotesView, name='notes'),
 	url(r'^notes/search$', views.HealthToolsSearchResultsView, name='health_tools_search_results'),
@@ -36,6 +36,6 @@ urlpatterns = [
 	url(r'^notebooks/(?P<notebook_id>[0-9]+)/edit', views.EditNotebookView, name='edit_notebook'),
 	url(r'^notifications/$', views.NotificationsView, name='notifications'),
 	url(r'^notifications/mark_as_read$', views.MarkNotificationAsRead, name='mark_notification_as_read'),
-	url(r'^calendar/$', views.SchedulingView, name='scheduling'),
-	url(r'^create_new/$', views.CreateNewView, name='create_new'),
+	url(r'^calendar$', views.SchedulingView, name='scheduling'),
+	url(r'^create_new$', views.CreateNewView, name='create_new'),
 ]

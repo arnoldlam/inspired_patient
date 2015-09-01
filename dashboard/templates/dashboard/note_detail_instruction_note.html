@@ -13,10 +13,10 @@
         <div class="col-lg-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    {% if message %}
+                    <div class="alert alert-success" style="text-align:center;">{{ message }}</div>
+                    {% endif %}
                     <div class="row">
-                        {% if message %}
-                        <div class="alert alert-success" style="text-align:center;">{{ message }}</div>
-                        {% endif %}
                         <div class="col-lg-6">
                             {{ note.get_note_type_display }}
                         </div>

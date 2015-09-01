@@ -88,7 +88,7 @@
 						{# If user has request to add logged-in user, display confirm request button #}
 						<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
 		                	{% csrf_token %}
-							<input type="hidden" name="team_member_to_add_user_id" value="{{ public_profile_user.id }}"
+							<input type="hidden" name="team_member_to_add_user_id" value="{{ public_profile_user.id }}">
 						</form>
 						<button type="submit" form="add_team_member_form" class="btn btn-primary centered">Confirm Request</button>
 						{% endif %}

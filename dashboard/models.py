@@ -50,18 +50,18 @@ class UserProfile(models.Model):
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
-	team_member_requests = models.ManyToManyField("self", blank=True)
-	address_street = models.CharField('Street', max_length=50)
-	address_unit = models.CharField('Unit', max_length=10)
-	address_city = models.CharField('City', max_length=30)
-	address_province = models.CharField('Province / State', max_length=30)
+	team_member_requests = models.ManyToManyField("self",blank=True)
+	address_street = models.CharField('Street', max_length=50,blank=True)
+	address_unit = models.CharField('Unit', max_length=10,blank=True)
+	address_city = models.CharField('City', max_length=30,blank=True)
+	address_province = models.CharField('Province / State', max_length=30,blank=True)
 	address_country = models.CharField('Country', max_length=30, choices = ADDRESS_CITY_CHOICES, 
-		default='CA')
-	address_postal_code = models.CharField('Postal Code', max_length=10)
-	phone_number = models.CharField(max_length=20)
+		default='CA',blank=True)
+	address_postal_code = models.CharField('Postal Code', max_length=10,blank=True)
+	phone_number = models.CharField(max_length=20,blank=True)
 	medical_history = models.CharField(max_length=4000, blank=True)
 	role = models.CharField(max_length=15, choices = ROLE_CHOICES, default='patient') # ie. professional, patient
-	title = models.CharField(max_length=15)
+	title = models.CharField(max_length=15,blank=True)
 	profile_picture = models.ImageField(upload_to='profile_pictures', blank=True)
 
 	# Optional fields for professionals

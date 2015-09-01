@@ -84,7 +84,7 @@
 						<p><a href="{% url 'dashboard:add_associate_request' public_profile_user.id %}">Add user as team member</a></p>						
 						{% else %}
 						{# If public profile's user is in array of logged in user's team member requests #}
-						{% if public_profile_user in user.user_profile.team_member_requests.all %}
+						{% if public_profile_user in user.team_member_requests.all %}
 						{# If user has request to add logged-in user, display confirm request button #}
 						<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
 		                	{% csrf_token %}

@@ -1497,7 +1497,7 @@ def AddAssociateRequest(request, user_id):
 
 	# Notify user that he/she has been added as a team member
 	message = user_profile.full_name() + " has requested to add you to their team."
-	notification = Notification(recipient=team_member_to_add, message=message, action_url=action_url)
+	notification = Notification(recipient=requested_team_member, message=message, action_url=action_url)
 	notification.save()
 
 	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id}))

@@ -1490,13 +1490,13 @@ def AddAssociateRequest(request, user_id):
 	requested_team_member = get_object_or_404(User, pk=user_id)
 	user_profile = requested_team_member.user_profile
 
-	user.user_profile.team_member_requests.add(requested_team_member) 
+	user_profile.team_member_requests.add(user) 
 
 	# Give link to associate to add to add logged in user as a team member
 	action_url = reverse('dashboard:public_profile',kwargs={'user_id': user.id})
 
 	# Notify user that he/she has been added as a team member
-	message = user_profile.full_name() + " has requested to add you to their team."
+	message = user.user_profile.full_name() + " has requested to add you to their team."
 	notification = Notification(recipient=requested_team_member, message=message, action_url=action_url)
 	notification.save()
 

@@ -257,7 +257,7 @@ def CollaborationView(request):
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	associates = user_profile.associates.all()
 	professionals = associates.filter(role__exact='professional')
-	individual = associates.filter(role__exact='individual')
+	individuals = associates.filter(role__exact='individual')
 	clinics = user.clinics.all()
 
 	search_form_name = "search_users"

@@ -26,8 +26,8 @@ Search by email: <input type="text" name="u">
                     <div class="list-group" style="height:525px; overflow:scroll;">
                     	{% if individuals %}
 	                    	{% for individual in individuals %}
-	                        <a href="{% url 'dashboard:public_profile' patient.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
-	                            <i class="fa fa-user fa-fw"></i> {{ patient.full_name }}
+	                        <a href="{% url 'dashboard:public_profile' individual.user.id %}" class="list-group-item note_box" style="padding-bottom: 20px;">
+	                            <i class="fa fa-user fa-fw"></i> {{ individual.full_name }}
 	                        </a>
 	                     	{% endfor %}
                         {% else %}

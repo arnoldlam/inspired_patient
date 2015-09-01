@@ -32,6 +32,7 @@
 						    display: block;
 						    margin: 20px auto;
 						    border-radius: 50%;"/>
+						    
 					    {# If public profile's user has requested logged in user to their team #}
 	    				{% if public_profile_user in user.user_profile.team_member_requests.all %}
 	    				<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
@@ -40,6 +41,7 @@
 	    				</form>
 	    				<button type="submit" form="add_team_member_form" class="btn btn-primary centered">Confirm Request</button>
 	    				{% endif %}
+
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group">

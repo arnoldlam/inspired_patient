@@ -32,6 +32,14 @@
 						    display: block;
 						    margin: 20px auto;
 						    border-radius: 50%;"/>
+					    {# If public profile's user has requested logged in user to their team #}
+	    				{% if public_profile_user in user.user_profile.team_member_requests.all %}
+	    				<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
+	                    	{% csrf_token %}
+	    					<input type="hidden" name="team_member_to_add_user_id" value="{{ public_profile_user.id }}">
+	    				</form>
+	    				<button type="submit" form="add_team_member_form" class="btn btn-primary centered">Confirm Request</button>
+	    				{% endif %}
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group">
@@ -80,18 +88,8 @@
 						</div>
 						{% endif %}
 
-						{% if not is_associate and public_profile_user.id != user.id %}
+						{% if not is_associate and public_profile_user.id != user.id and public_profile_user not in user.user_profile.team_member_requests.all %}
 						<p><a href="{% url 'dashboard:add_associate_request' public_profile_user.id %}">Add user as team member</a></p>						
-						{% endif %}
-
-						{# If public profile's user is in array of logged in user's team member requests #}
-						{% if public_profile_user in user.user_profile.team_member_requests.all %}
-						{# If user has request to add logged-in user, display confirm request button #}
-						<form id="add_team_member_form" action="{% url 'dashboard:add_associate' %}" method="post" enctype="multipart/form-data">
-		                	{% csrf_token %}
-							<input type="hidden" name="team_member_to_add_user_id" value="{{ public_profile_user.id }}">
-						</form>
-						<button type="submit" form="add_team_member_form" class="btn btn-primary centered">Confirm Request</button>
 						{% endif %}
 					</div>
 				</div>

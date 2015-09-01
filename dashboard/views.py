@@ -1463,12 +1463,6 @@ def PublicProfileView(request, user_id):
 	search_placeholder = "Search for new users..."
 	search_input_name = "u"
 
-	# If requested team member's user id was in GET, send to template
-	if ('requested_team_member' in request.GET):
-		requested_team_member = request.GET['requested_team_member']
-	else:
-		requested_team_member = None
-
 	# If there was a message in GET request
 	if ('message' in request.GET):
 		message = request.GET['message']
@@ -1496,8 +1490,11 @@ def AddAssociateRequest(request, user_id):
 	user = request.user
 	associate_to_add = get_object_or_404(User, pk=user_id)
 	user_profile = associate_to_add.user_profile
+
+	user.user_profile.team_member_requests.add(user_profile) 
+
 	# Give link to associate to add to add logged in user as a team member
-	action_url = reverse('dashboard:public_profile',kwargs={'user_id': user_id}) + "?requested_team_member=%g" % user.id
+	action_url = reverse('dashboard:public_profile',kwargs={'user_id': user.id})
 
 	# Notify user that he/she has been added as a team member
 	message = user_profile.full_name() + " has requested to add you to their team."
@@ -1515,7 +1512,7 @@ def AddAssociate(request, user_id):
 
 		user.user_profile.associates.add(team_member_to_add)
 
-		return reverse('dashboard:public_profile') + "?message=Team%20member%20added"
+		return reverse('dashboard:public_profile'kwargs={'user_id': user_id}) + "?message=Team%20member%20added"
 
 def ClinicDetailView(request, clinic_id):
 	user = request.user

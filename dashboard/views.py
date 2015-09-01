@@ -257,7 +257,7 @@ def CollaborationView(request):
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]
 	associates = user_profile.associates.all()
 	professionals = associates.filter(role__exact='professional')
-	patients = associates.filter(role__exact='patient')
+	individual = associates.filter(role__exact='individual')
 	clinics = user.clinics.all()
 
 	search_form_name = "search_users"
@@ -269,7 +269,7 @@ def CollaborationView(request):
 	return render(request, 'dashboard/collaboration.html', {
 		'associates':associates,
 		'professionals':professionals,
-		'patients':patients,
+		'individual':individual,
 		'clinics':clinics,
 		'notifications':notifications,
 		'search_placeholder':search_placeholder,

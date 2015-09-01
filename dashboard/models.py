@@ -41,9 +41,6 @@ class UserProfile(models.Model):
 		('AU', 'Australia'),
 	)
 	ROLE_CHOICES = (
-		('patient', 'Patient'),
-		('caregiver', 'Caregiver'),
-		('parent', 'Parent'),
 		('professional', 'Professional'),
 		('individual', 'Individual'),
 	)

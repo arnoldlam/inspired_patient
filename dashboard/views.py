@@ -1612,11 +1612,11 @@ def SchedulingView(request):
 	upcoming_tasks = Note.objects.filter(Q(editors__id=user_id) | Q(author_id=user_id) | Q(viewers__id=user_id)).distinct()
 	
 	self_care_notes = upcoming_tasks.filter(note_type__exact='self_care_note')
-	self_care_notes = self_care_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
+	self_care_notes = self_care_notes.order_by('date_and_time')
 	appointments = upcoming_tasks.filter(note_type__exact='appointment_note')
-	appointments = appointments.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
+	appointments = appointments.order_by('date_and_time')
 	medication_notes = upcoming_tasks.filter(note_type__exact='medication_note')
-	medication_notes = medication_notes.filter(date_and_time__gte=timezone.now()).order_by('date_and_time')
+	medication_notes = medication_notes.order_by('date_and_time')
 
 	today_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(days=1)))).order_by('date_and_time')

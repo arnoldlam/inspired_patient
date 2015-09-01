@@ -178,34 +178,46 @@ class RepeatingNotesForm(AddNoteForm):
 			('weeks', 'Week(s)'),
 		)
 
+		self.current_month = datetime.datetime.now().strftime('%m')
+		self.current_day = datetime.datetime.now().strftime('%d')
+		self.current_year = datetime.datetime.now().strftime('%Y')
+
+		self.current_hour = datetime.datetime.now().strftime('%H')
+		self.current_minute = datetime.datetime.now().strftime('%M')
+
+		def get_current_am_pm(self):
+			return current_am_pm = 'am' if self.current_hour > 12 else 'pm'
+
+		self.current_am_pm = get_current_am_pm()
+
 class AddSelfCareNoteForm(RepeatingNotesForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddSelfCareNoteForm, self).__init__(user_id, *args, **kwargs)
 
-		self.fields['day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['day'] = forms.ChoiceField(initial=self.current_day,choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['month'] = forms.ChoiceField(initial=self.current_month,choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:30%;'}))
-		self.fields['year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['year'] = forms.ChoiceField(initial=self.current_year,choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 
-		self.fields['end_day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_day'] = forms.ChoiceField(initial=self.current_day,choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_month'] = forms.ChoiceField(initial=self.current_month,choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:30%;'}))
-		self.fields['end_year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_year'] = forms.ChoiceField(initial=self.current_year,choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_minute'] = forms.ChoiceField(initial=self.current_minute,choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_am_pm'] = forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_am_pm'] = forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 
 		self.fields['frequency'] = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 
@@ -234,17 +246,17 @@ class AddAppointmentNoteForm(NotesThatRelateToDoctorAndClinic, RepeatingNotesFor
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddAppointmentNoteForm, self).__init__(user_id, *args, **kwargs)
 
-		self.fields['day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['day'] = forms.ChoiceField(initial=self.current_day,choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['month'] = forms.ChoiceField(initial=self.current_month,choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:30%;'}))
-		self.fields['year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['year'] = forms.ChoiceField(initial=self.current_year,choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 
 	note_content = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control','rows':'5'}), required=False)	
@@ -283,30 +295,30 @@ class AddMedicationNoteForm(RepeatingNotesForm):
 	def __init__(self, user_id, *args, **kwargs):
 		super(AddMedicationNoteForm, self).__init__(user_id, *args, **kwargs)
 
-		self.fields['day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['day'] = forms.ChoiceField(initial=self.current_day,choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['month'] = forms.ChoiceField(initial=self.current_month,choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:30%;'}))
-		self.fields['year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['year'] = forms.ChoiceField(initial=self.current_year,choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['minute'] = forms.ChoiceField(initial=self.current_minutechoices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['am_pm']= forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['am_pm']= forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 
-		self.fields['end_day'] = forms.ChoiceField(choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_day'] = forms.ChoiceField(initial=self.current_day,choices=self.DAY_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_month'] = forms.ChoiceField(choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_month'] = forms.ChoiceField(initial=self.current_month,choices=self.MONTH_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:30%;'}))
-		self.fields['end_year'] = forms.ChoiceField(choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_year'] = forms.ChoiceField(initial=self.current_year,choices=self.YEAR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_hour'] = forms.ChoiceField(choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_hour'] = forms.ChoiceField(initial=self.current_hour,choices=self.HOUR_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_minute'] = forms.ChoiceField(choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_minute'] = forms.ChoiceField(initial=self.current_minute,choices=self.MINUTE_CHOICES,widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
-		self.fields['end_am_pm'] = forms.ChoiceField(choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
+		self.fields['end_am_pm'] = forms.ChoiceField(initial=self.current_am_pm,choices=self.AM_PM_CHOICES, widget=forms.Select(attrs={'class':'form-control date_select', 
 			'required':'required','style':'display:inline;width:25%;'}))
 
 		self.fields['frequency'] = forms.IntegerField(initial="0",widget=forms.NumberInput(attrs={'class':'form-control', 

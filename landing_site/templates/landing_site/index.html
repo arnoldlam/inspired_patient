@@ -108,14 +108,16 @@
 
     <section id="main-slider" class="no-margin">
         <div class="carousel slide">
+        	<!--
             <ol class="carousel-indicators">
                 <li data-target="#main-slider" data-slide-to="0" class="active"></li>
                 <li data-target="#main-slider" data-slide-to="1"></li>
                 <li data-target="#main-slider" data-slide-to="2"></li>
             </ol>
+            -->
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: {% static 'images/landing_site/diabetes.jpg' %}">
+                <div class="item active" style="background-image: url({% static 'images/landing_site/diabetes.jpg' %})">
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
@@ -171,12 +173,14 @@
                 -->
             </div><!--/.carousel-inner-->
         </div><!--/.carousel-->
+        <!--
         <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
             <i class="fa fa-chevron-left"></i>
         </a>
         <a class="next hidden-xs" href="#main-slider" data-slide="next">
             <i class="fa fa-chevron-right"></i>
         </a>
+        -->
     </section><!--/#main-slider-->
 
     <section id="feature" >
@@ -216,129 +220,9 @@
         </div><!--/.container-->
     </section><!--/#feature-->
 
-    <section id="recent-works">
-        <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>Features</h2>
-                <p class="lead">Explore the many features of Inspired Patient whether you are a patient, care giver or professional.<br> Inspired Patient was developed with you in mind.</p>
-            </div>
-
-            <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item13.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Records</a> </h3>
-                                <p>Easily keep track of your health plan and journey.</p>
-                                <a class="preview" href="images/portfolio/full/item13.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item14.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Collaborate</a></h3>
-                                <p>Communicate with your team via our platform.</p>
-                                <a class="preview" href="images/portfolio/full/item14.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item15.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Appointments</a></h3>
-                                <p>Easily manage your appointments.</p>
-                                <a class="preview" href="images/portfolio/full/item15.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item16.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Medicine</a></h3>
-                                <p>Manage your medicine information and schedule.</p>
-                                <a class="preview" href="images/portfolio/full/item16.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-                
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item17.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Inspiration</a></h3>
-                                <p>Access resources to inspire you and help you take control of your health journey.</p>
-                                <a class="preview" href="images/portfolio/full/item17.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item18.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Self Care</a></h3>
-                                <p>Keep on top of your self care whether if be taking your medicine, change your dressing or something else.</p>
-                                <a class="preview" href="images/portfolio/full/item18.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item19.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Community</a></h3>
-                                <p>Interact with other like minded individuals.</p>
-                                <a class="preview" href="images/portfolio/full/item19.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                    <div class="recent-work-wrap">
-                        <img class="img-responsive" src="images/portfolio/recent/item20.jpg" alt="" style="width:300px;height:200px">
-                        <div class="overlay">
-                            <div class="recent-work-inner">
-                                <h3><a href="#">Rewards</a></h3>
-                                <p>Earn rewards for taking control of your health journey.</p>
-                                <a class="preview" href="images/portfolio/full/item20.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                            </div> 
-                        </div>
-                    </div>
-                </div>   
-            </div><!--/.row-->
-        </div><!--/.container-->
-    </section><!--/#recent-works-->
-
-   
-
-
-
     <section id="content">
         <div class="container">
-            <div class="row">
-                
+            <div class="row">                
                 <div class="center wow fadeInDown">
                     <div class="testimonial">
                         <h2>Testimonials</h2>
@@ -372,19 +256,9 @@
     <section id="partner">
         <div class="container">
             <div class="center wow fadeInDown">
-                <h2>Our Partners</h2>
-                <p class="lead">Check back soon.<br>For updates!</p>
-            </div>    
-
-            <div class="partners">
-                <ul>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" src="images/partners/1.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" src="images/partners/2.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" src="images/partners/3.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms" src="images/partners/4.png"></a></li>
-                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1500ms" src="images/partners/5.png"></a></li>
-                </ul>
-            </div>        
+                <h2>Sign Up Now</h2>
+                <p class="lead">for our <br>beta site</p>
+            </div>           
         </div><!--/.container-->
     </section><!--/#partner-->
 

@@ -50,7 +50,7 @@ class UserProfile(models.Model):
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
-	team_member_requests = models.ManyToManyField("self",blank=True)
+	team_member_requests = models.ManyToManyField(User,related_name='requested_team_members',blank=True)
 	address_street = models.CharField('Street', max_length=50,blank=True)
 	address_unit = models.CharField('Unit', max_length=10,blank=True)
 	address_city = models.CharField('City', max_length=30,blank=True)

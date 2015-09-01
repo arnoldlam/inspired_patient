@@ -1487,17 +1487,17 @@ def PublicProfileView(request, user_id):
 @login_required
 def AddAssociateRequest(request, user_id):
 	user = request.user
-	associate_to_add = get_object_or_404(User, pk=user_id)
-	user_profile = associate_to_add.user_profile
+	requested_team_member = get_object_or_404(User, pk=user_id)
+	user_profile = requested_team_member.user_profile
 
-	user.user_profile.team_member_requests.add(user_profile) 
+	user.user_profile.team_member_requests.add(requested_team_member) 
 
 	# Give link to associate to add to add logged in user as a team member
 	action_url = reverse('dashboard:public_profile',kwargs={'user_id': user.id})
 
 	# Notify user that he/she has been added as a team member
 	message = user_profile.full_name() + " has requested to add you to their team."
-	notification = Notification(recipient=associate_to_add, message=message, action_url=action_url)
+	notification = Notification(recipient=team_member_to_add, message=message, action_url=action_url)
 	notification.save()
 
 	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id}))

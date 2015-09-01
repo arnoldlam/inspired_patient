@@ -682,6 +682,7 @@ def AddSelfCareNoteView(request):
 
 			# Convert from 12-hours to 24-hours time
 			if am_pm == 'PM': hour = int(hour) + 12
+			if hour == 24: hour = 0
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
@@ -873,6 +874,7 @@ def AddAppointmentNoteView(request):
 
 			# Convert from 12-hours to 24-hours time
 			if am_pm == 'PM': hour = int(hour) + 12
+			if hour == 24: hour = 0
 
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
@@ -1066,7 +1068,7 @@ def AddMedicationNoteView(request):
 
 			# Convert from 12-hours to 24-hours time
 			if am_pm == 'PM': hour = int(hour) + 12
-
+			if hour == 24: hour = 0
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, 
@@ -1128,7 +1130,7 @@ def AddMedicationNoteView(request):
 
 				# Convert from 12-hours to 24-hours time
 				if am_pm == 'PM': hour = int(hour) + 12
-				
+				if hour == 24: hour = 0
 				# Create additional notes for recurring note
 				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 				recurring_date = date_and_time

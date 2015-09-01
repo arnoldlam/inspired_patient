@@ -1511,7 +1511,7 @@ def AddAssociate(request):
 
 		user.user_profile.associates.add(team_member_to_add.user_profile)
 
-		return reverse('dashboard:public_profile',kwargs={'user_id': user_id}) + "?message=Team%20member%20added"
+		return reverse('dashboard:public_profile',kwargs={'user_id': team_member_to_add.id}) + "?message=Team%20member%20added"
 
 def ClinicDetailView(request, clinic_id):
 	user = request.user

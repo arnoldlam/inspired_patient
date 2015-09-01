@@ -1480,7 +1480,6 @@ def PublicProfileView(request, user_id):
 		'search_form_action':search_form_action,
 		'search_method':search_method,
 		'search_input_name':search_input_name,
-		'requested_team_member':requested_team_member,
 		'message':message,
 	})
 

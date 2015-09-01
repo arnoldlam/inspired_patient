@@ -68,7 +68,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> {{ user.user_profile.unreadNotificationCount }} <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-alerts">
+                    <ul class="dropdown-menu dropdown-alerts" style="margin-left: 0px;">
                         {% for notification in notifications %}
                         <li>
                             <a href="{{ notification.action_url }}">
@@ -96,6 +96,7 @@
                                 <i class="fa fa-angle-right pull-right"></i>
                             </a>
                         </li>
+
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
@@ -114,6 +115,7 @@
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
+                <a href="{% url 'dashboard:profile' %}">{{ user.user_profile.full_name }}</a>
             </ul>
             <!-- /.navbar-top-links -->
 

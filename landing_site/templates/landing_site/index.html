@@ -1,1 +1,511 @@
-<p>Hello, World!</p>
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | Inspired Patient</title>
+    
+    <!-- core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/prettyPhoto.css" %}" rel="stylesheet">
+    <link href="{% static "css/animate.min.css" %}" rel="stylesheet">
+    <link href="{% static "css/main.css" %}" rel="stylesheet">
+    <link href="{% static "css/responsive.css" %}" rel="stylesheet">
+    <link href="{% static "css/accounts.css" %}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/logos/favicon.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "images/ico/apple-touch-icon-144-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "images/ico/apple-touch-icon-114-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "images/ico/apple-touch-icon-72-precomposed.png" %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static "images/ico/apple-touch-icon-57-precomposed.png" %}">
+</head><!--/head-->
+
+<body>
+
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-xs-4">
+                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +604.454.4284</p></div>
+                    </div>
+                    <div class="col-sm-6 col-xs-8">
+                       <div class="social">
+                            <ul class="social-share">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>     
+                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                            </ul>
+                       </div>
+                    </div>
+                </div>
+            </div><!--/.container-->
+        </div><!--/.top-bar-->
+
+        <nav class="navbar navbar-inverse" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "images/logos/inspired_patient_logo.png" %}" alt="logo"></a>
+                </div>
+				
+            <div class="collapse navbar-collapse navbar-right">
+            	<ul class="nav navbar-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-item.html">Our Story</a></li>
+                            <li><a href="pricing.html">Team</a></li>
+                            <li><a href="404.html">Blog</a></li>
+                            <li><a href="shortcodes.html">Contact Us</a></li>
+                            <li><a href="shortcodes.html">Privacy Policy</a></li>
+                            <li><a href="shortcodes.html">Terms of Use</a></li>
+                            <li><a href="shortcodes.html">Help</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solutions <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-item.html">Overview</a></li>
+                            <li><a href="pricing.html">Notes</a></li>
+                            <li><a href="404.html">Collaborate</a></li>
+                            <li><a href="shortcodes.html">Organize</a></li>
+                            <li><a href="shortcodes.html">Professional</a></li>
+                            <li><a href="shortcodes.html">Plans</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members Area <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="blog-item.html">Login</a></li>
+                            <li><a href="pricing.html">Dashboard</a></li>
+                            <li><a href="404.html">Community</a></li>
+                            <li><a href="shortcodes.html">Inspiration</a></li>
+                        </ul>
+                    </li>                       
+                </ul>
+            </div>
+        </nav><!--/nav-->
+		
+    </header><!--/header-->
+
+    <section id="main-slider" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                <li data-target="#main-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#main-slider" data-slide-to="1"></li>
+                <li data-target="#main-slider" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+
+                <div class="item active" style="background-image: {% static 'images/landing_site/diabetes.jpg' %}">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Improving the Health Journey</h1>
+                                    <h2 class="animation animated-item-2">Inspired Patient: Empowering patients and their team, to better health outcomes</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Sign Up Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/.item-->
+				<!--
+                <div class="item" style="background-image: url(images/slider/diabetes.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Manage your Health</h1>
+                                    <h2 class="animation animated-item-2">Notes, medication, appointments and more.</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="images/slider/Transparent text box.png" class="img-responsive">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item" style="background-image: url(images/slider/Inspiration.jpg)">
+                    <div class="container">
+                        <div class="row slide-margin">
+                            <div class="col-sm-6">
+                                <div class="carousel-content">
+                                    <h1 class="animation animated-item-1">Inspiration</h1>
+                                    <h2 class="animation animated-item-2">Better health journey and outcomes.</h2>
+                                    <a class="btn-slide animation animated-item-3" href="#">Read More</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 hidden-xs animation animated-item-4">
+                                <div class="slider-img">
+                                    <img src="images/slider/Transparent text box.png" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div><!--/.carousel-inner-->
+        </div><!--/.carousel-->
+        <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+            <i class="fa fa-chevron-left"></i>
+        </a>
+        <a class="next hidden-xs" href="#main-slider" data-slide="next">
+            <i class="fa fa-chevron-right"></i>
+        </a>
+    </section><!--/#main-slider-->
+
+    <section id="feature" >
+        <div class="container">
+           <div class="center wow fadeInDown">
+                <h2>Benefits</h2>
+                <p class="lead">Patient centric, empowering, tools to manage your health journey.<br> Explore our many benefits below.</p>
+            </div>
+
+            <div class="row">
+                <div class="features">
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-comments"></i>
+                            <h2>Notes</h2>
+                            <h3>Take notes, use a template, and access professional information.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-book"></i>
+                            <h2>Collaboration</h2>
+                            <h3>Easily communicate with your health team.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+
+                    <div class="col-md-4 col-sm-6 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="feature-wrap">
+                            <i class="fa fa-code-fork"></i>
+                            <h2>Organize</h2>
+                            <h3>Track appointments, medication, and self care.</h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->    
+        </div><!--/.container-->
+    </section><!--/#feature-->
+
+    <section id="recent-works">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>Features</h2>
+                <p class="lead">Explore the many features of Inspired Patient whether you are a patient, care giver or professional.<br> Inspired Patient was developed with you in mind.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item13.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Records</a> </h3>
+                                <p>Easily keep track of your health plan and journey.</p>
+                                <a class="preview" href="images/portfolio/full/item13.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item14.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Collaborate</a></h3>
+                                <p>Communicate with your team via our platform.</p>
+                                <a class="preview" href="images/portfolio/full/item14.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item15.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Appointments</a></h3>
+                                <p>Easily manage your appointments.</p>
+                                <a class="preview" href="images/portfolio/full/item15.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item16.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Medicine</a></h3>
+                                <p>Manage your medicine information and schedule.</p>
+                                <a class="preview" href="images/portfolio/full/item16.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+                
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item17.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Inspiration</a></h3>
+                                <p>Access resources to inspire you and help you take control of your health journey.</p>
+                                <a class="preview" href="images/portfolio/full/item17.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item18.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Self Care</a></h3>
+                                <p>Keep on top of your self care whether if be taking your medicine, change your dressing or something else.</p>
+                                <a class="preview" href="images/portfolio/full/item18.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item19.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Community</a></h3>
+                                <p>Interact with other like minded individuals.</p>
+                                <a class="preview" href="images/portfolio/full/item19.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    <div class="recent-work-wrap">
+                        <img class="img-responsive" src="images/portfolio/recent/item20.jpg" alt="" style="width:300px;height:200px">
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <h3><a href="#">Rewards</a></h3>
+                                <p>Earn rewards for taking control of your health journey.</p>
+                                <a class="preview" href="images/portfolio/full/item20.jpg" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div> 
+                        </div>
+                    </div>
+                </div>   
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#recent-works-->
+
+   
+
+
+
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                
+                <div class="center wow fadeInDown">
+                    <div class="testimonial">
+                        <h2>Testimonials</h2>
+                         <div class="media testimonial-inner">
+                            <div class="pull-left">
+                                <img class="img-responsive img-circle" src="images/placeholder.png">
+                            </div>
+                            <div class="media-body">
+                                <p>“My goal is a patient/ doctor partnership where both are committed to solving the problem.  For the patient and caregivers, this means a better health journey experience and better health outcome.  I am excited to be involved in this initiative."</p>
+                                <span><strong>Stephen J Tredwell MD MA FRCSC/</strong> Professor Emeritus, Department of Orthopaedics, University of British Columbia</span>
+                            </div>
+                         </div>
+									<br></br>
+                         <div class="media testimonial-inner">
+                            <div class="pull-left">
+                                <img class="img-responsive img-circle" src="images/placeholder.png">
+                            </div>
+                            <div class="media-body">
+                                <p>"My own past significant health challenge highlights the need for Inspired Patient.  I felt overwhelmed with information, anxiety about the journey and confused by the process.  I wish the website had been available for me."</p>
+                                <span><strong>-MichaelAnne Buckley/</strong> Cancer Survivor, Vancouver, Canada</span>
+                            </div>
+                         </div>
+
+                    </div>
+                </div>
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </section><!--/#content-->
+
+    <section id="partner">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2>Our Partners</h2>
+                <p class="lead">Check back soon.<br>For updates!</p>
+            </div>    
+
+            <div class="partners">
+                <ul>
+                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" src="images/partners/1.png"></a></li>
+                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms" src="images/partners/2.png"></a></li>
+                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms" src="images/partners/3.png"></a></li>
+                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1200ms" src="images/partners/4.png"></a></li>
+                    <li> <a href="#"><img class="img-responsive wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="1500ms" src="images/partners/5.png"></a></li>
+                </ul>
+            </div>        
+        </div><!--/.container-->
+    </section><!--/#partner-->
+
+    <section id="contact-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="pull-left">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="media-body">
+                            <h2>Have a question?</h2>
+                            <p>Contact us! +604.454.4284</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.container-->    
+    </section><!--/#contact-info-->
+
+    <section id="bottom">
+        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Meet the team</a></li>
+                            <li><a href="#">Terms of use</a></li>
+                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="#">Contact us</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Support</h3>
+                        <ul>
+                            <li><a href="#">Faq</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Place Holder</h3>
+                        <ul>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">Place Holder</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="widget">
+                        <h3>Place Holder</h3>
+                        <ul>
+                            <li><a href="#">Place Holder</a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                            <li><a href="#">   </a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-3-->
+            </div>
+        </div>
+    </section><!--/#bottom-->
+
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2015 <a target="_blank" href="http://patientehealth.com/" title="Inspired Patient">Inspired Patient</a>. All Rights Reserved.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{% static "bower_components/metisMenu/dist/metisMenu.min.js" %}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <!--
+    <script src="../bower_components/raphael/raphael-min.js"></script>
+    <script src="../bower_components/morrisjs/morris.min.js"></script>
+    <script src="../js/morris-data.js"></script>
+    -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static "dist/js/sb-admin-2.js" %}"></script>
+
+</body>
+</html>

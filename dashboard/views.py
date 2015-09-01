@@ -873,8 +873,8 @@ def AddAppointmentNoteView(request):
 			am_pm = form.cleaned_data['am_pm']
 
 			# Convert from 12-hours to 24-hours time
-			if hour == 12 and am_pm == 'AM': hour = 0
-			if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
+			if int(hour) == 12 and am_pm == 'AM': hour = 0
+			if int(hour) < 12 and am_pm == 'PM': hour = int(hour) + 12
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 

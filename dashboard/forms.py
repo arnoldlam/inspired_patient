@@ -168,8 +168,8 @@ class RepeatingNotesForm(AddNoteForm):
 		self.MINUTE_CHOICES = createMinuteChoices()
 
 		self.AM_PM_CHOICES = (
-			('am', 'A.M.'),
-			('pm', 'P.M.'),
+			('AM', 'AM'),
+			('PM', 'PM'),
 		)
 
 		self.FREQUENCY_TYPE_CHOICES = (
@@ -184,11 +184,7 @@ class RepeatingNotesForm(AddNoteForm):
 
 		self.current_hour = datetime.datetime.now().strftime('%H')
 		self.current_minute = datetime.datetime.now().strftime('%M')
-
-		def get_current_am_pm(self):
-			return current_am_pm = 'am' if self.current_hour > 12 else 'pm'
-
-		self.current_am_pm = get_current_am_pm()
+		self.current_am_pm = datetime.datetime.now().strftime('%p')
 
 class AddSelfCareNoteForm(RepeatingNotesForm):
 	def __init__(self, user_id, *args, **kwargs):

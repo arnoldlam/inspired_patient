@@ -16,14 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from dashboard import views
-from landing_site import views
+from dashboard import views as dashboard_views
+from landing_site import views as landing_site_views
 
 urlpatterns = [
+    url(r'^', landing_site_views.IndexView, name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/signup$', views.CreateNewUserView, name='create_user'),
-    url(r'^accounts/signup/continued$', views.CreateNewUserExtendedView, name='create_user_extended'),
-    url(r'^accounts/signup/professional$', views.CreateNewProfessionalView, name='create_professional'),
+    url(r'^accounts/signup$', dashboard_views.CreateNewUserView, name='create_user'),
+    url(r'^accounts/signup/continued$', dashboard_views.CreateNewUserExtendedView, name='create_user_extended'),
+    url(r'^accounts/signup/professional$', dashboard_views.CreateNewProfessionalView, name='create_professional'),
 ]

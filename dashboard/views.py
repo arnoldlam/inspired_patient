@@ -1485,7 +1485,7 @@ def PublicProfileView(request, user_id):
 
 # Runs when user clicks on add user as team member on their public profile
 @login_required
-def AddAssociateRequest(request, user_id):
+def AddAssociateRequest(request):
 	user = request.user
 	associate_to_add = get_object_or_404(User, pk=user_id)
 	user_profile = associate_to_add.user_profile

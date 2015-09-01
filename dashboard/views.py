@@ -1509,7 +1509,7 @@ def AddAssociate(request):
 		team_member_to_add_user_id = request.POST['team_member_to_add_user_id']
 		team_member_to_add = get_object_or_404(User, pk=team_member_to_add_user_id)
 
-		user.user_profile.associates.add(team_member_to_add)
+		user.user_profile.associates.add(team_member_to_add.user_profile)
 
 		return reverse('dashboard:public_profile',kwargs={'user_id': user_id}) + "?message=Team%20member%20added"
 

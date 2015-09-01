@@ -41,9 +41,11 @@
 	    				</form>
 	    				<button type="submit" form="add_team_member_form" class="btn btn-primary centered">Confirm Request</button>
 						{% else %}
+
 						{% if not is_associate and public_profile_user.id != user.id and public_profile_user.user_profile not in user.requested_team_members.all %}
 						<p><a href="{% url 'dashboard:add_associate_request' public_profile_user.id %}">Add user as team member</a></p>						
 						{% endif %}
+						
 	    				{% endif %}
 						<div class="row">
 							<div class="col-lg-6">

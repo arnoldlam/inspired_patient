@@ -1500,7 +1500,7 @@ def AddAssociateRequest(request, user_id):
 	notification = Notification(recipient=requested_team_member, message=message, action_url=action_url)
 	notification.save()
 
-	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id}))
+	return HttpResponseRedirect(reverse('dashboard:public_profile', kwargs={'user_id': user_id}) + "?message=Request%20sent")
 
 @login_required
 def AddAssociate(request):
@@ -1510,6 +1510,8 @@ def AddAssociate(request):
 		team_member_to_add = get_object_or_404(User, pk=team_member_to_add_user_id)
 
 		user.user_profile.associates.add(team_member_to_add.user_profile)
+
+		user.user_profile.team_member_requests.get(id=team_member_to_add_user_id)
 
 		return HttpResponseRedirect(reverse('dashboard:public_profile',kwargs={'user_id': team_member_to_add_user_id}) + "?message=Team%20member%20added")
 

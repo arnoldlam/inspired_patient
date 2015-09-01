@@ -681,8 +681,8 @@ def AddSelfCareNoteView(request):
 			am_pm = form.cleaned_data['am_pm']
 
 			# Convert from 12-hours to 24-hours time
-			if am_pm == 'PM': hour = int(hour) + 12
-			if hour == 24: hour = 0
+			if hour == 12 and am_pm == 'AM': hour = 0
+			if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = SelfCareNote(subject=subject, note_type=note_type, note_content=note_content, 
@@ -743,8 +743,8 @@ def AddSelfCareNoteView(request):
 				am_pm = form.cleaned_data['end_am_pm']
 
 				# Convert from 12-hours to 24-hours time
-				if am_pm == 'PM':
-					hour = int(hour) + 12
+				if hour == 12 and am_pm == 'AM': hour = 0
+				if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
 				
 				# Create additional notes for recurring note
 				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
@@ -873,9 +873,8 @@ def AddAppointmentNoteView(request):
 			am_pm = form.cleaned_data['am_pm']
 
 			# Convert from 12-hours to 24-hours time
-			if am_pm == 'PM': hour = int(hour) + 12
-			if hour == 24: hour = 0
-
+			if hour == 12 and am_pm == 'AM': hour = 0
+			if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 
@@ -1067,8 +1066,8 @@ def AddMedicationNoteView(request):
 			am_pm = form.cleaned_data['am_pm']
 
 			# Convert from 12-hours to 24-hours time
-			if am_pm == 'PM': hour = int(hour) + 12
-			if hour == 24: hour = 0
+			if hour == 12 and am_pm == 'AM': hour = 0
+			if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
 			date_and_time = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, 
@@ -1128,9 +1127,9 @@ def AddMedicationNoteView(request):
 				minute = form.cleaned_data['end_minute']
 				am_pm = form.cleaned_data['end_am_pm']
 
-				# Convert from 12-hours to 24-hours time
-				if am_pm == 'PM': hour = int(hour) + 12
-				if hour == 24: hour = 0
+				# Convert from 12-hours to 24-hours time	
+				if hour == 12 and am_pm == 'AM': hour = 0
+				if hour < 12 and am_pm == 'PM': hour = int(hour) + 12
 				# Create additional notes for recurring note
 				end_date = datetime.datetime(int(year), int(month), int(day), int(hour), int(minute), 0, 0)
 				recurring_date = date_and_time

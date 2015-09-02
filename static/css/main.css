@@ -184,8 +184,7 @@ body > section {
 
 .top-bar {
   padding: 10px 0;
-  background: #191919;
-  border-bottom: 1px solid #222;
+  background: #0A7DDC;
   line-height: 28px;
 }
 
@@ -215,7 +214,7 @@ ul.social-share li {
 ul.social-share li a {
   display: inline-block;
   color: #fff;
-  background: #404040;
+  background: #0A7DDC;
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -224,7 +223,7 @@ ul.social-share li a {
 }
 
 ul.social-share li a:hover {
-  background: #c52d2f;
+  background: #ffbe00;
   color: #fff;
 }
 
@@ -265,7 +264,7 @@ input.search-form:hover {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #151515;
+  background: #0A7DDC;
   padding: 15px 0;
   padding-bottom: 0;
 }
@@ -564,7 +563,7 @@ input.search-form:hover {
   line-height: 110px;
   text-align:center;
   background: #ffffff;
-  color: #c52d2f;
+  color: #0A7DDC;
   border: 3px solid #ffffff;
   box-shadow: inset 0 0 0 5px #f2f2f2;
   -webkit-box-shadow: inset 0 0 0 5px #f2f2f2;
@@ -577,11 +576,11 @@ input.search-form:hover {
 }
 
 .feature-wrap i:hover {
-  background: #c52d2f;
+  background: #0A7DDC;
   color: #fff;
-  box-shadow: inset 0 0 0 5px #c52d2f;
-  -webkit-box-shadow: inset 0 0 0 5px #c52d2f;
-  border: 3px solid #c52d2f;
+  box-shadow: inset 0 0 0 5px #0A7DDC;
+  -webkit-box-shadow: inset 0 0 0 5px white;
+  border: 3px solid #0A7DDC;
 }
 
 #recent-works .col-xs-12.col-sm-4.col-md-3{
@@ -2464,7 +2463,6 @@ shortcodes page css
 ************************/
 #bottom {
   background: #f5f5f5;
-  border-bottom: 5px solid #c52d2f;
   font-size: 14px;
 }
 
@@ -2503,7 +2501,7 @@ shortcodes page css
   padding-top: 30px;
   padding-bottom: 30px;
   color: #fff;
-  background: #2e2e2e;
+  background: #0A7DDC;
 }
 
 #footer a {

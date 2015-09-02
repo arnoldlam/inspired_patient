@@ -33,10 +33,10 @@
 <body>
 
     <header id="header">
-        <div class="top-bar">
+        <div class="top-bar custom-top-bar">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-xs-8">
+                    <div class="col-sm-6 col-xs-8 col-md-offset-6">
                        <div class="social">
                             <ul class="social-share">
                                 <li><a href="https://www.facebook.com/inspiredpatient"><i class="fa fa-facebook"></i></a></li>
@@ -50,7 +50,7 @@
             </div><!--/.container-->
         </div><!--/.top-bar-->
 
-        <nav class="navbar navbar-inverse" role="banner">
+        <nav class="navbar navbar-inverse custom-navbar" role="banner">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -107,7 +107,7 @@
         <div class="carousel slide">
             <div class="carousel-inner">
 
-                <div class="item active" style="background-image: url({% static 'images/landing_site/father_and_son.jpg' %})">
+                <div class="item active" style="background-image: url({% static 'images/landing_site/diabetes.jpg' %})">
                     <div class="container">
                         <div class="row slide-margin">
                             <div class="col-sm-6">
@@ -168,14 +168,14 @@
                          <div class="media testimonial-inner">
                             <div class="media-body">
                                 <p>“My goal is a patient/ doctor partnership where both are committed to solving the problem.  For the patient and caregivers, this means a better health journey experience and better health outcome.  I am excited to be involved in this initiative."</p>
-                                <span><strong>Stephen J Tredwell MD MA FRCSC/</strong> Professor Emeritus, Department of Orthopaedics, University of British Columbia</span>
+                                <span><strong>Stephen J Tredwell MD MA FRCSC </strong> Professor Emeritus, Department of Orthopaedics, University of British Columbia</span>
                             </div>
                          </div>
 						<br></br>
                          <div class="media testimonial-inner">
                             <div class="media-body">
                                 <p>"My own past significant health challenge highlights the need for Inspired Patient.  I felt overwhelmed with information, anxiety about the journey and confused by the process.  I wish the website had been available for me."</p>
-                                <span><strong>-MichaelAnne Buckley/</strong> Cancer Survivor, Vancouver, Canada</span>
+                                <span><strong>Michael Anne Buckley </strong> Cancer Survivor, Vancouver, Canada</span>
                             </div>
                          </div>
 
@@ -193,9 +193,8 @@
                 <button class="btn btn-primary">Sign Up Now</button>
                 <br><br>
                 <h2>... and keep in touch</h2>
-                <br>
-                <form action="" method="post">
-                    <input type="text" placeholder="Email" class="form-control" style="centered" /><button class="btn btn-primary">Submit</button>
+                <form action="" method="post" class="centered">
+                    <span><input type="text" placeholder="Email" class="form-control" style="width:25%;" /><button class="btn btn-primary">Submit</button></span>
                 </form>
             </div>           
         </div><!--/.container-->

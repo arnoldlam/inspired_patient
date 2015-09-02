@@ -26,3 +26,12 @@
 	margin-right:auto;
 	display:block;
 }
+
+.custom-top-bar {
+	background: #2E4272;
+    border-bottom: 1px solid white;
+}
+
+.custom-navbar {
+	background: #2E4272;
+}

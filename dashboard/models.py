@@ -272,8 +272,7 @@ class NoteReply(models.Model):
 	date_created = models.DateTimeField('date created', auto_now_add=True)
 
 	def __unicode__(self):
-		return self.title
-
+		return self.content
 
 class Notification(models.Model):
 	VIEW_STATUS_CHOICES = (

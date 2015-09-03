@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from landing_site.models import Blog
 
 # Create your views here.
 
@@ -19,3 +20,10 @@ def FAQView(request):
 
 def ContactUsView(request):
 	return render(request, 'landing_site/contact_us.html',)
+
+def BlogsView(request):
+	blogs = Blog.objects.all()
+
+	return render(request, 'landing_site/blogs.html', {
+		'blogs':blogs,
+	})

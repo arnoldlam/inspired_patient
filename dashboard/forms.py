@@ -47,7 +47,7 @@ class AddNoteForm(forms.Form):
 		self.user_id = user_id
 		current_user = User.objects.get(pk=self.user_id)
 		associates = current_user.user_profile.associates.all()
-		notebooks = Notebook.objects.filter(Q(viewers__id=user_id) | Q(editors__id=user_id)).distinct()
+		notebooks = Notebook.objects.filter(Q(editors__id=user_id)).distinct()
 
 		list_of_names = []
 		for associate in associates:
@@ -495,7 +495,7 @@ class EditProfileForm(forms.Form):
 		)
 
 		self.fields['title'] = forms.ChoiceField(label='Role', choices=TITLE_CHOICES, initial=current_user_profile.title,
-			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
+			widget=forms.Select(attrs={'class':'form-control'}))
 		self.fields['first_name'] = forms.CharField(label='First Name', max_length=20, initial=current_user.first_name,
 			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
 		self.fields['last_name'] = forms.CharField(label='Last Name', max_length=20, initial=current_user.last_name,
@@ -503,22 +503,22 @@ class EditProfileForm(forms.Form):
 		self.fields['profile_picture'] = forms.ImageField(required=False)
 		self.fields['role'] = forms.ChoiceField(label='Role', choices=ROLE_CHOICES, initial=current_user_profile.role,
 			widget=forms.Select(attrs={'class':'form-control','required':'required'}))
-		self.fields['medical_history'] = forms.CharField(label='Medical History', max_length=4000, initial=current_user_profile.medical_history,
+		self.fields['medical_history'] = forms.CharField(required=False, max_length=4000, initial=current_user_profile.medical_history,
 			widget=forms.Textarea(attrs={'class':'form-control','rows':'10'}))
-		self.fields['phone_number'] = forms.CharField(label='Phone Number', max_length=20, initial=current_user_profile.phone_number,
-			widget=forms.TextInput(attrs={'class':'form-control','required':'required'}))
+		self.fields['phone_number'] = forms.CharField(required=False, max_length=20, initial=current_user_profile.phone_number,
+			widget=forms.TextInput(attrs={'class':'form-control'}))
 
-		self.fields['address_unit'] = forms.CharField(label='Unit', max_length=10, initial=current_user_profile.address_unit,
+		self.fields['address_unit'] = forms.CharField(required=False, max_length=10, initial=current_user_profile.address_unit,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['address_street'] = forms.CharField(label='Street', max_length=50, initial=current_user_profile.address_street,
+		self.fields['address_street'] = forms.CharField(required=False, max_length=50, initial=current_user_profile.address_street,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['address_city'] = forms.CharField(label='City', max_length=30, initial=current_user_profile.address_city,
+		self.fields['address_city'] = forms.CharField(required=False, max_length=30, initial=current_user_profile.address_city,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['address_province'] = forms.CharField(label='Province', max_length=30, initial=current_user_profile.address_province,
+		self.fields['address_province'] = forms.CharField(required=False, max_length=30, initial=current_user_profile.address_province,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
-		self.fields['address_country'] = forms.ChoiceField(label='Country', choices=ADDRESS_CITY_CHOICES, initial=current_user_profile.address_country,
+		self.fields['address_country'] = forms.ChoiceField(required=False, choices=ADDRESS_CITY_CHOICES, initial=current_user_profile.address_country,
 			widget=forms.Select(attrs={'class':'form-control'}))
-		self.fields['address_postal_code'] = forms.CharField(label='Postal Code', max_length=10, initial=current_user_profile.address_postal_code,
+		self.fields['address_postal_code'] = forms.CharField(required=False, max_length=10, initial=current_user_profile.address_postal_code,
 			widget=forms.TextInput(attrs={'class':'form-control'}))
 		self.fields['job_title'] = forms.CharField(required=False,max_length=100, initial=current_user_profile.job_title,
 			widget=forms.TextInput(attrs={'class':'form-control'}))

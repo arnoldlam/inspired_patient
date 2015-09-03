@@ -22,7 +22,11 @@
                         </div>
                             
                         <div class="col-xs-12 col-sm-10 blog-content">
-                            <a href="#"><img class="img-responsive img-blog" src="{{ blog.image.url }}" width="100%" alt="" /></a>
+                            {% if blog.image %}
+                            <a href="#">
+                            <img class="img-responsive img-blog" src="{{ blog.image.url }}" width="100%" alt="" />
+                            </a>
+                            {% endif %}
                             <h2>{{ blog.title }}</h2>
                             <h3>{{ blog.content|linebreaks }}</h3>
                         </div>

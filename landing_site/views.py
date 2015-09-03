@@ -21,7 +21,7 @@ def FAQView(request):
 def ContactUsView(request):
 	return render(request, 'landing_site/contact_us.html',)
 
-def BlogsView(request):
+def BlogView(request):
 	blogs = Blog.objects.all()
 
 	return render(request, 'landing_site/blogs.html', {

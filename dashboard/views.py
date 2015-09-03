@@ -228,7 +228,7 @@ def Profile(request):
 			user.save()
 			user_profile.save()
 
-			return HttpResponseRedirect(reverse('dashboard:profile'))
+			return HttpResponseRedirect(reverse('dashboard:profile') + "?message=Your%20changes%20were%20successfully%20saved")
 	else:
 		form = EditProfileForm(user.id)
 
@@ -238,6 +238,9 @@ def Profile(request):
 	search_method = "get"
 	search_placeholder = "Search for team members"
 	search_input_name = "u"
+
+	message = request.GET['message'] if 'message' in request.GET else None
+
 	return render(request, 'dashboard/profile.html', {
 		'notifications':notifications,
 		'form':form,
@@ -248,6 +251,7 @@ def Profile(request):
 		'search_form_action':search_form_action,
 		'search_method':search_method,
 		'search_input_name':search_input_name,
+		'message':message,
 	})
 
 @login_required

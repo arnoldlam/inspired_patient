@@ -10,3 +10,6 @@ def AboutUsView(request):
 
 def SolutionsView(request):
 	return render(request, 'landing_site/solutions.html',)
+
+def PlansView(request):
+	return render(request, 'landing_site/plans.html',)

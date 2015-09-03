@@ -29,7 +29,7 @@
     </div><!--/.container-->
 </section><!--/#notes-->
 
-<section id="collaborate" >
+<section id="collaborate" style="background: #f2f2f2;">
     <div class="container">
         <div class="row">
             <div class="collaborate">
@@ -54,5 +54,14 @@
         </div><!--/.row-->    
     </div><!--/.container-->
 </section><!--/#organize-->
+
+<section id="sign_up_now" style="background:url({% static 'images/landing_site/sign_up_bg.png' %}) 50% 50% no-repeat;background-size: cover;">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>Try Inspired Patient today!</h2>
+            <button class="btn btn-primary"><a style="color:white;" href="{% url 'create_user' %}">Sign Up Now</a></button>
+        </div>           
+    </div><!--/.container-->
+</section><!--/#sign_up_now-->
 
 {% include "dashboard/accounts_footer.html" %}

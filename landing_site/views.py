@@ -16,3 +16,6 @@ def PlansView(request):
 
 def FAQView(request):
 	return render(request, 'landing_site/faq.html',)
+
+def ContactUsView(request):
+	return render(request, 'landing_site/contact_us.html',)

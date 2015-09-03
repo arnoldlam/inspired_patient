@@ -59,7 +59,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "images/logos/inspired_patient_logo_4.png" %}" alt="logo"></a>
+                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "images/logos/inspired_patient_logo_4.png" %}" style="width: 75%;" alt="logo"></a>
                 </div>
                 
             <div class="collapse navbar-collapse navbar-right">
@@ -71,7 +71,7 @@
                             <li><a href="{% url 'about_us' %}">Our Story</a></li>
                             <li><a href="{% url 'about_us' %}/#about-us">Team</a></li>
                             <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
                             <li><a href="{% url 'faq' %}">FAQ</a></li>
                         </ul>
                     </li>

@@ -7,11 +7,11 @@
                     <div class="widget">
                         <h3>About Us</h3>
                         <ul>
-	                        <li><a href="blog-item.html">Our Story</a></li>
-	                        <li><a href="pricing.html">Team</a></li>
-	                        <li><a href="404.html">Blog</a></li>
-	                        <li><a href="shortcodes.html">Contact Us</a></li>
-	                        <li><a href="shortcodes.html">Help</a></li>
+                            <li><a href="{% url 'about_us' %}">Our Story</a></li>
+                            <li><a href="{% url 'about_us' %}/#about-us">Team</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
                         </ul>
                     </div>    
                 </div><!--/.col-md-4-->
@@ -20,12 +20,12 @@
                     <div class="widget">
                         <h3>Solutions </h3>
                         <ul>
-	                        <li><a href="blog-item.html">Overview</a></li>
-	                        <li><a href="pricing.html">Notes</a></li>
-	                        <li><a href="404.html">Collaborate</a></li>
-	                        <li><a href="shortcodes.html">Organize</a></li>
-	                        <li><a href="shortcodes.html">Professional</a></li>
-	                        <li><a href="shortcodes.html">Plans</a></li>
+                        <li><a href="{% url 'solutions' %}">Overview</a></li>
+                        <li><a href="{% url 'solutions' %}/#notes">Notes</a></li>
+                        <li><a href="{% url 'solutions' %}/#collaborate">Collaborate</a></li>
+                        <li><a href="{% url 'solutions' %}/#organize">Organize</a></li>
+                        <li><a href="{% url 'solutions' %}/#professional">Professional</a></li>
+                        <li><a href="{% url 'plans' %}">Plans</a></li>
                         </ul>
                     </div>    
                 </div><!--/.col-md-4-->
@@ -34,8 +34,8 @@
                     <div class="widget">
                         <h3>Members Area</h3>
                         <ul>
-	                        <li><a href="blog-item.html">Login</a></li>
-	                        <li><a href="pricing.html">Dashboard</a></li>
+                            <li><a href="{% url 'login' %}">Login</a></li>
+                            <li><a href="{% url 'dashboard:notes' %}">Dashboard</a></li>
                         </ul>
                     </div>    
                 </div><!--/.col-md-4-->
@@ -51,9 +51,9 @@
                 </div>
                 <div class="col-sm-6">
                     <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
+                        <li><a href="{% url 'index' %}">Home</a></li>
+                        <li><a href="{% url 'about_us' %}">About Us</a></li>
+                        <li><a href="{% url 'faq' %}">Faq</a></li>
                         <li><a href="#">Contact Us</a></li>
                     </ul>
                 </div>

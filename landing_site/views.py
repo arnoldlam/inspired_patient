@@ -13,3 +13,6 @@ def SolutionsView(request):
 
 def PlansView(request):
 	return render(request, 'landing_site/plans.html',)
+
+def FAQView(request):
+	return render(request, 'landing_site/faq.html',)

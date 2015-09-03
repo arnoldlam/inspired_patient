@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^about_us/$', landing_site_views.AboutUsView, name='about_us'),
     url(r'^solutions/$', landing_site_views.SolutionsView, name='solutions'),
     url(r'^plans/$', landing_site_views.PlansView, name='plans'),
+    url(r'^faq/$', landing_site_views.FAQView, name='faq'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('dashboard.urls', namespace="dashboard")),
     url(r'^accounts/', include('django.contrib.auth.urls')),

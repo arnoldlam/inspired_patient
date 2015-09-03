@@ -236,7 +236,7 @@ def Profile(request):
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"
-	search_placeholder = "Search for new users..."
+	search_placeholder = "Search for team members"
 	search_input_name = "u"
 	return render(request, 'dashboard/profile.html', {
 		'notifications':notifications,
@@ -1072,9 +1072,8 @@ def AddMedicationNoteView(request):
 
 			new_note = MedicationNote(pharmacy_address=address, subject=subject, note_type=note_type, 
 				note_content=note, author=user, medication_name=medication_name, 
-				medication_dosage=medication_dosage, medication_frequency=frequency, 
-				pharmacy_name=pharmacy_name, pharmacy_telephone=pharmacy_telephone, 
-				date_and_time=date_and_time,
+				medication_dosage=medication_dosage, pharmacy_name=pharmacy_name, 
+				pharmacy_telephone=pharmacy_telephone, date_and_time=date_and_time,
 			)
 
 			# Optional parameters to be added to new_note object

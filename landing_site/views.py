@@ -7,3 +7,6 @@ def IndexView(request):
 
 def AboutUsView(request):
 	return render(request, 'landing_site/about_us.html',)
+
+def SolutionsView(request):
+	return render(request, 'landing_site/solutions.html',)

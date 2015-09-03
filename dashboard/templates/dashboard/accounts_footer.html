@@ -1,10 +1,87 @@
 {% load staticfiles %}
 
-    <script src="{% static "js/jquery.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/jquery.prettyPhoto.js" %}"></script>
-    <script src="{% static "js/jquery.isotope.min.js" %}"></script>
-    <script src="{% static "js/main.js" %}"></script>
-    <script src="{% static "js/wow.min.js" %}"></script>
+    <section id="bottom">
+        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>About Us</h3>
+                        <ul>
+	                        <li><a href="blog-item.html">Our Story</a></li>
+	                        <li><a href="pricing.html">Team</a></li>
+	                        <li><a href="404.html">Blog</a></li>
+	                        <li><a href="shortcodes.html">Contact Us</a></li>
+	                        <li><a href="shortcodes.html">Help</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-4-->
+
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>Solutions </h3>
+                        <ul>
+	                        <li><a href="blog-item.html">Overview</a></li>
+	                        <li><a href="pricing.html">Notes</a></li>
+	                        <li><a href="404.html">Collaborate</a></li>
+	                        <li><a href="shortcodes.html">Organize</a></li>
+	                        <li><a href="shortcodes.html">Professional</a></li>
+	                        <li><a href="shortcodes.html">Plans</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-4-->
+
+                <div class="col-md-4">
+                    <div class="widget">
+                        <h3>Members Area</h3>
+                        <ul>
+	                        <li><a href="blog-item.html">Login</a></li>
+	                        <li><a href="pricing.html">Dashboard</a></li>
+                        </ul>
+                    </div>    
+                </div><!--/.col-md-4-->
+            </div>
+        </div>
+    </section><!--/#bottom-->
+
+    <footer id="footer" class="midnight-blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    &copy; 2015 <a target="_blank" href="http://patientehealth.com/" title="Inspired Patient">Inspired Patient</a>. All Rights Reserved.
+                </div>
+                <div class="col-sm-6">
+                    <ul class="pull-right">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Faq</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!--/#footer-->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{% static "bower_components/metisMenu/dist/metisMenu.min.js" %}"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <!--
+    <script src="../bower_components/raphael/raphael-min.js"></script>
+    <script src="../bower_components/morrisjs/morris.min.js"></script>
+    <script src="../js/morris-data.js"></script>
+    -->
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{% static "dist/js/sb-admin-2.js" %}"></script>
+
 </body>
 </html>

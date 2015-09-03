@@ -83,6 +83,7 @@ def CreateNewUserView(request):
 		'user_profile_form':user_profile_form,
 	})
 
+@login_required
 def CreateNewUserExtendedView(request):
 	user = request.user
 	if request.method == 'POST':
@@ -128,7 +129,7 @@ def CreateNewUserExtendedView(request):
 		'user':user,
 	})
 
-
+@login_required
 def CreateNewProfessionalView(request):
 	if request.method == 'POST':
 		form = CreateProfessionalProfileForm(request.POST)

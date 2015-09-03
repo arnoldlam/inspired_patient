@@ -1,103 +1,5 @@
 {% load staticfiles %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home | Inspired Patient</title>
-    
-    <!-- core CSS -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/font-awesome.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/prettyPhoto.css" %}" rel="stylesheet">
-    <link href="{% static "css/animate.min.css" %}" rel="stylesheet">
-    <link href="{% static "css/main.css" %}" rel="stylesheet">
-    <link href="{% static "css/responsive.css" %}" rel="stylesheet">
-    <link href="{% static "css/accounts.css" %}" rel="stylesheet">
-
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link rel="shortcut icon" href="{% static "images/logos/favicon.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static "images/ico/apple-touch-icon-144-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static "images/ico/apple-touch-icon-114-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static "images/ico/apple-touch-icon-72-precomposed.png" %}">
-    <link rel="apple-touch-icon-precomposed" href="{% static "images/ico/apple-touch-icon-57-precomposed.png" %}">
-</head><!--/head-->
-
-<body>
-
-    <header id="header">
-        <div class="top-bar custom-top-bar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 col-xs-8 col-md-offset-6">
-                       <div class="social">
-                            <ul class="social-share">
-                                <li><a href="https://www.facebook.com/inspiredpatient"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="https://twitter.com/InspiredPatient"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>     
-                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
-                            </ul>
-                       </div>
-                    </div>
-                </div>
-            </div><!--/.container-->
-        </div><!--/.top-bar-->
-
-        <nav class="navbar navbar-inverse custom-navbar" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static "images/logos/inspired_patient_logo_4.png" %}" alt="logo"></a>
-                </div>
-				
-            <div class="collapse navbar-collapse navbar-right">
-            	<ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-item.html">Our Story</a></li>
-                            <li><a href="pricing.html">Team</a></li>
-                            <li><a href="404.html">Blog</a></li>
-                            <li><a href="shortcodes.html">Contact Us</a></li>
-                            <li><a href="shortcodes.html">Help</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Solutions <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-item.html">Overview</a></li>
-                            <li><a href="pricing.html">Notes</a></li>
-                            <li><a href="404.html">Collaborate</a></li>
-                            <li><a href="shortcodes.html">Organize</a></li>
-                            <li><a href="shortcodes.html">Professional</a></li>
-                            <li><a href="shortcodes.html">Plans</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Members Area <i class="fa fa-angle-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="blog-item.html">Login</a></li>
-                            <li><a href="pricing.html">Dashboard</a></li>
-                        </ul>
-                    </li>                       
-                </ul>
-            </div>
-        </nav><!--/nav-->
-		
-    </header><!--/header-->
+{% include "dashboard/accounts_header.html" %}
 
     <section id="main-slider" class="no-margin">
         <div class="carousel slide">
@@ -110,7 +12,7 @@
                                 <div class="carousel-content">
                                     <h1 class="animation animated-item-1">Improving the Health Journey</h1>
                                     <h2 class="animation animated-item-2">Inspired Patient: Empowering patients and their team, to better health outcomes</h2>
-                                    <a class="btn-slide animation animated-item-3" href="#">Sign Up Now</a>
+                                    <a class="btn-slide animation animated-item-3" href="{% url 'create_user' %}">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +88,7 @@
         <div class="container">
             <div class="center wow fadeInDown">
                 <h2>Better manage your health today!</h2>
-                <button class="btn btn-primary">Sign Up Now</button>
+                <button class="btn btn-primary"><a href="{% url 'create_user' %}">Sign Up Now</a></button>
                 <br><br>
                 <h2>... and let's keep in touch.</h2>
                 <form action="" method="post" class="centered">
@@ -196,88 +98,4 @@
         </div><!--/.container-->
     </section><!--/#partner-->
 
-    <section id="bottom">
-        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="widget">
-                        <h3>About Us</h3>
-                        <ul>
-	                        <li><a href="blog-item.html">Our Story</a></li>
-	                        <li><a href="pricing.html">Team</a></li>
-	                        <li><a href="404.html">Blog</a></li>
-	                        <li><a href="shortcodes.html">Contact Us</a></li>
-	                        <li><a href="shortcodes.html">Help</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-4-->
-
-                <div class="col-md-4">
-                    <div class="widget">
-                        <h3>Solutions </h3>
-                        <ul>
-	                        <li><a href="blog-item.html">Overview</a></li>
-	                        <li><a href="pricing.html">Notes</a></li>
-	                        <li><a href="404.html">Collaborate</a></li>
-	                        <li><a href="shortcodes.html">Organize</a></li>
-	                        <li><a href="shortcodes.html">Professional</a></li>
-	                        <li><a href="shortcodes.html">Plans</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-4-->
-
-                <div class="col-md-4">
-                    <div class="widget">
-                        <h3>Members Area</h3>
-                        <ul>
-	                        <li><a href="blog-item.html">Login</a></li>
-	                        <li><a href="pricing.html">Dashboard</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-4-->
-            </div>
-        </div>
-    </section><!--/#bottom-->
-
-    <footer id="footer" class="midnight-blue">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    &copy; 2015 <a target="_blank" href="http://patientehealth.com/" title="Inspired Patient">Inspired Patient</a>. All Rights Reserved.
-                </div>
-                <div class="col-sm-6">
-                    <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer><!--/#footer-->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="{% static "bower_components/jquery/dist/jquery.min.js" %}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{% static "bower_components/bootstrap/dist/js/bootstrap.min.js" %}"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="{% static "bower_components/metisMenu/dist/metisMenu.min.js" %}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <!--
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-    -->
-
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static "dist/js/sb-admin-2.js" %}"></script>
-
-</body>
-</html>
+{% include "dashboard/accounts_footer.html" %}

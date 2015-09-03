@@ -11,7 +11,7 @@
                             <li><a href="{% url 'about_us' %}/#about-us">Team</a></li>
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">FAQ</a></li>
+                            <li><a href="{% url 'faq' %}">FAQ</a></li>
                         </ul>
                     </div>    
                 </div><!--/.col-md-4-->
@@ -72,13 +72,6 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{% static "bower_components/metisMenu/dist/metisMenu.min.js" %}"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <!--
-    <script src="../bower_components/raphael/raphael-min.js"></script>
-    <script src="../bower_components/morrisjs/morris.min.js"></script>
-    <script src="../js/morris-data.js"></script>
-    -->
 
     <!-- Custom Theme JavaScript -->
     <script src="{% static "dist/js/sb-admin-2.js" %}"></script>

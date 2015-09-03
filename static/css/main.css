@@ -214,7 +214,7 @@ ul.social-share li {
 ul.social-share li a {
   display: inline-block;
   color: #fff;
-  background: #2E4272;
+  background: #0A7DDC;
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -313,7 +313,7 @@ input.search-form:hover {
 }
 
 .navbar-inverse .navbar-nav .dropdown-menu {
-  background-color: #2E4272;
+  background-color: #0A7DDC;
   -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
   -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);

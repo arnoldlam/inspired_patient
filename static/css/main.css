@@ -214,7 +214,7 @@ ul.social-share li {
 ul.social-share li a {
   display: inline-block;
   color: #fff;
-  background: #0A7DDC;
+  background: #2E4272;
   width: 25px;
   height: 25px;
   line-height: 25px;
@@ -288,7 +288,7 @@ input.search-form:hover {
 }
 
 .navbar-inverse .navbar-nav > li > a:hover{
-	background-color: #c52d2f;
+	background-color: #ffbe00;
   color: #fff;
 }
 
@@ -313,7 +313,7 @@ input.search-form:hover {
 }
 
 .navbar-inverse .navbar-nav .dropdown-menu {
-  background-color: rgba(0,0,0,.85);
+  background-color: #2E4272;
   -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
   -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.125);
@@ -338,7 +338,7 @@ input.search-form:hover {
 .navbar-inverse .navbar-nav .dropdown-menu > li:hover > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li:focus > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li.active > a {
-  background-color: #c52d2f;
+  background-color: #ffbe00;
   color: #fff;
 }
 

@@ -40,3 +40,11 @@
 #pricing-body td {
     text-align: center;
 }
+
+.gmap-area {
+	background-image: url("{% static 'images/landing_site/contact_us_map.jpg' %}");
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 70px 0;
+}

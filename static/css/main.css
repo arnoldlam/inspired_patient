@@ -332,7 +332,7 @@ input.search-form:hover {
 
 .navbar-inverse .navbar-nav .dropdown-menu > li > a {
   padding: 8px 15px;
-  color: #fff;
+  color: #fff !important;
 }
 
 .navbar-inverse .navbar-nav .dropdown-menu > li:hover > a,

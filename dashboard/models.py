@@ -44,6 +44,14 @@ class UserProfile(models.Model):
 		('professional', 'Professional'),
 		('individual', 'Individual'),
 	)
+	PAYMENT_PLAN_CHOICES = (
+		('basic', 'Basic'),
+		('premium', 'Premium'),
+	)
+	PAYMENT_TERM_CHOICES = (
+		('monthly', 'Monthly'),
+		('annually', 'Annually'),
+	)
 
 	user = models.OneToOneField(User, related_name="user_profile")
 	associates = models.ManyToManyField("self", blank=True)
@@ -74,6 +82,11 @@ class UserProfile(models.Model):
 	office_address_country = models.CharField('Office Country', max_length=30, choices = ADDRESS_CITY_CHOICES, 
 		default='CA', blank=True)
 	office_address_postal_code = models.CharField('Office Postal Code', max_length=10, blank=True)
+
+	has_paid = models.BooleanField(default=False)
+	payment_rate = models.CharField(max_length=10, choices=PAYMENT_PLAN_CHOICES, blank=True)
+	payment_term = models.CharField(max_length=10, choices=PAYMENT_TERM_CHOICES, blank=True)
+	latest_payment = models.DateTimeField(blank=True,null=True)
 
 	def __unicode__(self):
 		return self.user.username

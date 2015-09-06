@@ -1,7 +1,7 @@
 {% load staticfiles %}
 {% include "dashboard/accounts_header.html" %}
 
-<section id="pricing">
+<section id="pricing" class="hidden-xs">
     <div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -131,4 +131,72 @@
 	</div>
 </section>
 
+<section id="pricing-xs" class="hidden-md hidden-lg">
+	<div class="container">
+
+		<div class="center wow fadeInDown">
+			<h2>See our pricing options</h2>
+			<p class="lead">Find the plan that fits your health management needs.</p>
+			<a href="{% url 'create_user' %}"><button class="btn btn-success" style="margin-top: 5px;">Start Free Trial</button></a>
+		</div>
+
+		<div class="row clearfix">
+
+			<div class="col-md-4 col-sm-6 col-md-offset-2">	
+				<div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" style="height: 450px;">
+					<div class="media">
+						<div class="media-body">
+							<h4>Basic</h4>
+							<h5>Start managing your health today!</h5>
+							<h5>$2 per month, $20 annually</h5>
+						</div>
+					</div><!--/.media -->
+					<p>Usage - Occassional</p>
+					<p>Team Members - 5</p>
+					<p>Notes - 100</p>
+					<p>Notebooks - 25</p>
+					<p>Scheduler - Included</p>
+					<p>Storage - 10 MB</p>
+				</div>
+			</div><!--/.col-lg-4 -->		
+
+			<div class="col-md-4 col-sm-6 col-md-offset-2">	
+				<div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" style="height: 450px;">
+					<div class="media">
+						<div class="media-body">
+							<h4>Premium</h4>
+							<h5>Bigger team, more features. I own my health!</h5>
+							<h5>$5 per month, $50 annually</h5>
+						</div>
+					</div><!--/.media -->
+					<p>Usage - Frequent</p>
+					<p>Team Members - 25</p>
+					<p>Notes - 100</p>
+					<p>Notebooks - 500</p>
+					<p>Scheduler - Included</p>
+					<p>Storage - 25 MB</p>
+				</div>
+			</div><!--/.col-lg-4 -->	
+
+			<div class="col-md-4 col-sm-6 col-md-offset-2">	
+				<div class="single-profile-top wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms" style="height: 450px;">
+					<div class="media">
+						<div class="media-body">
+							<h4>Professional</h4>
+							<h5>I want to help my clients! And be more productive!</h5>
+							<h5>Contact sales</h5>
+						</div>
+					</div><!--/.media -->
+					<p>Usage - All the time</p>
+					<p>Team Members - Custom</p>
+					<p>Notes - Custom</p>
+					<p>Notebooks - Custom</p>
+					<p>Scheduler - Custom</p>
+					<p>Storage - Custom</p>
+				</div>
+			</div><!--/.col-lg-4 -->	
+
+		</div> <!--/.row -->  
+	</div><!--/.container-->
+</section><!--/about-us-->
 {% include "dashboard/accounts_footer.html" %}

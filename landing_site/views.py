@@ -22,7 +22,7 @@ def ContactUsView(request):
 	return render(request, 'landing_site/contact_us.html',)
 
 def BlogView(request):
-	blogs = Blog.objects.all()
+	blogs = Blog.objects.all().order_by('-date_created')
 
 	return render(request, 'landing_site/blogs.html', {
 		'blogs':blogs,

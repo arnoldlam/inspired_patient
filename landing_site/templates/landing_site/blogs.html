@@ -29,7 +29,7 @@
                             {% endif %}
                             <h2>{{ blog.title }}</h2>
                             {% if blog.url %}
-                            <h3><a href="{{ blog.url }}" target="_blank" style="color: #428bca;">{{ blog.url }}</a></h3>
+                            <a href="{{ blog.url }}" target="_blank"><button class="btn btn-primary">Additional Content</button></a>
                             {% endif %}
                             <h3>{{ blog.content|linebreaks }}</h3>
                         </div>

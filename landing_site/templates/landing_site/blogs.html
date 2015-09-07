@@ -28,10 +28,10 @@
                             </a>
                             {% endif %}
                             <h2>{{ blog.title }}</h2>
+                            <h3>{{ blog.content|linebreaks }}</h3>
                             {% if blog.url %}
                             <a href="{{ blog.url }}" target="_blank"><button class="btn btn-primary">Additional Content</button></a>
                             {% endif %}
-                            <h3>{{ blog.content|linebreaks }}</h3>
                         </div>
                     </div>    
                 </div><!--/.blog-item-->

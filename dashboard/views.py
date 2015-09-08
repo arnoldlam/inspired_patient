@@ -1441,9 +1441,9 @@ def SearchUserResultsView(request):
 		search_query) | Q(last_name__icontains = search_query)).distinct()
 
 	if not search_results:
-		for user in User.objects.all():
-			if search_query in user.user_profile.full_name():
-				search_results.append(user)
+		for user_profile in UserProfile.objects.all():
+			if search_query in user_profile.full_name():
+				search_results.append(user_profile.user)
 
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')

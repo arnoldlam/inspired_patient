@@ -1440,6 +1440,11 @@ def SearchUserResultsView(request):
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
 
+	if search_results is None:
+		for user in User.objects.all():
+			if search_query in user.user_profile.full_name():
+				search_results.append(user)
+
 	search_form_name = "search_users"
 	search_form_action = reverse('dashboard:search_results')
 	search_method = "get"

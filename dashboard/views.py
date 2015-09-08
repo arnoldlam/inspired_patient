@@ -70,8 +70,8 @@ def CreateNewUserView(request):
 				new_notebook.save()
 				new_notebook.editors.add(user)
 
-				new_help_notebook = Notebook.objects.get(name='Inspired Patient Help')
-				new_help_notebook.save()
+				new_help_notebook = Notebook.objects.get(pk=160)
+				if new_help_notebook is None: Notebook.objects.get(name='Inspired Patient Help')
 				new_help_notebook.viewers.add(user)
 
 				return HttpResponseRedirect(reverse('create_user_extended'))
@@ -1440,7 +1440,7 @@ def SearchUserResultsView(request):
 	search_results = User.objects.filter(Q(username__icontains = search_query) | Q(first_name__icontains = 
 		search_query) | Q(last_name__icontains = search_query)).distinct()
 
-	if search_results is None:
+	if not search_results:
 		for user in User.objects.all():
 			if search_query in user.user_profile.full_name():
 				search_results.append(user)

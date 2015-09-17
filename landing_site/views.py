@@ -1,3 +1,10 @@
+"""
+Filename: views.py
+Created on: June 13th, 2015
+Author: Arnold Lam
+Description: Provides the views for the landing pages for Inspired Patient
+"""
+
 from django.shortcuts import render
 from landing_site.models import Blog
 

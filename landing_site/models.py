@@ -19,3 +19,7 @@ class Blog(models.Model):
 
 	def __unicode__(self):
 		return self.title
+
+class Privacy(models.Model):
+	privacy_statement = models.TextField()
+	terms_of_use = models.TextField()

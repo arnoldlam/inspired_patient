@@ -17,7 +17,7 @@ import datetime
 from django.templatetags.static import static
 
 from django.contrib.auth.models import User, Group
-from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote
+from dashboard.models import Clinic, UserProfile, Note, InstructionNote, Attachment, Notebook, CommunicationNote, ProcedureNote, NoteReply, Notification, SelfCareNote, ResourceNote, AppointmentNote, ContactNote, Address, MedicationNote, Privacy
 from .forms import AddNoteForm, AddInstructionNoteForm, SearchForUserForm, EditProfileForm, AddNotebookForm, AddCommunicationNoteForm, AddNoteReplyForm, UserProfileCreationForm, CreateProfessionalProfileForm, AddSelfCareNoteForm, AddResourceNoteForm, AddProcedureNoteForm, AddAppointmentNoteForm, AddContactNoteForm, AddMedicationNoteForm, UserCreationForm, UserPermissionsForm, UserProfileCreationExtendedForm
 from django.contrib.auth.forms import AdminPasswordChangeForm
 
@@ -78,9 +78,11 @@ def CreateNewUserView(request):
 	else:
 		user_form = UserCreationForm(prefix='user_form')
 		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
+	privacy = Privacy.objects.get(id=1)
 	return render(request, 'dashboard/create_user.html', {
 		'user_form':user_form,
 		'user_profile_form':user_profile_form,
+		'privacy':privacy,
 	})
 
 @login_required

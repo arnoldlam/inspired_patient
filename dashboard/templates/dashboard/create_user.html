@@ -36,14 +36,13 @@
                             <label>Password Confirmation *</label>
                             {{ user_form.password2 }}
                         </div>
+                        {% if privacy %}
                         <div class="form-group">
-                            <p>By signing up, you are agreeing to our terms of use</p>
-                            <textarea class="form-control" rows="20" readonly>
-                            {% if privacy %}
-                            {{ privacy.terms_of_use }}
-                            {% endif %}
+                            <p style="text-align:center;">By signing up, you are agreeing to our terms of use</p>
+                            <textarea class="form-control" rows="10" readonly>{{ privacy.terms_of_use }}
                             </textarea>
-                        </div>                                        
+                        </div>
+                        {% endif %} 
                         <div class="form-group">
                             <button type="submit" name="submit" class="btn btn-primary btn-lg centered" required="required">Create Account</button>
                         </div>                   

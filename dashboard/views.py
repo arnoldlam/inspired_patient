@@ -78,7 +78,7 @@ def CreateNewUserView(request):
 	else:
 		user_form = UserCreationForm(prefix='user_form')
 		user_profile_form = UserProfileCreationForm(prefix='user_profile_form')
-	# privacy = Privacy.objects.get(id=1)
+	privacy = Privacy.objects.get(id=1)
 	return render(request, 'dashboard/create_user.html', {
 		'user_form':user_form,
 		'user_profile_form':user_profile_form,

@@ -38,9 +38,13 @@
                         </div>
                         {% if privacy %}
                         <div class="form-group">
-                            <p style="text-align:center;">By signing up, you are agreeing to our terms of use</p>
+                            <p style="text-align:center;">Terms of Use</p>
                             <textarea class="form-control" rows="10" readonly>{{ privacy.terms_of_use }}
                             </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>I agree with the terms of use.</label>
+                            <input class="form-control" type="checkbox" required />
                         </div>
                         {% endif %} 
                         <div class="form-group">

@@ -308,4 +308,3 @@ class Privacy(models.Model):
 	privacy_statement = models.TextField()
 	terms_of_use = models.TextField()
 
-

@@ -123,7 +123,7 @@ def CreateNewUserExtendedView(request):
 			if form.cleaned_data['role'] == 'professional':
 				return HttpResponseRedirect(reverse('create_professional'))
 
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			return HttpResponseRedirect(reverse('dashboard:notebooks'))
 	else:
 		form = UserProfileCreationExtendedForm()
 	return render(request, 'dashboard/create_user_extended.html', {
@@ -168,7 +168,7 @@ def CreateNewProfessionalView(request):
 			user_profile.save()
 
 			# return HttpResponseRedirect('/dashboard/notes')
-			return HttpResponseRedirect(reverse('dashboard:notes'))
+			return HttpResponseRedirect(reverse('dashboard:notebooks'))
 	else:
 		form = CreateProfessionalProfileForm()
 	return render(request, 'dashboard/create_professional.html', {

@@ -392,7 +392,8 @@ class UserCreationForm(forms.ModelForm):
 	password2 = forms.CharField(label=_("Password confirmation"),
 		widget=forms.PasswordInput(attrs={'class':'form-control'}),
 		help_text=_("Enter the same password as above, for verification."))
-
+	terms_of_use_check = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'required':'required'}))
+	
 	class Meta:
 		model = User
 		fields = ("username",)
@@ -420,7 +421,7 @@ class UserCreationForm(forms.ModelForm):
 class UserProfileCreationForm(forms.Form):
 	first_name = forms.CharField(label="First Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
 	last_name = forms.CharField(label="Last Name", max_length=100, widget=forms.TextInput(attrs={'class':'form-control', 'required':'required'}))
-	terms_of_use_check = forms.BooleanField(required=True, widget=forms.CheckboxInput(attrs={'required':'required'}))
+
 
 class UserProfileCreationExtendedForm(forms.Form):
 	ROLE_CHOICES = (

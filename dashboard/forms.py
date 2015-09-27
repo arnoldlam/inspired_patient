@@ -98,9 +98,9 @@ class AddCommunicationNoteForm(NotesThatRelateToDoctorAndClinic):
 	IMPORTANCE_CHOICES = (
 		('read', 'Read'),
 		('respond', 'Respond'),
-		('urgent', 'Urgent'),
 	)	
 
+	note_content = forms.CharField(label='Note', max_length=4000, widget=forms.Textarea(attrs={'class':'form-control', 'rows':'20', 'required':'required','placeholder':'Do not use this form for urgent or immediate communication. Expect delays in responses when using this form.'}))
 	importance = forms.ChoiceField(choices=IMPORTANCE_CHOICES, widget=forms.Select(attrs={'class':'form-control','required':'required'}))
 
 class AddProcedureNoteForm(NotesThatRelateToDoctorAndClinic):

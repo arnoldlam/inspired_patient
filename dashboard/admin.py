@@ -37,7 +37,7 @@ class AttachmentInline(admin.TabularInline):
 class NoteAdmin(admin.ModelAdmin):
 	list_display = ('subject', 'author', 'date_created', 'date_accessed', 'note_type', )
 	fieldsets = (
-		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up',)}),
+		(None, {'fields': ('subject', 'note_type', 'note_content', 'url', 'follow_up', 'done_status')}),
 		('Users', {'fields':['author', 'editors', 'viewers'],'classes':['show']}),
 	)
 	inlines=[RepliesInline, AttachmentInline]

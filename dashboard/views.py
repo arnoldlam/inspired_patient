@@ -1661,6 +1661,7 @@ def SchedulingView(request):
 def MarkTaskAsComplete(request, note_id):
 	note = get_object_or_404(Note, pk=note_id)
 	note.done_status = 'complete'
+	note.save()
 
 	return HttpResponseRedirect(reverse('dashboard:scheduling'))
 

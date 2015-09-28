@@ -75,7 +75,9 @@
                         </div>
                         {% endif %}
                     </form>
-                    <a href="{% url 'dashboard:mark_task_as_complete' note.id %}"><button class="btn btn-default submit_note_form_button centered">Mark As Complete</button></a>
+                    {% if note.done_status = 'incomplete' %}
+                        <a href="{% url 'dashboard:mark_task_as_complete' note.id %}"><button class="btn btn-default submit_note_form_button centered">Mark As Complete</button></a>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -52,6 +52,9 @@
                             <textarea class="form-control" name="note_content" id="note_content" rows="5" readonly>{{ note.note_content }}</textarea>
                         </div>
                     </form>
+                    {% if note.done_status = 'incomplete' %}
+                        <a href="{% url 'dashboard:mark_task_as_complete' note.id %}"><button class="btn btn-default submit_note_form_button centered">Mark As Complete</button></a>
+                    {% endif %}
                 </div>
             </div>
         </div>

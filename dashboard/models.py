@@ -128,6 +128,10 @@ class Note(models.Model):
 		('contact_note', 'Contact note'), 
 		('medication_note', 'Medication note'),
 	)
+	DONE_STATUS_CHOICES = (
+		('incomplete','Incomplete'),
+		('complete', 'Complete'),
+	)
 	editors = models.ManyToManyField(User, related_name='notes_read_write', blank=True)
 	viewers = models.ManyToManyField(User, related_name='notes_read_only', blank=True)
 	author = models.ForeignKey(User, related_name='authored_notes', null=True)
@@ -138,6 +142,7 @@ class Note(models.Model):
 	note_content = models.TextField()
 	note_type = models.CharField(max_length=20, choices=NOTE_TYPE_CHOICES, default='general_note')
 	url = models.URLField(max_length=200, blank=True)
+	done_status = models.CharField(max_length=20, choices=DONE_STATUS_CHOICES, default='incomplete', blank=True)
 
 	# Optional date and time for some note types
 	date_and_time = models.DateTimeField('Date and Time', blank=True, null=True)

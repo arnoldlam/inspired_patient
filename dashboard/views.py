@@ -1627,9 +1627,9 @@ def SchedulingView(request):
 	today_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(days=1)))).order_by('date_and_time')
 	week_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
-		timezone.now() + datetime.timedelta(weeks=1)))).order_by('date_and_time')
+		timezone.now() + datetime.timedelta(weeks=1)))).order_by('date_and_time').distinct('subject')
 	month_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
-		timezone.now() + datetime.timedelta(weeks=4)))).order_by('date_and_time')
+		timezone.now() + datetime.timedelta(weeks=4)))).order_by('date_and_time').distinct('subject')
 
 	patient_appointments = user.appointments
 

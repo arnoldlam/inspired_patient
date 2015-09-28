@@ -166,7 +166,7 @@ class RepeatingNotesForm(AddNoteForm):
 			return zip(minute_list, minute_list)
 
 		def get_current_hour():
-			current_hour = datetime.datetime.now().strftime('%H')
+			current_hour = int(datetime.datetime.now().strftime('%H'))
 			if current_hour > 12:
 				return current_hour - 12
 			else:

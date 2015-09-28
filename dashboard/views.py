@@ -1658,6 +1658,13 @@ def SchedulingView(request):
 	})
 
 @login_required
+def MarkTaskAsComplete(request, note_id):
+	note = get_object_or_404(Note, pk=note_id)
+	note.done_status = 'complete'
+
+	return HttpResponseRedirect(reverse('dashboard:scheduling'))
+
+@login_required
 def CreateNewView(request):
 	user = request.user
 	notifications = user.notifications_received.all().order_by('-date_created')[:5]

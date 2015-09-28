@@ -37,5 +37,6 @@ urlpatterns = [
 	url(r'^notifications/$', views.NotificationsView, name='notifications'),
 	url(r'^notifications/mark_as_read$', views.MarkNotificationAsRead, name='mark_notification_as_read'),
 	url(r'^calendar$', views.SchedulingView, name='scheduling'),
+	url(r'^calendar/mark_task_as_complete/(?P<note_id>[0-9]+)$', views.MarkTaskAsComplete, name='mark_task_as_complete'),
 	url(r'^create_new$', views.CreateNewView, name='create_new'),
 ]

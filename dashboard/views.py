@@ -1655,8 +1655,6 @@ def SchedulingView(request):
 		'search_form_action':search_form_action,
 		'search_method':search_method,
 		'search_input_name':search_input_name,
-		'week_titles_array':week_titles_array,
-		'month_titles_array':month_titles_array,
 	})
 
 @login_required

@@ -1636,7 +1636,7 @@ def SchedulingView(request):
 		week_titles_array.append(week_task.subject)
 
 	month_titles_array = []
-	for month_tasks in month_tasks:
+	for month_task in month_tasks:
 		month_titles_array.append(week_task.subject)
 
 	patient_appointments = user.appointments

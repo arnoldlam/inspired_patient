@@ -1631,14 +1631,6 @@ def SchedulingView(request):
 	month_tasks = upcoming_tasks.filter(Q(date_and_time__gte=timezone.now()) & Q(date_and_time__lte=(
 		timezone.now() + datetime.timedelta(weeks=4)))).order_by('date_and_time').distinct()
 
-	week_titles_array = []
-	for week_task in week_tasks:
-		week_titles_array.append(week_task.subject)
-
-	month_titles_array = []
-	for month_task in month_tasks:
-		month_titles_array.append(week_task.subject)
-
 	patient_appointments = user.appointments
 
 	# Set form name and action for search

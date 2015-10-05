@@ -50,11 +50,9 @@
                     <div class="list-group" style="height:525px; overflow:scroll;">
                         {% if week_tasks %}
                             {% for note in week_tasks %}
-                            {% if note.subject not in week_titles_array %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                             </a>
-                            {% endif %}
                             {% endfor %}
                         {% else %}
                         <div class="empty_label">
@@ -79,11 +77,9 @@
                     <div class="list-group" style="height:525px; overflow:scroll;">
                         {% if month_tasks %}
                             {% for note in month_tasks %}
-                            {% if note.subject not in month_titles_array %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                             </a>
-                            {% endif %}
                             {% endfor %}
                         {% else %}
                         <div class="empty_label">

@@ -189,7 +189,7 @@ class RepeatingNotesForm(AddNoteForm):
 		self.current_day = datetime.datetime.now().strftime('%d')
 		self.current_year = datetime.datetime.now().strftime('%Y')
 
-		self.current_hour = datetime.datetime.now().strftime('%H')
+		self.current_hour = datetime.get_current_hour()
 		self.current_minute = datetime.datetime.now().strftime('%M')
 		self.current_am_pm = datetime.datetime.now().strftime('%p')
 

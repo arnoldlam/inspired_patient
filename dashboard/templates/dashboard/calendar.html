@@ -22,7 +22,7 @@
                         {% if today_tasks %}
                             {% for note in today_tasks %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
-                                <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }} <em> | {{ note.done_status }}</em>
+                                <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }} <em style="font-size:12px;">  {{ note.done_status }}</em>
                                 <span class="pull-right text-muted small" style="padding-left:5px;"><em>{{ note.date_and_time }}</em>
                                 </span>
                             </a>
@@ -50,9 +50,11 @@
                     <div class="list-group" style="height:525px; overflow:scroll;">
                         {% if week_tasks %}
                             {% for note in week_tasks %}
+                            {% if note.subject not in week_titles_array %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                             </a>
+                            {% endif %}
                             {% endfor %}
                         {% else %}
                         <div class="empty_label">
@@ -77,9 +79,11 @@
                     <div class="list-group" style="height:525px; overflow:scroll;">
                         {% if month_tasks %}
                             {% for note in month_tasks %}
+                            {% if note.subject not in month_titles_array %}
                             <a href="{% url 'dashboard:note_detail' note.id %}?note_type={{ note.note_type }}" class="list-group-item" style="padding-bottom: 20px;">
                                 <i class="fa {{ note.getFontAwesomeIconName }} fa-fw"></i> {{ note.subject }}
                             </a>
+                            {% endif %}
                             {% endfor %}
                         {% else %}
                         <div class="empty_label">

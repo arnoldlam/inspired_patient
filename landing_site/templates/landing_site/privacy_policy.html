@@ -1,0 +1,19 @@
+{% load staticfiles %}
+{% include "dashboard/accounts_header.html" %}
+
+<section id="faq">
+    <div class="container">
+        <div class="row">                
+            <div class="center wow fadeInDown">
+                <div class="faq" style="text-align:left;">
+                    <h2 style="text-align:center;">Privacy Policy</h2>
+					<div>
+						<p>{{ privacy.privacy_policy }}</p>
+					</div>
+                </div>
+            </div>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#faq-->
+
+{% include "dashboard/accounts_footer.html" %}

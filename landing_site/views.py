@@ -7,6 +7,7 @@ Description: Provides the views for the landing pages for Inspired Patient
 
 from django.shortcuts import render
 from landing_site.models import Blog
+from dashboard.models import Privacy
 
 # Create your views here.
 
@@ -33,4 +34,18 @@ def BlogView(request):
 
 	return render(request, 'landing_site/blogs.html', {
 		'blogs':blogs,
+	})
+
+def TermsOfUseView(request):
+	privacy = Privacy.objects.get(id=1)
+
+	return render(request, 'landing_site/terms_of_use.html', {
+		'privacy':privacy,
+	})
+
+def PrivacyPolicyView(request):
+	privacy = Privacy.objects.get(id=1)
+
+	return render(request, 'landing_site/privacy_policy.html', {
+		'privacy':privacy,
 	})
